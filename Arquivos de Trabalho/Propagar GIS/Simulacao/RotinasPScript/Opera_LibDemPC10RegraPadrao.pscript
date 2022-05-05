@@ -1,0 +1,20 @@
+program Opera_Libera_PC10_Saida;
+
+var 
+    //Saida    : Object; {Variável já inicializada pelo sistema}
+    //Projeto  : Object; {Variável já inicializada pelo sistema}
+
+    PC              : Object;
+    i, dt           : Integer;
+    Defluencia      : Real;
+
+begin
+  dt         := Projeto.ObtemDeltaT;
+
+  PC         := Projeto.PCPeloNome('Queimado');
+  Defluencia := PC.ObtemDefluencia(dt);
+
+  Saida.WriteLN('Opera');
+  Saida.WriteLN('Defluencia: ' + ValToStr(Defluencia));
+
+end.

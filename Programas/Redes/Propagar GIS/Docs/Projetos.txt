@@ -1,0 +1,8 @@
+Tempo_de_Execução  Inicio        Fim           Projeto
+         36:46:17  "22/01/2000"  "10/02/2000"  "Bahia"
+         36:40:37  "11/10/1999"  "19/11/1999"  "Cascata"
+        195:00:02  "10/09/1998"  "28/02/2000"  "Chuvaz"
+         51:30:16  "21/12/1998"  "19/11/1999"  "ModHac"
+        514:26:15  "05/01/1999"  "09/03/2000"  "Propagar"
+         59:52:35  "14/03/1999"  "11/04/1999"  "Rosen"
+         16:04:57  "17/11/1999"  "16/02/2000"  "Sagbah (Sistema de Apoia a Decisão no Gerenciamento de Bacias Hidrográficas)"

@@ -1,0 +1,29 @@
+var arquivo: string;
+    HTML: object;
+    i: integer;
+begin
+  // Definicao do nome do arquivo HTML
+  arquivo := ExtractFilePath(Projeto.NomeArquivo);
+  arquivo := arquivo + 'HTML\teste.html';
+
+  // Construcao do HTML
+  HTML := CreateObject(TStringList);
+  HTML.Add('<HTML>');
+    HTML.Add('<BORY>');
+      HTML.Add('<H1>Lista</H1>');
+      HTML.Add('<UL>');
+      for i := 1 to 10 do
+        begin
+        HTML.Add('<LI>Item ' + intToStr(i) + '</LI>');
+        end;
+      HTML.Add('</UL>');
+      HTML.Add('<H1>Exemplo de uma imagem</H1>');
+      HTML.Add('<img src="paracatu.bmp">');
+    HTML.Add('</BORY>');
+  HTML.Add('</HTML>');
+  HTML.SaveToFile(arquivo);
+  FreeObject(HTML);
+
+  // Leitura do HTML
+  Projeto.MostrarHTML(arquivo);
+end.

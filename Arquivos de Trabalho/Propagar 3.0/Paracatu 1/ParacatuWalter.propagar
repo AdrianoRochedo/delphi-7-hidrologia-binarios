@@ -1,0 +1,1876 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Autor: Adriano Rochedo Conceicao -->
+<!-- Project Type: [ScrollCanvas] -->
+
+<propagar version="4">
+  <geral>
+    <DecimalSeparator>.</DecimalSeparator>
+  </geral>
+  <intervals>
+  </intervals>
+  <demandClasses>
+    <object class="TprClasseDemanda" name="ClasseDeDemanda_1" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <bitmap width="20" heigth="20">
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000000000000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000000000000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000FFFFFF000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000000000000000C0C0C0000000C0C0C0000000000000000000C0C0C0C0C0C0</L>
+        <L>C0C0C0000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000000000000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0000000C0C0C0C0C0C0000000000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000FFFFFF000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0000000C0C0C0000000FFFFFF000000000000000000000000000000000000000000000000FFFFFF000000000000000000C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0000000C0C0C0000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000FFFFFFFFFFFF000000C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0000000000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000FFFFFFFFFFFF000000C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000FFFFFFFFFFFF000000C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000000000000000000000C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FF0000FF0000C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FF0000FF0000FF0000C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FF0000FF0000FF0000C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FF0000FF0000FF0000C0C0C0</L>
+      </bitmap>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>1</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+    </object>
+    <object class="TprClasseDemanda" name="ClasseDeDemanda_2" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <bitmap width="20" heigth="20">
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0000000000000000000C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0</L>
+        <L>C0C0C0C0C0C0FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0FFFF00FFFF00FFFF00000000000000000000FFFF00FFFF00FFFF00FFFF00FFFF00000000000000000000000000000000FFFFFFFFFFFF</L>
+        <L>C0C0C000000000000000000000000000000000FFFF000000FFFF00FFFF00FFFF00FFFF00FFFF0000000000FFFF80808000FFFF808080FFFFFFFFFFFF</L>
+        <L>C0C0C0000000000000000080000080000080000080000000FFFF00FFFF00FFFF00FFFF00000000000000000000000000000000000000FFFFFFFFFFFF</L>
+        <L>C0C0C000000000000000FFFF00FFFF00008000FFFF000000FFFF00FFFF00FFFF00FFFF0000000000FFFF80808000FFFF00FFFF000000FFFFFFFFFFFF</L>
+        <L>C0C0C0000000000000000080000080000080000080000000000000000000000000FFFF00000000808080808080808080808080000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C000000000FFFF00FFFF00008000FFFF00000000000000000000000000000000000000FFFF80808000FFFF00FFFF000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0000000000080000080000080000080000000000080000080000080000080000000808080808080808080808080000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C000000000FFFF00FFFF00008000FFFF00000000008000FFFF00FFFF00008000000000FFFF80808000FFFF00FFFF000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0000000000080000080000080000080000000000080000080000080000080000000808080808080808080808080000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C000000000FFFF00FFFF00008000FFFF00000000008000FFFF00FFFF00008000000000FFFF80808000FFFF00FFFF000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0000000000080000080000080000080000000000080000080000080000080000000808080808080808080808080000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0000000000080FF0000FF0000000080000000000080000080808080808080000000808080000000000000808080000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0000000000080FF0000FF0000000080000000000080000080808080808080000000808080000000000000808080000000FFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>C0C0C0C0C0C0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+      </bitmap>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+    </object>
+  </demandClasses>
+  <objects>
+    <object class="TprProjeto_ScrollCanvas" name="ParacatuSimula" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description>Bacia do Paracatu</description>
+      <comments>
+          <string>Este Projeto destina-se a apresentação de um exemplo</string>
+      </comments>
+      <scripts>
+        <script>ReservatorioBinario.PScript</script>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <Locked>1</Locked>
+      <ViewDemands>0</ViewDemands>
+      <ViewBackground>0</ViewBackground>
+      <ViewWaterCourses>1</ViewWaterCourses>
+      <WindowState>0</WindowState>
+      <background_File></background_File>
+      <faultLevel>50</faultLevel>
+      <simulationType>1</simulationType>
+      <simulationInterval>4</simulationInterval>
+      <intervals>
+        <interval>1975-2002</interval>
+      </intervals>
+      <outputDir></outputDir>
+      <searchPath></searchPath>
+      <propagarDOS>PropDOS0</propagarDOS>
+      <scripts>
+        <planning_Script></planning_Script>
+        <debug_Script></debug_Script>
+        <operation_Script></operation_Script>
+        <power_Script></power_Script>
+        <equation_Script>ReservatorioBinario.PScript</equation_Script>
+      </scripts>
+      <Comp_DC_Action>1</Comp_DC_Action>
+      <HTML_Browser>0</HTML_Browser>
+      <scripts>
+        <startOpt_Script></startOpt_Script>
+        <endOpt_Script></endOpt_Script>
+        <ofOpt_Script></ofOpt_Script>
+      </scripts>
+    </object>
+    <object class="TprPCP" name="15" sx="564" sy="347" Factory="" rx="564" ry="347">
+      <description>PC 15</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_17" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_17" sx="548" sy="356" Factory="" rx="548" ry="356">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_StoAntonio1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi151" sx="583" sy="359" Factory="" rx="583" ry="359">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="14" sx="532" sy="336" Factory="" rx="532" ry="336">
+      <description>PC 14</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_18" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_16" sx="514" sy="304" Factory="" rx="514" ry="304">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Sono1_1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi141" sx="500" sy="346" Factory="" rx="500" ry="346">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="08" sx="107" sy="32" Factory="" rx="107" ry="32">
+      <description>PC 08 - Reservatorio Queimado</description>
+      <comments>
+          <string>Reservatorio de Queimado</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>Queimado.RPL</prec_File>
+      <etp_File>Queimado.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>100</maxVol>
+      <minVol>5</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="2.5" vol="15"/>
+        <AV area="6" vol="55"/>
+        <AV area="23.5" vol="145"/>
+        <AV area="26.5" vol="365"/>
+        <AV area="41" vol="660"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="780" Vol="0"/>
+        <AV Quota="790" Vol="15"/>
+        <AV Quota="800" Vol="55"/>
+        <AV Quota="810" Vol="145"/>
+        <AV Quota="820" Vol="365"/>
+        <AV Quota="830" Vol="660"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_19" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_1" sx="118" sy="12" Factory="" rx="118" ry="12">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Queimado.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi081" sx="101" sy="62" Factory="" rx="101" ry="62">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="01" sx="321" sy="433" Factory="" rx="321" ry="433">
+      <description>PC 01</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_20" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_10" sx="345" sy="425" Factory="" rx="345" ry="425">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Prata1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi011" sx="300" sy="446" Factory="" rx="300" ry="446">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="06" sx="234" sy="210" Factory="" rx="234" ry="210">
+      <description>PC 06</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_21" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_4" sx="228" sy="186" Factory="" rx="228" ry="186">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_SaoPedro1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi061" sx="234" sy="231" Factory="" rx="234" ry="231">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="03" sx="212" sy="323" Factory="" rx="212" ry="323">
+      <description>PC 03</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_22" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_8" sx="193" sy="299" Factory="" rx="193" ry="299">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_4229M.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi031" sx="212" sy="345" Factory="" rx="212" ry="345">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="12" sx="447" sy="262" Factory="" rx="447" ry="262">
+      <description>PC 12 - Reservatorio Caatinga</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>Caatinga.RPL</prec_File>
+      <etp_File>Caatinga.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>2023.2</maxVol>
+      <minVol>0</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="2.5" vol="15"/>
+        <AV area="6" vol="55"/>
+        <AV area="23.5" vol="145"/>
+        <AV area="26.5" vol="345"/>
+        <AV area="41" vol="660"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="780" Vol="0"/>
+        <AV Quota="790" Vol="15"/>
+        <AV Quota="800" Vol="55"/>
+        <AV Quota="810" Vol="145"/>
+        <AV Quota="820" Vol="345"/>
+        <AV Quota="830" Vol="660"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_23" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_11" sx="425" sy="252" Factory="" rx="425" ry="252">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Caatinga1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi121" sx="460" sy="291" Factory="" rx="460" ry="291">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="16" sx="581" sy="285" Factory="" rx="581" ry="285">
+      <description>PC 16 - Reservatorio Sono 2</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>Sono2.RPL</prec_File>
+      <etp_File>Sono2.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>1593.9</maxVol>
+      <minVol>0</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="2.5" vol="15"/>
+        <AV area="6" vol="55"/>
+        <AV area="23.5" vol="145"/>
+        <AV area="26.5" vol="345"/>
+        <AV area="41" vol="660"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="780" Vol="0"/>
+        <AV Quota="790" Vol="15"/>
+        <AV Quota="800" Vol="55"/>
+        <AV Quota="810" Vol="145"/>
+        <AV Quota="820" Vol="345"/>
+        <AV Quota="830" Vol="660"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_24" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_15" sx="570" sy="262" Factory="" rx="570" ry="262">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Sono2_1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi161" sx="602" sy="291" Factory="" rx="602" ry="291">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="02" sx="305" sy="392" Factory="" rx="305" ry="392">
+      <description>PC 02 - Reservatorio Prata 2</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>Prata2.RPL</prec_File>
+      <etp_File>Prata2.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>660</maxVol>
+      <minVol>0</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="2.5" vol="15"/>
+        <AV area="6" vol="55"/>
+        <AV area="23.5" vol="145"/>
+        <AV area="26.5" vol="345"/>
+        <AV area="41" vol="660"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="780" Vol="0"/>
+        <AV Quota="790" Vol="15"/>
+        <AV Quota="800" Vol="55"/>
+        <AV Quota="810" Vol="145"/>
+        <AV Quota="820" Vol="345"/>
+        <AV Quota="830" Vol="660"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_25" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_9" sx="323" sy="372" Factory="" rx="323" ry="372">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Prata2.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi021" sx="281" sy="389" Factory="" rx="281" ry="389">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="07" sx="274" sy="178" Factory="" rx="274" ry="178">
+      <description>PC 07 - Reservatorio Entre Rios</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>EntreRios.RPL</prec_File>
+      <etp_File>EntreRios.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>863.5</maxVol>
+      <minVol>0</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="2.5" vol="15"/>
+        <AV area="6.5" vol="55"/>
+        <AV area="23.5" vol="145"/>
+        <AV area="26.5" vol="345"/>
+        <AV area="41" vol="660"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="780" Vol="0"/>
+        <AV Quota="790" Vol="15"/>
+        <AV Quota="800" Vol="55"/>
+        <AV Quota="810" Vol="145"/>
+        <AV Quota="820" Vol="345"/>
+        <AV Quota="830" Vol="660"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_26" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_3" sx="262" sy="145" Factory="" rx="262" ry="145">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_EntreRios1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi071" sx="278" sy="194" Factory="" rx="278" ry="194">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="09" sx="180" sy="73" Factory="" rx="180" ry="73">
+      <description>PC 09 - Unaí</description>
+      <comments>
+      </comments>
+      <scripts>
+        <script>Mostrar Nome.PScript</script>
+        <script>Teste.PScript</script>
+      </scripts>
+      <DefaultScript>1</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_27" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_18" sx="203" sy="36" Factory="" rx="203" ry="36">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Unaí.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dpop091" sx="167" sy="93" Factory="" rx="167" ry="93">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000|4.00000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_2</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="04" sx="250" sy="294" Factory="" rx="250" ry="294">
+      <description>PC 04 - Reservatorio Paracatu-1</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>Paracatu1.RPL</prec_File>
+      <etp_File>Paracatu1.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>1480</maxVol>
+      <minVol>0</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="2.5" vol="15"/>
+        <AV area="6" vol="55"/>
+        <AV area="23.5" vol="145"/>
+        <AV area="26.5" vol="345"/>
+        <AV area="41" vol="660"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="780" Vol="0"/>
+        <AV Quota="790" Vol="15"/>
+        <AV Quota="800" Vol="55"/>
+        <AV Quota="810" Vol="145"/>
+        <AV Quota="820" Vol="345"/>
+        <AV Quota="830" Vol="660"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_28" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_7" sx="248" sy="264" Factory="" rx="248" ry="264">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Paracatu1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi041" sx="273" sy="303" Factory="" rx="273" ry="303">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="10" sx="253" sy="114" Factory="" rx="253" ry="114">
+      <description>PC 10 - Reservatorio Preto</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>Preto.RPL</prec_File>
+      <etp_File>Preto.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>1337.5</maxVol>
+      <minVol>0</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="2.5" vol="15"/>
+        <AV area="6" vol="55"/>
+        <AV area="23.5" vol="145"/>
+        <AV area="26.5" vol="345"/>
+        <AV area="0" vol="660"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="780" Vol="0"/>
+        <AV Quota="790" Vol="15"/>
+        <AV Quota="800" Vol="55"/>
+        <AV Quota="810" Vol="145"/>
+        <AV Quota="820" Vol="345"/>
+        <AV Quota="830" Vol="660"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_29" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_2" sx="262" sy="84" Factory="" rx="262" ry="84">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Preto.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi101" sx="234" sy="123" Factory="" rx="234" ry="123">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="05" sx="305" sy="246" Factory="" rx="305" ry="246">
+      <description>PC 05 - Reservatorio Paracatu-2</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>Paracatu2.RPL</prec_File>
+      <etp_File>Paracatu2.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>5982.2</maxVol>
+      <minVol>0</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="2.5" vol="15"/>
+        <AV area="6" vol="55"/>
+        <AV area="23.5" vol="145"/>
+        <AV area="26.5" vol="345"/>
+        <AV area="41" vol="660"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="780" Vol="0"/>
+        <AV Quota="790" Vol="15"/>
+        <AV Quota="800" Vol="55"/>
+        <AV Quota="810" Vol="145"/>
+        <AV Quota="820" Vol="345"/>
+        <AV Quota="830" Vol="660"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_30" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_6" sx="296" sy="224" Factory="" rx="296" ry="224">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Paracatu2.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi051" sx="336" sy="273" Factory="" rx="336" ry="273">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="11" sx="352" sy="195" Factory="" rx="352" ry="195">
+      <description>PC 11</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_31" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_5" sx="365" sy="164" Factory="" rx="365" ry="164">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PCPretoEntreRios.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi111" sx="362" sy="225" Factory="" rx="362" ry="225">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="13" sx="467" sy="232" Factory="" rx="467" ry="232">
+      <description>PC 13</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_32" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_12" sx="471" sy="204" Factory="" rx="471" ry="204">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_CaatingaPropagar.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi131" sx="486" sy="245" Factory="" rx="486" ry="245">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="17" sx="616" sy="199" Factory="" rx="616" ry="199">
+      <description>PC 17 - Reservatorio de  Paracatu</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>Paracatu3.RPL</prec_File>
+      <etp_File>Paracatu3.etp</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>10875.7</maxVol>
+      <minVol>0</minVol>
+      <iniVol>0</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="100" vol="500"/>
+        <AV area="550" vol="4000"/>
+        <AV area="1125" vol="12250"/>
+        <AV area="1900" vol="27000"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="480" Vol="0"/>
+        <AV Quota="490" Vol="500"/>
+        <AV Quota="500" Vol="4000"/>
+        <AV Quota="510" Vol="12250"/>
+        <AV Quota="520" Vol="27000"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_34" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_13" sx="600" sy="158" Factory="" rx="600" ry="158">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_Paracatu3.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi171" sx="639" sy="202" Factory="" rx="639" ry="202">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>10</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="18" sx="708" sy="34" Factory="" rx="708" ry="34">
+      <description>PC 18</description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprSubBacia" name="SubBacia_14" sx="680" sy="13" Factory="" rx="680" ry="13">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>PC_ParacatuSF1.vzc</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Dexi181" sx="732" sy="48" Factory="" rx="732" ry="48">
+      <description></description>
+      <comments>
+          <string>Demanda para utilização no problema exemplo</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>500</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>1</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>1</IF_Sync>
+      <unitaryValues>
+        <uv>(1975-2002)|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000|0.50000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1975-2002)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1975-2002)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>ClasseDeDemanda_1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+  </objects>
+  <relationships>
+    <rel obj1="15" obj2="16"/>
+    <rel obj1="15" obj2="SubBacia_17"/>
+    <rel obj1="15" obj2="Dexi151"/>
+    <rel obj1="14" obj2="16"/>
+    <rel obj1="14" obj2="SubBacia_16"/>
+    <rel obj1="14" obj2="Dexi141"/>
+    <rel obj1="08" obj2="09"/>
+    <rel obj1="08" obj2="SubBacia_1"/>
+    <rel obj1="08" obj2="Dexi081"/>
+    <rel obj1="01" obj2="02"/>
+    <rel obj1="01" obj2="SubBacia_10"/>
+    <rel obj1="01" obj2="Dexi011"/>
+    <rel obj1="06" obj2="07"/>
+    <rel obj1="06" obj2="SubBacia_4"/>
+    <rel obj1="06" obj2="Dexi061"/>
+    <rel obj1="03" obj2="04"/>
+    <rel obj1="03" obj2="SubBacia_8"/>
+    <rel obj1="03" obj2="Dexi031"/>
+    <rel obj1="12" obj2="13"/>
+    <rel obj1="12" obj2="SubBacia_11"/>
+    <rel obj1="12" obj2="Dexi121"/>
+    <rel obj1="16" obj2="17"/>
+    <rel obj1="16" obj2="SubBacia_15"/>
+    <rel obj1="16" obj2="Dexi161"/>
+    <rel obj1="02" obj2="04"/>
+    <rel obj1="02" obj2="SubBacia_9"/>
+    <rel obj1="02" obj2="Dexi021"/>
+    <rel obj1="07" obj2="11"/>
+    <rel obj1="07" obj2="SubBacia_3"/>
+    <rel obj1="07" obj2="Dexi071"/>
+    <rel obj1="09" obj2="10"/>
+    <rel obj1="09" obj2="SubBacia_18"/>
+    <rel obj1="09" obj2="Dpop091"/>
+    <rel obj1="04" obj2="05"/>
+    <rel obj1="04" obj2="SubBacia_7"/>
+    <rel obj1="04" obj2="Dexi041"/>
+    <rel obj1="10" obj2="11"/>
+    <rel obj1="10" obj2="SubBacia_2"/>
+    <rel obj1="10" obj2="Dexi101"/>
+    <rel obj1="05" obj2="11"/>
+    <rel obj1="05" obj2="SubBacia_6"/>
+    <rel obj1="05" obj2="Dexi051"/>
+    <rel obj1="11" obj2="13"/>
+    <rel obj1="11" obj2="SubBacia_5"/>
+    <rel obj1="11" obj2="Dexi111"/>
+    <rel obj1="13" obj2="17"/>
+    <rel obj1="13" obj2="SubBacia_12"/>
+    <rel obj1="13" obj2="Dexi131"/>
+    <rel obj1="17" obj2="18"/>
+    <rel obj1="17" obj2="SubBacia_13"/>
+    <rel obj1="17" obj2="Dexi171"/>
+    <rel obj1="18" obj2="SubBacia_14"/>
+    <rel obj1="18" obj2="Dexi181"/>
+  </relationships>
+</propagar>

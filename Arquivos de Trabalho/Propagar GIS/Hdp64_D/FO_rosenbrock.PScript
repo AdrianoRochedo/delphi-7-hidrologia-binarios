@@ -1,0 +1,5 @@
+begin
+  FO := Random(0);
+  if FO < 0.01 then
+     Projeto.Rosenbrock.Stop;
+end.

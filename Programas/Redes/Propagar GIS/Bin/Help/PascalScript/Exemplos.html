@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Exemplos</title>
+</head>
+
+<body>
+<font face="Arial" size="+1">Exemplo 1</font>
+<br><br>
+<pre>
+Program TesteGeral;
+ 
+Var
+   X, A: REAL;
+ 
+begin
+   A := 10;
+  
+   X := 1 + 3 * 2;       {7}
+   X := X + 1;           {8}
+   X := X * (1 + 1);     {16}
+
+   A := X * A; 
+
+   if A = 160 then
+      if X = 11 then
+          X := 1
+      else
+         X := 2;
+
+   x := SQR(SQR(1.2));
+   A := Power(2, x);
+
+   ShowMessage('O valor de x é: ' + ValToStr(x));
+end.
+</pre>
+
+<font face="Arial" size="+1">Exemplo 2: Strings</font>
+<br><br>
+<pre>
+Program TesteComStrings;
+ 
+Var
+   X, A: Real;
+   S: String;
+ 
+begin
+  S := 'Adriano';
+  S := S + ' Rochedo Conceicao';
+  ShowMessage(S);
+  ShowMessage(S + ' é quem fez este compilador !');
+
+  X := SQR(4);
+  ShowMessage('O valor de X é: ' + ValToStr(X));
+end.
+</pre>
+
+<font face="Arial" size="+1">Exemplo 3: Uso de Objetos</font>
+<br><br>
+<pre>
+Program Teste;
+ 
+Var
+   i, ii  : Integer;
+   S      : String;
+   OutPut : Object;
+   SL     : Object;
+   
+ begin
+  OutPut := CreateObject('TOutPut');
+  SL     := CreateObject('TStringList');
+
+  OutPut.Write('Objeto OutPut');
+  OutPut.Write('');
+
+  i := 1;
+  while i <= 20 do
+    begin
+    s := '';
+    ii := 1;
+    while ii <= i do
+      begin
+      s := s + '-';
+      ii := ii + 1;
+      end;
+    OutPut.Write(s);
+    i := i + 1;
+    end;
+
+  OutPut.Write('');
+  SL.LoadFromFile('F:\Projetos\Outros\Compilador\Pasqual.cfg');
+  for i := 0 to SL.Count - 1 do
+    OutPut.Write(SL.GetString(i));
+
+  OutPut.Show; 
+
+  FreeObject(SL);
+  FreeObject(OutPut);
+end.
+</pre>
+
+<font face="Arial" size="+1">Exemplo 4: Uso de Objetos 2</font>
+<br><br>
+<pre>
+Program Teste;
+ 
+Var
+   i, ii  : Integer;
+   S      : String;
+   OutPut : Object;
+   M, M2  : Object;
+   EC     : Integer;  {ErrorCode}
+   L, C   : Integer;
+   
+ begin
+  L := 5;
+  C := 5;
+
+  OutPut := CreateObject('TOutPut');
+  M      := MatrixCreate(L, C);
+
+  {Exemplo de como acessar os elementos de uma matriz}
+  for i := 1 to L do
+    for ii := 1 to C do
+      M.SetData(i, ii, i * ii);
+
+  OutPut.Write('Antes da Potenciação');
+  OutPut.Write('');
+
+  M.Print(OutPut);
+  M2 := M.Power(2, EC); 
+  OutPut.Write('');
+  
+  if EC = 0 then
+     begin
+     OutPut.Write('Após a Potenciação por 2');
+     OutPut.Write('');
+     M.Print(OutPut);
+     FreeObject(M2);
+     end
+  else
+     OutPut.Write('Houve um erro na exponenciação. Código: ' + ValToStr(EC));
+
+  OutPut.Show; 
+
+  FreeObject(M);
+  FreeObject(OutPut);
+end.
+</pre>
+
+<font face="Arial" size="+1">Exemplo 5: Comando FOR melhorado</font>
+<br><br>
+<pre>
+Program TesteFOR;
+ 
+Var i, ii  : Real;
+    Saida  : Object;
+
+begin
+  Saida := CreateObject('TOutPut');  
+
+  for i := 1.1 to 2.5 step 0.1 do 
+    Saida.Write(ValToStr(i));
+
+  Saida.Write('');
+
+  for i := 2.5 downto 1.1 step 0.1 do 
+    Saida.Write(ValToStr(i));
+
+  Saida.Show;
+  FreeObject(Saida);
+end.
+</pre>
+
+</body>
+</html>

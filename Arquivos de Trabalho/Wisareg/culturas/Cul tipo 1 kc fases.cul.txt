@@ -1,0 +1,21 @@
+    1    6   A   B   C   D   E   F // tipo de cultura {1,2,3} numero de fases {2...6} (nome de cada fase)
+02/05 //data de inicio de cada fase
+26/05
+01/07
+30/07
+31/08
+17/09
+  70.00  60.00  45.00  45.00  60.00  60.00 \\valor de p em cada fase (%)
+   0.10   0.50   1.10   1.10   1.10   1.10 \\ comprimento da raiz no inicio de cada fase (m) {not decrescente}
+   1.40 \\valor do coeficente de sensibilidae hidrica
+           1//(tipo de kc){1,2,3,4,5} 
+           5//numero de datas e kcs 
+02/05 //data do 1º kc 
+26/05 //data do 2º kc 
+01/07 //data do 3º kc 
+31/08 //data do 4º kc 
+17/09 //data do 5º kc 
+   0.30   0.30   1.21   1.21   0.41
+
+Neste tipo de kc (tipo 1) as datas ficam na vertical (dd/mm)
+e para cada data na horizontal ficam os valores de kc {0.1<=kc<=2)

@@ -1,0 +1,132 @@
+[Zonas cultivadas]
+Tipos=2
+T1=sem conservação do solo
+T1_A=72
+T1_B=81
+T1_C=88
+T1_D=91
+T2=conservação do solo
+T2_A=62
+T2_B=71
+T2_C=78
+T2_D=81
+
+[Pastagens ou terrenos em más condições]
+Tipos=1
+T1=Pastagens ou terrenos em más condições
+T1_A=68
+T1_B=79
+T1_C=86
+T1_D=89
+
+[Baldios boas condições]
+Tipos=1
+T1=Baldios boas condições
+T1_A=39
+T1_B=61
+T1_C=74
+T1_D=80
+
+[Prado em boas condições]
+Tipos=1
+T1=Prado em boas condições
+T1_A=30
+T1_B=58
+T1_C=71
+T1_D=78
+
+[Bosques ou zonas florestais]
+Tipos=2
+T1=cobertura ruim
+T1_A=45
+T1_B=66
+T1_C=77
+T1_D=83
+T2=cobertura boa
+T2_A=25
+T2_B=55
+T2_C=70
+T2_D=77
+
+[Espaços abertos, relvados, parques, campos de golf, cemitérios, boas condições]
+Tipos=2
+T1=com relva em mais de 75% da área
+T1_A=39
+T1_B=61
+T1_C=74
+T1_D=80
+T2=com relva de 50 a 75% da área
+T2_A=49
+T2_B=69
+T2_C=79
+T2_D=84
+
+[Zonas comerciais e de escritórios]
+Tipos=1
+T1=Zonas comerciais e de escritórios
+T1_A=89
+T1_B=92
+T1_C=94
+T1_D=95
+
+[Zonas industriais]
+Tipos=1
+T1=Zonas industriais
+T1_A=81
+T1_B=88
+T1_C=91
+T1_D=93
+
+[Zonas residênciais]
+Tipos=5
+T1=lotes < 500 m2, em média 65% impermeável
+T1_A=77
+T1_B=85
+T1_C=90
+T1_D=92
+T2=lotes 1000 m2, em média 38% impermeável
+T2_A=61
+T2_B=75
+T2_C=83
+T2_D=87
+T3=lotes 1300 m2, em média 30% impermeável
+T3_A=57
+T3_B=72
+T3_C=81
+T3_D=86
+T4=lotes 2000 m2, em média 25% impermeável
+T4_A=54
+T4_B=70
+T4_C=80
+T4_D=85
+T5=lotes 4000 m2, em média 20% impermeável
+T5_A=51
+T5_B=68
+T5_C=79
+T5_D=84
+
+[Parques de estacionamentos, telhados, viadutos]
+Tipos=1
+T1=Parques de estacionamentos, telhados, viadutos
+T1_A=98
+T1_B=98
+T1_C=98
+T1_D=98
+
+[Arruamentos e estradas]
+Tipos=3
+T1=asfaltadas e com drenagem de águas pluviais
+T1_A=98
+T1_B=98
+T1_C=98
+T1_D=98
+T2=paralelepípedos
+T2_A=76
+T2_B=85
+T2_C=89
+T2_D=91
+T3=terra
+T3_A=72
+T3_B=82
+T3_C=87
+T3_D=89

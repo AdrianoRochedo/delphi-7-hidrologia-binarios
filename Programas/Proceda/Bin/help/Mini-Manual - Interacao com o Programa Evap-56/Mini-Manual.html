@@ -1,0 +1,232 @@
+<html>
+<head>
+	<title>Mini-Manual - Interação com o Programa Evap-56</title>
+</head>
+
+<body>
+
+<center>
+<h1>PROCEDA</h1>
+<h2>Mini-Manual</h2>
+<h3>Interação com o Programa Evap-56</h3>
+</center>
+
+<br>
+
+<h3>
+Conversão de arquivos do Chuvaz 1.0
+</h3>
+
+Vou utilizar como exemplo o arquivo <b>"Abelardo_Luz.db"</b> que você enviou
+como exemplo dos passos que você utiliza para compatibilização dos arquivos.
+<br>
+<br>
+
+Como você verificará, o processo de compatibilização (importações e Exportações)
+se tornaram muito mais simples.
+<br>
+<br>
+
+A primeira coisa a ser feita no seu caso, que já possui arquivos no padrão do 
+Chuvaz 1.0, é a conversão do arquivo para o formato do Proceda. Para isto utilizaremos 
+um conversor de dados, disponível através do menu de utilitários do Proceda.
+<br>
+<br>
+
+<center>
+<img src="Imagens/Imagem_1.jpg" width="552" height="322" alt="" border="0">
+</center>
+<br>
+<br> 
+
+Neste programa, a única coisa a ser feita é a seleção do arquivo a ser convertido.
+<br>
+<br>
+
+<center>
+<img src="Imagens/Conversor.jpg" width="455" height="185" alt="" border="0">
+</center>
+<br>
+<br>
+
+Após o pressionamento do botão, um arquivo <b>"xxx.Proceda"</b> será gerado na mesma 
+pasta do arquivo selecionado.
+<br>
+
+<h3>Configurando as propriedades de cada Campo/Posto</h3>
+
+<img src="Imagens/Menu_FieldProps.jpg" width="536" height="476" alt="" border="0">
+<br>
+<br>
+
+Através do menu <b>"Editar/Dados Extras do Posto"</b> temos acesso a janela
+de edição das propriedades de um campo.
+<br>
+<br>
+
+<img src="Imagens/Janela de Props.jpg" width="547" height="413" alt="" border="0">
+<br>
+<br>
+
+As propriedades mais importantes nesta janela são:
+<br>
+<br>
+
+<ul>
+  <li>O Tipo dos Dados</li>
+  <li>A Unidade dos Dados</li>
+</ul>
+
+Estas propriedades são utilizadas pelos plugins para determinação dos tipos
+dos campos. Um dos plugins que mais utilizam estas propriedades é o plugin de
+exportação <b>"Isareg - Evap 56"</b> que utiliza estes dados para gerar especificidades
+de cada arquivo criado.
+<br>
+<br>
+
+<b><font color="#ff6666">
+Portanto é extremamente importante a definição destas propriedades.
+</font></b> 
+
+<h3>Exportando um conjunto de dados</h3>
+
+Através do menu <b>"Arquivo/Exportar"</b> ...
+<br>
+<br>
+
+<img src="Imagens/Exportando.jpg" width="759" height="476" alt="" border="0">
+<br>
+
+Você tem acesso a janela de exportação.<br>
+Nesta janela o usuário selecionará o plugin desejado, após, deverá
+ajustar suas propriedades.
+<br>
+<br>
+Como mostrado abaixo, existe instalado apenas um plugin de exportação de dados.
+<br>
+<br>
+
+<img src="Imagens/JanelaDeExportacao.jpg" width="583" height="452" alt="" border="0">
+<br>
+<br>
+
+As seguintes propriedades foram alteradas conforme nossas necessidades:
+<br>
+<br>
+  
+  <ul>
+    <li><b>Pasta Destino:</b> F:\Projetos\Flavio Vitoria\Exemplo 1\Arquivos para o Evap 56</li>
+    <li><b>Ano Inicial:</b> 1989</li>
+    <li><b>Ano Final:</b> 1996</li>
+  </ul>
+  
+As outras ficaram com seus valores padrões.
+<br>
+<br>
+
+Após o pressionamento do botão <b>"Exportar"</b>, 9 arquivos foram gerados
+na pasta selecionada com as extensões específicas para cada tipo de dado.
+<br>
+<br>
+
+<img src="Imagens/Exportando 2.jpg" width="583" height="452" alt="" border="0">
+<br>
+<br>
+
+<h3>Gerando dados de Evapotransiração</h3>
+
+Através do menu <b>"Utilitários/Evap 56"</b> temos acesso ao programa 
+<b>Evap 56</b> onde poderemos gerar os dados de evapotranspiração.
+O passo mais importante neste momento é a definição do diretório de trabalho,
+neste caso, "F:\Projetos\Flavio Vitoria\Exemplo 1\Arquivos para o Evap 56".
+Após isto, é só escolher os arquivos para cada opção do programa ...
+<br>
+<br>
+
+<img src="Imagens/Evap56.jpg" width="543" height="511" alt="" border="0">
+<br>
+<br>
+
+... e pressionar o botão <b>"Compute"</b>.
+<br>
+<br>
+
+<img src="Imagens/Evap56_2.jpg" width="540" height="510" alt="" border="0">
+
+<h3>Importando os dados gerados pelo programa Evap 56</h3>
+
+Através do menu <b>"Arquivo\Importar"</b> podemos importar o arquivo <b>ETo</b> gerado
+pelo programa <b>Evap 56</b>.
+<br>
+<br>
+
+<img src="Imagens/importar.jpg" width="583" height="522" alt="" border="0">
+<br>
+<br>
+
+Após a importação é necessário fornecer um nome para o arquivo.
+<br>
+<br>
+
+<img src="Imagens/importar_Salvar.jpg" width="563" height="347" alt="" border="0">
+<br>
+<br>
+
+Após o salvamento, o arquivo é automaticamente aberto no Proceda.<br>
+Mas o que nos interessa é a concatenação destes dados com os dados que já possuímos.<br>
+Para isso utilizamos o menu <b>"Arquivo\Inserir Postos"</b>
+<br>
+<br>
+
+<img src="Imagens/InserirPosto.jpg" width="422" height="280" alt="" border="0">
+<br>
+<br>
+
+Nesta janela selecionamos o arquivo a ser concatenado com o conjunto de dados
+atual selecionado na árvore de objetos da janela principal.
+<br>
+Também selecionamos os postos a serem concatenados, neste caso apenas um, o campo 
+de ETo.
+<br>
+<br>
+
+<img src="Imagens/ETo_Concatenado.jpg" width="540" height="481" alt="" border="0">
+<br>
+<br>
+
+Após isto basta configurarmos suas propriedades conforme explicado em um tópico 
+acima e salvarmos as modificações.
+<br>
+<br>
+
+<img src="Imagens/ETo_Props.jpg" width="547" height="413" alt="" border="0">
+<br>
+<br>
+
+<img src="Imagens/Salvar.jpg" width="800" height="600" alt="" border="0">
+
+<h3>Outras Opções</h3>
+
+Existem muitas ações que estão disponíveis através de menus indiretos sensitivos 
+ao contexto acessados através do botão de função do mouse.
+<br>
+Como exemplo motramos o menu de ações chamado através do objeto que representa
+um campo/posto.
+<br>
+<br>
+
+<img src="Imagens/OutrasOpcoes.jpg" width="800" height="600" alt="" border="0">
+
+<h3>Notas importantes a lembrar</h3>
+
+<ul>
+  <li>Sempre verifique o conjunto de dados selecionado na janela principal</li>
+  <li>Antes de um exportação, defina as propriedades de todos os campos/postos</li>
+  <li>Lembre-se que a Evapo-transpiração calculada dependerá das escolhas feitas
+      no programa <b>Evapo 56</b></li>
+  <li>Não esqueça de salvar os dados modificados.</li>
+  <li>Sempre procure por ações de menu indiretas.</li>
+</ul>
+
+</body>
+</html>

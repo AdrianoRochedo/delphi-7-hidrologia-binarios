@@ -1,0 +1,13 @@
+           2  \\tipo de esqumema de rega {1,2,3,5}
+       0.12       0.12       0\\(% de RU na camada inicial) (% de RU na camada restante) (numero de dias para parar a rega)
+           6\\numero valores de opurtunidade de rega + 1 
+           4\\subtipo que indica a oportunidade de rega é uma % de p {1,2,3,4,5}
+       0.50 \\valor da % de p que despoleta a rega na 1ª fase 
+       0.35
+       0.45
+       0.60
+       0.10 \\valor da % de p que despoleta a rega na 5ª fase
+           1\\subtipo que indica a quantidade de rega {1,2,3} neste caso % de RU
+       0.90 \\valor de quantidade de rega 90%RU
+NOTA: neste caso se o valor da % de p for 1 corresponde a regar no em p como
+no esquema de rega optimo

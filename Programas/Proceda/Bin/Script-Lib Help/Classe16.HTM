@@ -1,0 +1,466 @@
+<font
+   face  = "ARIAL"
+   size  = "4"
+   color = "#0000FF">
+<div
+align = "center"
+<b>
+TSeriesList<BR>
+</b>
+</div>
+</font>
+<BR>
+Gerencia as séries de um gráfico<BR>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "4"
+   color = "#000000">
+<b>
+Métodos<BR>
+</b>
+</font>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+Passagem de Parâmetros: <BR>
+</b>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<font
+   face  = "ARIAL"
+   size  = "2"
+   color = "#0000FF">
+<b>
+AZUL = por Cópia <BR>
+</b>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<font
+   face  = "ARIAL"
+   size  = "2"
+   color = "#FF0000">
+<b>
+VERMELHO = por Referência<BR>
+</b>
+</font>
+<BR>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function AddBarSerie
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TBarSeries
+</b>
+</font>
+<BR>
+Adiciona uma série de Barras em um gráfico<BR>
+Parâmetros: Titulo, Cor, Tipo, Multi-Tipo<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function AddLineSerie
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TLineSeries
+</b>
+</font>
+<BR>
+Adiciona uma série tipo "Linhas" em um gráfico<BR>
+Parâmetros: Título, Cor<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function AddLineSerieEx
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#FF0000">
+<b>
+ TwsVec
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TLineSeries
+</b>
+</font>
+<BR>
+Adiciona uma série tipo "Linhas" em um gráfico<BR>
+Parâmetros: Título, Cor, Vetor com os dados<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function AddPointSerie
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TPointSeries
+</b>
+</font>
+<BR>
+Adiciona uma série tipo "Pontos" em um gráfico<BR>
+Parâmetros: Título, Cor<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function AddPointSerieEx
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#FF0000">
+<b>
+ TwsVec
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TPointSeries
+</b>
+</font>
+<BR>
+Adiciona uma série tipo "Pontos" em um gráfico<BR>
+Parâmetros: Título, Cor, Vetor com os dados<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function AddPieSerie
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TPieSeries
+</b>
+</font>
+<BR>
+Adiciona uma série tipo "Pizza" em um gráfico<BR>
+Parâmetros: Título<BR>
+<BR>
+<HR><BR>
+<a href = "Index.HTM">Voltar para a Página Principal</a><BR><BR>

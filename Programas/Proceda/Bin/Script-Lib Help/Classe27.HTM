@@ -1,0 +1,520 @@
+<font
+   face  = "ARIAL"
+   size  = "4"
+   color = "#0000FF">
+<div
+align = "center"
+<b>
+TSerie<BR>
+</b>
+</div>
+</font>
+<BR>
+Representa uma série de valores<BR>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "4"
+   color = "#000000">
+<b>
+Métodos<BR>
+</b>
+</font>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+Passagem de Parâmetros: <BR>
+</b>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<font
+   face  = "ARIAL"
+   size  = "2"
+   color = "#0000FF">
+<b>
+AZUL = por Cópia <BR>
+</b>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<font
+   face  = "ARIAL"
+   size  = "2"
+   color = "#FF0000">
+<b>
+VERMELHO = por Referência<BR>
+</b>
+</font>
+<BR>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure AddSerie
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#FF0000">
+<b>
+ TSerie
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Adiciona uma outra série como filho desta.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure Admensionalize
+</b>
+</font>
+<BR>
+Admensiona os valores da série<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure Convert
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Real
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Converte os valores baseado em um fator, isto é, <BR>
+realiza uma multiplicação dos valores pelo fator dado.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure LN
+</b>
+</font>
+<BR>
+Calcula o Logarítmo Natural de cada um dos valores da série<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure Plot
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#FF0000">
+<b>
+ TfoChart
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Plota os dados da série em um gráfico.<BR>
+O segundo parâmetro é utilizado para seleção automática da cor utilizada na série.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure PlotAMD
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#FF0000">
+<b>
+ TfoChart
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Plota a diferença da média acumulada.<BR>
+O segundo parâmetro é utilizado na seleção automática da cor<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure ShowDataInSheet
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#FF0000">
+<b>
+ TSpreadSheetBook
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Mostra os valores da série em uma planilha em uma determinada coluna.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure ShowHeaderInSheet
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#FF0000">
+<b>
+ TSpreadSheetBook
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Mostra o cabeçalho da série em uma planilha em uma determinada coluna.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Admensioned
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Boolean
+</b>
+</font>
+<BR>
+Retorna se a série foi admensionalizada.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Clone
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TSerie
+</b>
+</font>
+<BR>
+Clona o objeto<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function ConvertToDataset
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TwsDataSet
+</b>
+</font>
+<BR>
+Converte o vetor com dados para um Dataset de uma coluna<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Data
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TwsDFVec
+</b>
+</font>
+<BR>
+Retorna o vetor com os dados da série<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Name
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: String
+</b>
+</font>
+<BR>
+Retorna o nome da série<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Series
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TSeries
+</b>
+</font>
+<BR>
+Retorna a lista de séries desta série<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Station
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TStation
+</b>
+</font>
+<BR>
+Retorna a que posto esta série pertence.<BR>
+Se for uma série da aplicação, retornará nil.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function StrongName
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: String
+</b>
+</font>
+<BR>
+Retorna o nome completo da série<BR>
+<BR>
+<HR><BR>
+<a href = "Index.HTM">Voltar para a Página Principal</a><BR><BR>

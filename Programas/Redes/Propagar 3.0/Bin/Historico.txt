@@ -1,0 +1,183 @@
+  Versao    Descricao
+    1.91    - Revisando opcoes de Sincronizacao de Dados nas demandas
+
+    1.92    - Reformulado a sincronizacao de dados com as demandas
+
+    1.93    - Adicionando capacidade de 'Drag-Files'
+
+    1.95    - Consertado alguns bugs pequenos
+            - Incluida a interface das classes TListaDeFalhas e TprFalha no PascalScript
+            - O PascalScript possui agora Sub-Rotinas internas
+
+    1.96    - Bug fix em uma planilha
+
+    1.97    - Mais metodos para o Pascal Script
+
+    2.01    - Verificando o funcionamento do objeto 'GlobalObjects'
+            - Verificando o funcionamento do objeto 'Tform_WindowsManager'
+            - Melhorando o gerenciamento de erros de execucao de Simulacoes
+
+    2.10    - Compilado com Delphi 6 pela primeira vez
+
+    2.20    - Revisoes na execucao em modo DOS
+
+    2.23    - Bug fix na visualizacao da Matriz de Contribuicao das SubBacias
+            - Bug fix na edicao dos coefs. de contribuicao das SubBacias
+            - Grafico de Pontos no X-Tudo
+            - Ponto ou virgula nas edicoes de valores numericos
+            - Duplo-Click no gerenciador de objetos abre os dialogos dos objetos
+            - Bug fix na remocao de periodos das tabelas de unidades
+            - Remocao de objetos via tecla 'DEL'
+
+    2.24    - Bug Fix no posicionamento dos objetos quando existe Scroll
+            - Criacao da janela de Historico
+            - Mostrar Demandas do Projeto nao afeta as demandas difusas
+            - Melhorias na Janela Principal
+            - Trocado 'Dem.Ref' por 'Dem.Total'
+            - Selecionar o projeto tambem pelo caption da janela
+            - Incluida a possibilidade de entrada de valores em notacao cientifica e
+              valores negativos na unidade drEdit
+            - Utilizando caminhos relativos para os arquivos (sempre que nao comecar por x:\)
+            - Permitido modificar as cores dos PCs e Reservatorios
+            - Janelas de Graficos e Planilhas agora sao MDIChilds
+            - Melhorado a selecao de objetos
+
+    2.30    - Novas opcoes para o gerenciamento da geracao de energia em PCs e Reservatorios
+
+    2.31    - Bug fix na geracao de Energia dentro do balanco hidrico do PC
+
+    2.40    - Incluido o modulo de monitoracao de variaveis
+
+    2.41    - Bug fix na geracao de codigo do PascalScript
+
+    2.42    - Melhorias na rotina Balanco Hidrico de Reservatorio
+            - Incluidas mas duas funcoes no Pascal Script: ABS e Trunc
+
+    2.43   - Incluido na biblioteca de Graficos do PascalScript mais algumas opcoes.
+
+    2.44   - Atualizacao para o novo sistema de troca de mensagens entre objetos.
+           - Melhorias gerais na interface
+
+    2.45   - Melhorias no mecanismo de Otimizacao
+           - Janela para gerenciamento dos parametros
+
+    2.46   - demandas so podem ser criadas se os dados de sua classe estiverem corretos
+
+    2.50   - Novo metodo de racionamento.
+             No Reservatorio leva em conta as demandas Operadas para racionar agua.
+             Retirado a informacao de CRC
+
+    2.51   - A tabela de valores unitarios das demandas permite agora:
+             - Importacao de valores via arquivo XML
+             - Distribuicao de demandas via dialogo e rotinas PascalScript
+
+    2.52   - Bug fix na leitura do Status das Demandas
+           - Bug fix na distribuicao dos valores unitarios das demandas
+
+    2.64   - Corrigido erro no calculo das Demandas
+	         - Salvamento e leitura dos arquivos *.propagar em XML
+
+    2.66   - Adicao da rotina 'toASCII' no PascalScript
+           - Concertado erro de leitura de arquivos *.propagar quando havia imagem de fundo
+
+    2.67   - Removido a restauracao automatica de tamanho dos projetos
+           - Removido algumas falhas na leitura dos projetos XML
+           - Agora todos os graficos sao MDI
+
+    2.68   - Corrigido erro no acesso a Saida Padrao via script
+           - Corrigido erro de acesso ao Projeto quando este nao existia
+
+    2.69   - Corrigido erro na geracao de codigo de retorno nas funcoes Locais do PascalScript
+
+    2.70   - Incluido sistema de versao XML dos dados dos plugins.
+
+    2.71   - Agora os otimizadores sao capazes de mostrar mais de uma funcao objetivo por vez
+
+    2.72   - Considerado Escala de Desenvolvimento nas Equacoes de Demanda
+           - Atualizado os nomes das classes graficas do TChart
+
+    3.00   - Remodelagem das classes que representam a area de projeto
+           - Modificacoes na janela principal
+           - Bug fix na verificacao do tipo de simulador quando DOS e o executavel nao existe.
+
+    3.01   - Melhorias na apresentacao das mensagens de status
+           - Geracao de equacoes no formato MPS
+
+    3.02   - Independencia da biblioteca 'Orpheus'
+
+    3.05   - Incluidos no PascalScript mais 3 metodos para acesso a tabela de
+             valores unitarios das demandas
+           - Melhorias na geracao de equacoes no formato MPS
+
+    3.10   - Metodos internos agora sao indexados pelo intervalo
+           - 'Projeto.DeltaT' foi mudado para 'Projeto.Intervalo' (somente leitura)
+           - 'Projeto.Data' foi mudado para 'Projeto.IntervaloComoData(int)'
+           - 'PC.Hm3_m3_Intervalo(Valor)' foi mudado para 'PC.Hm3_m3(Valor, Intervalo)'
+           - 'PC.m3_Hm3_Intervalo(Valor)' foi mudado para 'PC.m3_Hm3(Valor, Intervalo)'
+           - Os metodos de script 'ObtemXXX' foram mudados para 'ObterXXX'
+           - Varios outros metodos de script renomeados
+
+    3.11   - Conversao para volume dos valores gerados nas equacoes PL
+
+    3.12   - Ajustes no formato dos numeros reais nas equacoes lineares
+           - Novo componente visual para indicacao da qualidade da agua
+
+    3.13   - Primeiro projeto-prototipo com capacidade de zoom
+
+    3.14   - Melhorias gerais
+           - A distancia minima para selecao de trechos-dagua foi reduzido de 20 para 5 pixels
+           - Image Fit in zoom projects
+
+    3.15   - Bug fix na associacao de bitmaps em classes de demanda
+
+    3.16   - Ajustes na definicao das classes dos Projetos dos scripts
+           - Bug fix na conversao de PCs para Reservatorios e vice-versa
+
+    3.17   - Melhorias na verificacao dos scripts de otimizacao
+           - Agregacao do otimizador Lindo
+
+    3.18   - Todos os componentes possuem capacidade de script
+           - Melhorias na conversao de equacoes para o formato MPS
+           - Novas opcoes de projeto
+             - Tipo de visualizacao de HTML
+             - Acao padrao do duplo-click em componentes
+
+    3.19   - Equacoes:
+             - Foi reduzido para apenas uma letra a identificacao de varias variaveis
+             - O identificador SF se transformou em S[intervalo+1]
+             - O identificador SI se transformou em S[intervalo]
+
+    3.20   - Melhoramentos no gerenciador de equacoes
+           - Melhoramentos na geracao de arquivos MPS
+           - Integracao com o novo Solver
+
+    3.21   - Melhor gerenciamento do arquivo de fundo dos projetos           
+
+    3.22   - Melhor definicao dos tipos no MPS           
+
+    3.23   - Melhorias na conversao de equacoes literais para MPS     
+
+    3.24   - Ajuste no tamanho do campo numerico do formato MPS para 12 caracteres
+
+    3.26   - Melhorias no conversor MPS
+             Agora o codigo MPS pode ser otimizado com a remocao de variaveis e equacoes
+
+    3.27   - Adicionado a opcao de Permitir vazoes negativas em sub-bacias
+
+    3.28   - Simbolo "!" trocado para "/**/" nos comentarios das equacoes lineares
+             Adicionado um ";" ao fim de cada equacao gerada
+
+    3.29   - No gerenciador de equacoes o Solver agora executa as equacoes literais e nao as em formato MPS
+           - Criado a propriedade "Variaveis" disponivel atravel do "Projeto" e de Script
+           - Adicionado metodos no PascalScript para controle da cor dos PCs
+           - Adicionado metodo no projeto pata estabelecimento dos valores das prop. dos objetos atraves de arquivos.
+             - AplicarValoresNosObjetos (NomeDoArquivo)
+             - AplicarVariaveisNosObjetos (NomeDoArquivo)
+           - Possibilidade de desativacao de reservatorios por script
+           - Remocao dos comentarios automaticos na geracao das equacoes lineares
+
+    3.30   - Erro concertado na visualizacao dos volumes em planilha
+
+    3.40   - Nova janela principal 'Propagar.MainForm'
+
+    3.41   - Missvalue considerado como 0.0 quando alimentando demandas por Cenarios.

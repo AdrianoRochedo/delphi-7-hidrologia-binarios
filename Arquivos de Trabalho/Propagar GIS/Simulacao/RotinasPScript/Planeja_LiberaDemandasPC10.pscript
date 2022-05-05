@@ -1,0 +1,59 @@
+program Planeja_LiberaDemandas_PC10;
+
+var Saida    : Object; {Variável já inicializada pelo sistema}
+    Projeto  : Object; {Variável já inicializada pelo sistema}
+
+    // Criação das variáveis auxiliares
+    PC, PC_9, PC_10 : Object; // Objetos (variáveis) que irão conter os PCs
+    dt           : Integer;   // Intervalo de Tempo
+    L               : Real;   // para cálculo da água a liberar
+
+    Ret1_9, Ret2_9, Ret3_9     : Real; //  Retornos PC 9
+    d1_9, d2_9, d3_9, sb_9     : Real; //  Demandas e subbacia PC 9
+    d1_10, d2_10, d3_10, sb_10 : Real; //  Demandas e subbacia PC 10
+
+begin
+  dt := Projeto.ObtemDeltaT; // Obtem o DeltaT atual e atribui à variável auxiliar
+
+  {Atribui-se os PCs às variáveis objetos criadas - isso permite que se possa acessar
+   quaisquer atributos (dados) do PC
+  }
+  PC    := Projeto.PCPeloNome('Queimado'); // Atribui o Reservatório Queimado à variável auxiliar PC
+  PC_10 := Projeto.PCPeloNome('PC_10');    // Atribui o PC_10 ariável auxiliar PC_10
+  PC_9  := Projeto.PCPeloNome('PC_9');     // Atribui o PC_9 ariável auxiliar PC_9
+
+  // Inicialização de variáveis auxiliares dos retornos
+  Ret1_9 := PC_9.FatorDeRetorno(1); // Fator de Retorno da Demanda Primária do PC9
+  Ret2_9 := PC_9.FatorDeRetorno(2); // Fator de Retorno da Demanda Secundária do PC9
+  Ret3_9 := PC_9.FatorDeRetorno(3); // Fator de Retorno da Demanda Terciária do PC9
+    
+  // Inicialização de variáveis auxiliares das Demandas Totais existentes em cada PC
+
+  d1_9 := PC_9.ObtemValorDemanda(dt, 1, 'T'); // Valor da Demanda Primária (1) Total (T) no intervalo (dt) no PC9
+  d2_9 := PC_9.ObtemValorDemanda(dt, 2, 'T'); // Valor da Demanda Secundária (1) Total (T) no intervalo (dt) no PC9
+  d3_9 := PC_9.ObtemValorDemanda(dt, 3, 'T'); // Valor da Demanda Terciária (1) Total (T) no intervalo (dt)no PC9
+  sb_9 := PC_9.ObtemVazaoAfluenteSBs;  // Valor da Vazão Afluente das Sub-bacias no intervalo "dt" - isto está implicitono PC9
+    
+  d1_10 := PC_10.ObtemValorDemanda(dt, 1, 'T'); // Valor da Demanda Primária (1) Total (T) no intervalo (dt) no PC10
+  d2_10 := PC_10.ObtemValorDemanda(dt, 2, 'T'); // Valor da Demanda Secundária (1) Total (T) no intervalo (dt) no PC10     
+  d3_10 := PC_10.ObtemValorDemanda(dt, 3, 'T'); // Valor da Demanda Terciária (1) Total (T) no intervalo (dt) no PC10     
+  sb_10 := PC_10.ObtemVazaoAfluenteSBs; // Valor da Vazão Afluente das Sub-bacias no intervalo "dt" - isto está implicitono PC10
+
+  { Cálculo da água a ser liberada para o PC_10:
+    = tem que se garantir a liberação da água que será consumida no PC 9
+      para que esta esteja satisfeita - daí só é liberado o que não retorna ao rio
+    = são descontadas as quantidades de água oriundas da própria sub-bacia
+   }
+  L := (1- Ret1_9)* d1_9 + (1- Ret2_9)* d2_9 + (1- Ret3_9)* d3_9
+             - sb_9 + d1_10 + d2_10 + d3_10 - sb_10;
+
+  { Quando a água geranda nas próprias sub-bacias atenderem as demandas o valor de L
+    será negativo. Aí faz-se L = 0
+   }
+  if L < 0 then L := 0;
+
+  { O valor a ser liberado é atribuído à propriedade (variável) DefluvioPlanejado no
+     intervalo dt, ou seja, DeltaT atual.
+     }
+  PC.AtribuiDefluvioPlanejado(dt, L);
+end.

@@ -1,0 +1,38 @@
+var i, x: integer;
+    o: Object;
+    s: string;
+begin
+  x := 50000;
+  Progress_SetMin(0);
+  Progress_SetMax(x);
+
+  Progress_SetMessage('Testando a janela de progresso ...');
+  for i := 1 to x do
+    Progress_SetValue(i);
+
+  Progress_SetMessage('Testando as classes ...');
+
+  // Utiliza o nome que aparece no nó da árvore de objetos
+  s := 'SerieFlu_Paracatu_1976_2002';
+  o := Application.getDatasetByName(s);
+  if ObjectIsValid(o) then
+     begin
+     ShowMessage('Existem ' + IntToStr(o.StationCount) + ' postos neste conjunto');
+     o := o.getStationByName('_42980000');
+     if ObjectIsValid(o) then
+        begin
+        s := IntToStr(o.Series.Count);
+        ShowMessage('Existem ' + s + ' séries definidas neste posto');
+        if o.Series.Count > 0 then
+           begin
+           // Obtem a 1. serie da lista
+           o := o.Series.Serie(0);
+           ShowMessage('1. série: ' + o.StrongName);
+           end;
+        end
+     else
+        ShowMessage('Ponto não encontrado');
+     end
+  else
+     ShowMessage('Conjunto de dados <' + s + '> não encontrado');
+end.

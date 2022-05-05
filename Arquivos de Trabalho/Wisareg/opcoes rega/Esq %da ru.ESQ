@@ -1,0 +1,12 @@
+           2\\tipo de esqumema de rega {1,2,3,5}
+       0.12       0.12       0  \\(% de RU na camada inicial) (% de RU na camada restante) (numero de dias para parar a rega)
+           6  \\numero valores de opurtunidade de rega + 1 
+           2 \\subtipo que indica a oportunidade de rega é %da RU{1,2,3,4,5}
+       0.40 \\valor de %RU que quando atinjida despoleta a rega na 1ª fase 
+       0.30
+       0.25
+       0.14
+       0.35 \\valor de %RU que quando atinjida despoleta a rega na 1ª fase 
+           3 \\subtipo que indica a quantidade de rega {1,2,3} neste caso valor constante (mm)
+       60.00 \\valor a regar (mm) em cada rega
+

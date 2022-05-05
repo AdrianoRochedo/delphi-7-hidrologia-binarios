@@ -1,0 +1,429 @@
+<font
+   face  = "ARIAL"
+   size  = "4"
+   color = "#0000FF">
+<div
+align = "center"
+<b>
+TStation<BR>
+</b>
+</div>
+</font>
+<BR>
+Representa um posto.<BR>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "4"
+   color = "#000000">
+<b>
+Métodos<BR>
+</b>
+</font>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+Passagem de Parâmetros: <BR>
+</b>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<font
+   face  = "ARIAL"
+   size  = "2"
+   color = "#0000FF">
+<b>
+AZUL = por Cópia <BR>
+</b>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<font
+   face  = "ARIAL"
+   size  = "2"
+   color = "#FF0000">
+<b>
+VERMELHO = por Referência<BR>
+</b>
+</font>
+<BR>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure AddSerie
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#FF0000">
+<b>
+ TSerie
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Adiciona uma série como filha deste posto.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure getValue
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Retorna o valor do i-egimo elemento do posto.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure setValue
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Real
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Estabelece o valor do i-egimo elemento do posto.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Count
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Integer
+</b>
+</font>
+<BR>
+Retorna o número de valores armazenados por este posto.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Description
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TStringList
+</b>
+</font>
+<BR>
+Representa o objeto que armazena as descrições do posto<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function ExtraData
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TStringList
+</b>
+</font>
+<BR>
+Representa o objeto que armazena os dados extras do posto.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function getDate
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Real
+</b>
+</font>
+<BR>
+Retorna a data do i-égimo valor do posto<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function IndexOfDate
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Real
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Integer
+</b>
+</font>
+<BR>
+Retorna o índice de uma data<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function IsNull
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Boolean
+</b>
+</font>
+<BR>
+Verifica se um valor do posto é nulo.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function MonthCount
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Integer
+</b>
+</font>
+<BR>
+Retorna o número de meses contidos pelo posto.<BR>
+Considera somente o periodo de dados.<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Name
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: String
+</b>
+</font>
+<BR>
+Retorna o nome deste posto<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function Series
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: TSeries
+</b>
+</font>
+<BR>
+Retorna as séries deste posto<BR>
+<BR>
+<HR><BR>
+<a href = "Index.HTM">Voltar para a Página Principal</a><BR><BR>

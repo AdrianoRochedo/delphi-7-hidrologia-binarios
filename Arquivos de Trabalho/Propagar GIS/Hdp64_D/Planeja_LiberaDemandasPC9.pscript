@@ -1,0 +1,24 @@
+program Planeja_LiberaDemandas_PC9;
+
+var Saida    : Object; {Variável já inicializada pelo sistema}
+    Projeto  : Object; {Variável já inicializada pelo sistema}
+    PC, PC_9 : Object;
+    i, dt    : Integer;
+
+    d1_9, d2_9, d3_9, sb_9, Res : Real;
+begin
+  dt := Projeto.ObtemDeltaT;
+
+  PC   := Projeto.PCPeloNome('Queimado');
+  PC_9 := Projeto.PCPeloNome('PC_9');
+
+  d1_9 := PC.ObtemValorDemanda(dt, 1, 'T');       
+  d2_9 := PC.ObtemValorDemanda(dt, 2, 'T');       
+  d3_9 := PC.ObtemValorDemanda(dt, 3, 'T');       
+  sb_9 := PC_9.ObtemVazaoAfluenteSBs;
+
+  Res := d1_9 + d2_9 + d3_9 - sb_9;
+  if Res < 0 then Res := 0;
+
+  PC.AtribuiDefluencia(dt, Res);
+end.

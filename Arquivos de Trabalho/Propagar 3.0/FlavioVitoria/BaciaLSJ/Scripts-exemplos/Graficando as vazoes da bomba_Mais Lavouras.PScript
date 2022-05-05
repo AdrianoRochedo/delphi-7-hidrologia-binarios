@@ -1,0 +1,93 @@
+{
+  Este exemplo mostra as vazoes da bomba do
+  Sistema de Irrigacao para cada Manejo de uma Lavoura.
+  O resultado eh mostrado em um grafico.
+}
+
+  // Gera uma serie para cada Lavoura
+  // Cada manejo representa um ponto na serie
+  procedure Plotar(G: object; NomeObjeto: string);
+  var Lav: object;     // Objeto Lavoura
+      D: object;       // Objeto serie de dados (um para cada Lavoura)
+      NumMan: integer; // Numero de manejos da Lavoura
+      i: integer;      // Contador local
+      Par: string;     // Formara o parametro de requisicao a ser passado para a Lavoura
+      VB_SI: real;     // representa o valor da bomba
+  begin
+    // Estabelece o tipo do Parametro Grafico
+    G := TfoChart(G);
+
+    // Obtem a lavoura utilizando o nome passado por parametro
+    Lav := TprCenarioDeDemanda( Projeto.ObjetoPeloNome(NomeObjeto) );
+
+    // Verifica se o objeto existe
+    if ObjectIsValid(Lav) then
+       begin
+       // Obtem o numero de manejos
+       // Como o resultado da funcao "ObterValorFloat()" eh sempre um num. real
+       // convertemos o resultado para um inteiro atraves da funcao "Trunc()" para
+       // que ele possa ser usado no laco FOR
+       NumMan := Trunc(Lav.ObterValorFloat('Managements'));
+
+       // Se existem manejos
+       if NumMan > 0 then
+          begin
+          // Criamos uma serie de dados onde a cor eh obtida automaticamente
+          D := G.Series.AddLineSerie(NomeObjeto, getColor('TeeColor'));
+
+          // Percore todos os manejos e plota as vazoes
+          for i := 0 to NumMan-1 do
+            begin
+            // Este eh o comando mais importante de todos
+            // Aqui se define o que queremos da Lavoura
+            Par := 'Man_' + toString(i) + '.BombOutlet';
+
+            // E atraves do parametro obtemos o dado
+            VB_SI := Lav.ObterValorFloat(Par);
+
+            // O teste eh feito para se evitar a plotagem de valores malucos
+            // que por ventura foram lidos ou gerados por causa de manipulacao
+            // incorreta do software.
+            if VB_SI > -1 then D.Add(VB_SI);
+            end; // for i
+          end; // if
+       end // if
+    else
+       ShowMessage('Objeto <' + NomeObjeto + '> não localizado');
+  end; // Plotar
+
+var Grafico : object;   // Objeto Grafico
+    Nomes   : object;   // Objeto que contera os nomes das Lavoura usado pelo Propagar
+    i       : integer;  // Contador generico
+
+// Bloco principal (inicio do programa)
+begin
+  // Cria o objeto que contera os nomes das Lavouras
+  Nomes := createObject(TStringList);
+
+  // Define os nomes das Lavouras que quero plotar
+  Nomes.Add('Trigo_5');
+  Nomes.Add('Soja_1');
+  Nomes.Add('Milho_3');
+  Nomes.Add('Feijão_1');
+  Nomes.Add('Trigo_6');
+  Nomes.Add('Feijão_5');
+  Nomes.Add('Soja_2');
+  
+  //Nomes.Add('???');
+  //Nomes.Add('???');
+
+  // Cria o Grafico
+  Grafico := createObject(TfoChart);
+  Grafico.Chart.Title.Add('Vazões da bomba do Sistema de Irrigação');
+
+  // Plota cada Lavoura selecionda
+  for i := 0 to Nomes.Count-1 do
+    Plotar( Grafico, Nomes.Get(i) );
+
+  // Mostra o grafico
+  Grafico.Show;
+
+  // Libera todos os objetos temporarios
+  FreeObject(Nomes);
+end. 

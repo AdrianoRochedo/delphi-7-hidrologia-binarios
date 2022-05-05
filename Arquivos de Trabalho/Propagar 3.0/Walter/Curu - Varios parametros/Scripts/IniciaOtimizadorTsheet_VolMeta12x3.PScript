@@ -1,0 +1,572 @@
+var
+
+  // 1.É realizada uma leitura de planilha, num diretório especificado, onde estão os valores iniciais, mínimo e máximo dos
+  //   36 parametros a serem otimizados (12 para cada reservatorio). Outra panilha é lida com o nome dos 16 PCs que compõe
+  //   a discretização da bacia uutilizada como exemplo;
+
+  // 2.Cria-se, e tranforma em variaveis globais:
+  //   a) 3 matrizes que conterão os indices de desempenho, de cada PC, no que diz respeito ao grau de atendimento para as
+  //   demandas de ordem primaria, secundaria e terciaria;
+  //   b) Um vetor contendo o nome de cada um dos PCs da bacia;
+  //   c) Um vetor para conter o valor calculado, em cada simulação iterativa, das oito funções objetivo passíveis de utilização
+  //      para o processo de otimização.
+
+  // 3.Testa-se qual é o otimizador corrente definido no projeto, e executa-se os comandos específicos para o mesmo;
+
+  // 4.Realiza-se a inicializacao de 36 parametros para otimizar os volumes-meta para os reservatorios Pentecoste, Gen Sampaio
+  //   e Caxitore   ;
+
+  // 5. Libera-se os objetos criados e não mais necessários para o proximo script.
+
+  // 6. Cria-se e define como variavel global uma planilha do tipo TSpreadSheetBook que contera todas as informações importantes
+  //    relativas ao processo de otimizaçao corrente.
+
+  // Objetos - parâmetros do Otimizador para o reservatório Gen Sampaio
+  VolMetaSam1,  VolMetaSam2,  VolMetaSam3,  VolMetaSam4,
+  VolMetaSam5,  VolMetaSam6,  VolMetaSam7,  VolMetaSam8,
+  VolMetaSam9,  VolMetaSam10,  VolMetaSam11,  VolMetaSam12              : object;
+
+  // Objetos - parâmetros do Otimizador para o reservatorio Pentecoste
+  VolMetaPen1,  VolMetaPen2,  VolMetaPen3,  VolMetaPen4,
+  VolMetaPen5,  VolMetaPen6,  VolMetaPen7,  VolMetaPen8,
+  VolMetaPen9,  VolMetaPen10,  VolMetaPen11,  VolMetaPen12              : object;
+
+  // Objetos - parâmetros do Otimizador para o reservatorio Caxitore
+  VolMetaCax1,  VolMetaCax2,  VolMetaCax3,  VolMetaCax4,
+  VolMetaCax5,  VolMetaCax6,  VolMetaCax7,  VolMetaCax8,
+  VolMetaCax9,  VolMetaCax10,  VolMetaCax11,  VolMetaCax12               : object;
+
+  // Variáveis e vetores para conter os valores dos volumes meta
+  // mensais para os reservatorios Penecoste, Gen Sampaio e Caxitore
+  VolMetaPentecoste , VolMetaSampaio, VolMetaCaxitore                    : Object;
+
+  // Variável para conter  a planilha com o nome dos PCs
+  Planlista : Object;
+
+  // Variável para conter  a planilha com os valores dos volumes meta para o Gen Sampaio
+  VolumeMeta : Object;
+
+  // Variáveis para conter contadores e numero de PCs do projeto
+  j,  NumeroPcs : Integer;
+
+  // Matrizes para conter os índices de avaliação de performance do sistema
+  // para cada PC e para cada ordem de prioridade
+  ListadePCs     : Object; // global
+  IndiceDemPri   : Object; // global
+  IndiceDemTer   : Object; // global
+  IndiceDemSec   : Object; // global
+
+  // Vetor para conter os valores das funções objetivo
+  FuncObjet : Object; // global
+
+  // Planilha para conter as estatisticas da população
+  PlanilhaCompleta: Object; //Global
+
+  //Variavel para conter o caminho padrão de salvamento
+  Folder: string;
+
+begin
+
+  //Define qual é o caminho a ser utilizado como diretorio corrente
+  Folder := ExtractFilePath(Projeto.NomeArquivo);
+
+  //Cria o objeto VolumeMeta para receber a planílha com os valores
+  //dos volumes meta mensais, da regra de volumes-meta
+  //para o reservatório General Sampaio
+  VolumeMeta := Createobject(TPlanilha);
+
+  //Ler no diretório especificado a planilha caso ela exista
+  if FileExists(Folder+'VolumeMetaInicial.xls')
+     then
+        VolumeMeta.LoadFromFile(Folder+'VolumeMetaInicial.xls')
+     else
+        ShowMessage(' Arquivo não encontrado');
+
+  //Transforma cada linha especificada na planilha, no vetor de parâmetros
+  //de racionamento, específico de cada reservatório
+  VolMetaSampaio    := VolumeMeta.RowToVec(2,2,17);
+  VolMetaPentecoste := VolumeMeta.RowToVec(3,2,17);
+  VolMetaCaxitore   := VolumeMeta.RowToVec(4,2,17);
+
+  //Cria o objeto Planlista para receber a planilha com os nomes de
+  //cada PC e o numero de reservatórios estratégicos à montante dos mesmos
+  Planlista := Createobject(TPlanilha);
+
+  //Ler no diretório especificado a planilha caso ela exista
+  if FileExists(Folder+'listaSimplesPCs.xls')
+     then
+        Planlista.LoadFromFile(Folder+'listaSimplesPCs.xls')
+     else
+        ShowMessage(' Arquivo não encontrado');
+
+  //Cria um vetor do tipo TStringList para receber os nomes de cada PC
+  ListadePCs := Createobject(TStringList);
+
+  NumeroPcs := Projeto.NumPCs;           // Obtem o numero de PCs no projeto
+
+  // Ler no objeto Planlista o nome dos PCs e os incere no objeto ListadePCs
+  // o objeto ListadePCs é uma lista cujo índice da primeira posição é 0 (zero)
+  for j := 1 to NumeroPcs do
+    begin
+      ListadePCs.Insert(j-1,Planlista.GetEntry(1,j));
+    end;
+
+  // Criação da matriz para conter os índices de performance para cada PC, e para cada prioridade
+  IndiceDemPri := Createobject(TwsGeneral,8,NumeroPcs);   // Indices de performance p/ demanda primária
+  IndiceDemTer := Createobject(TwsGeneral,8,NumeroPcs);   // Indices de performance p/ demanda secundária
+  IndiceDemSec := Createobject(TwsGeneral,8,NumeroPcs);   // Indices de performance p/ demanda terciária
+
+  // Criação do vetor para conter as Funções Objetivo para a avaliação do sistema
+  FuncObjet := Createobject(TwsSFVec, 8);
+
+  // Define como variáveis globais: ...
+  // A lista de PC's da bacia
+  // A lista com o número de reservatórios estratégicos à montante de cada PC
+  // A matriz para conter os índices de performance para cada PC, para a prioridade primaria
+  // A matriz para conter os índices de performance para cada PC, para a prioridade secundaria
+  // A matriz para conter os índices de performance para cada PC, para a prioridade terciaria
+  GlobalObjects.Add('ListadePCs'     , ListadePCs);
+  GlobalObjects.Add('IndiceDemPri'   , IndiceDemPri);
+  GlobalObjects.Add('IndiceDemTer'   , IndiceDemTer);
+  GlobalObjects.Add('IndiceDemSec'   , IndiceDemSec);
+  GlobalObjects.Add('FuncObjet'      , FuncObjet);
+
+  // Remove da lista todos os parametros
+  Projeto.Otimizador.Parameters.Clear;
+
+  // Testa se a otimizaçao esta sendo feita com o AG multi-objetivo
+  if Projeto.Otimizador.ClassName = 'TGeneticMO_Optimizer'
+     then
+        begin
+           // Define o numero de FO a serem consideradas
+           Projeto.Otimizador.SetObjetivesCount(3);
+           // Define o tamanho da população
+           Projeto.Otimizador.SetPopulationCount(300);
+           // Define a quantidade máxima de evolucoes da população
+           Projeto.Otimizador.SetPopEvolutionCount(2000000);
+           // Define que havera salvamento da população durante o processo de otimização
+           // informando onde e em que arquivo a população sera salva
+           Projeto.Otimizador.SetPopFilename(Folder + 'popMultiVolMetaDefct12x3par300Ind.xml');
+        end
+     else
+        // Testa se a otimizaçao esta sendo feita com o Rosenbrok
+        if Projeto.Otimizador.ClassName = 'TRosenbrock'
+           then
+              begin
+                 // Define o passo de decrescimento de cada parametro
+                 Projeto.Otimizador.SetDecStep(0.5);
+                 // Define o numero maximo de simulações
+                 Projeto.Otimizador.SetMaxSimulations(2000);
+                 // Define o tempo maximo de processamento
+                 Projeto.Otimizador.SetMaxTimeSimulation(60*60*10000);
+                 // Define a tolerancia para a variação da FO
+                 Projeto.Otimizador.SetTolerante(0.00001);
+              end
+           // A otimizacao esta sendo feita com o AG mono-objetivo
+           else
+              begin
+                 // Define o numero de complexos
+                 Projeto.Otimizador.SetComplexCount(4);
+                 // Define a quantidade máxima de evolucoes da população
+                 Projeto.Otimizador.SetPopEvolutionCount(2000);
+                 // Define que havera salvamento da população durante o processo de otimização
+                 // informando onde e em que arquivo a população sera salva
+                 Projeto.Otimizador.SetPopFilename(Folder + 'popVolMetaCDeft12x3par.xml');
+              end;
+
+  // Mostra na tela a dinamica de variação da função objetivo que for indicada no primeiro indice
+  Projeto.Otimizador.ShowOFViwer(0,100,600);
+
+  // Testa se a otimizaçao esta sendo feita com o AG multi-objetivo
+  if Projeto.Otimizador.ClassName = 'TGeneticMO_Optimizer'
+     then
+        begin
+           // Mostra na tela a dinamica de variação da função objetivo que for indicada no primeiro indice
+           Projeto.Otimizador.ShowOFViwer(1,300,600);
+           // Mostra na tela a dinamica de variação da função objetivo que for indicada no primeiro indice
+           Projeto.Otimizador.ShowOFViwer(2,500,600)
+        end;
+
+  // Definicao dos Parametros do otimizador ...
+     
+  VolMetaPen1 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen1.SetName('VolMetaPen1');
+  VolMetaPen1.SetValue(VolMetaPentecoste.Get(1));
+  VolMetaPen1.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen1.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen1.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen1.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen2 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen2.SetName('VolMetaPen2');
+  VolMetaPen2.SetValue(VolMetaPentecoste.Get(2));
+  VolMetaPen2.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen2.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen2.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen2.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen3 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen3.SetName('VolMetaPen3');
+  VolMetaPen3.SetValue(VolMetaPentecoste.Get(3));
+  VolMetaPen3.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen3.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen3.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen3.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen4 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen4.SetName('VolMetaPen4');
+  VolMetaPen4.SetValue(VolMetaPentecoste.Get(4));
+  VolMetaPen4.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen4.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen4.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen4.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen5 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen5.SetName('VolMetaPen5');
+  VolMetaPen5.SetValue(VolMetaPentecoste.Get(5));
+  VolMetaPen5.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen5.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen5.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen5.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen6 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen6.SetName('VolMetaPen6');
+  VolMetaPen6.SetValue(VolMetaPentecoste.Get(6));
+  VolMetaPen6.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen6.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen6.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen6.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen7 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen7.SetName('VolMetaPen7');
+  VolMetaPen7.SetValue(VolMetaPentecoste.Get(7));
+  VolMetaPen7.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen7.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen7.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen7.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen8 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen8.SetName('VolMetaPen8');
+  VolMetaPen8.SetValue(VolMetaPentecoste.Get(8));
+  VolMetaPen8.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen8.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen8.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen8.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen9 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen9.SetName('VolMetaPen9');
+  VolMetaPen9.SetValue(VolMetaPentecoste.Get(9));
+  VolMetaPen9.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen9.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen9.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen9.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen10 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen10.SetName('VolMetaPen10');
+  VolMetaPen10.SetValue(VolMetaPentecoste.Get(10));
+  VolMetaPen10.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen10.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen10.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen10.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen11 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen11.SetName('VolMetaPen11');
+  VolMetaPen11.SetValue(VolMetaPentecoste.Get(11));
+  VolMetaPen11.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen11.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen11.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen11.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaPen12 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaPen12.SetName('VolMetaPen12');
+  VolMetaPen12.SetValue(VolMetaPentecoste.Get(12));
+  VolMetaPen12.SetStep(VolMetaPentecoste.Get(13));
+  VolMetaPen12.SetMin(VolMetaPentecoste.Get(14));
+  VolMetaPen12.SetMax(VolMetaPentecoste.Get(15));
+  VolMetaPen12.SetTolerance(VolMetaPentecoste.Get(16));
+
+  VolMetaSam1 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam1.SetName('VolMetaSam1');
+  VolMetaSam1.SetValue(VolMetaSampaio.Get(1));
+  VolMetaSam1.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam1.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam1.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam1.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam2 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam2.SetName('VolMetaSam2');
+  VolMetaSam2.SetValue(VolMetaSampaio.Get(2));
+  VolMetaSam2.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam2.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam2.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam2.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam3 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam3.SetName('VolMetaSam3');
+  VolMetaSam3.SetValue(VolMetaSampaio.Get(3));
+  VolMetaSam3.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam3.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam3.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam3.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam4 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam4.SetName('VolMetaSam4');
+  VolMetaSam4.SetValue(VolMetaSampaio.Get(4));
+  VolMetaSam4.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam4.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam4.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam4.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam5 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam5.SetName('VolMetaSam5');
+  VolMetaSam5.SetValue(VolMetaSampaio.Get(5));
+  VolMetaSam5.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam5.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam5.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam5.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam6 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam6.SetName('VolMetaSam6');
+  VolMetaSam6.SetValue(VolMetaSampaio.Get(6));
+  VolMetaSam6.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam6.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam6.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam6.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam7 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam7.SetName('VolMetaSam7');
+  VolMetaSam7.SetValue(VolMetaSampaio.Get(7));
+  VolMetaSam7.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam7.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam7.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam7.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam8 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam8.SetName('VolMetaSam8');
+  VolMetaSam8.SetValue(VolMetaSampaio.Get(8));
+  VolMetaSam8.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam8.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam8.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam8.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam9 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam9.SetName('VolMetaSam9');
+  VolMetaSam9.SetValue(VolMetaSampaio.Get(9));
+  VolMetaSam9.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam9.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam9.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam9.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam10 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam10.SetName('VolMetaSam10');
+  VolMetaSam10.SetValue(VolMetaSampaio.Get(10));
+  VolMetaSam10.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam10.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam10.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam10.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam11 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam11.SetName('VolMetaSam11');
+  VolMetaSam11.SetValue(VolMetaSampaio.Get(11));
+  VolMetaSam11.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam11.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam11.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam11.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaSam12 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaSam12.SetName('VolMetaSam12');
+  VolMetaSam12.SetValue(VolMetaSampaio.Get(12));
+  VolMetaSam12.SetStep(VolMetaSampaio.Get(13));
+  VolMetaSam12.SetMin(VolMetaSampaio.Get(14));
+  VolMetaSam12.SetMax(VolMetaSampaio.Get(15));
+  VolMetaSam12.SetTolerance(VolMetaSampaio.Get(16));
+
+  VolMetaCax1 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax1.SetName('VolMetaCax1');
+  VolMetaCax1.SetValue(VolMetaCaxitore.Get(1));
+  VolMetaCax1.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax1.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax1.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax1.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax2 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax2.SetName('VolMetaCax2');
+  VolMetaCax2.SetValue(VolMetaCaxitore.Get(2));
+  VolMetaCax2.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax2.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax2.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax2.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax3 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax3.SetName('VolMetaCax3');
+  VolMetaCax3.SetValue(VolMetaCaxitore.Get(3));
+  VolMetaCax3.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax3.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax3.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax3.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax4 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax4.SetName('VolMetaCax4');
+  VolMetaCax4.SetValue(VolMetaCaxitore.Get(4));
+  VolMetaCax4.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax4.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax4.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax4.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax5 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax5.SetName('VolMetaCax5');
+  VolMetaCax5.SetValue(VolMetaCaxitore.Get(5));
+  VolMetaCax5.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax5.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax5.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax5.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax6 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax6.SetName('VolMetaCax6');
+  VolMetaCax6.SetValue(VolMetaCaxitore.Get(6));
+  VolMetaCax6.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax6.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax6.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax6.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax7 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax7.SetName('VolMetaCax7');
+  VolMetaCax7.SetValue(VolMetaCaxitore.Get(7));
+  VolMetaCax7.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax7.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax7.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax7.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax8 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax8.SetName('VolMetaCax8');
+  VolMetaCax8.SetValue(VolMetaCaxitore.Get(8));
+  VolMetaCax8.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax8.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax8.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax8.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax9 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax9.SetName('VolMetaCax9');
+  VolMetaCax9.SetValue(VolMetaCaxitore.Get(9));
+  VolMetaCax9.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax9.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax9.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax9.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax10 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax10.SetName('VolMetaCax10');
+  VolMetaCax10.SetValue(VolMetaCaxitore.Get(10));
+  VolMetaCax10.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax10.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax10.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax10.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax11 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax11.SetName('VolMetaCax11');
+  VolMetaCax11.SetValue(VolMetaCaxitore.Get(11));
+  VolMetaCax11.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax11.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax11.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax11.SetTolerance(VolMetaCaxitore.Get(16));
+
+  VolMetaCax12 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaCax12.SetName('VolMetaCax12');
+  VolMetaCax12.SetValue(VolMetaCaxitore.Get(12));
+  VolMetaCax12.SetStep(VolMetaCaxitore.Get(13));
+  VolMetaCax12.SetMin(VolMetaCaxitore.Get(14));
+  VolMetaCax12.SetMax(VolMetaCaxitore.Get(15));
+  VolMetaCax12.SetTolerance(VolMetaCaxitore.Get(16));
+
+  //Testa se o otimizador em operação eh o AG Mono Objetivo
+  if Projeto.Otimizador.ClassName = 'TGeneticOptimizer' then
+     begin
+
+        //Testa se o usuario deseja iniciar a otimização a partir de uma populaçao existente
+        if Question('Deseja ler a ultima população ?') then
+           //ler a populaçao existente e continua a otimizaçao a partir dela
+           Projeto.Otimizador.LoadPopulation(Projeto.Otimizador.GetPopFilename);
+
+        //Cria o objeto Estatisticas que vai conter as estatisticas da população
+        //A mesma vai ser do tipo TSpreadSheetBook que possui varias folhas
+        PlanilhaCompleta:= Createobject(TSpreadSheetBook);
+
+        //Prenchimento do cabeçalho da planilha na primeira folha de numero 0 que na hora da criaçao
+        //da planilha jah eh a que fica ativa automaticamente
+        PlanilhaCompleta.ActiveSheet.writeText(1, 1, 'Estatisticas das gerações da população');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 1, 'Geração');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 2, 'Média das FOs');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 3, 'Desvio Padrão das FOs');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 4, 'Tempo do inicio do Windows');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 5, 'Tempo em horas do sistema');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 6, 'Tempo em hora,min,sec do sistema');
+
+        //Salva na folha(0) da planilha o numero zero na celula (1,10) o indice que servira de indicação
+        //de mudança de geração
+        PlanilhaCompleta.ActiveSheet.WriteFloat(1, 10, 0, 0);
+        //Salva na celula (3,8) da folha(0) da planilha o tempo em milisegundos deste que o Windows foi inicializado
+        PlanilhaCompleta.ActiveSheet.WriteCenterFloat(3,8,GetTickCount,0);
+        //Salva na celula (3,9) da folha(0) da planilha a indicaçao da atual hora do sistema
+        PlanilhaCompleta.ActiveSheet.WriteCenterFloat(3,9,GetTime,5);
+        //Salva na celula (3,10) da folha(0) da planilha a indicaçao da atual hora do sistema como string
+        PlanilhaCompleta.ActiveSheet.WriteCenterText(3,10,GetTimeAsString);
+        //Salva a PlanilhaCompleta no diretorio especificado em Folder
+        PlanilhaCompleta.SaveToFile(Folder+'PlanilhaCompleta.xls');
+        // Define como variável global a PlanilhaCompleta conter as estatisticas da execução
+        GlobalObjects.Add('PlanilhaCompleta'   , PlanilhaCompleta);
+     end;
+
+  // Testa se a otimizaçao esta sendo feita com o AG multi-objetivo
+  if Projeto.Otimizador.ClassName = 'TGeneticMO_Optimizer'
+     then
+        begin
+
+        //Testa se o usuario deseja iniciar a otimização a partir de uma populaçao existente
+        if Question('Deseja ler a ultima população ?') then
+           //ler a populaçao existente e continua a otimizaçao a partir dela
+           Projeto.Otimizador.LoadPopulation(Projeto.Otimizador.GetPopFilename);
+
+        //Cria o objeto Estatisticas que vai conter as estatisticas da população
+        //A mesma vai ser do tipo TSpreadSheetBook que possui varias folhas
+        PlanilhaCompleta:= Createobject(TSpreadSheetBook);
+
+        //Prenchimento do cabeçalho da primeira folha(0) planilha
+        PlanilhaCompleta.ActiveSheet.writeText(1, 1, 'Estatisticas das gerações da população');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 1, 'Geração');
+        //Obs: Neste script estao sendo utilizadas 3 aptidoes para a otimizaçao MultiObjetivo
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 2, 'Média da FO02');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 3, 'Média da FO03');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 4, 'Média da FO04');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 5, 'Desvio Padrão da FO02');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 6, 'Desvio Padrão da FO03');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 7, 'Desvio Padrão da FO04');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 8, 'Fator RMax');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 9, 'Inds Piores');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 10, 'Tempo do inicio do Windows');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 11, 'Tempo em horas do sistema');
+        PlanilhaCompleta.ActiveSheet.writeCenterText(2, 12, 'Tempo em hora,min,sec do sistema');
+
+        //Salva na folha(0) da planilha o numero zero na celula (1,15) o indice que servira de indicação
+        //de mudança de geração
+        PlanilhaCompleta.ActiveSheet.WriteFloat(1, 15, 0, 0);
+        //Salva na celula (3,15) da folha(0) da planilha o tempo em milisegundos deste que o Windows foi inicializado
+        PlanilhaCompleta.ActiveSheet.WriteCenterFloat(3,15,GetTickCount,0);
+        //Salva na celula (3,9) da folha(0) da planilha a indicaçao da atual hora do sistema
+        PlanilhaCompleta.ActiveSheet.WriteCenterFloat(3,16,GetTime,5);
+        //Salva na celula (3,10) da folha(0) da planilha a indicaçao da atual hora do sistema como string
+        PlanilhaCompleta.ActiveSheet.WriteCenterText(3,17,GetTimeAsString);
+        //Salva a PlanilhaCompleta no diretorio especificado em Folder
+        PlanilhaCompleta.SaveToFile(Folder+'PlanilhaCompleta.xls');
+        // Define como variável global a PlanilhaCompleta conter as estatisticas da execução
+        GlobalObjects.Add('PlanilhaCompleta'   , PlanilhaCompleta);
+     end;
+
+  //Exibe na tela a variação dos valores dos parametros
+  Projeto.Otimizador.ShowParsManager(650, 0);
+
+  //Libera do espaço de memória os objetos criados
+  FreeObject(VolumeMeta);
+  FreeObject(Planlista);
+  FreeObject(VolMetaSampaio);
+  FreeObject(VolMetaPentecoste);
+  FreeObject(VolMetaCaxitore);
+end.

@@ -1,0 +1,2 @@
+           0 \\numero de dias com G conhecido se o valor é constante =0
+       7.00 \\(valor de g constante)(mm\dia) {1...16}

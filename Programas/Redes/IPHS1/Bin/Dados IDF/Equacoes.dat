@@ -1,0 +1,7 @@
+[Padrão]
+Nome=Padrão
+Comentario=Equação Genérica.A equação permite sintetizar o feixe de curvas, mas poderá apresentar erros, já que o ajuste nem sempre é perfeito.
+Codigo=Result := a * Power(Tr, b) / Power(Duracao + c, d);
+
+
+

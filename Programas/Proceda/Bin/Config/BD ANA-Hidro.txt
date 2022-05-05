@@ -1,0 +1,9 @@
+TADO_Table_Hidro_Postos
+Chuvas
+Cotas
+Vazoes
+Clima
+(Series_Chuvas)
+(Series_Cotas)
+(Series_Vazoes)
+(Series_Clima)

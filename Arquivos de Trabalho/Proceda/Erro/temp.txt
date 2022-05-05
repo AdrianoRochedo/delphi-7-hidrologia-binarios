@@ -1,0 +1,14 @@
+             WS            PROCEDA
+
+vData[1]     250
+vData[2]     337
+vData[10]    586
+
+xData[1]     298.5468
+xData[2]     330.2575
+xData[10]    586.4736
+
+xmin         298.5468
+ymin         303.75
+xmax         586.4736
+ymax         584.55

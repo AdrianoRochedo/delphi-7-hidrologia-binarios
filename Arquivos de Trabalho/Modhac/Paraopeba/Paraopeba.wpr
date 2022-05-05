@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Arquivo gerado pela rotina TreeViewUtils.TreeToXML -->
+<!-- Autor: Adriano Rochedo Conceicao -->
+
+<TreeViewNodes>
+  <node Text="Belo Vale" Level="0" II="1" SI="1">
+    <Object class="TmhProject">
+      <FileName>Paraopeba.wpr</FileName>
+      <ProjectName>Belo Vale</ProjectName>
+      <DelOutPutFiles>0</DelOutPutFiles>
+    </Object>
+  </node>
+    <node Text="Rio Paraopeba em Belo Vale " Level="1" II="2" SI="2">
+      <Object class="TmhSubBaciaNode">
+        <FileName>Paraopeba.xbac</FileName>
+      </Object>
+    </node>
+</TreeViewNodes>

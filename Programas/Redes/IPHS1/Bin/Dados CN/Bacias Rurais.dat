@@ -1,0 +1,153 @@
+[Solo lavrado]
+Tipos=2
+T1=com sulcos retilíneos
+T1_A=77
+T1_B=86
+T1_C=91
+T1_D=94
+T2=em fileiras retas
+T2_A=70
+T2_B=80
+T2_C=87
+T2_D=90
+
+[Plantações regulares]
+Tipos=3
+T1=em curvas de nível
+T1_A=67
+T1_B=77
+T1_C=83
+T1_D=87
+T2=terraceado em nível
+T2_A=64
+T2_B=76
+T2_C=84
+T2_D=88
+T3=em fileiras retas
+T3_A=64
+T3_B=76
+T3_C=84
+T3_D=88
+
+[Plantações de cereais]
+Tipos=3
+T1=em curvas de nível
+T1_A=62
+T1_B=74
+T1_C=82
+T1_D=85
+T2=terraceado em nível
+T2_A=60
+T2_B=71
+T2_C=79
+T2_D=82
+T3=em fileiras retas
+T3_A=62
+T3_B=75
+T3_C=83
+T3_D=87
+
+[Plantações de legumes ou cultivados]
+Tipos=5
+T1=em curvas de nível
+T1_A=60
+T1_B=72
+T1_C=81
+T1_D=84
+T2=terraceado em nível
+T2_A=57
+T2_B=70
+T2_C=78
+T2_D=89
+T3=Pobres
+T3_A=68
+T3_B=79
+T3_C=86
+T3_D=89
+T4=Normais
+T4_A=49
+T4_B=69
+T4_C=79
+T4_D=94
+T5=Boas
+T5_A=39
+T5_B=61
+T5_C=74
+T5_D=80
+
+[Pastagens]
+Tipos=3
+T1=Pobres,em curvas de nível
+T1_A=47
+T1_B=67
+T1_C=81
+T1_D=88
+T2=Normais,em curvas de nível
+T2_A=25
+T2_B=59
+T2_C=75
+T2_D=83
+T3=Boas,em curvas de nível
+T3_A=6
+T3_B=35
+T3_C=70
+T3_D=79
+
+[Campos Permanentes]
+Tipos=3
+T1=Normais
+T1_A=30
+T1_B=58
+T1_C=71
+T1_D=78
+T2=Esparsas, de baixa transpiração
+T2_A=45
+T2_B=66
+T2_C=77
+T2_D=83
+T3=Densas, de alta transpiração
+T3_A=25
+T3_B=55
+T3_C=70
+T3_D=77
+
+[Chácaras Estradas de terra]
+Tipos=3
+T1=Normais
+T1_A=56
+T1_B=75
+T1_C=86
+T1_D=91
+T2=Más
+T2_A=72
+T2_B=82
+T2_C=87
+T2_D=89
+T3=de superfície dura
+T3_A=74
+T3_B=84
+T3_C=90
+T3_D=92
+
+[Florestas]
+Tipos=4
+T1=muito esparsas, baixa transpiração
+T1_A=56
+T1_B=75
+T1_C=86
+T1_D=91
+T2=esparsas
+T2_A=46
+T2_B=68
+T2_C=78
+T2_D=84
+T3=densas, alta transpiração
+T3_A=26
+T3_B=52
+T3_C=62
+T3_D=69
+T3=normais
+T3_A=36
+T3_B=60
+T3_C=70
+T3_D=76

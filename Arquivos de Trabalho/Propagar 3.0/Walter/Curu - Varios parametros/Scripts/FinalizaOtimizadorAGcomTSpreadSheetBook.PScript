@@ -1,0 +1,456 @@
+var
+
+ // Este script tem as seguintes funçoes:
+
+ // 1.Criação, preenchimento e apresentação das planilhas(TSpreadSheetBook) que conterão os valores dos índices de desempenho
+ //   obtidos, para todos os PCs da bacia, relacionados ao atendimento das demandas primária, secundaria e terciaria.
+
+ // 2.Criação, preenchimento e apresentação da planilha que conterá os valores de todas as FO calculadas, salientando que, neste
+ //   caso se utiliza a FO8 para o processo de otimizaçao.
+
+ // 3.Criação, prenchimento e apresentaçao da planilha que conterá os valores finais dos parâmetros otimizados.
+ //   No caso de se utilizar o método de Rosenbrok é apresentado apenas um conjunto de parametros, o que, no caso dos outros
+ //   otimizadores corresponde a apenas um individuo.
+ //   No caso de se utilizar o otimizador por AG a planilha apresenta o valor dos parametros (gens) para cada um dos individuos
+ //   da populaçao final.
+
+ // 4.Finalmente são liberados todos as variáveis que foram tratadas, durante as simulações e avaliações das FO, como variáveis
+ //   globais
+
+ //Variáveis pré-declaradas:
+   // Saida          : Object;
+   // Projeto       : Object;
+
+   // Intervalos totais de simulação
+   IntTotal                   : Integer;
+
+   // Quantidade de PCs na Bacia
+   NumeroPCs                  : Integer;
+
+   // Contador de PCs
+   iPC                        : Integer;
+
+   // Contador de Parametros
+   iParametro                 : Integer;
+
+   // Contador de aptidoes (FO)
+   iFO                        :integer;
+
+   // Contador de individuos
+   iIndividuo                 : Integer;
+
+   // Numero de parametros
+   NumerodeParametros         : Integer;
+
+   // Numero de individuos
+   NumerodeIndviduos          : Integer;
+
+   //Numero de aptidoes
+   NumerodeAptidoes           :integer;
+
+   // valor do Gen
+   Gen                        : Real;
+
+   // valor da aptidao
+   aptidao                    : Real;
+
+   // Matrizes para conter os índices de avaliação de performance do sistema
+   // para cada PC e para cada ordem de prioridade
+   IndiceDemPri               : Object;
+   IndiceDemTer               : Object;
+   IndiceDemSec               : Object;
+
+   // Vetor para conter os valores das funções objetivo
+   FuncObjet                  : Object;
+
+   // Objeto que vai conter os Pontos Característicos
+   PC                         : Object;
+
+   // Objeto que vai conter os Parametros
+   Parametro                  : Object;
+
+   // Local para salvamento de dados
+   Folder                     : string;
+   // Planilha para conter a planilha do tipo TSpreadSheetBook que vai conter todas as informações necessarias
+   PlanilhaCompleta           : Object;
+   // Variavel para receber as geracoes atual e anterior da populaçao via sistema
+   GeracaoAtual               : Integer;
+
+Begin
+   Folder := ExtractFilePath(Projeto.NomeArquivo);
+
+   // Obtenção do intervalo total de simulação, e do número de PCs,
+   // através de duas propriedades da classe projeto
+   IntTotal  := Projeto.Total_IntSim;
+   NumeroPCs := Projeto.NumPCs;
+
+   // Recupera o numero de parametros que estao sendo utilizados nessa otimização
+   NumerodeParametros :=  Projeto.Otimizador.Parameters.Count;
+
+   // Obtenção do objeto global TSpreadSheetBook criado na rotina de inicializacao da otimizacao
+   // e atualizado sempre que mudava uma geraçao
+   PlanilhaCompleta := TSpreadSheetBook(GlobalObjects.Get('PlanilhaCompleta'));
+
+   //obtencao da geração atual via sistema
+   GeracaoAtual:= Projeto.Otimizador.getEvolutionCount;
+
+   //Testa se o otimizador em operação eh o AG Mono Objetivo
+   if Projeto.Otimizador.ClassName = 'TGeneticOptimizer' then
+      begin
+         //Salva na primeira folha(0) da planilha o numero que identifica a geração
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,1,Projeto.Otimizador.getEvolutionCount-1,0);
+         //Salva na primeira folha(0) da planilha a media das aptidoes (FOs) da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,2,Projeto.Otimizador.getPopulationMean(0),2);
+         //Salva na primeira folha(0) da planilha o desvio padrao das aptidoes (FOs) da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,3,Projeto.Otimizador.getPopulationDSP(0),2);
+         //Salva na primeira folha(0) da planilha o tempo em milisegundos deste que o Windows foi inicializado
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,4,GetTickCount,0);
+         //Salva na primeira folha(0) da planilha a indicaçao da atual hora do sistema
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,5,GetTime,5);
+         //Salva na primeira folha(0) da planilha a indicaçao da atual hora do sistema como string
+         PlanilhaCompleta.ActiveSheet.WriteCenterText(GeracaoAtual+3,6,GetTimeAsString);
+      end;
+
+   // Verifica se o Otimizador por AG eh o multi objetivo
+   if Projeto.Otimizador.ClassName = 'TGeneticMO_Optimizer' then
+      begin
+         //Salva na primeira folha(0) da planilha o numero que identifica a geração
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,1,Projeto.Otimizador.getEvolutionCount-1,0);
+         //Salva na primeira folha(0) da planilha da aptidão 01 (FO02) da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,2,Projeto.Otimizador.getPopulationMean(0),2);
+         //Salva na primeira folha(0) da planilha a media das aptidão 02 (FO03) da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,3,Projeto.Otimizador.getPopulationMean(1),2);
+         //Salva na primeira folha(0) da planilha a media das aptidão 03 (FO04) da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,4,Projeto.Otimizador.getPopulationMean(2),2);
+         //Salva na primeira folha(0) da planilha o desvio padrao das aptidão 01 (FO02) da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,5,Projeto.Otimizador.getPopulationDSP(0),2);
+         //Salva na primeira folha(0) da planilha o desvio padrao das aptidão 02 (FO03) da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,6,Projeto.Otimizador.getPopulationDSP(1),2);
+         //Salva na primeira folha(0) da planilha o desvio padrao das aptidão 03 (FO04) da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,7,Projeto.Otimizador.getPopulationDSP(2),2);
+         //Salva na primeira folha(0) da planilha o fator RMax atual da população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,8,Projeto.Otimizador.getRMax,0);
+         //Salva na primeira folha(0) da planilha o numero de indviduos com fator RMax na população
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,9,Projeto.Otimizador.getWorstsCount,0);
+         //Salva na primeira folha(0) da planilha o tempo em milisegundos deste que o Windows foi inicializado
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,10,GetTickCount,0);
+         //Salva na primeira folha(0) da planilha a indicaçao da atual hora do sistema
+         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(GeracaoAtual+3,11,GetTime,5);
+         //Salva na primeira folha(0) da planilha a indicaçao da atual hora do sistema como string
+         PlanilhaCompleta.ActiveSheet.WriteCenterText(GeracaoAtual+3,12,GetTimeAsString);
+      end;
+
+
+   // Obtenção dos objetos globais criados na rotina de avaliação da FO
+   IndiceDemPri := TwsGeneral(GlobalObjects.Get('IndiceDemPri'));
+   IndiceDemSec := TwsGeneral(GlobalObjects.Get('IndiceDemSec'));
+   IndiceDemTer := TwsGeneral(GlobalObjects.Get('IndiceDemTer'));
+   FuncObjet    := TwsSFVec(GlobalObjects.Get('FuncObjet'));
+
+   // Cria uma nova folha dentro da planilha
+   PlanilhaCompleta.NewSheet('PlanDemPri');
+   // Ativa a pagina da planilha na qual estamos interessados
+   //PlanilhaCompleta.setActiveSheetIndex(1);
+
+   // Preenchimento do cabeçalho da segunda folha (1) da planilha do tipo TSpreadSheetBook
+   PlanilhaCompleta.ActiveSheet.WriteText(1, 1, 'Resultado dos Índices Probabilísticos para a demanda primária');
+   PlanilhaCompleta.ActiveSheet.WriteText(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 1, 'PC ');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 2, 'N.F. ');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 3, 'Prob(Falha)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 4, 'Confiabilidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 5, 'Elaticidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 6, 'Vulnerabilidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 7, 'Soma(Def)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 8, 'Soma SQR(Def)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 9, 'Falhas Criticas');
+
+   // Preenchimento dos dados da segunda folha (1) da planilha do tipo TSpreadSheetBook
+   // com os dados para demanda primaria contidos na variavel global IndiceDemPri
+
+   // Varre cada um dos PCs do Projeto
+   for iPC := 1 to NumeroPCs do
+       Begin
+          // O Objeto PC recebe o PC do laço (iPC - 1)
+          PC := Projeto.PC(iPC-1);
+          // Escreve na folha ativa da planilha os dados abaixo:
+          PlanilhaCompleta.ActiveSheet.WriteCenterText(4 + iPC, 1, PC.Nome);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 2, IndiceDemPri.Get(1,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 3, IndiceDemPri.Get(2,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 4, IndiceDemPri.Get(3,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 5, IndiceDemPri.Get(4,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 6, IndiceDemPri.Get(5,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 7, IndiceDemPri.Get(6,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 8, IndiceDemPri.Get(7,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 9, IndiceDemPri.Get(8,iPC),2)
+       End;
+
+
+   // Cria uma nova folha dentro da planilha
+   PlanilhaCompleta.NewSheet('PlanDemSec');
+   // Ativa a pagina da planilha na qual estamos interessados
+   //PlanilhaCompleta.setActiveSheetIndex(2);
+
+   // Preenchimento do cabeçalho da terceira folha (2) da planilha do tipo TSpreadSheetBook
+   PlanilhaCompleta.ActiveSheet.WriteText(1, 1, 'Resultado dos Índices Probabilísticos para a demanda secundária');
+   PlanilhaCompleta.ActiveSheet.WriteText(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 1, 'PC ');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 2, 'N.F. ');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 3, 'Prob(Falha)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 4, 'Confiabilidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 5, 'Elaticidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 6, 'Vulnerabilidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 7, 'Soma(Def)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 8, 'Soma SQR(Def)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 9, 'Falhas Criticas');
+
+   // Preenchimento dos dados da terceira folha (2) da planilha do tipo TSpreadSheetBook
+   // com os dados para demanda secundaria contidos na variavel global IndiceDemSec
+
+   // Varre cada um dos PCs do Projeto
+   for iPC := 1 to NumeroPCs do
+       Begin
+          // O Objeto PC recebe o PC do laço (iPC - 1)
+          PC := Projeto.PC(iPC-1);
+          // Escreve na folha ativa da planilha os dados abaixo:
+          PlanilhaCompleta.ActiveSheet.WriteCenterText(4 + iPC, 1, PC.Nome);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 2, IndiceDemSec.Get(1,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 3, IndiceDemSec.Get(2,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 4, IndiceDemSec.Get(3,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 5, IndiceDemSec.Get(4,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 6, IndiceDemSec.Get(5,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 7, IndiceDemSec.Get(6,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 8, IndiceDemSec.Get(7,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 9, IndiceDemSec.Get(8,iPC),2)
+       End;
+
+   // Cria uma nova folha dentro da planilha
+   PlanilhaCompleta.NewSheet('PlanDemTer');
+   // Ativa a pagina da planilha na qual estamos interessados
+   //PlanilhaCompleta.setActiveSheetIndex(3);
+
+   // Preenchimento do cabeçalho da terceira folha (3) da planilha do tipo TSpreadSheetBook
+   PlanilhaCompleta.ActiveSheet.WriteText(1, 1, 'Resultado dos Índices Probabilísticos para a demanda terciária');
+   PlanilhaCompleta.ActiveSheet.WriteText(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 1, 'PC ');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 2, 'N.F. ');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 3, 'Prob(Falha)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 4, 'Confiabilidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 5, 'Elaticidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 6, 'Vulnerabilidade');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 7, 'Soma(Def)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 8, 'Soma SQR(Def)');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 9, 'Falhas Criticas');
+
+   // Preenchimento dos dados da quarta folha (3) da planilha do tipo TSpreadSheetBook
+   // com os dados para demanda terciaria contidos na variavel global IndiceDemTer
+
+   // Varre cada um dos PCs do Projeto
+   for iPC := 1 to NumeroPCs do
+       Begin
+          // O Objeto PC recebe o PC do laço (iPC - 1)
+          PC := Projeto.PC(iPC-1);
+          // Escreve na folha ativa da planilha os dados abaixo:
+          PlanilhaCompleta.ActiveSheet.WriteCenterText(4 + iPC, 1, PC.Nome);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 2, IndiceDemTer.Get(1,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 3, IndiceDemTer.Get(2,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 4, IndiceDemTer.Get(3,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 5, IndiceDemTer.Get(4,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 6, IndiceDemTer.Get(5,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 7, IndiceDemTer.Get(6,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 8, IndiceDemTer.Get(7,iPC),2);
+          PlanilhaCompleta.ActiveSheet.WriteCenterFloat(4 + iPC, 9, IndiceDemTer.Get(8,iPC),2)
+       End;
+
+
+   // Cria uma nova folha dentro da planilha
+   PlanilhaCompleta.NewSheet('ValorParametros');
+   // Ativa a pagina da planilha na qual estamos interessados
+   //PlanilhaCompleta.setActiveSheetIndex(4);
+
+   PlanilhaCompleta.ActiveSheet.WriteText(1, 1, 'Valores dos parametros otimizados');
+   PlanilhaCompleta.ActiveSheet.WriteText(2, 1, 'Funcao objetivo otimizada : FO3 -> Elaticidade (Não Ponderada) ');
+
+   // Testa se o otimizador utilizado eh o Rosenbrok
+   if Projeto.Otimizador.ClassName = 'TRosenbrock'
+
+      // O otimizador eh o Rozenbrok, que possui apenas um ponto com os seus Parametros
+      then
+          Begin //1
+              //Escreve na folha ativa (4) o texto especificado
+              PlanilhaCompleta.ActiveSheet.WriteText(3, 1, 'Otimizador utilizado: Rozenbrok');
+              // Varre a quandidade de parâmetros
+              For iParametro := 1 to NumerodeParametros do
+                   Begin //1.1
+                      // Recebe o objeto Parametro iniciando a contagem de 0 (zero)
+                      Parametro := Projeto.Otimizador.Parameters.Parameter(iParametro-1);
+                      //Escreve na folha ativa (4) o nome do parametro
+                      PlanilhaCompleta.ActiveSheet.WriteCenterText(iParametro+3, 1, Parametro.GetName);
+                      //Escreve na folha ativa (4) o valor atual do parametro
+                      PlanilhaCompleta.ActiveSheet.WriteCenterFloat(iParametro+3, 2, Parametro.GetValue,2);
+                   End //1.1
+
+          End //1
+      // O otimizador eh o AG (Mono ou Multi Objetivo) que possuem uma população de pontos
+      else
+          begin //2
+              // recupera o numero de individuos que fazem parte da atual aplicação
+              NumerodeIndviduos := Projeto.Otimizador.getPopulationCount;
+
+              // Testa se o otimizador utilizado eh o AG mono objetivo
+              if Projeto.Otimizador.ClassName = 'TGeneticOptimizer'
+                 // O Otimizador eh o Algoritmo Genetico mono objetivo,
+                 // que possui uma população de pontos, cada um com apenas uma aptidao e os seus parametros
+                 then
+                     Begin //2.1
+                         // Escreve na folha ativa (4) o texto especificado
+                         PlanilhaCompleta.ActiveSheet.WriteText(3,1,' Otimizador utilizado: Algoritmo Genetico Mono-Objetivo');
+                         // Escreve na folha ativa (4) o texto especificado
+                         PlanilhaCompleta.ActiveSheet.WriteCenterText(4,1,' Individuo');
+                         // Escreve na folha ativa (4) o texto especificado
+                         PlanilhaCompleta.ActiveSheet.WriteCenterText(4,2,' Aptidão');
+
+                         // Varre todos os parâmetros definidos no atual modelo
+                         For iParametro := 1 to NumerodeParametros do
+                             Begin //2.1.1
+                                 // Recupera cada um dos parametros definidos na atual aplicação iniciado a contagem de zero
+                                 Parametro := Projeto.Otimizador.Parameters.Parameter(iParametro-1);
+                                 // Escreve na folha ativa(4), na linha e coluna especificada o nome de cada um dos parametros
+                                 PlanilhaCompleta.ActiveSheet.WriteCenterText( 4,iParametro+2,Parametro.GetName);
+                             End;  //2.1.1
+
+                         // Varre todos os individuos que fazem parte da população definidos na atual aplicação
+                         For iIndividuo := 1 to NumerodeIndviduos do
+                             Begin //2.1.2
+                                 // Escreve na folha ativa(4), na linha e coluna especificada o nome de cada um dos parametros
+                                 PlanilhaCompleta.ActiveSheet.WriteCenterText(iIndividuo + 4, 1, IntToStr(iIndividuo));
+                                 // Recupera a aptidao do individuo de acordo com a variação do indice do laço
+                                 // O segundo indicador, 0(zero), especifica a primeira e unica aptidao (MonoObjetivo)
+                                 Aptidao := Projeto.Otimizador.getAptness(iIndividuo-1 , 0);
+                                 // Escreve na folha ativa(4), na linha e coluna especificada o valor da aptidao
+                                 PlanilhaCompleta.ActiveSheet.WriteCenterFloat(iIndividuo + 4, 2,  Aptidao, 2);
+
+                                 // Varre todos os parametros (genes) que representam cada um dos individuos
+                                 For iParametro := 1 to NumerodeParametros do
+                                     Begin //2.1.2.1
+                                         // Recupera a gen do individuo de acordo com a variação dos dois indices dos laços
+                                         // O primeio indice especifica o individuo e o segundo o gen
+                                         // A contagem do gen e do individuo inicia de 0 (zero)
+                                         Gen := Projeto.Otimizador.getGen(iIndividuo-1,iParametro-1);
+                                         // Escreve na folha ativa(4), na linha e coluna especificada  pelos indices
+                                         // o valor do parametro (gen), com duas casas decimais
+                                         PlanilhaCompleta.ActiveSheet.WriteCenterFloat(iIndividuo+4, iParametro+2, Gen,2);
+                                     End; //2.1.2.1
+
+                             End;//2.1.2
+                     End //2.1
+                 else
+                     // O Otimizador eh o Algoritmo Genetico multi objetivo,
+                     // que possui uma população de pontos, cada um com os seus parametros e suas aptidoes
+                     // A quantidades desses elementos foi definido na rotina de inicializacao
+                     begin  //2.2
+                         // Escreve na folha ativa (4) nas celulas especificadas os textos seguintes:
+                         PlanilhaCompleta.ActiveSheet.WriteText(3,1,' Otimizador utilizado: Algoritmo Genetico Multi-Objetivo');
+                         PlanilhaCompleta.ActiveSheet.WriteText(4,1, 'Funcoes objetivo utilizadas : FO2, FO3 e FO4 ');
+                         PlanilhaCompleta.ActiveSheet.WriteCenterText(5,1,' Individuo');
+
+                         // recupera o numero de aptidoes (FOs) utilizadas nessa aplicação
+                         NumerodeAptidoes:= Projeto.Otimizador.GetObjetivesCount;
+
+                         // Varre cada uma das aptidoes
+                         for iFO := 1 to NumerodeAptidoes do
+                            // Escreve na folha ativa (4) nas celulas especificadas os textos seguintes:
+                            PlanilhaCompleta.ActiveSheet.WriteCenterText(5,iFO+2,' Aptidão '+IntToStr(iFO));
+
+                         // Varre cada uma dos parametros
+                         for iParametro := 1 to NumerodeParametros do
+                             Begin //2.2.1
+                                // Recupera cada um dos parametros definidos na atual aplicação iniciado a contagem de zero
+                                Parametro := Projeto.Otimizador.Parameters.Parameter(iParametro-1);
+                                // Escreve na folha ativa(4), na linha e coluna especificada o nome de cada um dos parametros
+                                PlanilhaCompleta.ActiveSheet.WriteCenterText(5, iParametro+NumerodeAptidoes+3,Parametro.GetName);
+                             End; //2.2.1
+
+                         // Varre cada uma dos individuos da população
+                         for iIndividuo := 1 to NumerodeIndviduos do
+                             Begin //2.2.2
+                                // Escreve na folha ativa(4), na linha e coluna especificada o numero do individuo
+                                PlanilhaCompleta.ActiveSheet.WriteCenterText(iIndividuo+5,1,IntToStr(iIndividuo));
+
+                                // Varre cada uma das aptidoes
+                                for iFO := 1 to NumerodeAptidoes do
+                                    begin //2.2.2.1
+                                        //Recupera a aptidao (FO) especificando o individuo e o indice da aptidao
+                                        Aptidao := Projeto.Otimizador.getAptness(iIndividuo-1 , iFO-1);
+                                        // Escreve na folha ativa(4), na celula especificada o valor da aptidao, com 4 casas decimais
+                                        PlanilhaCompleta.ActiveSheet.WriteCenterFloat(iIndividuo+5, iFO+2, Aptidao, 4)
+                                    end; //2.2.2.1
+
+                                //Varre cada um dos parametros
+                                for iParametro := 1 to NumerodeParametros do
+                                    Begin //2.2.2.2
+                                       //Recupera o parametro (gene) especificando o individuo e o indice do gene
+                                       Gen := Projeto.Otimizador.getGen(iIndividuo-1,iParametro-1);
+                                       // Escreve na folha ativa(4), na celula especificada o valor do gene, com 2 casas decimais
+                                       PlanilhaCompleta.ActiveSheet.WriteCenterFloat(iIndividuo+5, iParametro+NumerodeAptidoes+3,  Gen,2);
+                                    End // 2.2.2.2
+                             End //2.2.2
+                    end //2.2
+          end;//2
+
+
+   // Cria uma nova folha dentro da planilha
+   PlanilhaCompleta.NewSheet('PlanFO');
+   // Ativa a pagina da planilha na qual estamos interessados
+   //PlanilhaCompleta.setActiveSheetIndex(5);
+   // Prenchimento da  sexta folha (5) da planilha com o resultado das funções objetivo
+   PlanilhaCompleta.ActiveSheet.WriteText(1, 1, 'Resultado das funções-objetivo para o sistema de reservatórios');
+   PlanilhaCompleta.ActiveSheet.WriteText(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 1, 'F.O.1');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 2, 'F.O.2');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 3, 'F.O.3');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 4, 'F.O.4');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 5, 'F.O.5');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 6, 'F.O.6');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 7, 'F.O.7');
+   PlanilhaCompleta.ActiveSheet.WriteCenterText(4, 8, 'F.O.8');
+   PlanilhaCompleta.ActiveSheet.WriteCenterFloat(5, 1, FuncObjet.Get(1),2);
+   PlanilhaCompleta.ActiveSheet.WriteCenterFloat(5, 2, FuncObjet.Get(2),2);
+   PlanilhaCompleta.ActiveSheet.WriteCenterFloat(5, 3, FuncObjet.Get(3),2);
+   PlanilhaCompleta.ActiveSheet.WriteCenterFloat(5, 4, FuncObjet.Get(4),2);
+   PlanilhaCompleta.ActiveSheet.WriteCenterFloat(5, 5, FuncObjet.Get(5),2);
+   PlanilhaCompleta.ActiveSheet.WriteCenterFloat(5, 6, FuncObjet.Get(6),2);
+   PlanilhaCompleta.ActiveSheet.WriteCenterFloat(5, 7, FuncObjet.Get(7),2);
+   PlanilhaCompleta.ActiveSheet.WriteCenterFloat(5, 8, FuncObjet.Get(8),2);
+
+   PlanilhaCompleta.SaveToFile(Folder+'PlanilhaCompleta.xls');
+   // Salva os dados em forma de planilha
+   ShowMessage('Salvou planilhas no '+folder);
+
+   // Mostra os dados em forma de planilha
+   PlanilhaCompleta.Show;
+
+   // Mostra uma mensagem de Otimizacão Concluída na tela e espera OK
+   ShowMessage('Otimizacão Concluída');
+
+   // libração dos objetos globais utilizados nessa e em outras rotinas
+   GlobalObjects.RemoveAndFree('IndiceDemPri');
+   GlobalObjects.RemoveAndFree('IndiceDemTer');
+   GlobalObjects.RemoveAndFree('IndiceDemSec');
+   GlobalObjects.RemoveAndFree('FuncObjet');
+   GlobalObjects.RemoveAndFree('ListadePCs');
+   GlobalObjects.RemoveAndFree('PlanilhaCompleta');
+
+   // No caso de se estar otimizando apenas um dos reservatorios deve-se auterar um dos comandos abaixo
+   // Tranformando-o em comentario
+   //GlobalObjects.RemoveAndFree('VolMetaPentecoste');
+   //GlobalObjects.RemoveAndFree('VolMetaSampaio');
+   //GlobalObjects.RemoveAndFree('VolMetaCaxitore');
+
+      {Os objetos Planilha, grafico e Series (S1 ... S4) não deverão
+      ser destruídos,pois continuarãm a existirem após a execução de
+      script (mostrarão os dados) e serão destruídos automaticamente
+      ao serem fechados pelo usuário}
+End.                   
+
+

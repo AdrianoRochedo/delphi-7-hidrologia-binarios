@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Arquivo gerado pela rotina TGeneticOptimizer.Population.SaveToFile -->
+<!-- Autor: Adriano Rochedo Conceicao -->
+
+<population Evolution="3">
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.533333333333333</prob>
+    <gens e0="233.50" e1="272.75" e2="165.76" e3="66.81"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.533333333333333</prob>
+    <gens e0="316.56" e1="123.06" e2="33.18" e3="32.44"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.2</prob>
+    <gens e0="216.51" e1="134.01" e2="230.87" e3="303.06"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.2</prob>
+    <gens e0="321.90" e1="289.57" e2="85.33" e3="270.73"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.2</prob>
+    <gens e0="29.29" e1="207.86" e2="49.82" e3="221.30"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.2</prob>
+    <gens e0="318.35" e1="168.99" e2="245.01" e3="311.72"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.2</prob>
+    <gens e0="54.87" e1="246.75" e2="142.00" e3="274.77"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.2</prob>
+    <gens e0="34.20" e1="197.55" e2="315.20" e3="111.24"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.666666666666667</prob>
+    <gens e0="300.93" e1="226.91" e2="319.94" e3="68.76"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.666666666666667</prob>
+    <gens e0="128.79" e1="1.59" e2="293.23" e3="204.97"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.377777777777778</prob>
+    <gens e0="151.50" e1="309.62" e2="191.30" e3="0.25"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.377777777777778</prob>
+    <gens e0="77.65" e1="214.29" e2="44.35" e3="225.12"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.377777777777778</prob>
+    <gens e0="255.27" e1="121.48" e2="184.25" e3="233.84"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.377777777777778</prob>
+    <gens e0="246.92" e1="140.73" e2="300.77" e3="138.51"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.377777777777778</prob>
+    <gens e0="174.85" e1="25.61" e2="48.58" e3="169.47"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.377777777777778</prob>
+    <gens e0="50.47" e1="206.42" e2="241.06" e3="46.90"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.2</prob>
+    <gens e0="154.88" e1="258.87" e2="295.90" e3="320.70"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.2</prob>
+    <gens e0="111.52" e1="319.75" e2="3.02" e3="118.00"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.533333333333333</prob>
+    <gens e0="181.58" e1="212.60" e2="32.16" e3="273.08"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.533333333333333</prob>
+    <gens e0="39.92" e1="287.80" e2="214.15" e3="276.26"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.533333333333333</prob>
+    <gens e0="63.61" e1="109.58" e2="56.57" e3="62.46"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.533333333333333</prob>
+    <gens e0="232.81" e1="138.44" e2="69.94" e3="239.05"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.533333333333333</prob>
+    <gens e0="98.29" e1="78.00" e2="22.16" e3="128.43"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.533333333333333</prob>
+    <gens e0="274.12" e1="243.51" e2="321.46" e3="6.01"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.377777777777778</prob>
+    <gens e0="176.65" e1="255.99" e2="87.80" e3="136.70"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.377777777777778</prob>
+    <gens e0="162.45" e1="128.87" e2="126.00" e3="91.08"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.666666666666667</prob>
+    <gens e0="218.79" e1="183.75" e2="225.76" e3="2.75"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.666666666666667</prob>
+    <gens e0="283.59" e1="107.77" e2="57.49" e3="0.79"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.666666666666667</prob>
+    <gens e0="318.87" e1="158.86" e2="171.41" e3="31.78"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.666666666666667</prob>
+    <gens e0="272.45" e1="1.69" e2="211.08" e3="168.11"/>
+  </individual>
+  <individual>
+    <aptness>0</aptness>
+    <prob>0.666666666666667</prob>
+    <gens e0="34.19" e1="194.43" e2="173.59" e3="154.28"/>
+  </individual>
+  <individual>
+    <aptness>208</aptness>
+    <prob>0.666666666666667</prob>
+    <gens e0="307.54" e1="6.50" e2="157.39" e3="204.44"/>
+  </individual>
+  <individual>
+    <aptness>304</aptness>
+    <prob>0.933333333333333</prob>
+    <gens e0="240.30" e1="126.62" e2="219.39" e3="105.39"/>
+  </individual>
+  <individual>
+    <aptness>243</aptness>
+    <prob>0.777777777777778</prob>
+    <gens e0="296.38" e1="269.65" e2="12.98" e3="192.57"/>
+  </individual>
+  <individual>
+    <aptness>394</aptness>
+    <prob>0.777777777777778</prob>
+    <gens e0="31.10" e1="140.29" e2="18.25" e3="48.74"/>
+  </individual>
+  <individual>
+    <aptness>437</aptness>
+    <prob>0.777777777777778</prob>
+    <gens e0="239.16" e1="83.86" e2="224.25" e3="98.95"/>
+  </individual>
+  <individual>
+    <aptness>535</aptness>
+    <prob>0.777777777777778</prob>
+    <gens e0="181.18" e1="55.82" e2="298.03" e3="286.62"/>
+  </individual>
+  <individual>
+    <aptness>540</aptness>
+    <prob>0.777777777777778</prob>
+    <gens e0="266.60" e1="44.93" e2="169.68" e3="47.79"/>
+  </individual>
+  <individual>
+    <aptness>596</aptness>
+    <prob>0.777777777777778</prob>
+    <gens e0="256.39" e1="129.90" e2="186.86" e3="102.49"/>
+  </individual>
+  <individual>
+    <aptness>679</aptness>
+    <prob>0.777777777777778</prob>
+    <gens e0="200.84" e1="81.26" e2="91.82" e3="297.79"/>
+  </individual>
+  <individual>
+    <aptness>537</aptness>
+    <prob>1</prob>
+    <gens e0="283.29" e1="309.01" e2="211.86" e3="206.88"/>
+  </individual>
+  <individual>
+    <aptness>30675</aptness>
+    <prob>0.933333333333333</prob>
+    <gens e0="220.95" e1="279.13" e2="93.75" e3="161.16"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.866666666666667</prob>
+    <gens e0="198.59" e1="241.95" e2="310.01" e3="175.91"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.866666666666667</prob>
+    <gens e0="52.32" e1="161.44" e2="59.29" e3="279.17"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.866666666666667</prob>
+    <gens e0="179.75" e1="116.69" e2="138.78" e3="136.48"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.866666666666667</prob>
+    <gens e0="48.51" e1="31.44" e2="145.89" e3="220.91"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.866666666666667</prob>
+    <gens e0="70.53" e1="225.87" e2="218.38" e3="110.06"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.866666666666667</prob>
+    <gens e0="309.23" e1="115.12" e2="150.49" e3="182.85"/>
+  </individual>
+  <individual>
+    <aptness>214</aptness>
+    <prob>0.777777777777778</prob>
+    <gens e0="113.82" e1="258.09" e2="50.98" e3="211.08"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>1</prob>
+    <gens e0="130.38" e1="36.63" e2="317.22" e3="68.81"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.933333333333333</prob>
+    <gens e0="275.39" e1="137.85" e2="64.42" e3="44.95"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.933333333333333</prob>
+    <gens e0="68.88" e1="48.09" e2="13.16" e3="171.05"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.933333333333333</prob>
+    <gens e0="180.18" e1="93.72" e2="260.48" e3="33.24"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.933333333333333</prob>
+    <gens e0="27.37" e1="8.62" e2="295.35" e3="242.09"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.933333333333333</prob>
+    <gens e0="162.41" e1="219.49" e2="152.93" e3="136.92"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.933333333333333</prob>
+    <gens e0="63.66" e1="46.14" e2="267.28" e3="254.84"/>
+  </individual>
+  <individual>
+    <aptness>366</aptness>
+    <prob>0.977777777777778</prob>
+    <gens e0="98.47" e1="225.80" e2="10.90" e3="268.15"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.977777777777778</prob>
+    <gens e0="101.69" e1="288.20" e2="266.74" e3="56.51"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.977777777777778</prob>
+    <gens e0="253.38" e1="162.86" e2="218.89" e3="313.90"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.977777777777778</prob>
+    <gens e0="211.34" e1="307.23" e2="292.27" e3="151.75"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.977777777777778</prob>
+    <gens e0="232.07" e1="65.12" e2="226.40" e3="260.19"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.977777777777778</prob>
+    <gens e0="278.91" e1="303.06" e2="63.63" e3="4.60"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.977777777777778</prob>
+    <gens e0="215.36" e1="97.93" e2="22.46" e3="61.49"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>0.977777777777778</prob>
+    <gens e0="310.58" e1="223.15" e2="226.88" e3="162.02"/>
+  </individual>
+  <individual>
+    <aptness>291</aptness>
+    <prob>0.866666666666667</prob>
+    <gens e0="54.65" e1="185.35" e2="117.87" e3="202.79"/>
+  </individual>
+  <individual>
+    <aptness>566</aptness>
+    <prob>0.866666666666667</prob>
+    <gens e0="217.74" e1="111.40" e2="29.62" e3="19.00"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>1</prob>
+    <gens e0="139.17" e1="215.41" e2="138.70" e3="224.48"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>1</prob>
+    <gens e0="206.87" e1="281.54" e2="184.31" e3="222.25"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>1</prob>
+    <gens e0="94.21" e1="3.23" e2="12.55" e3="248.06"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>1</prob>
+    <gens e0="220.82" e1="31.17" e2="277.54" e3="232.98"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>1</prob>
+    <gens e0="314.11" e1="308.19" e2="244.21" e3="285.15"/>
+  </individual>
+  <individual>
+    <aptness>88128</aptness>
+    <prob>1</prob>
+    <gens e0="287.74" e1="90.36" e2="317.41" e3="246.62"/>
+  </individual>
+</population>

@@ -1,0 +1,26 @@
+Program LigarReservatorios;
+
+    procedure LigarRes(Nome: string; Ligado: boolean);
+    var PC: object;  
+    begin
+      PC := TprPCP (Projeto.ObjetoPeloNome(Nome));
+      if (ObjectIsValid(PC)) and PC.Eh_Reservatorio then
+         begin
+         PC.Ligado(Ligado);
+         if Ligado then
+            PC.MudarCor(GetColor('blue'))
+         else
+            PC.MudarCor(GetColor('black'));
+         end;
+    end;
+
+begin
+  LigarRes('38', true);
+  LigarRes('27', false);
+  LigarRes('43', false);
+  LigarRes('44', true);
+  LigarRes('06', false);
+  LigarRes('08', false);
+  LigarRes('12', false);
+end.
+ 

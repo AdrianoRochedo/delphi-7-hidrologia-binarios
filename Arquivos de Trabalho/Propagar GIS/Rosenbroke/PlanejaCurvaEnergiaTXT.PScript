@@ -1,0 +1,69 @@
+program PlanejaCurvaDeEnergia;
+
+var // Saida   : object; {Variável já inicializada pelo sistema}
+    // Projeto : object; {Variável já inicializada pelo sistema}
+// Declaração das variáveis auxiliares
+  PCReserv : string;  // Var. p/ conter o nome do PC reservatório
+  i        : integer; // Var. p/ indexar
+  dt       : integer; // Intervalo de Tempo
+  TotalDt  : integer; // Número de intervalos de simulação
+  Mes      : integer; // Var. p/ conter o mês referente ao dt atual
+  Ano      : integer; // Var. p/ conter o ano referente ao dt atual
+
+  DemandaEnergia : real;    // Var. p/ conter a Demanda energética
+  Potencia       : real;
+  RendAducao     : real;
+  RendTurbina    : real;
+  RendGerador    : real;
+  Queda          : real;
+
+  PCR        : object;  // Var. p/ conter o objeto PCR (reservatório)
+  AfluHm3    : real;    // Afluência total ao reservatório em Hm3
+
+  VolInicInterv : real; // Volume do reservatório no início do dt
+  VolDisp       : real; // Volume disponível no reservatório no início do dt
+  Vazao         : real; // Vazao a ser turbinada no reservatório no dt
+
+begin
+  dt      := Projeto.ObtemDeltaT; // Obtem Delta-T atual e atribui à var. dt
+  TotalDt := Projeto.Total_IntSim; // Obtem o número de intervalos de simulação
+  PCReserv := 'Queimado';
+  PCR := Projeto.PCPeloNome(PCReserv); // Atribui o Reserv. à var. PCR
+
+  if dt = 1 then VolInicInterv := PCR.VolumeInicial
+            else VolInicInterv := PCR.ObtemVolume(dt-1);
+
+  VolDisp := VolInicInterv - PCR.VolumeMinimo; // Calcula o vol. disp. atual do res.
+  AfluHm3 := PCR.m3_Hm3_Intervalo(PCR.ObtemVazaoAfluenteSBs);
+  Queda   := (PCR.CalculaCotaHidraulica(VolInicInterv) - PCR.CotaJusante);
+
+  RendAducao  := PCR.RendimentoAducao;
+  RendTurbina := PCR.RendimentoTurbina;
+  RendGerador := PCR.RendimentoGeradores;
+
+  Projeto.DeltaT_ComoData(dt, Mes, Ano); // Retorna o mês e o ano do dt atual
+  DemandaEnergia := PCR.CurvaDemandaEnergetica(Mes); // Lê a Dem. Energética atual
+
+  // Cálculo da vazão a ser liberada no reservatório p/ atender dem. energética
+  Potencia := (DemandaEnergia / (Projeto.DiasNoIntervalo * 24));
+  Vazao := Potencia / (9.81 * RendAducao * RendTurbina * RendGerador * Queda);
+
+  {O valor a ser liberado é atribuído à propriedade (variável) DefluvioPlanejado
+   no intervalo dt, ou seja, DeltaT atual}
+  PCR.AtribuiDefluvioPlanejado(dt, Vazao);
+
+  // Escrita do Arquivo LOG
+     Saida.WriteLN('----------------------------------------------');
+     Saida.WriteLN('Planeja-Intervalo:   '+ValToStr(dt)+'/'+ValToStr(TotalDt));
+     Saida.WriteLN('Mês e Ano do Intervalo : '+ValToStr(Mes)+'/'+ValToStr(Ano));
+     Saida.WriteLN('Nome do PC Reservatório: '+PCReserv);
+     Saida.WriteLN('Dem. Energética no Mes : '+ValToStr(DemandaEnergia));
+     Saida.WriteLN('Vol.Inicial do Interv. : '+ValToStr(VolInicInterv));
+     Saida.WriteLN('Vol. Disponível        : '+ValToStr(VolDisp));
+     Saida.WriteLN('Vazoes Afluentes (Hm3) : '+ValToStr(AfluHm3));
+     Saida.WriteLN('Dias no Mês      : '+ValToStr(Projeto.DiasNoIntervalo));
+     Saida.WriteLN('Horas no Mês     : '+ValToStr(Projeto.DiasNoIntervalo * 24));
+     Saida.WriteLN('Potência         : '+ValToStr(Potencia));
+     Saida.WriteLN('Queda            : '+ValToStr(Queda));
+     Saida.WriteLN('Vazao            : '+ValToStr(Vazao));
+end.

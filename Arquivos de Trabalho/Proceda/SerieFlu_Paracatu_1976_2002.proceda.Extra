@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Arquivo gerado pela rotina TDSInfo.SaveToFile -->
+<!-- Autor: Adriano Rochedo Conceicao -->
+
+<proceda version="2">
+  <stations>
+    <station name="_42435000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42460000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42490000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42540000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42545500">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42600000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42257000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42290000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42395000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42750000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42930000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42980000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+        <serie ClassName="TSerie_Anual_Minimos">
+          <name>Minimos Anuais (fev)</name>
+          <ADM>0</ADM>
+          <Vector Name="_42980000_NC_2.Minimos Anuais"><e>60.89391599</e><e>90.45815059</e><e>120.736508</e><e>205.6428135</e><e>163.6988002</e><e>148.4983782</e><e>185.6590075</e><e>201.9927368</e><e>142.1705911</e><e>165.7787977</e><e>134.6524636</e><e>87.99088505</e><e>109.2987758</e><e>103.0976868</e><e>138.7636632</e><e>140.2449145</e><e>223.7993731</e><e>167.8973759</e><e>154.8100368</e><e>138.7147282</e><e>109.6387253</e><e>112.644589</e><e>83.86339569</e><e>69.6492484</e><e>67.2589035</e><e>52.09447316</e></Vector>
+          <series>
+            <serie ClassName="TSerie_Anual_Minimos">
+              <name>Minimos Anuais (fev)</name>
+              <ADM>1</ADM>
+              <Vector Name="_42980000_NC_2.Minimos Anuais"><e>0.468421815</e><e>0.6958424399</e><e>0.9287563999</e><e>1.581891695</e><e>1.259240564</e><e>1.142312474</e><e>1.428167787</e><e>1.553813757</e><e>1.093636453</e><e>1.275240786</e><e>1.03580383</e><e>0.6768631875</e><e>0.8407725157</e><e>0.7930711101</e><e>1.067428919</e><e>1.078823332</e><e>1.721559647</e><e>1.291537788</e><e>1.190864428</e><e>1.067052491</e><e>0.8433875511</e><e>0.8665099291</e><e>0.6451127896</e><e>0.5357715432</e><e>0.517383997</e><e>0.4007327706</e></Vector>
+              <series>
+                <serie ClassName="TSerie_Anual_Minimos">
+                  <name>Minimos Anuais (fev) (F.Conv.: -1)</name>
+                  <ADM>0</ADM>
+                  <Vector Name="_42980000_NC_2.Minimos Anuais"><e>-0.468421815</e><e>-0.6958424399</e><e>-0.9287563999</e><e>-1.581891695</e><e>-1.259240564</e><e>-1.142312474</e><e>-1.428167787</e><e>-1.553813757</e><e>-1.093636453</e><e>-1.275240786</e><e>-1.03580383</e><e>-0.6768631875</e><e>-0.8407725157</e><e>-0.7930711101</e><e>-1.067428919</e><e>-1.078823332</e><e>-1.721559647</e><e>-1.291537788</e><e>-1.190864428</e><e>-1.067052491</e><e>-0.8433875511</e><e>-0.8665099291</e><e>-0.6451127896</e><e>-0.5357715432</e><e>-0.517383997</e><e>-0.4007327706</e></Vector>
+                  <series>
+                  </series>
+                  <internalData>
+                    <MeanSize>0</MeanSize>
+                  </internalData>
+                  <comment>
+                  </comment>
+                </serie>
+                <serie ClassName="TSerie_Anual_Minimos">
+                  <name>Minimos Anuais (fev) (Log.Nep.)</name>
+                  <ADM>0</ADM>
+                  <Vector Name="_42980000_NC_2.Minimos Anuais"><e>-0.7583860749</e><e>-0.3626320237</e><e>-0.0739087921</e><e>0.4586214062</e><e>0.2305088123</e><e>0.1330546938</e><e>0.3563923549</e><e>0.4407123973</e><e>0.0895083389</e><e>0.2431350125</e><e>0.03517777263</e><e>-0.3902861129</e><e>-0.1734341482</e><e>-0.2318423891</e><e>0.06525287749</e><e>0.07587093978</e><e>0.5432306515</e><e>0.2558335921</e><e>0.1746794535</e><e>0.06490016605</e><e>-0.1703286982</e><e>-0.143281711</e><e>-0.4383301099</e><e>-0.6240474341</e><e>-0.6589699394</e><e>-0.9144604813</e></Vector>
+                  <series>
+                    <serie ClassName="TSerie_Anual_Minimos">
+                      <name>Minimos Anuais (fev) (Log.Nep.) (F.Conv.: -1)</name>
+                      <ADM>0</ADM>
+                      <Vector Name="_42980000_NC_2.Minimos Anuais"><e>0.7583860749</e><e>0.3626320237</e><e>0.0739087921</e><e>-0.4586214062</e><e>-0.2305088123</e><e>-0.1330546938</e><e>-0.3563923549</e><e>-0.4407123973</e><e>-0.0895083389</e><e>-0.2431350125</e><e>-0.03517777263</e><e>0.3902861129</e><e>0.1734341482</e><e>0.2318423891</e><e>-0.06525287749</e><e>-0.07587093978</e><e>-0.5432306515</e><e>-0.2558335921</e><e>-0.1746794535</e><e>-0.06490016605</e><e>0.1703286982</e><e>0.143281711</e><e>0.4383301099</e><e>0.6240474341</e><e>0.6589699394</e><e>0.9144604813</e></Vector>
+                      <series>
+                      </series>
+                      <internalData>
+                        <MeanSize>0</MeanSize>
+                      </internalData>
+                      <comment>
+                      </comment>
+                    </serie>
+                  </series>
+                  <internalData>
+                    <MeanSize>0</MeanSize>
+                  </internalData>
+                  <comment>
+                  </comment>
+                </serie>
+              </series>
+              <internalData>
+                <MeanSize>0</MeanSize>
+              </internalData>
+              <comment>
+              </comment>
+            </serie>
+          </series>
+          <internalData>
+            <MeanSize>7</MeanSize>
+          </internalData>
+          <comment>
+          </comment>
+        </serie>
+      </series>
+    </station>
+    <station name="_42850000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42365000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_42546000">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+  </stations>
+</proceda>

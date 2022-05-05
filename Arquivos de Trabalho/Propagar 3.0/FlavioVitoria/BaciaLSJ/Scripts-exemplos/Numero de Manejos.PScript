@@ -1,0 +1,31 @@
+{
+  Este exemplo mostra como localizar os objetos Lavoura e
+  como obter o número de manejos existentes nele.
+  Para acessar outras Lavouras basta mudar o nome do objeto.
+  Este exemplo funcionara com qualquer projeto que possua Lavouras.
+}
+
+var Lav: object;
+    NomeObjeto: string;
+begin
+  // 1. forma: Conhecendo o objeto pelo nome
+  // Mostra o número de manejos existentes na lavoura < xxx >
+
+  NomeObjeto := 'Milho 1';
+
+  // Como queremos um objeto do tipo Lavoura, temos que fazer o "TypeCasting"
+  // para o tipo adequado.
+  Lav := TprCenarioDeDemanda( Projeto.ObjetoPeloNome(NomeObjeto) );
+
+  // Testamos agora se o objeto realmente existe
+  // Se existe então mostramos o número de manejos.
+  // Note a string "Manejos" no comando < Lav.ObterValorFloat('Manejos') >
+  // "Manejos" neste contexto representa um parâmetro que informa a <ObterValorFloat>
+  // a informação que desejamos, todas as outras informações são adquiridas da mesma maneira,
+  // é só olhar o índice de parâmetros disponíveis.
+  if ObjectIsValid(Lav) then
+     ShowMessage('Número de Manejos existentes em ' + NomeObjeto + ': ' +
+                 FloatToStr(Lav.ObterValorFloat('Managements'), 0))
+  else
+     ShowMessage('Objeto <' + NomeObjeto + '> não localizado');
+end.

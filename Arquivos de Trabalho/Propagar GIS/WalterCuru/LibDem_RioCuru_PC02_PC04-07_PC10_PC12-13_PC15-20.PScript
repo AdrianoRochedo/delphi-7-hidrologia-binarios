@@ -1,0 +1,465 @@
+program LibDem_RioCuru_PC02_PC04a07_PC10_PC12a13_PC15a20;
+
+// Declaração das variáveis
+
+var
+    // Variáveis pré-inicializadas (só documentação)
+    // Saida    : Object; {Variável já inicializada pelo sistema}
+    // Projeto  : Object; {Variável já inicializada pelo sistema}
+
+    // Variáveis de trabalho = declaração obrigatória
+
+    // Varáveis p/ conter os objetos PC
+    PC01, PC02, PC04, PC05, PC06, PC07, PC09, PC10, PC11 : Object;
+    PC12, PC13, PC14, PC15, PC16, PC17, PC18, PC19, PC20 : Object;
+    i, dt, NumIntSim             : Integer;
+
+    // variáveis p/ conter os objetos Vetor com as descargas planejadas
+    // dos PCs 01, 09, 11 e 14
+    LiberaPlanejaPC01            : Object;   
+    LiberaPlanejaPC09            : Object;
+    LiberaPlanejaPC11            : Object;
+    LiberaPlanejaPC14            : Object;
+
+    Libera                       : Real;
+    QSobra                       : Real;
+    QSobra10                     : Real;
+    QSobra12                     : Real;
+    QSobra13                     : Real;
+    QSobra15                     : Real;
+
+
+    // Todas as variáveis a seguir conterão os valores dos retornos
+    // das demandas atendidas em cada PC
+    Ret1_2, Ret2_2, Ret3_2     : Real;
+    Ret1_4, Ret2_4, Ret3_4     : Real;
+    Ret1_5, Ret2_5, Ret3_5     : Real;
+    Ret1_6, Ret2_6, Ret3_6     : Real;
+    Ret1_7, Ret2_7, Ret3_7     : Real;
+    Ret1_10, Ret2_10, Ret3_10     : Real;
+    Ret1_12, Ret2_12, Ret3_12     : Real;
+    Ret1_13, Ret2_13, Ret3_13     : Real;
+    Ret1_15, Ret2_15, Ret3_15     : Real;
+    Ret1_16, Ret2_16, Ret3_16     : Real;
+    Ret1_17, Ret2_17, Ret3_17     : Real;
+    Ret1_18, Ret2_18, Ret3_18     : Real;
+    Ret1_19, Ret2_19, Ret3_19     : Real;
+    Ret1_20, Ret2_20, Ret3_20     : Real;
+
+    // Todas as variáveis a seguir conterão os valores das demandas
+    // e das afluências em cada PC
+    d1_2, d2_2, d3_2, sb_2     : Real;
+    d1_4, d2_4, d3_4, sb_4     : Real;
+    d1_5, d2_5, d3_5, sb_5     : Real;
+    d1_6, d2_6, d3_6, sb_6     : Real;
+    d1_7, d2_7, d3_7, sb_7     : Real;
+    d1_10, d2_10, d3_10, sb_10     : Real;
+    d1_12, d2_12, d3_12, sb_12     : Real;
+    d1_13, d2_13, d3_13, sb_13     : Real;
+    d1_15, d2_15, d3_15, sb_15     : Real;
+    d1_16, d2_16, d3_16, sb_16     : Real;
+    d1_17, d2_17, d3_17, sb_17     : Real;
+    d1_18, d2_18, d3_18, sb_18     : Real;
+    d1_19, d2_19, d3_19, sb_19     : Real;
+    d1_20, d2_20, d3_20, sb_20     : Real;
+
+    // Variáveis para o cálculo dos défictis hídricos em cada um dos PCs à jusante
+    // dos reservatórios
+    DeftPC02, DeftPC04, DeftPC05   : Real;
+    DeftPC06, DeftPC07, DeftPC10   : Real;
+    DeftPC12, DeftPC13, DeftPC15   : Real;
+    DeftPC16, DeftPC17, DeftPC18   : Real;
+    DeftPC19, DeftPC20             : Real;
+
+    // Variáveis para conter os armazenamentos iniciais dos reservatórios
+    VolInicPC01, VolInicPC09       : Real;
+    VolInicPC11                    : Real;
+
+    // Variáveis para conter os armazenamentos disponívéis das associações de reservatórios
+    VolDispPC01_PC09              : Real;
+    VolDispPC01_PC09_PC11         : Real;
+
+    // Variáveis para conter o parcelamento de contribuição de cada reservatório
+    ParcReserPC01_DeftPC10              : Real;
+    ParcReserPC09_DeftPC10              : Real;
+    ParcReserPC01_DeftPC13              : Real;
+    ParcReserPC09_DeftPC13              : Real;
+    ParcReserPC11_DeftPC13              : Real;
+
+
+
+begin
+
+  dt        := Projeto.ObtemDeltaT;  // Obtem o intervalo de simulação atual
+  NumIntSim := Projeto.Total_IntSim; // Obtem o total de intervalo de simulação
+
+  // Inicialização dos PCs
+  PC01 := Projeto.PCPeloNome('PC01');
+  PC02 := Projeto.PCPeloNome('PC02');
+  PC04 := Projeto.PCPeloNome('PC04');
+  PC05 := Projeto.PCPeloNome('PC05');
+  PC06 := Projeto.PCPeloNome('PC06');
+  PC07 := Projeto.PCPeloNome('PC07');
+  PC09 := Projeto.PCPeloNome('PC09');
+  PC10 := Projeto.PCPeloNome('PC10');
+  PC11 := Projeto.PCPeloNome('PC11');
+  PC12 := Projeto.PCPeloNome('PC12');
+  PC13 := Projeto.PCPeloNome('PC13');
+  PC14 := Projeto.PCPeloNome('PC14');
+  PC15 := Projeto.PCPeloNome('PC15');
+  PC16 := Projeto.PCPeloNome('PC16');
+  PC17 := Projeto.PCPeloNome('PC17');
+  PC18 := Projeto.PCPeloNome('PC18');
+  PC19 := Projeto.PCPeloNome('PC19');
+  PC20 := Projeto.PCPeloNome('PC20');
+
+
+  // -----------------------------------------
+  // Criação da Variável Global
+
+  if dt = 1
+    then
+      begin
+         // Criação das variáveis globais LiberaPlaneja que conterão
+         // um vetor com as descargas planejadas
+         LiberaPlanejaPC01 := Createobject (TwsSFVec,NumIntSim);
+         LiberaPlanejaPC09 := Createobject (TwsSFVec,NumIntSim);
+         LiberaPlanejaPC11 := Createobject (TwsSFVec,NumIntSim);
+         LiberaPlanejaPC14 := Createobject (TwsSFVec,NumIntSim);
+         GlobalObjects.Add('LiberaPlanejaPC01', LiberaPlanejaPC01);
+         GlobalObjects.Add('LiberaPlanejaPC09', LiberaPlanejaPC09);
+         GlobalObjects.Add('LiberaPlanejaPC11', LiberaPlanejaPC11);
+         GlobalObjects.Add('LiberaPlanejaPC14', LiberaPlanejaPC14);
+      end
+    else
+      begin
+      // Recupera as variáveis globais LiberaPlaneja de cada reservatório
+      LiberaPlanejaPC01 :=TwsDFVec(GlobalObjects.Get('LiberaPlanejaPC01'));
+      LiberaPlanejaPC09 :=TwsDFVec(GlobalObjects.Get('LiberaPlanejaPC09'));
+      LiberaPlanejaPC11 :=TwsDFVec(GlobalObjects.Get('LiberaPlanejaPC11'));
+      LiberaPlanejaPC14 :=TwsDFVec(GlobalObjects.Get('LiberaPlanejaPC14'));
+      end;
+
+  // Inicialização de variáveis
+
+  // Fatores de Retorno do PC02
+  Ret1_2 := PC02.FatorDeRetorno(1);
+  Ret2_2 := PC02.FatorDeRetorno(2);
+  Ret3_2 := PC02.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC04
+  Ret1_4 := PC04.FatorDeRetorno(1);
+  Ret2_4 := PC04.FatorDeRetorno(2);
+  Ret3_4 := PC04.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC05
+  Ret1_5 := PC05.FatorDeRetorno(1);
+  Ret2_5 := PC05.FatorDeRetorno(2);
+  Ret3_5 := PC05.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC06
+  Ret1_6 := PC06.FatorDeRetorno(1);
+  Ret2_6 := PC06.FatorDeRetorno(2);
+  Ret3_6 := PC06.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC07
+  Ret1_7 := PC07.FatorDeRetorno(1);
+  Ret2_7 := PC07.FatorDeRetorno(2);
+  Ret3_7 := PC07.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC10
+  Ret1_10 := PC10.FatorDeRetorno(1);
+  Ret2_10 := PC10.FatorDeRetorno(2);
+  Ret3_10 := PC10.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC12
+  Ret1_12 := PC12.FatorDeRetorno(1);
+  Ret2_12 := PC12.FatorDeRetorno(2);
+  Ret3_12 := PC12.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC13
+  Ret1_13 := PC13.FatorDeRetorno(1);
+  Ret2_13 := PC13.FatorDeRetorno(2);
+  Ret3_13 := PC13.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC15
+  Ret1_15 := PC15.FatorDeRetorno(1);
+  Ret2_15 := PC15.FatorDeRetorno(2);
+  Ret3_15 := PC15.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC16
+  Ret1_16 := PC16.FatorDeRetorno(1);
+  Ret2_16 := PC16.FatorDeRetorno(2);
+  Ret3_16 := PC16.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC17
+  Ret1_17 := PC17.FatorDeRetorno(1);
+  Ret2_17 := PC17.FatorDeRetorno(2);
+  Ret3_17 := PC17.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC18
+  Ret1_18 := PC18.FatorDeRetorno(1);
+  Ret2_18 := PC18.FatorDeRetorno(2);
+  Ret3_18 := PC18.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC19
+  Ret1_19 := PC19.FatorDeRetorno(1);
+  Ret2_19 := PC19.FatorDeRetorno(2);
+  Ret3_19 := PC19.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC20
+  Ret1_20 := PC20.FatorDeRetorno(1);
+  Ret2_20 := PC20.FatorDeRetorno(2);
+  Ret3_20 := PC20.FatorDeRetorno(3);
+
+  // Demandas e afluência da Sub-bacia do PC02
+  d1_2 := PC02.ObtemValorDemanda(dt, 1, 'T');
+  d2_2 := PC02.ObtemValorDemanda(dt, 2, 'T');
+  d3_2 := PC02.ObtemValorDemanda(dt, 3, 'T');
+  sb_2 := PC02.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC04
+  d1_4 := PC04.ObtemValorDemanda(dt, 1, 'T');
+  d2_4 := PC04.ObtemValorDemanda(dt, 2, 'T');
+  d3_4 := PC04.ObtemValorDemanda(dt, 3, 'T');
+  sb_4 := PC04.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC05
+  d1_5 := PC05.ObtemValorDemanda(dt, 1, 'T');
+  d2_5 := PC05.ObtemValorDemanda(dt, 2, 'T');
+  d3_5 := PC05.ObtemValorDemanda(dt, 3, 'T');
+  sb_5 := PC05.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC06
+  d1_6 := PC06.ObtemValorDemanda(dt, 1, 'T');
+  d2_6 := PC06.ObtemValorDemanda(dt, 2, 'T');
+  d3_6 := PC06.ObtemValorDemanda(dt, 3, 'T');
+  sb_6 := PC06.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC07
+  d1_7 := PC07.ObtemValorDemanda(dt, 1, 'T');
+  d2_7 := PC07.ObtemValorDemanda(dt, 2, 'T');
+  d3_7 := PC07.ObtemValorDemanda(dt, 3, 'T');
+  sb_7 := PC07.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC10
+  d1_10 := PC10.ObtemValorDemanda(dt, 1, 'T');
+  d2_10 := PC10.ObtemValorDemanda(dt, 2, 'T');
+  d3_10 := PC10.ObtemValorDemanda(dt, 3, 'T');
+  sb_10 := PC10.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC12
+  d1_12 := PC12.ObtemValorDemanda(dt, 1, 'T');
+  d2_12 := PC12.ObtemValorDemanda(dt, 2, 'T');
+  d3_12 := PC12.ObtemValorDemanda(dt, 3, 'T');
+  sb_12 := PC12.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC13
+  d1_13 := PC13.ObtemValorDemanda(dt, 1, 'T');
+  d2_13 := PC13.ObtemValorDemanda(dt, 2, 'T');
+  d3_13 := PC13.ObtemValorDemanda(dt, 3, 'T');
+  sb_13 := PC13.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC15
+  d1_15 := PC15.ObtemValorDemanda(dt, 1, 'T');
+  d2_15 := PC15.ObtemValorDemanda(dt, 2, 'T');
+  d3_15 := PC15.ObtemValorDemanda(dt, 3, 'T');
+  sb_15 := PC15.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC16
+  d1_16 := PC16.ObtemValorDemanda(dt, 1, 'T');
+  d2_16 := PC16.ObtemValorDemanda(dt, 2, 'T');
+  d3_16 := PC16.ObtemValorDemanda(dt, 3, 'T');
+  sb_16 := PC16.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC17
+  d1_17 := PC17.ObtemValorDemanda(dt, 1, 'T');
+  d2_17 := PC17.ObtemValorDemanda(dt, 2, 'T');
+  d3_17 := PC17.ObtemValorDemanda(dt, 3, 'T');
+  sb_17 := PC17.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC18
+  d1_18 := PC18.ObtemValorDemanda(dt, 1, 'T');
+  d2_18 := PC18.ObtemValorDemanda(dt, 2, 'T');
+  d3_18 := PC18.ObtemValorDemanda(dt, 3, 'T');
+  sb_18 := PC18.ObtemVazaoAfluenteSBs;
+
+  // Demandas e afluência da Sub-bacia do PC19
+  d1_19 := PC19.ObtemValorDemanda(dt, 1, 'T');
+  d2_19 := PC19.ObtemValorDemanda(dt, 2, 'T');
+  d3_19 := PC19.ObtemValorDemanda(dt, 3, 'T');
+  sb_19 := PC19.ObtemVazaoAfluenteSBs;
+
+
+  // Demandas e afluência da Sub-bacia do PC20
+  d1_20 := PC20.ObtemValorDemanda(dt, 1, 'T');
+  d2_20 := PC20.ObtemValorDemanda(dt, 2, 'T');
+  d3_20 := PC20.ObtemValorDemanda(dt, 3, 'T');
+  sb_20 := PC20.ObtemVazaoAfluenteSBs;
+
+  // Cálculo dos déficits hídricos nos PCs à jusante dos reservatórios
+
+  // Déficit hídrico no PC02
+  DeftPC02 := d1_2 + d2_2 + d3_2 - sb_2;
+  Qsobra := 0.0;
+  if (DeftPC02 <= 0.0) then  Qsobra := ABS(DeftPC02);
+  DeftPC02 := Max(DeftPC02,0.0);
+
+  // Déficit hídrico no PC04
+  DeftPC04 := d1_4 + d2_4 + d3_4 - sb_4 - ((Ret1_2 * d1_2) + (Ret2_2 * d2_2) +
+  (Ret3_2 * d3_2) + Qsobra);
+  Qsobra := 0.0;
+  if (DeftPC04 <= 0.0) then  Qsobra := ABS(DeftPC04);
+  DeftPC04 := Max(DeftPC04,0.0);
+
+  // Déficit hídrico no PC05
+  DeftPC04 := d1_5 + d2_5 + d3_5 - sb_5 - ((Ret1_4 * d1_4) + (Ret2_4 * d2_4) +
+  (Ret3_4 * d3_4) + Qsobra);
+  Qsobra := 0.0;
+  if (DeftPC05 <= 0.0) then  Qsobra := ABS(DeftPC05);
+  DeftPC05 := Max(DeftPC05,0.0);
+
+  // Déficit hídrico no PC06
+  DeftPC06 := d1_6 + d2_6 + d3_6 - sb_6 - ((Ret1_5 * d1_5) + (Ret2_5 * d2_5) +
+  (Ret3_5 * d3_5) + Qsobra);
+  Qsobra := 0.0;
+  if (DeftPC06 <= 0.0) then  Qsobra := ABS(DeftPC06);
+  DeftPC06 := Max(DeftPC06,0.0);
+
+  // Déficit hídrico no PC07
+  DeftPC07 := d1_7 + d2_7 + d3_7 - sb_7 - ((Ret1_6 * d1_6) + (Ret2_6 * d2_6) +
+  (Ret3_6 * d3_6) + Qsobra);
+  Qsobra := 0.0;
+  if (DeftPC07 <= 0.0) then  Qsobra := ABS(DeftPC07);
+  DeftPC07 := Max(DeftPC07,0.0);
+
+  // Déficit hídrico no PC10
+  DeftPC10 := d1_10 + d2_10 + d3_10 - sb_10 - ((Ret1_7 * d1_7) + (Ret2_7 * d2_7) +
+  (Ret3_7 * d3_7) + Qsobra);
+  Qsobra10 := 0.0;
+  if (DeftPC10 <= 0.0) then  Qsobra10 := ABS(DeftPC10);
+  DeftPC10 := Max(DeftPC10,0.0);
+
+  // Déficit hídrico no PC12
+  DeftPC12 := d1_12 + d2_12 + d3_12 - sb_12;
+  Qsobra12 := 0.0;
+  if (DeftPC12 <= 0.0) then  Qsobra12 := ABS(DeftPC12);
+  DeftPC12 := Max(DeftPC12,0.0);
+
+  // Déficit hídrico no PC13
+  DeftPC13 := d1_13 + d2_13 + d3_13 - sb_13 - ((Ret1_10 * d1_10) + (Ret2_10 * d2_10) +
+  (Ret3_10 * d3_10) + Qsobra10 + (Ret1_12 * d1_12) + (Ret2_12 * d2_12) +
+  (Ret3_12 * d3_12) + Qsobra12);
+  Qsobra13 := 0.0;
+  if (DeftPC13 <= 0.0) then  Qsobra13 := ABS(DeftPC13);
+  DeftPC13 := Max(DeftPC13,0.0);
+
+  // Déficit hídrico no PC15
+  DeftPC15 := d1_15 + d2_15 + d3_15 - sb_15;
+  Qsobra15 := 0.0;
+  if (DeftPC15 <= 0.0) then  Qsobra15 := ABS(DeftPC15);
+  DeftPC15 := Max(DeftPC15,0.0);
+
+  // Déficit hídrico no PC16
+  DeftPC16 := d1_16 + d2_16 + d3_16 - sb_16 - ((Ret1_13 * d1_13) + (Ret2_13 * d2_13) +
+  (Ret3_13 * d3_13) + Qsobra13 + (Ret1_15 * d1_15) + (Ret2_15 * d2_15) +
+  (Ret3_15 * d3_15) + Qsobra15);
+  Qsobra := 0.0;
+  if (DeftPC16 <= 0.0) then  Qsobra := ABS(DeftPC16);
+  DeftPC16 := Max(DeftPC16,0.0);
+
+  // Déficit hídrico no PC17
+  DeftPC17 := d1_17 + d2_17 + d3_17 - sb_17 - ((Ret1_16 * d1_16) + (Ret2_16 * d2_16) +
+  (Ret3_16 * d3_16) + Qsobra);
+  Qsobra := 0.0;
+  if (DeftPC17 <= 0.0) then  Qsobra := ABS(DeftPC17);
+  DeftPC17 := Max(DeftPC17,0.0);
+
+  // Déficit hídrico no PC18
+  DeftPC18 := d1_18 + d2_18 + d3_18 - sb_18 - ((Ret1_17 * d1_17) + (Ret2_17 * d2_17) +
+  (Ret3_17 * d3_17) + Qsobra);
+  Qsobra := 0.0;
+  if (DeftPC18 <= 0.0) then  Qsobra := ABS(DeftPC18);
+  DeftPC18 := Max(DeftPC18,0.0);
+
+  // Déficit hídrico no PC19
+  DeftPC19 := d1_19 + d2_19 + d3_19 - sb_19 - ((Ret1_18 * d1_18) + (Ret2_18 * d2_18) +
+  (Ret3_18 * d3_18) + Qsobra);
+  Qsobra := 0.0;
+  if (DeftPC19 <= 0.0) then  Qsobra := ABS(DeftPC19);
+  DeftPC19 := Max(DeftPC19,0.0);
+
+  // Déficit hídrico no PC20
+  DeftPC20 := d1_20 + d2_20 + d3_20 - sb_20 - ((Ret1_19 * d1_19) + (Ret2_19 * d2_19) +
+  (Ret3_19 * d3_19) + Qsobra);
+  DeftPC20 := Max(DeftPC20,0.0);
+
+
+  // Determinação da parcela de contribuição para cada reservatório do sistema
+
+  // Obtenção dos volumes dos reservatórios no inicio do intervalo
+  If dt = 1
+    Then
+      Begin
+        VolInicPC01 := PC01.VolumeInicial;
+        VolInicPC09 := PC09.VolumeInicial;
+        VolInicPC11 := PC11.VolumeInicial;
+      End
+    Else
+      begin
+        VolInicPC01 := PC01.ObtemVolume(dt-1);
+        VolInicPC09 := PC09.ObtemVolume(dt-1);
+        VolInicPC11 := PC11.ObtemVolume(dt-1);
+      end;
+
+  // Determinação da disponibilidade hídrica das associações de reservatórios
+  VolDispPC01_PC09 := VolInicPC01 + VolInicPC09;
+  VolDispPC01_PC09_PC11 := VolInicPC01 + VolInicPC09 + VolInicPC11;
+
+  // Cálculo das parcelas de contribuição de cada reservatório para os PCs à jusante
+  // de acordo com a topologia da bacia e de acordo com os seus aramazenamentos no início
+  // de cada intervalo
+  ParcReserPC01_DeftPC10 := VolInicPC01 / VolDispPC01_PC09;
+  ParcReserPC09_DeftPC10 := VolInicPC09 / VolDispPC01_PC09;
+  ParcReserPC01_DeftPC13 := VolInicPC01 / VolDispPC01_PC09_PC11;
+  ParcReserPC09_DeftPC13 := VolInicPC09 / VolDispPC01_PC09_PC11;
+  ParcReserPC11_DeftPC13 := VolInicPC11 / VolDispPC01_PC09_PC11;
+
+
+  // Cálculo da liberação de água
+
+  // Planejamento da descarga da barragem  General Sampaio: PC01
+  // Liberar demandas dos PCs 02, 04, 05, 06 e 07
+  // Liberar ParcReserPC01-DeftPC10 da demanda do PC 10
+  // Liberar ParcReserPC01-DeftPC13 das demandas dos PCs 13, 16, 17, 18, 19, 20
+  Libera := (DeftPC02 + DeftPC04 + DeftPC05 + DeftPC06 + DeftPC07 + (ParcReserPC01_DeftPC10 * DeftPC10) +
+            (ParcReserPC01_DeftPC13 * (DeftPC13 + DeftPC16 + DeftPC17 + DeftPC18 + DeftPC19 + DeftPC20)));
+  Libera := PC01.Hm3_m3_Intervalo(Libera);
+  PC01.AtribuiDefluvioPlanejado(dt,Libera);
+  LiberaPlanejaPC01.Set(dt , Libera);
+
+  // Planejamento da descarga da barragem Pereira de Miranda (Pentecoste) : PC 09
+  // Liberar ParcReserPC09-DeftPC10 da demanda do PC 10
+  // Liberar ParcReserPC09-DeftPC13 das demandas dos PCs 13, 16, 17, 18, 19, 20
+  Libera := ((ParcReserPC09_DeftPC10 * DeftPC10) +
+             (ParcReserPC09_DeftPC13 * (DeftPC13 + DeftPC16 + DeftPC17 + DeftPC18 + DeftPC19 + DeftPC20)));
+  Libera := PC09.Hm3_m3_Intervalo(Libera);
+  PC09.AtribuiDefluvioPlanejado(dt,Libera);
+  LiberaPlanejaPC09.Set(dt , Libera);
+
+  // Planejamento da descarga da barragem Caxitoré: PC11
+  // Liberar demanda do PC 12
+  // Liberar ParcReserPC11-DeftPC13 das demandas dos PCs 13, 16, 17, 18, 19, 20
+  Libera := (DeftPC12 + (ParcReserPC11_DeftPC13 * (DeftPC13 + DeftPC16 + DeftPC17 + DeftPC18 + DeftPC19 + DeftPC20)));
+  Libera := PC11.Hm3_m3_Intervalo(Libera);
+  PC11.AtribuiDefluvioPlanejado(dt,Libera);
+  LiberaPlanejaPC11.Set(dt , Libera);
+
+  // Planejamento da descarga da barragem Frios: PC14
+  // Liberar demanda do PC 15
+  Libera := DeftPC15;
+  Libera := PC14.Hm3_m3_Intervalo(Libera);
+  PC14.AtribuiDefluvioPlanejado(dt,Libera);
+  LiberaPlanejaPC14.Set(dt , Libera);
+
+end.

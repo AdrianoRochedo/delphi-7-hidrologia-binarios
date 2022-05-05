@@ -1,0 +1,29 @@
+var dt, Mes, Ano: Integer;
+    P, vPars: Object;
+    F: Real;
+begin
+  dt := Projeto.ObtemDeltaT;
+  if dt = 1 then
+     begin
+     P := CreateObject(TPlanilha);
+     P.LoadFromFile('F:\Projetos\Hidrologia\Programas\Redes\Propagar\Exemplos\Simulacao\Lista.xls');
+     vPars := P.RowToVec(2, 1, 12);
+     FreeObject(P);
+
+     GlobalObjects.Add('vPars', vPars);
+     end
+  else
+     vPars := TwsDFVec(GlobalObjects.Get('vPars'));
+
+  Projeto.DeltaT_ComoData(dt, Mes, Ano);
+  F := vPars.Get(Mes);
+  Saida.WriteLN(ValToStr(F));
+
+  if dt = Projeto.Total_IntSim then
+     begin
+     //GlobalObjects.RemoveAndFree('vPars');
+     // Foi deslocado para o script de finalizacao que sempre é executado
+
+     Saida.Show;
+     end;
+end.

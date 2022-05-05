@@ -1,0 +1,141 @@
+<STYLE type="text/css">
+
+    BODY {
+	     BACKGROUND-COLOR: #017dd7;
+	}
+	
+	A {
+	     COLOR: blue;
+		 TEXT-DECORATION: none;
+	}
+	
+	A.action {
+	     COLOR: black;
+		 FONT-WEIGHT: bold;
+	}
+	
+	A.footer {
+	     COLOR: white;
+	}
+	
+	Font {
+		 FONT-FAMILY: arial, verdana; 
+	}
+
+	H1 {
+	     FONT-FAMILY: arial,verdana;
+		 MARGIN-TOP: 20px; 
+		 MARGIN-BOTTOM: -10px; 
+	}
+
+	H2 {
+	     FONT-FAMILY: arial,verdana;
+		 COLOR: #ca5b02;
+	}
+
+	H3 {
+	     FONT-FAMILY: arial,verdana;
+	}
+	
+	HR.left {
+	     TEXT-ALIGN: left; 
+		 MARGIN-LEFT: 1px; 
+	}	 
+	
+	TABLE.list {
+	     BACKGROUND-COLOR: #ddd5d2;
+	}
+
+	TABLE.form {
+	     BACKGROUND-COLOR: #ddd5d2;
+	}
+
+	TR.L1 {
+		 BACKGROUND-COLOR: #eae7e6;
+	}
+
+	TR.L2 {
+		 BACKGROUND-COLOR: #dcd8d6;
+	}
+
+	TD {
+		 FONT-FAMILY: arial,verdana; 
+		 FONT-SIZE: 12px; 
+	}
+
+	TR.header, TD.header {
+	     COLOR: white;
+		 FONT-SIZE: 13px;
+		 FONT-WEIGHT: bold; 
+		 BACKGROUND-COLOR: #0484ae;
+	}
+
+    INPUT {
+    	 HEIGHT: 22px; 
+    	 
+    	 FONT-FAMILY: arial,verdana; 
+    	 FONT-SIZE: 12px; 
+    
+    	 PADDING-LEFT: 3px;
+    	 PADDING-TOP: 3px; 
+    	 PADDING-BOTTOM: 3px;
+    	 
+    	 MARGIN-LEFT: 1px;
+    	 MARGIN-RIGHT: 3px;
+    	 MARGIN-BOTTOM: -1px; 
+    
+    	 BORDER-LEFT-WIDTH: 1px;
+    	 BORDER-TOP-WIDTH: 1px;
+    	 BORDER-BOTTOM-WIDTH: 1px; 
+    
+    	 BACKGROUND: #f5eadb;
+    }
+	
+    INPUT.blue {
+		 COLOR: blue;
+    }
+
+    INPUT.red {
+    	 COLOR: red;
+    }
+	
+    INPUT.RO {
+	     BACKGROUND: #c8c8c8;
+    }
+
+    INPUT.RO_red {
+         COLOR: red;
+	     BACKGROUND: #c8c8c8;
+    }
+
+    SELECT {
+    	 HEIGHT: 22px; 
+    	 
+    	 FONT-FAMILY: arial,verdana; 
+    	 FONT-SIZE: 12px; 
+    
+    	 PADDING-LEFT: 3px;
+    	 PADDING-TOP: 3px; 
+    	 PADDING-BOTTOM: 3px;
+    	 
+    	 MARGIN-LEFT: 1px;
+    	 MARGIN-RIGHT: 3px;
+    	 MARGIN-BOTTOM: -1px; 
+    
+    	 BORDER-LEFT-WIDTH: 1px;
+    	 BORDER-TOP-WIDTH: 1px;
+    	 BORDER-BOTTOM-WIDTH: 1px; 
+    
+    	 BACKGROUND: #f5eadb;
+    }
+	
+    SELECT.blue {
+    	 COLOR: blue;
+    }
+
+    SELECT.red {
+    	 COLOR: red;
+    }
+</STYLE>
+
+

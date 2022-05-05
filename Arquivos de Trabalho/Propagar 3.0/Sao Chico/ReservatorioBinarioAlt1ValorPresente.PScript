@@ -1,0 +1,695 @@
+var
+    // variáveis auxiliares para conter as strings que formaram as variáveis:
+    vazio:                                                   string;
+    // Sinal para a inequação
+    Sinal:                                                   string;
+    // Variavel para conter a equação em formato de string
+    Equacao:                                                 string;
+    // Variável para conter a string com o numero do ano
+    sAno :                                                   string;
+    // Variável para conter a string com o nome de cada demanda
+    NomeDemanda:                                             string;
+    // Variaveis auxiliares para conter o ano inicial de analise e os intervalos de analise
+    AnoInicial, OticaPub, OticaPri, Oticadeanalise :         integer;
+    // variáveis temporárias usadas como indices
+    iPC,iInt,iDem,iAno,indice,iAlt,iPCMontante:              integer;
+    // Variavel para fazer um teste com intervalo de analise menor
+    Oticateste, NumIntOticateste:                            integer;
+    // Variavel para conter o numero de PCs:
+    ano, mes:                                                integer;
+    // Variavel para conter o nome de cada demanda:
+    NumeroPCs:                                               integer;
+    // Variavel para conter o numero de intervalos de simulação do projeto
+    NumIntSim:                                               integer;
+    // Variavel para conter o intervalo inicial de otimização
+    IntInicial:                                              integer;
+    // Variaveis para conter o numero de intervalos de otimização para Otica Privada e Publica:
+    NumIntOticaPri, NumIntOticaPub, NumIntOticadeanalise:    integer;
+    // variavel para conter a quantidade de anos para calculo do fator de atualização
+    NumeroAnos:                                              integer;
+    //Variavel que define o numero de demandas de cada PC
+    Numerodedemandas:                                        integer;
+    //Variavel para conter o numero que identifica o PC:
+    NumPC:                                                   integer;
+    //Variavel para conter a quantidade de alternaticas excludentes de armazenamento para cda reservatorio :
+    NumeroAltReserv:                                         integer;
+    //Variavel para conter o numero que identifica o PC:
+    NumeroPCsMOntante:                                       integer;
+    // Variavel para acumular o valor de RHS:
+    RHS:                                                     real;
+    // Variavel para conter as vazoes incrementais de cada PC:
+    VazaoIncremental:                                        real;
+    // Variaveis para conter o fator de desconto adotado e o fator de atualização calculado:
+    FatorDesc, FatorAtual:                                   real;
+    // variavel para conter o coeficiente de cada variável na FO:
+    Coef:                                                    real;
+    // variavel para conter o valor percentual de custo de OeM em relaçao ao de Instalação:
+    CoefOeM :                                                real;
+    // variaveis para conter os coeficientes da reta area versus volume de cada reservatorio:
+    Coefalfa, Coefbeta:                                      real;
+    // variaveis para conter os valores das constantes a e b para cada reservatorio:
+    Coefa, Coefb:                                            real;
+    // variaveis para conter os coeficientes da reta area versus volume de cada reservatorio:
+    TxEvaporacao, Txpluviometria:                            real;
+    // Variavel para conter o valor de implantação de cada alternativa dos reservatorios:
+    ValorImplantacao:                                        Real;
+    // Variavel para conter o valor de OeM anual de cada alternativa dos reservatorios:
+    ValorOeM:                                                Real;
+    // Variavel para conter o valor do volume maximo de cada reservatorio ou alternativa de armazenamento:
+    VolumeMaximo:                                            real;
+    // Variavel para conter o valor da vazao garantida no último PC da rede:
+    VazaoGarantidaM3:                                        real;
+    // Variavel que vai conter o objeto PC:
+    PC:                                                      Object;
+    // Variavel que vai conter o objeto PC a montante:
+    PCaMontante:                                             Object;
+    // Variaveis que vao conter as Planilhas com os valores dos investimentos e benefícios
+    // relativos a cada sub-projeto de irrigação existente, ou planejado (aspersao ou inundacao)
+    PlanilhaReserv:                                          Object;
+    FolhaPlanilha:                                           Object;
+    // variavel que vai conter a string com o caminho do diretorio
+    Folder:                                                  string;
+begin
+
+  //Define qual é o caminho a ser utilizado como diretorio corrente
+  Folder:=  'F:\Projetos\Arquivos de Trabalho\Propagar 3.0\Sao Chico\';
+
+  //Inicialização das constantes que conterão as strings que serão utilizadas para formar as variáveis e equaçoes
+  vazio:= '';
+
+  // Inicialização das constantes que conterão os valores dos anos iniciais de otimização e os valores
+  // dos intervalos de tempo de análise (Otica publica, privada ou de teste)
+  AnoInicial:= 1975;
+  OticaPub:= 28;
+  OticaPri:= 10;
+  Oticateste:= 1;
+
+  // Escolha da Otica de otimização  e dos intervalos de otimização
+  Oticadeanalise := OticaPub;
+
+  // Determinação dos periodos dos intervalos de otimizaçao:
+  NumIntOticadeanalise:=12*Oticadeanalise;
+
+  //Fator de desconto a ser utilizado no projeto:
+  FatorDesc:= 0.08;
+
+  //Fração do custo de implantação adotado como custo de OeM:
+  CoefOeM:= 0.001;
+
+  //Numero de alternativas excludentes de volumes maximo dos reservatorios
+  NumeroAltReserv:= 5;
+
+  //Vazao garantida adotada na presente simulação em m3/s (metros cubicos por segundo em cada intervalo de tempo)
+  VazaoGarantidaM3:= 1000.0;
+
+  // Obtem o total de intervalo de simulação
+  NumIntSim := Projeto.Total_IntSim;
+
+  // Vai descobrir qual é o intervalo inicial de otimização
+  for iInt := 1 to NumIntSim do
+      begin
+        Projeto.IntervaloComoData( iInt, mes, ano); // Obtem o mês e o ano do delta T atual
+        if (ano = AnoInicial) and (mes = 1)
+           then IntInicial := iInt
+      end;
+
+  //Cria os objetos para receberem as planílhas com os valores de Custos e Beneficios para os reservatorios
+  PlanilhaReserv := Createobject(TSpreadSheetBook);
+
+  //Ler no diretório especificado a planilha caso ela exista
+  if FileExists(Folder+'DadosReservatorios.xls')
+     then
+        PlanilhaReserv.LoadFromFile(Folder+'DadosReservatorios.xls')
+     else
+        ShowMessage(' Arquivo não encontrado');
+
+
+  // Recebe do projeto o numero de PC existentes
+  NumeroPCs := Projeto.NumPCs;
+
+  Projeto.Equacoes_Escrever('!// Modelo de PL para Escolha de reservatorios');
+  Projeto.Equacoes_Escrever('!// Alternativa 1');
+  Projeto.Equacoes_Escrever('!// Custos atualizados para o presente');
+  Projeto.Equacoes_Escrever('!// Cada reservatorio com 5 Alternativas excludentes');
+  Projeto.Equacoes_Escrever('');
+
+  // Introduz no arquivo a palavra reservada de minimização de custos:
+  Projeto.Equacoes_Escrever('MIN');
+  // Introduz no arquivo a palavra que define a FO:
+  Projeto.Equacoes_Escrever('FO)');
+
+  //Ativa a folha da planilha que contem os custos de implantação dos resrvatorios
+  PlanilhaReserv.setActiveSheetIndex(1);
+  //Recebe essa folha:
+  FolhaPlanilha :=  PlanilhaReserv.ActiveSheet;
+
+  // Geração da equação que define a Função objetivo
+  // Varre todos os PCs do projeto
+  for iPC := 1 to NumeroPCs do
+      begin
+         // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+         PC:= Projeto.PC(iPC-1);
+         // Testa se PC eh resrvatorio e diferente do PC
+         if ((PC.Eh_Reservatorio)and(PC.Nome<>'25')) then
+             begin
+               //Converte em numero inteiro a string com o numero do PC
+               NumPC:= trunc(StrToFloat(PC.Nome));
+               //Esvazia a string que vai conter uma equação
+               Equacao := vazio;
+               //Varre o numero de alternativas excludentes de cada reservatorio
+               for iAlt := 1 to NumeroAltReserv do
+                   begin
+                      //Ler o custo de implantação para a alternativa iAlt do Reservatorio iPC-1
+                      ValorImplantacao:=FolhaPlanilha.GetFloat(NumPC,iAlt);
+                      //Inicia a soma do valor do coeficiente a ser introduzido na equação
+                      Coef := ValorImplantacao;
+                      //Varre o numero de anos do tempo de analise do projeto
+                      ValorOeM:= ValorImplantacao*CoefOeM;
+                      //Varre o numero de Anos do Projeto
+                      for iAno := AnoInicial to (AnoInicial+Oticadeanalise-1) do
+                          begin
+                             //Estabelece o numero de anos para o calculo do fator de desconto
+                             NumeroAnos:= iAno-AnoInicial+1;
+                             //Calcula o valor do Fator de atualização
+                             FatorAtual:= 1/(Power(1+FatorDesc,NumeroAnos-1));
+                             //calcula o valor do coeficiente multiplicando:
+                             //1. Fator de atualização calculado
+                             //2. Valor da porcentagem do custo de OeM em relaçao ao custo de implantaçao
+                             //3. Valor do custo de implantação do reservatorio
+                             Coef:=Coef+FatorAtual*ValorOeM;
+                          end;
+                      //Inicia a montagem da equação
+                      Equacao := Equacao + ' + '+FloatToStr(Coef,2)+' VI'+Pc.Nome+IntToStr(iAlt)+'00';
+                   end;
+               //Começa a varredura anual
+               Projeto.Equacoes_Escrever(Equacao);
+             end;
+      end; 
+
+  // Introduz no arquivo a palavra reservada que indica o inicio do bloco das restrições:
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!// Inicio do bloco das restrições: ');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('ST');
+  Projeto.Equacoes_Escrever('');
+
+  //Ativa a folha da planilha que contem os coeficientes angular e linear da reta de ajuste da area x volume
+  PlanilhaReserv.setActiveSheetIndex(3);
+  //Recebe essa folha:
+  FolhaPlanilha :=  PlanilhaReserv.ActiveSheet;
+
+  // Geração do bloco "Balanço Hidrico segundo a Minuta do Projeto"
+  Projeto.Equacoes_Escrever('!// Bloco referente a definiçao do balanço hídrico em cada PC e em cada intervalo de tempo: ');
+  Projeto.Equacoes_Escrever('');
+  //Varredura dos intervalos de tempo considerados para otimização
+  for iInt := IntInicial to (IntInicial+NumIntOticadeanalise-1) do
+    begin
+        Projeto.Equacoes_Escrever('');
+        // Obtem o mês e o ano do delta T atual
+        Projeto.IntervaloComoData(iInt, mes, ano);
+        // Escreve na janela o intervalo, mes e ano
+        Projeto.Equacoes_Escrever('!// Intervalo:' + IntToStr(iInt)+' mes:'+IntToStr(mes)+' ano:'+IntToStr(ano));
+        Projeto.Equacoes_Escrever('');
+        // Varre todos os PCs
+        for iPC := 1 to NumeroPCs do
+             begin
+                 // Recebe o objeto PC da lista contida no Projeto (inicia com 0)
+                 PC:= Projeto.PC(iPC-1);
+                 // Começa a escrever a equação que define o balanço hidrico para o PC atual (iPC-1) e para o intervalo iInt
+                 Equacao := 'BH'+ PC.Nome+ IntToStr(iInt)+') ';
+                 // Recebe o valor da vazao incremental em hm3 para o intervalo
+                 VazaoIncremental:=PC.m3_Hm3(PC.ObterVazaoAfluenteSBs(iInt),iInt);
+                 // Recebe o numero de PCs a montante do PC (iPc-1)
+                 NumeroPCsMOntante:=PC.PCs_aMontante;
+                 // Verifica se PC atual (iPC-1) eh reservatorio
+                 if PC.Eh_Reservatorio
+                    then
+                        begin
+                            //Converte em numero inteiro a string com o numero do PC
+                            NumPC:= trunc(StrToFloat(PC.Nome));
+                            //Ler os coeficientes alfa e beta da reta area x volume do Reservatorio iPC-1
+                            Coefalfa:=FolhaPlanilha.GetFloat(NumPC,1);
+                            Coefbeta:=FolhaPlanilha.GetFloat(NumPC,2);
+                            //Recebe as taxas de evaporação e precipitação sobre o reservatorio:
+                            TxEvaporacao := PC.ObterEvaporacaoUnitaria(iInt);
+                            Txpluviometria := PC.ObterPrecipitacaoUnitaria(iInt);
+                            // Calcula os coeficientes a e b a serem usados na equação de balanço hidrico:
+                            Coefa:=((TxEvaporacao-Txpluviometria)/1000)*Coefalfa;
+                            Coefb:=((TxEvaporacao-Txpluviometria)/1000)*Coefbeta;
+                            // Escreve na Equação de balanço hidrico os termos relativos ao reservatorio
+                            Equacao := Equacao + 's'+PC.Nome+IntToStr(iInt+1)+' - '
+                                               +FloatToStr((1-Coefa),3) +' s'+PC.Nome+IntToStr(iInt)+' + '
+                                               +'o'+PC.Nome+IntToStr(iInt);
+                            //Verifica se PC(iPC-1) tem PC a montante
+                            if  NumeroPCsMOntante<>0  then
+                                begin
+                                    for iPCMontante := 1 to NumeroPCsMOntante do
+                                        begin
+                                            // Recebe o i-ésimo PC a montante
+                                            PCaMontante := PC.PC_aMontante(iPCMontante-1);
+                                            // Escreve na Equação de balanço hidrico os termos relativos as defluencias
+                                            // dos PCs de Montante
+                                            Equacao := Equacao + ' - o'+PCaMontante.Nome+IntToStr(iInt);
+                                        end
+                                end;
+                            //Calcula o termo RHS da equação
+                            RHS:= VazaoIncremental-Coefb;
+                            //Adota o sinal de >= para a equação
+                            sinal:=' = '
+                        end
+                    else
+                        begin
+                            if PC.Nome <> '46'
+                               then
+                                  begin
+                                      // Escreve na Equação de balanço hidrico os termos relativos a PC simples
+                                      Equacao := Equacao +'o'+PC.Nome+IntToStr(iInt);
+                                      //Verifica se PC(iPC-1) tem PC a montante
+                                      if  NumeroPCsMOntante<>0  then
+                                              for iPCMontante := 1 to NumeroPCsMOntante do
+                                                  begin
+                                                      // Recebe o i-ésimo PC a montante
+                                                      PCaMontante := PC.PC_aMontante(iPCMontante-1);
+                                                      // Escreve na Equação de balanço hidrico os termos relativos as defluencias
+                                                      // dos PCs de Montante
+                                                      Equacao := Equacao + ' - o'+PCaMontante.Nome+IntToStr(iInt);
+                                                  end;
+                                     //Calcula o termo RHS da equação
+                                     RHS:= VazaoIncremental;
+                                     //Adota o sinal de >= para a equação
+                                     sinal:=' = '
+                                  end
+                               else
+                                  begin
+                                      for iPCMontante := 1 to NumeroPCsMOntante do
+                                          begin
+                                              // Recebe o i-ésimo PC a montante
+                                              PCaMontante := PC.PC_aMontante(iPCMontante-1);
+                                              if iPCMontante = 1
+                                                  then
+                                                      // Escreve na Equação de balanço hidrico os termos relativos as defluencias
+                                                      // dos PCs de Montante
+                                                      Equacao := Equacao + 'o'+PCaMontante.Nome+IntToStr(iInt)
+                                                  else
+                                                      // Escreve na Equação de balanço hidrico os termos relativos as defluencias
+                                                      // dos PCs de Montante
+                                                      Equacao := Equacao + ' + o'+PCaMontante.Nome+IntToStr(iInt)
+                                          end;
+                                      //Calcula o termo RHS da equação
+                                      RHS:= PC.m3_Hm3(VazaoGarantidaM3,iInt)-VazaoIncremental;
+                                      //Adota o sinal de >= para a equação
+                                      sinal:=' >= '
+                                   end
+                        end;
+                 // Escreve o termo RHS na equação
+                 Equacao := Equacao + sinal + FloatToStr(RHS,3);
+                 // Escreve a equação no editor:
+                 Projeto.Equacoes_Escrever(Equacao);
+             end
+    end;
+
+  //Ativa a folha da planilha que contem os volumes maximos de cada alternativa excludente
+  PlanilhaReserv.setActiveSheetIndex(2);
+  //Recebe essa folha:
+  FolhaPlanilha :=  PlanilhaReserv.ActiveSheet;
+
+  // Geraçao referente a limitação dos volumes maximos dos reservatorios a serem implantados ou nao
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!// Bloco referente a definição da relação entre as variaveis binarias VIPCi00,');
+  Projeto.Equacoes_Escrever('!// e as variáveis relativas aos armazenamentos dos reservatórios, em cada intervalo');
+  Projeto.Equacoes_Escrever('');
+  // Varredura dos intervalos de tempo considerados para otimização
+  for iInt := IntInicial to (IntInicial+NumIntOticadeanalise-1) do
+     begin
+        // Obtem o mês e o ano do delta T atual
+        Projeto.IntervaloComoData(iInt, mes, ano);
+        // Escreve na janela o intervalo, mes e ano
+        Projeto.Equacoes_Escrever('');
+        Projeto.Equacoes_Escrever('!// Intervalo:' + IntToStr(iInt)+' mes:'+IntToStr(mes)+' ano:'+IntToStr(ano));
+        Projeto.Equacoes_Escrever('');
+        // laço que vai varrer todos os PCs
+        for iPC := 1 to NumeroPCs do
+            begin
+                // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+                PC:= Projeto.PC(iPC-1);
+                // Testa se PC eh resrvatorio e diferente do PC
+                if (PC.Eh_Reservatorio) then
+                   begin
+                       // Começa a escrever a equação que define o balanço hidrico para o PC atual (iPC-1) e para o intervalo iInt
+                       Equacao := 'LA'+PC.Nome+ IntToStr(iInt)+') s'+PC.Nome+IntToStr(iInt);;
+                       // Testa se o reservatorio em questao nao eh o Queimado jah em construção
+                       if PC.Nome <> '25'
+                          then
+                              begin
+                                  //Converte em numero inteiro a string com o numero do PC
+                                  NumPC:= trunc(StrToFloat(PC.Nome));
+                                  // Começa a escrever a equação que define o valor do termo VIPC00
+                                  //Varre o numero de alternativas excludentes de cada reservatorio
+                                  for iAlt := 1 to NumeroAltReserv do
+                                      begin
+                                           //Ler o Volume Maximo para a alternativa iAlt do Reservatorio iPC-1
+                                           VolumeMaximo:=FolhaPlanilha.GetFloat(NumPC,iAlt);
+                                           //Escreve o coeficiente (Volume Maximo) relativo a cada alternativa excludente
+                                           Equacao := Equacao+' - '+FloatToStr(VolumeMaximo,3)+
+                                                              ' VI'+Pc.Nome+IntToStr(iAlt)+'00'
+                                      end;
+                                  //Define o valor do RHS como 0 (zero)
+                                  RHS := 0.0
+                              end
+                          else
+                              begin
+                                  // Define o valor de RHS como o volume maximo do reservatorio Queimado
+                                  RHS := PC.VolumeMaximo;
+                              end;
+                       // Completa a equação com o termo RHS
+                       Equacao := Equacao+' <= '+ FloatToStr(RHS,3);
+                       // Escreve a equação no editor:
+                       Projeto.Equacoes_Escrever(Equacao);
+                   end
+            end
+     end;
+
+  // Geraçao referente a caracterização do volume inicial de cda reservatorio sao excludentes
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!// Bloco referente a definição do armazenamento inicial de cada reservatorio');
+  Projeto.Equacoes_Escrever('!// de acordo com o volume maximo de cada alternativa:');
+  Projeto.Equacoes_Escrever('');
+  // laço que vai varrer todos os PCs
+  for iPC := 1 to NumeroPCs do
+        begin
+            // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+            PC:= Projeto.PC(iPC-1);
+            // Testa se PC eh resrvatorio e diferente do PC
+            if (PC.Eh_Reservatorio) then
+               begin
+                   // Começa a escrever a equação que define o balanço hidrico para o PC atual (iPC-1) e para o intervalo iInt
+                   Equacao := 'SI'+PC.Nome+') s'+PC.Nome+'1';
+                   // Testa se o reservatorio em questao nao eh o Queimado jah em construção
+                   if PC.Nome <> '25'
+                      then
+                          begin
+                              //Converte em numero inteiro a string com o numero do PC
+                              NumPC:= trunc(StrToFloat(PC.Nome));
+                              // Começa a escrever a equação que define o valor do termo VIPC00
+                              //Varre o numero de alternativas excludentes de cada reservatorio
+                              for iAlt := 1 to NumeroAltReserv do
+                                  begin
+                                       //Ler o Volume Maximo para a alternativa iAlt do Reservatorio iPC-1
+                                       VolumeMaximo:=FolhaPlanilha.GetFloat(NumPC,iAlt);
+                                       //Escreve o coeficiente (Volume Maximo) relativo a cada alternativa excludente
+                                       Equacao := Equacao+' - '+FloatToStr(VolumeMaximo,3)+
+                                                              ' VI'+Pc.Nome+IntToStr(iAlt)+'00'
+                                  end;
+                              //Define o valor do RHS como 0 (zero)
+                              RHS := 0.0
+                          end
+                      else
+                          begin
+                              // Define o valor de RHS como o volume maximo do reservatorio Queimado
+                              RHS := PC.VolumeMaximo;
+                          end;
+                   // Completa a equação com o termo RHS
+                   Equacao := Equacao+' = '+ FloatToStr(RHS,3);
+                   // Escreve a equação no editor:
+                   Projeto.Equacoes_Escrever(Equacao);
+               end
+        end;
+
+
+  // Geraçao referente a caracterização de que as alternativas de volume de cda reservatorio sao excludentes
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!// Bloco referente a definição da caracteristica excludente das alternativas');
+  Projeto.Equacoes_Escrever('!// de armazenamento de cada reservatorio');
+  Projeto.Equacoes_Escrever('');
+  // laço que vai varrer todos os PCs
+  for iPC := 1 to NumeroPCs do
+      begin
+         // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+         PC:= Projeto.PC(iPC-1);
+         // Testa se Pc eh reservatorio e diferente do PC 08
+              if (PC.Eh_Reservatorio) and (PC.Nome<>'25') then
+                    begin
+                        // Começa a escrever a equação que define a caracteristica excludentes das alternativas
+                        Equacao := 'LAAE'+PC.Nome+') ';
+                        for iAlt := 1 to NumeroAltReserv do
+                            begin
+                                if iAlt <> NumeroAltReserv
+                                    then
+                                       // Inclui a variavel binaria na equação:
+                                       Equacao := Equacao +'VI'+PC.Nome+IntToStr(iAlt)+'00 - '
+                                    else
+                                       // Inclui a ultima variavel binaria na equação:
+                                       Equacao := Equacao +'VI'+PC.Nome+IntToStr(iAlt)+'00'
+                            end;
+                        //Inclui a condição unitaria
+                        Equacao := Equacao +' <= 1';
+                        // Escreve a equação do PC atual na unidade de saida
+                        Projeto.Equacoes_Escrever(Equacao);
+                    end
+      end;
+
+  // Geraçao referente a caracterização de que algumas alternativas de volume de determinados reservatorios
+  // impossibilitam a construção de outros
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!// Bloco referente a caracterização de que algumas alternativas de volume de determinados reservatorios');
+  Projeto.Equacoes_Escrever('!// impossibilitam a construção de outros');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!// Caracteristicas de Inviabilizaçoes da bacia do Paracatu:');
+  Projeto.Equacoes_Escrever('!// 1.Qdo Paracatu 3 tiver cota máxima maior que 487,5, Caatinga é inviabilizado');
+  Projeto.Equacoes_Escrever('!// 2.Qdo Paracatu 3 tiver cota máxima maior que 493,5, Caatinga e Paracatu2 são inviabilizados');
+  Projeto.Equacoes_Escrever('!// 3.Qdo Paracatu 3 tiver cota máxima maior que 500, Caatinga, Paracatu2 e Entrerios são inviabilizados');
+  Projeto.Equacoes_Escrever('!// 4.Qdo Paracatu 2 tiver cota máxima maior que 510, Paracatu1 é inviabilizado');
+  Projeto.Equacoes_Escrever('');
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 1:
+  Equacao := 'INV1P) ';
+  for iAlt := 1 to 3 do
+       Equacao := Equacao+ 'VI34'+IntToStr(iAlt)+'00 + ';
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI29'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI29'+IntToStr(iAlt)+'00'
+       end;
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 2:
+  Equacao := 'INV2P) ';
+  for iAlt := 1 to 2 do
+       // Inclui a variavel binaria na equação:
+       Equacao := Equacao+ 'VI34'+IntToStr(iAlt)+'00 + ';
+
+  for iAlt := 1 to NumeroAltReserv do
+       // Inclui a variavel binaria na equação:
+       Equacao := Equacao +'VI29'+IntToStr(iAlt)+'00 + ';
+
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI22'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI22'+IntToStr(iAlt)+'00'
+       end;
+
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 3:
+  Equacao := 'INV3P) VI34100 + ';
+  for iAlt := 1 to NumeroAltReserv do
+      // Inclui a variavel binaria na equação:
+      Equacao := Equacao +'VI29'+IntToStr(iAlt)+'00 + ';
+  for iAlt := 1 to NumeroAltReserv do
+      // Inclui a variavel binaria na equação:
+      Equacao := Equacao +'VI22'+IntToStr(iAlt)+'00 + ';
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI24'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI24'+IntToStr(iAlt)+'00'
+       end;
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 4:
+  Equacao := 'INV4P) ';
+  for iAlt := 1 to 2 do
+       // Inclui a variavel binaria na equação:
+       Equacao := Equacao+ 'VI22'+IntToStr(iAlt)+'00 + ';
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI21'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI21'+IntToStr(iAlt)+'00'
+       end;
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!// Caracteristicas de Inviabilizaçoes da bacia do Urucuia:');
+  Projeto.Equacoes_Escrever('!// 1.Qdo Urucuia 2 tiver cota máxima maior que 484, Escaramuça é inviabilizado');
+  Projeto.Equacoes_Escrever('!// 2.Qdo Escaramuça tiver cota máxima maior que 494, Arinos é inviabilizado');
+  Projeto.Equacoes_Escrever('!// 3.Qdo Escaramuça tiver cota máxima maior que 498, Arinos e Urucuia são inviabilizados');
+  Projeto.Equacoes_Escrever('!// 4.Qdo Arinos tiver cota máxima maior que 498, Urucuia é inviabilizado');
+  Projeto.Equacoes_Escrever('!// 5.Qdo Arinos tiver cota máxima maior que 510, Piratinga e Urucuia é inviabilizado');
+  Projeto.Equacoes_Escrever('');
+
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 1:
+  Equacao := 'INV1U) VI44100 + ';
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI43'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI43'+IntToStr(iAlt)+'00'
+       end;
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 2:
+  Equacao := 'INV2U) ';
+  for iAlt := 1 to 2 do
+       // Inclui a variavel binaria na equação:
+       Equacao := Equacao+ 'VI43'+IntToStr(iAlt)+'00 + ';
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI42'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI42'+IntToStr(iAlt)+'00'
+       end;
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 3:
+  Equacao := 'INV3U) VI43100 + ';
+  for iAlt := 1 to NumeroAltReserv do
+       // Inclui a variavel binaria na equação:
+       Equacao := Equacao+ 'VI42'+IntToStr(iAlt)+'00 + ';
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI38'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI38'+IntToStr(iAlt)+'00'
+       end;
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 4:
+  Equacao := 'INV4U) ';
+  for iAlt := 1 to 4 do
+       // Inclui a variavel binaria na equação:
+       Equacao := Equacao+ 'VI42'+IntToStr(iAlt)+'00 + ';
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI38'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI38'+IntToStr(iAlt)+'00'
+       end;
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+  // Começa a escrever a equação que define a caracteristica de inviabilidade do item 5:
+  Equacao := 'INV5U) ';
+  for iAlt := 1 to 2 do
+       // Inclui a variavel binaria na equação:
+       Equacao := Equacao+ 'VI42'+IntToStr(iAlt)+'00 + ';
+
+  for iAlt := 1 to NumeroAltReserv do
+       // Inclui a variavel binaria na equação:
+       Equacao := Equacao +'VI38'+IntToStr(iAlt)+'00 + ';
+
+  for iAlt := 1 to NumeroAltReserv do
+       begin
+            if iAlt <> NumeroAltReserv
+                then
+                   // Inclui a variavel binaria na equação:
+                   Equacao := Equacao +'VI40'+IntToStr(iAlt)+'00 + '
+                else
+                   // Inclui a ultima variavel binaria na equação:
+                   Equacao := Equacao +'VI40'+IntToStr(iAlt)+'00'
+       end;
+
+  //Inclui a condição unitaria
+  Equacao := Equacao +' <= 1';
+  // Escreve a equação do PC atual na unidade de saida
+  Projeto.Equacoes_Escrever(Equacao);
+
+
+  // Introduz no arquivo a palavra reservada que indica o fim do bloco das restrições:
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!// Fim do bloco de restrições:');
+  Projeto.Equacoes_Escrever('END');
+  Projeto.Equacoes_Escrever('');
+
+  // Geração do bloco de "definição da condição binária das variáveis V"
+  Projeto.Equacoes_Escrever('!// Bloco referente a definição da condição binária da variável V:');
+  Projeto.Equacoes_Escrever('');
+
+  for iPC := 1 to NumeroPCs do
+      begin
+         // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+         PC:= Projeto.PC(iPC-1);
+         // Testa se Pc eh reservatorio e diferente do PC 08
+              if (PC.Eh_Reservatorio) and (PC.Nome<>'25') then
+                    begin
+                        for iAlt := 1 to NumeroAltReserv do
+                            begin
+                                // Escreve a linha de comando para o LINDO
+                                Equacao := 'INTEGER '+'VI'+PC.Nome+IntToStr(iAlt)+'00';
+                                // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                                Projeto.Equacoes_Escrever(Equacao);
+                            end
+                    end
+      end
+
+end.

@@ -1,0 +1,155 @@
+Program Energia_Planilha_CurvaPermanencia;
+
+// Variáveis pré-declaradas
+   // Saida   : TwsOutPut
+   // Projeto : TprProjeto_Rosen
+
+var
+  IntTotal : Integer;
+  i        : Integer;
+  Queimado : Object;
+  Paracatu : Object;
+
+  Planilha  : Object;
+  Planilha1 : Object;
+
+  Grafico  : Object;
+  S1       : Object;
+  S2       : Object;
+  Cor      : Integer;
+
+  VetorEnergiaQueimado  : Object;
+  VetorEnergiaParacatu  : Object;
+  VetEnerQueimDecr      : Object;
+  VetEnerParacDecr      : Object;
+  VetEnerQueimAcum      : Object;
+  VetEnerParacAcum      : Object;
+  VetEnerQueimProb      : Object;
+  VetEnerParacProb      : Object;
+  VetorTempo            : Object;
+  SomaQueimado          : Real;
+  SomaParacatu          : Real;
+  Aux                   : Real;
+  Aux1                  : Integer;  // nada
+
+Begin
+  // Inialização do intervalo total
+  IntTotal := Projeto.Total_IntSim;
+
+  // Inicialização dos reservatórios;
+  Queimado := Projeto.PCPeloNome('Queimado');
+  Paracatu := Projeto.PCPeloNome('Paracatu');
+
+  // Criação e inicialização dos vetores 
+  VetorTempo           := CreateObject(TwsSIVec, IntTotal);
+  VetorEnergiaQueimado := CreateObject(TwsDFVec, IntTotal);
+  VetorEnergiaParacatu := CreateObject(TwsDFVec, IntTotal);
+  VetEnerQueimDecr     := CreateObject(TwsDFVec, IntTotal);
+  //VetEnerParacDecr     := wsDFVecCreate(IntTotal);
+  VetEnerQueimAcum     := CreateObject(TwsDFVec, IntTotal);
+  //VetEnerParacAcum     := wsDFVecCreate(IntTotal);
+  VetEnerQueimProb     := CreateObject(TwsDFVec, IntTotal);
+  VetEnerParacProb     := CreateObject(TwsDFVec, IntTotal);
+
+  //  Preechimento dos vetores
+  for i := 1 to IntTotal do
+    begin
+    VetorTempo.Set(i, i);
+    VetorEnergiaQueimado.Set(i, Queimado.ObtemEnergia(i));
+    VetorEnergiaParacatu.Set(i, Paracatu.ObtemEnergia(i));
+    end;
+
+  // Cálculo da Curva de Permanência para Volumes do Queimado
+  for i := 1 to IntTotal do
+    VetEnerQueimDecr.Set(i, VetorEnergiaQueimado.Get(i));
+
+  VetEnerQueimDecr.Sort(false, false);
+
+  for i := 1 to IntTotal do
+    VetEnerQueimAcum.Set(i, VetEnerQueimDecr.Get(i));
+  VetEnerQueimAcum.Accum(False);
+
+  SomaQueimado := VetEnerQueimDecr.Total(Aux1);
+
+  for i := 1 to IntTotal do
+    Begin
+    Aux := 100*VetEnerQueimAcum.Get(i)/SomaQueimado;
+    VetEnerQueimProb.Set(i, Aux);
+    end;
+
+  // Cálculo da Curva de Permanência para Volumes do Paracatu
+  {for i := 1 to IntTotal do
+    VetEnerParacDecr.Set(i, VetorEnergiaParacatu.Get(i));
+  }
+  VetEnerParacDecr := VetorEnergiaParacatu.Sort(true, false);
+  VetEnerParacAcum := VetEnerParacDecr.Accum(True);
+  SomaParacatu := VetEnerParacDecr.Total(Aux1);
+  for i := 1 to IntTotal do
+    Begin
+    Aux := 100*VetEnerParacAcum.Get(i)/SomaParacatu;
+    VetEnerParacProb.Set(i, Aux);
+    end;
+
+  // Apresentação da Energia Gerada (em Planilha)
+  Planilha := CreateObject(TPlanilha);
+  Planilha.Write(1, 1, 'Valores da Energia Gerada nos Reservatórios');
+  Planilha.Write(2, 1, 'Projeto ' + Projeto.Nome);
+  Planilha.Write(4, 1, 'Dt');
+  Planilha.Write(4, 2, 'Queimado');
+  Planilha.Write(4, 3, 'Paracatu');
+  Planilha.WriteVecInCol(VetorTempo, 1, 5);
+  Planilha.WriteVecInCol(VetorEnergiaQueimado, 2, 5);
+  Planilha.WriteVecInCol(VetorEnergiaParacatu, 3, 5);
+
+  // Apresentação da Curva de Permanência da Energia Gerada
+  // (em Planilha)
+
+  Planilha1 := CreateObject(TPlanilha);
+  Planilha1.Write(1, 1, 'Curva de Permanência da Energia Gerada nos Reservatórios');
+  Planilha1.Write(2, 1, 'Projeto ' + Projeto.Nome);
+  Planilha1.Write(3, 1, 'SomaQueimado');
+  Planilha1.WriteFloat(3, 2 , SomaQueimado);
+  Planilha1.Write(3, 4, 'SomaParacatu');
+  Planilha1.WriteFloat(3, 5 , SomaParacatu);
+  Planilha1.Write(4, 1, 'Dt');
+  Planilha1.Write(4, 3, 'Queimado');
+  Planilha1.Write(4, 6, 'Paracatu');
+  Planilha1.Write(5, 2, 'Volume');
+  Planilha1.Write(5, 3, 'Vol Ac');
+  Planilha1.Write(5, 4, 'Prob.');
+  Planilha1.Write(5, 5, 'Volume');
+  Planilha1.Write(5, 6, 'Vol Ac');
+  Planilha1.Write(5, 7, 'Prob.');
+  Planilha1.WriteVecInCol(VetorTempo, 1, 6);
+  Planilha1.WriteVecInCol(VetEnerQueimDecr, 2, 6);
+  Planilha1.WriteVecInCol(VetEnerQueimAcum, 3, 6);
+  Planilha1.WriteVecInCol(VetEnerQueimProb, 4, 6);
+  Planilha1.WriteVecInCol(VetEnerParacDecr, 5, 6);
+  Planilha1.WriteVecInCol(VetEnerParacAcum, 6, 6);
+  Planilha1.WriteVecInCol(VetEnerParacProb, 7, 6);
+
+  // Monta o gráfico
+  Cor := getColor('TeeColor');
+  Grafico := CreateObject(TgrGrafico);
+  Grafico.Chart.SetView3D(False);
+  Grafico.Chart.Title.Add('Curva de Permanência de Energia Gerada');
+  S1 := Grafico.Series.AddLineSerie('Queimado', getColor('red'));
+  S2 := Grafico.Series.AddLineSerie('Paracatu', getColor('green'));
+  for i := 1 to IntTotal do
+    begin
+    S1.AddXY(VetEnerQueimProb.Get(i), VetEnerQueimDecr.Get(i), '', Cor);
+    S2.AddXY(VetEnerParacProb.Get(i), VetEnerParacDecr.Get(i), '', Cor);
+    end;
+
+  // Mostra os dados em forma de planilha e gráfico
+  Planilha.Show;
+  Planilha1.Show;
+  Grafico.Show;
+
+ {
+  ATENÇÃO:
+     Os objetos Planilha, Grafico e Series (S1..S4) não deverão ser destruídos
+     pois continuarão a existirem após a execução de script (mostrarão os dados) e
+     serão destruídos automaticamente ao serem fechados pelo usuário.
+  }
+end.

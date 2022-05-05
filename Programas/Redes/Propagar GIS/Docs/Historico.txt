@@ -1,0 +1,1371 @@
+data          tempo     nome
+"05/01/1999"  02:30:00  "Planejamentos"
+
+Campo MEMO
+ - Decidido que o programa será MDI, pois poderá ser formado por vários projetos.
+   - Cada projeto será manuseado em uma janela --> TDrawWindow
+     - Nesta janela poderão ser criados objetos:
+	- Postos de Controle, Barragens, Reservatórios,  etc.
+	- Rio
+     - Cada objeto terá suas próprias características.
+     - O objeto Rio será formado por dois ou mais nós onde poderão ser conectados os outros objetos.
+
+- Tarefas:
+  - Criar uma função que dado um conjunto de pontos e um ponto, retorna os dois pontos mais próximo
+daquele fornecido.
+-----------------------------------------------------------
+data          tempo     nome
+"09/01/1999"  05:00:00  "Gerenciamento Visual dos objetos"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"11/01/1999"  03:00:00  "Gerenciamento Visual dos objetos"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"14/01/1999"  05:47:12  "Definição de Classes"
+
+Campo MEMO
+- Definição das classes básicas
+    - TPostoDeControle
+    - TListaDePostos
+
+- Primeira execução com sucesso
+  Tempo: 04:45:00
+
+- Fazendo as primeiras ligações dos objetos
+-----------------------------------------------------------
+data          tempo     nome
+"15/01/1999"  09:00:00  "Definição de Classes"
+
+Campo MEMO
+- Planejamento
+- Discussão de idéias
+- Implementando as classes
+-----------------------------------------------------------
+data          tempo     nome
+"16/01/1999"  02:46:31  "Revisão das classes"
+
+Campo MEMO
+- Primeira revisão das classes
+- Definindo as classes:
+  - TListRegObjects (Lista de objetos registrados)
+  - TAdvObject (classe TObject melhorada - Responde a mensagens)
+-----------------------------------------------------------
+data          tempo     nome
+"17/01/1999"  03:57:29  "Documentação"
+
+Campo MEMO
+- Documentação das classes do Propagar - SAGBAH
+- Documentação da unidade AdvClasses (TAdvObject)
+- Criação das páginas WEB
+-----------------------------------------------------------
+data          tempo     nome
+"18/01/1999"  07:07:45  "Implementação da Interface Gráfica"
+
+Campo MEMO
+Definição das interfaces gráficas
+  - Janela Principal
+    - Tradução das mensagens e nomes dos objetos
+
+  - Janela de projeto
+    - Seleção de objetos
+
+  - Barra de ferramentas
+-----------------------------------------------------------
+data          tempo     nome
+"18/01/1999"  05:46:21  "Revisão das classes"
+
+Campo MEMO
+- Revisando as Classes
+-----------------------------------------------------------
+data          tempo     nome
+"19/01/1999"  02:13:45  "Implementação da Interface Gráfica"
+
+Campo MEMO
+- Implementando a barra de ferramentas.
+- Remoção de pontos de controle.
+-----------------------------------------------------------
+data          tempo     nome
+"20/01/1999"  06:00:00  "Documentação"
+
+Campo MEMO
+Documentação dos projetos Propagar e Chuvaz 98 em HTML
+-----------------------------------------------------------
+data          tempo     nome
+"20/01/1999"  02:00:00  "Revisão das classes"
+
+Campo MEMO
+ - Revisão na unidade advClasses
+   - Mudanças nas classes TAdvObject e TRegListObjects
+     Agora a lista de objetos registrados é indexada pelo tipo da mensagem, isto é, cada mensagem
+     possui uma lista de objetos.
+-----------------------------------------------------------
+data          tempo     nome
+"21/01/1999"  02:30:00  "Planejamentos"
+
+Campo MEMO
+- Mensagens de ajuda ao usuário
+- Como salvar e ler os projetos
+- Novos botões e funções
+-----------------------------------------------------------
+data          tempo     nome
+"26/01/1999"  07:21:21  "Implementação da Interface Gráfica"
+
+Campo MEMO
+- Inserindo um nó entre dois outros existentes
+  - Tempo de execução: 01:21:00
+
+- Comunicação com o usuário através de mensagens de um assistente
+  Tempo de execução: 06:00:00
+-----------------------------------------------------------
+data          tempo     nome
+"12/02/1999"  02:00:00  "Planejamentos"
+
+Campo MEMO
+Reunião com o Viegas
+  - Definição das Classes (Análise e Projeto)
+-----------------------------------------------------------
+data          tempo     nome
+"20/02/1999"  00:37:55  "Revisão das classes"
+
+Campo MEMO
+ - Analisando a definição da classe Ponto de Controle
+   - Agora, a lista de objetos será quebrada em várias listas, uma para cada objeto
+-----------------------------------------------------------
+data          tempo     nome
+"20/02/1999"  01:40:00  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Modificando janela de projetos.
+   Agora as mensagens dos objetos e de status são mostradas na janela principal
+-----------------------------------------------------------
+data          tempo     nome
+"27/02/1999"  03:13:09  "Definição de Classes"
+
+Campo MEMO
+Projetando as classes do programa propagar.
+  - Modificando os nomes das classes
+    TClasseBase --> TBase
+    TObjetoBase --> TBase2
+    TPontoDeControle --> TPC
+
+-----------------------------------------------------------
+data          tempo     nome
+"28/02/1999"  01:32:54  "Definição de Classes"
+
+Campo MEMO
+ - Removendo erros de remoção de objetos
+ - Revendo os métodos
+-----------------------------------------------------------
+data          tempo     nome
+"01/03/1999"  05:38:25  "Definição de Classes"
+
+Campo MEMO
+Escrevendo as classes:
+  TPCP - PC Propagar
+  TPCPR - PC Propagar Reservatorio
+  TdrTriangle - Figura que representa um triângulo
+-----------------------------------------------------------
+data          tempo     nome
+"02/03/1999"  02:20:00  "Definição de Classes"
+
+Campo MEMO
+ - Definição inicial dos mecanismos de captação dos dados através do usuário: Diálogos
+    - Teste inicial: Diálogo dos PCs
+       - TDialogoBase
+       - TDialogo_PCP
+       - TDialogo_PCPR
+
+OBS:  Utilizei herança de formulários (é ótimo)
+-----------------------------------------------------------
+data          tempo     nome
+"04/03/1999"  05:07:17  "Definição de Classes"
+
+Campo MEMO
+Interface com o usuário:
+  -  Implementação dos métodos virtuais:
+     - CriaDialogo
+     - PoeDadosNoDialogo
+     - PegaDadosDoDialogo
+
+Salvamento dos objetos e do projeto:
+  - Implementação do método virtual
+    - SalvarParaArquivo
+-----------------------------------------------------------
+data          tempo     nome
+"09/03/1999"  07:25:10  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+Palavras chaves: salvar
+Sub-Tarefa: Salvamento dos Objetos
+----------------------------------------------------------
+Para salvarmos os objetos é necessário que cada um deles possua um nome diferente.
+Para isto foi criado para cada projeto a variável TabelaDeNomes para que o sistema
+não permita a repetição da identificação dos objetos.
+Os métodos modificados foram:
+   - Create (TBase2)
+   - SetNome (TBase2)
+   - MostraDialogo (TBase2)
+   - btnOkClick (TArquivoBase)
+
+Salvamento dos(as):
+   - Trechos Dágua
+   - Sub-Bacias
+
+Criação do método de iteração: PercorreSubBacias
+-----------------------------------------------------------
+data          tempo     nome
+"10/03/1999"  03:44:26  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+Palavras chaves: recuperação
+Sub-Tarefa: Leitura dos objetos
+----------------------------------------------------------
+- Leitura das info. do Projeto
+- Leitura das info. dos PCs
+- Leitura das info. dos Trechos Dagua
+-----------------------------------------------------------
+data          tempo     nome
+"11/03/1999"  00:29:00  "Gerenciamento Visual dos objetos"
+
+Campo MEMO
+Edição dos Trechos Dagua
+Regra:
+  Um duplo clique muito perto de um trecho, edíta-o.
+  Eu defini  8 pixels para a distancia máximo do clique.
+-----------------------------------------------------------
+data          tempo     nome
+"11/03/1999"  05:13:16  "Implementação da Interface Gráfica"
+
+Campo MEMO
+Palavras chaves: planilha, f1book, não mostra dados, ocx
+-------------------------------------------------------------------------------------------
+
+ - Construíndo o diálogo que pega os dados de uma Sub-Bacia.
+   Tempo: 00:45:01
+
+- Construíndo as tabelas de: Curva Cota-Volume e Curva Área-Volume para os
+  dados do reservatório.
+
+ OBS: A bosta do componente Planilha não mostra dados setados nele antes que ele proprio seja mostrado em uma janela ! A manha é fazer com que a janela seja mostrada antes que os dados sejam postos nela. Se isto não poder ser feito, faça isto: Mostre e esconda a janela se ela precisa ser mostrada como janela Modal. Mas este procedimento acarreta em um fliquer horrível. A saída mais inteligente é fazer a janela ser mostrada fora da tela, por exemplo em coordenedas negativas. Ex:
+    Top := -1000; Left := -1000; show; hide; Top := 100; Left := 100;
+Isto funciona direitinho e você nem percebe, pois é istantâneo, pois a janela não é desenhada porque está fora da área do desktop.
+-----------------------------------------------------------
+data          tempo     nome
+"11/03/1999"  01:57:03  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+ - Fazendo a leitura das Sub-Bacias
+ - Salvando as informações de Cota-Volume e Área-Volume do Reservatório
+-----------------------------------------------------------
+data          tempo     nome
+"11/03/1999"  00:20:00  "Planejamentos"
+
+Campo MEMO
+Verificando o que deve ser feito.
+Pensando ....
+-----------------------------------------------------------
+data          tempo     nome
+"12/03/1999"  02:00:00  "Planejamentos"
+
+Campo MEMO
+Reunião com o Viegas
+Assunto:
+  - Como implementar as Demandas e os Grupos de Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"14/03/1999"  05:40:01  "Definição de Classes"
+
+Campo MEMO
+Implementação dos métodos virtuais:
+  - Ordenando as classes na unidade
+  - Métodos de Diagnosticos (Erros Fatais e Avisos)
+  - Métodos de Validações (Erros Fatais)
+-----------------------------------------------------------
+data          tempo     nome
+"14/03/1999"  04:02:12  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Leds de status
+  Tempo de execução: 1:30:00
+
+ - Erro no desenho dos objetos na tela
+   Redefini as classes para que a classe TBase2 seja a única responsável pela criação
+   da figura (Shape) que irá aparecer na tela. O erro que estava acontecendo no clique
+   de uma SubBacia não foi totalmente esclarecido, a única coisa que deu para descobrir
+   é que tinha a ver com o componente TImage que deve responder aos eventos de mouse
+   de uma maneira diferente daquela que eu uso nos meus componentes.
+   Para resolver o problema troquei o TImage por TdrBitmap (classe que criei, descendente
+   de TdrBaseShape) e assim mantive compatibilidade com o resto da definição.
+-----------------------------------------------------------
+data          tempo     nome
+"15/03/1999"  00:48:05  "Definição de Classes"
+
+Campo MEMO
+ - Implementação dos Métodos LerDoArquivo()
+ - Leitura dos dados Cota-Volume e Area-Volume
+-----------------------------------------------------------
+data          tempo     nome
+"15/03/1999"  00:48:31  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Implementação do Diálogo TDialogo_TD (Trecho Dágua)
+-----------------------------------------------------------
+data          tempo     nome
+"15/03/1999"  01:20:37  "Planejamentos"
+
+Campo MEMO
+Reunião com o Viegas:
+  - Demandas
+  - Grupo de Demandas
+  - Classe de Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"17/03/1999"  07:25:35  "Definição de Classes"
+
+Campo MEMO
+Implementando as classes:
+ - TDemanda
+
+ - TClasseDemandas
+   - Conterá elemantos do tipo TDemanda que servirão como padrão de criação para as próprias.
+   - Haverá uma instância única que controlará todas as classes
+-----------------------------------------------------------
+data          tempo     nome
+"17/03/1999"  00:21:32  "Documentação"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"17/03/1999"  03:50:38  "Planejamentos"
+
+Campo MEMO
+Planejando:
+  - Classe TDemanda
+  - Classe TGrupoDemandas
+  - Classe TClasseDemanda
+-----------------------------------------------------------
+data          tempo     nome
+"17/03/1999"  01:09:02  "Implementação da Interface Gráfica"
+
+Campo MEMO
+Adaptando a interface principal para o uso da lista Classes De Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"18/03/1999"  09:40:12  "Implementação da Interface Gráfica"
+
+Campo MEMO
+Probemas com a comboBox Classes de Demanda.
+Depois de pensar e sofrer muito com o uso das Combo-Box, decidi que iria fazer a minha própria combo-box e
+fiz, chamei-a de TdrComboBox (unidade ToolEdit).
+-----------------------------------------------------------
+data          tempo     nome
+"25/03/1999"  02:10:18  "Definição de Classes"
+
+Campo MEMO
+ - Salvamento e Leitura das classes de Demanda
+ - Estudando o component TreeView do Windows
+ - Implementando a classe TDemanda
+-----------------------------------------------------------
+data          tempo     nome
+"31/03/1999"  03:05:41  "Definição de Classes"
+
+Campo MEMO
+- Implementando as classes de Demanda
+  - Árvore que mostra as classes (TTreeView)
+-----------------------------------------------------------
+data          tempo     nome
+"01/04/1999"  03:00:00  "Definição de Classes"
+
+Campo MEMO
+ - Implementando Classes de demanda e Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"03/04/1999"  01:30:00  "Definição de Classes"
+
+Campo MEMO
+ - Interface entre as Demandas e as Classes de Demandas
+ - Remoção das Demandas
+ - Inserção das Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"04/04/1999"  05:42:57  "Implementação da Interface Gráfica"
+
+Campo MEMO
+  - Construindo a interface das Demandas e das Classes de Demandas
+  - Construção da Tabela de Valores Unitários
+-----------------------------------------------------------
+data          tempo     nome
+"05/04/1999"  04:39:15  "Definição de Classes"
+
+Campo MEMO
+ - Implementando a tabela de Unidades de Demanda
+ - Finalizações nas tabelas das Demandas
+ - Definindo os dados da Demanda
+   - Mostrando os dados no diálogo
+   - Pegando os dados do diálogo
+-----------------------------------------------------------
+data          tempo     nome
+"06/04/1999"  01:39:39  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+ - Salvando as informações das Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"09/04/1999"  01:50:06  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+ - Lendo as informações das Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"12/04/1999"  05:13:23  "Implementação da Interface Gráfica"
+
+Campo MEMO
+  - Separação das classes TDemanda e TClasseDemanda
+  - Implementação do diálogo das Classes de Demanda
+  - Ajuste no diálogo das Demandas
+  - Melhoramentos na árvore que mostra as Demandas e suas classes
+-----------------------------------------------------------
+data          tempo     nome
+"12/04/1999"  01:04:01  "Revisões Gerais"
+
+Campo MEMO
+ - Eliminar brancos na tabela de unidades de Demanda
+ - Ajustando a máscara no componente área da SubBacia
+ - Erro (Acess Violation) quando adicionamos uma demanda com uma classe ativa
+-----------------------------------------------------------
+data          tempo     nome
+"22/04/1999"  05:43:37  "Definição de Classes"
+
+Campo MEMO
+- Implementando desenho das setas na janela de projeto
+- Colocando demandas nas Sub-Bacias
+- Salvando as informações das classes de demanda com o projeto
+-----------------------------------------------------------
+data          tempo     nome
+"25/04/1999"  01:48:49  "Definição de Classes"
+
+Campo MEMO
+ - Remoção de classes de Demanda
+ - Lendo e Gravando Bitmaps das demandas
+ - Implementando ObtemPrefixo em TClasseDemanda
+ - Implementando OnChange em TClasseDemanda
+ - Implementando método Atribuir em TDemanda
+-----------------------------------------------------------
+data          tempo     nome
+"26/04/1999"  04:54:09  "Definição de Classes"
+
+Campo MEMO
+- Cálculo da Hierarquia dos PCs
+- Definição da classe TProjeto
+- Definição do Diálogo do Projeto
+-----------------------------------------------------------
+data          tempo     nome
+"30/04/1999"  02:04:15  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+- Salvando os dados do projeto
+- Contanto os anos
+-----------------------------------------------------------
+data          tempo     nome
+"01/05/1999"  01:46:01  "Codificação Geral"
+
+Campo MEMO
+ - Geração dos arquivos para o Propagar Dos
+-----------------------------------------------------------
+data          tempo     nome
+"02/05/1999"  03:13:19  "Codificação Geral"
+
+Campo MEMO
+- Gerando o arquivo principal para o Propagar DOS
+-----------------------------------------------------------
+data          tempo     nome
+"06/05/1999"  03:37:27  "Definição de Classes"
+
+Campo MEMO
+ - Removendo erro de inserção de PCs
+ - Melhorando a comunicação de mansagens com o usuário
+ - Implementando Coeficiênte de Contribuição nas Sub-Bacias
+ - Implementando Intervalo de Simulação e Arquivo de Vazões no Projeto
+-----------------------------------------------------------
+data          tempo     nome
+"09/05/1999"  03:37:39  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Dados do Projeto
+   - Anos de Execução em Intervalos
+   - Arquivos
+   - Diretórios
+-----------------------------------------------------------
+data          tempo     nome
+"10/05/1999"  03:52:33  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Intervalos de Execução
+ - Implementação dos Arquivos nos reservatórios
+ - Implementação dos Coeficientes de Contribuição nas Sub-Bacias
+-----------------------------------------------------------
+data          tempo     nome
+"11/05/1999"  02:45:11  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"13/05/1999"  01:31:16  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Atualizando menus
+-----------------------------------------------------------
+data          tempo     nome
+"16/05/1999"  03:37:49  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+ - Coeficientes de Contribuição das Sub-Bacias
+ - Outros ajustes
+-----------------------------------------------------------
+data          tempo     nome
+"16/05/1999"  00:57:19  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Ajustando e otimizando a visualização das classes de demandas na janela principal
+   - Utilização dos métodos BeginUpdate e EndUpdate para evitar fliquer no redesenho
+
+ - Erro de Access Violation na finalização do programa:
+   - Causa: O evento Screen.OnActiveFormChange é chamado quando a janela principal
+     está para ser destruída.
+   - Solução: Verificar se o objeto TForm contém o flag csDestroying através da propriedade
+     ComponentState.
+-----------------------------------------------------------
+data          tempo     nome
+"16/05/1999"  02:13:23  "Definição de Classes"
+
+Campo MEMO
+- Planejando alguns métodos e propriedades:
+  - Data (Projeto)
+  - DeltaT
+  - Periodos (Anos de execução)
+  - etc
+-----------------------------------------------------------
+data          tempo     nome
+"17/05/1999"  05:45:11  "Definição de Classes"
+
+Campo MEMO
+ - Implementando novas propriedades:
+   - Intervalos
+   - Data
+   - Numero de intervalos (mensal, anual, totais)
+
+ - Testes das propriedades
+   - Data (01:00:00)
+
+ - Adaptando Tabelas ao formato dos Intervalos (Ano Inicial - Ano Final)
+
+-----------------------------------------------------------
+data          tempo     nome
+"17/05/1999"  00:31:35  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Permitindo clicks nas demandas listadas na árvore da janela principal
+ - Habilitação dos Menus e Botões
+-----------------------------------------------------------
+data          tempo     nome
+"20/05/1999"  01:49:50  "Geração de arquivos"
+
+Campo MEMO
+  - Escrevendo Escala de Desenvolvimento e Fração de Retorno das Demandas
+    - Estas medidas só são escritas se as Demandas estiverem ligadas.
+
+  - Escrevendo arquivos de saída
+
+  - Desenvolvendo algorítmo para geração do arquivo de Vazões Totais afluentes
+-----------------------------------------------------------
+data          tempo     nome
+"20/05/1999"  02:04:27  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Desenhando seta
+-----------------------------------------------------------
+data          tempo     nome
+"21/05/1999"  04:16:18  "Geração de arquivos"
+
+Campo MEMO
+ - Escrevendo o código para Geração do arquivo de Vazões Totais
+ - Adaptando Demanda para cálculos de Unidade de Consumo e Unidade de Demanda
+-----------------------------------------------------------
+data          tempo     nome
+"21/05/1999"  01:03:51  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Pintura interna dos Reservatórios
+-----------------------------------------------------------
+data          tempo     nome
+"23/05/1999"  05:46:02  "Geração de arquivos"
+
+Campo MEMO
+ - Término da codificação para geração dos arquivos de vazões afluentes
+   - Testes - Ok faltando somente validações
+-----------------------------------------------------------
+data          tempo     nome
+"24/05/1999"  02:51:47  "Geração de arquivos"
+
+Campo MEMO
+ - Geração dos Arquivos:
+   - Demandas Difusas
+   - Demandas Primarias, Secundarias e Terciarias
+   - Arquivo de Precipitação e Evapo-Tranpiração (Parcialmente)
+-----------------------------------------------------------
+data          tempo     nome
+"24/05/1999"  02:44:18  "Definição de Classes"
+
+Campo MEMO
+  - Diagnósticos:
+    - Demandas - Tabelas
+    - Demandas - Status (Ligada ou desligada)
+    - SubBacias - Arquivos Afluentes
+    - Projeto - Ausência de Dados
+-----------------------------------------------------------
+data          tempo     nome
+"27/05/1999"  04:15:34  "Definição de Classes"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"31/05/1999"  01:06:31  "Definição de Classes"
+
+Campo MEMO
+- Implementando modificações nos objetos
+  - propriedade Modificado.
+    - Um projeto foi modificado quando:
+      - Pelo menos um objeto for modificado.
+      - Quando a posição de um objeto for modificada.
+      - Quando criamos objetos (adicionar em um projeto)
+-----------------------------------------------------------
+data          tempo     nome
+"03/06/1999"  01:00:40  "Definição de Classes"
+
+Campo MEMO
+ - Implementando a propriedade "Modificado" dos objetos
+-----------------------------------------------------------
+data          tempo     nome
+"04/06/1999"  02:45:34  "Implementação da Interface Gráfica"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"06/06/1999"  02:40:45  "Revisões Gerais"
+
+Campo MEMO
+   Quando o projeto é criado se for utilizada a tecla salvar ele é automaticamente salvo (ou não é e parece que sim) sem que se pergunte onde e com qual nome. Isso é feito só se o usuário usar Salvar Como...
+
+   A opção Fechar do Menu Arquivo não funciona.
+
+   Quando em qualquer PC se colocam comentários em linhas diferentes, após fechar e abrir novamente o projeto o comentário aparece na mesma linha e o que é "estranho" separados por  "," - uma vírgula entre aspas.
+
+   Não consegui renomear um PC com o mesmo número anterior, ou seja, apaguei um PC para substituí-lo por um reservatório. Depois apaguei o reservatório e torneia a inserir um PC. Pretendia utilizar o mesmo nome anterior, isto é, PC_8 - não teve jeito, mesmo não existindo nenhum PC_8. ENTENDI DEPOIS QUE OLHEI O ARQUIVO DE PROJETO. NÃO PRECISA ALTERAR NADA. DEIXEI O COMENTÁRIO APENAS PARA REGISTRO.
+
+   Uma coisa estranha: quando vou preencher "Dados de uma Sub-Bacia" e vou fornecer o nome do arquivo de vazões, embora na caixa Arquivo tipo aparece Vazões (*.VZC), um arquivo com terminação .VZC existente no diretório não é mostrado. É necessário que se escreva *.VZC ou *.* na caixa Nome do Arquivo para que ele apareça.
+
+    Outra coisa: se não forneço o nome do arquivo na janela "Dados de uma Sub-Bacia" o OK não funciona e aparece a caixa de mensagens com o aviso. Modifica aqui - dando o aviso - mas permitindo que ela seja fechada e os dados informados salvos. O usuário pode querer fornecer todos os nomes de arquivos no final. É o que aconteceu comigo já que não criei os arquivos ainda. Apenas não deve ser permitida a geração do arquivo de entrada de dados antes que a informação esteja completa, ou seja, quando for checada a consistência.
+
+   Depois de fechar a janela Dados de uma Sub-Bacia, quando ela é novamente aberta o somatório dos coeficentes de contribuição não é atualizado. Isso pode ser feito com um método chamado ao abrir-se a janela e lá já existirem valores.
+
+    Criação de Demandas - O Fator de Conversão tem de permitir a entrada de valores em notação científica como por exemplo 1,574E-8 (o bom é ir até E-12), ou seja, até quatro ou sei dígitos depois da vírgula e o expoente. O número indicado como exemplo é originado de 1 div 86400 que é para transformar segundos em fração de dias. URGENTE.
+
+    Na criação da Classe de Demanda, a Escala de Desenvolvimento e o Fator de Implantação devem ter valor default igual a 1. URGENTE.
+
+    Sempre que se criar uma Demanda à partir de uma Classe, os valores: Classe a que pertence, se Difusa ou Localizada (neste caso também a Prioridade), Escala de Desenvolvimento,  Fator de Conversão, Unidade de Consumo de Água, Unidade de Demanda e as Tabelas de Valores Unitários devem ser copiados de lá.  Descrição e Comentários também devem ser copiados já que o usuário pode preparar uma descrição geral ou um comentário geral a serem depois complementados. URGENTE.
+
+    O Fator de Conversão, a Unidade de Consumo de Água e a Unidade de Demanda devem ser definidos na Classe (o único lugar onde podem ser editados), na Demanda só são mostrados. E, principalmente o fator de conversão e unidades que não podem sequer ser editados. Apenas as tabelas podem.
+
+    Cada Demanda criada tem de ter preenchido o campo "Classe de Demanda a que Pertence" - Neste campo irá o nome da Classe de Demanda que aparece na relação das Classes de Demandas. URGENTE. Para que eu possa controlar a quem pertencem.
+
+    Quando se seleciona uma Classe de Demanda que não a primeira, tão logo se insira a Demanda em um PC a Classe de Demanda selecionada volta a ser a primeira. Não está permanecendo selecionada a classe que foi selecionada pelo usuário. URGENTE
+
+-----------------------------------------------------------
+data          tempo     nome
+"07/06/1999"  00:58:26  "Definição de Classes"
+
+Campo MEMO
+    Na janela Dados de um Reservatório temos de inserir uma caixa seletora" v" para indicar a existência de demanda de energia nesse reservatório. Isso corresponderá a uma propriedade GerarEnergia "On/Off" - URGENTE
+
+    Na janela Dados de um Reservatório temos de criar outra caixa seletora setada para uma Propriadade Status = Ativado/Desativado. Isso serve para em uma simulação fazer um Reservatório comportar-se como um PC comum sem que se necessite substituir os objetos. Serve para testes rápidos.
+-----------------------------------------------------------
+data          tempo     nome
+"07/06/1999"  00:50:06  "Revisões Gerais"
+
+Campo MEMO
+   Em Classes de Demandas se mudo a prioridade de Primária para Secundária, dou o Ok e depois torno a abrir aparece novamente Primária, ou seja, isto não está funcionando. Além disso, depois de fazer uma mundança a indicação de prioridade em qualquer Demanda pertencente a esta classe deve ser igual ao alterado. URGENTE.
+-----------------------------------------------------------
+data          tempo     nome
+"07/06/1999"  01:32:40  "Implementação da Interface Gráfica"
+
+Campo MEMO
+   Na Caixa de Ferramentas quando se coloca o ponteiro do mouse sobre o ícone das Demandas deve aparecer o nome da demanda selecionada além da informação que já é dada; facilita confirmar mesmo que seja redundante com a indicação de seleção.
+
+   Modificando a janela dos reservatórios:
+   - Separei as janelas (criei uma só para as curvas cota-área-volume)
+   - Novos componentes (Status e Existe demanda por energia)
+-----------------------------------------------------------
+data          tempo     nome
+"08/06/1999"  01:30:13  "Revisões Gerais"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"09/06/1999"  03:00:00  "Revisões Gerais"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"10/06/1999"  03:54:53  "Revisões Gerais"
+
+Campo MEMO
+ - Eliminando a referência na tabela de nomes compartilhada pelos objetos quando um objeto é destruído.
+
+ - Revisões geras nas classes e métodos
+
+ - Anotação dos Bugs.
+-----------------------------------------------------------
+data          tempo     nome
+"11/06/1999"  03:01:18  "Revisões Gerais"
+
+Campo MEMO
+ - Concertando bug na remoção dos PCs
+ - Erro em deixar colocar demandas de um projeto em outro não ativado
+ - Erro no fechamento de um projeto com classes de demandas
+   - A tabela de nomes estava sendo destruída antes da destruição da lista de clas. de demandas
+ - Outros
+-----------------------------------------------------------
+data          tempo     nome
+"12/06/1999"  09:20:52  "Revisões Gerais"
+
+Campo MEMO
+ - Resolvendo erro das Demandas repetidas na árvore
+   Erro resolvido: depois de cerca de 9 horas de debug, descobri que o erro estava na não eliminação das demandas pelas sub-bacias, que por sua vez, não se desregistravam da lista de mensagens.
+-----------------------------------------------------------
+data          tempo     nome
+"13/06/1999"  00:45:05  "Revisões Gerais"
+
+Campo MEMO
+ - Ajustes na classe ClassesDeDemanda
+-----------------------------------------------------------
+data          tempo     nome
+"15/06/1999"  00:21:11  "Definição de Classes"
+
+Campo MEMO
+ - Implementando
+    - Fração de Retorno (Demandas)
+    - Nível Crítico de Falha (Projeto)
+-----------------------------------------------------------
+data          tempo     nome
+"15/06/1999"  01:27:24  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Implementando
+    - Fração de Retorno (Demandas)
+    - Nível Crítico de Falha (Projeto)
+    - Bitmap do botão Remover Trecho
+-----------------------------------------------------------
+data          tempo     nome
+"15/06/1999"  07:16:33  "Revisões Gerais"
+
+Campo MEMO
+ - Geração do arquivo para o Propagar DOS
+   - Arrumando o comentário (criação a rotina StringsToString)
+   - Arrumando o número dos PCs que contribuem para o PC1, PC2, ... (foi só somar 1)
+   - Arrumando tipo de Impressão (foi só somar 1)
+   - Arruamando Escala de Desenvolvimento e Fração de Retorno das Demandas
+   - Nome dos arquivos (Nomes curtos)
+-----------------------------------------------------------
+data          tempo     nome
+"15/06/1999"  00:27:38  "Armazenamento e recuperação de informações"
+
+Campo MEMO
+  - Fração de Retorno (Demandas)
+  - Nível Crítico de Falha (Projeto)
+-----------------------------------------------------------
+data          tempo     nome
+"16/06/1999"  05:20:35  "Revisões Gerais"
+
+Campo MEMO
+    Quando tentamos atribuir uma string no formato ["aaaaaa bbbb ccccc"] para  TStrings.CommaText, o método se perde. Se houver uma única (,) no final,
+isto já é suficiente para o erro não acontecer. Ex: ["aaaaa bbbb cccc",]
+-----------------------------------------------------------
+data          tempo     nome
+"16/06/1999"  00:22:39  "Criando programas de Instalação"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"22/06/1999"  04:02:08  "Revisões Gerais"
+
+Campo MEMO
+  - Re-implementando Fator de Implantação (Demandas)
+  - Gerenciamento dos Objetos na árvore
+  - Seleção dos Objetos
+-----------------------------------------------------------
+data          tempo     nome
+"22/06/1999"  00:30:39  "Definição de Classes"
+
+Campo MEMO
+ - Implementando: (Reservatório)
+    - Coeficiente de Tranformação Energética
+    - Energia Firme
+-----------------------------------------------------------
+data          tempo     nome
+"22/06/1999"  00:08:06  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Implementando: (Reservatório)
+    - Coeficiente de Tranformação Energética
+    - Energia Firme
+-----------------------------------------------------------
+data          tempo     nome
+"23/06/1999"  03:16:47  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Gerencimento dos Objetos
+   - Seleções e Informações
+-----------------------------------------------------------
+data          tempo     nome
+"26/06/1999"  09:58:08  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Gerente de objetos dos projetos
+   - Construção
+   - Adição de Objetos
+   - Remoção de Objetos
+   - Edição
+
+-----------------------------------------------------------
+data          tempo     nome
+"27/06/1999"  07:04:12  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Continuando a implementação do gerenciador de objetos
+   - Controle das Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"03/07/1999"  00:57:28  "Implementação da Interface Gráfica"
+
+Campo MEMO
+Lendo e Salvando as configurações do sistema
+-----------------------------------------------------------
+data          tempo     nome
+"01/08/1999"  06:14:20  "Definição de Classes"
+
+Campo MEMO
+  Construindo a Matriz de Contribuição
+-----------------------------------------------------------
+data          tempo     nome
+"02/08/1999"  02:40:58  "Revisões Gerais"
+
+Campo MEMO
+Atualização visual quando mudo alguma propriedade de algum objeto
+-----------------------------------------------------------
+data          tempo     nome
+"03/08/1999"  03:07:44  "Definição de Classes"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"04/08/1999"  04:44:09  "Definição de Classes"
+
+Campo MEMO
+ - Implementando os métodos do primeiro tipo de simulação
+-----------------------------------------------------------
+data          tempo     nome
+"10/08/1999"  01:20:00  "Reunião"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"11/08/1999"  06:04:48  "Definição de Classes"
+
+Campo MEMO
+ - Fazendo a leitura dos resultados do Propagar DOS
+   - Demandas Primarias, Secundárias e Terciárias Supridas (Atendidas)
+
+- Criando a classe TwsSFVec (vetor de singles - ponto flutuante de 4 bytes)
+
+- Outras coisas
+-----------------------------------------------------------
+data          tempo     nome
+"12/08/1999"  03:00:26  "Definição de Classes"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"14/08/1999"  06:41:10  "Definição de Classes"
+
+Campo MEMO
+ - Implementando as classes responsáveis pelo gerenciamento gráfico:
+   - TGraficos ( Lista de Objetos Gráficos )
+   - TGrafico ( Objeto Gráfico que contém uma Lista de Séries )
+   - TListaDeSeries ( Representa as Séries Plotadas )
+-----------------------------------------------------------
+data          tempo     nome
+"16/08/1999"  03:27:46  "Definição de Classes"
+
+Campo MEMO
+- Implementando as opções de Menu dos gráficos
+-----------------------------------------------------------
+data          tempo     nome
+"17/08/1999"  00:15:16  "Análise"
+
+Campo MEMO
+ - Analizando o que será graficado
+-----------------------------------------------------------
+data          tempo     nome
+"17/08/1999"  01:30:00  "Reunião"
+
+Campo MEMO
+- Saída dos resultados
+  - Gráficos
+  - Tabelas
+-----------------------------------------------------------
+data          tempo     nome
+"18/08/1999"  02:32:25  "Definição de Classes"
+
+Campo MEMO
+ - Definição dos menus de cada objeto
+  - Implementando Gráficos
+    - Lista de Gráficos (auto-destruição das janelas - opcional)
+-----------------------------------------------------------
+data          tempo     nome
+"19/08/1999"  03:37:34  "Definição de Classes"
+
+Campo MEMO
+ - Implementando menus dos objetos
+ - Implementando gráficos
+ - Planejamentos
+-----------------------------------------------------------
+data          tempo     nome
+"20/08/1999"  04:30:00  "Definição de Classes"
+
+Campo MEMO
+ - Graficando demandas atendidas, totais e planejadas (individuais a cada PC)
+ - Implementando intervalo de trabalho
+ - Retirando opção de escolha dos nomes dos arquivos:
+   - (Demandas 1, 2 e 3 atendidas, armazen. res, energia gerada)
+-----------------------------------------------------------
+data          tempo     nome
+"24/08/1999"  02:02:13  "Definição de Classes"
+
+Campo MEMO
+ - Implementando as Falhas
+   - TFalha
+   - TListaDeFalhas
+-----------------------------------------------------------
+data          tempo     nome
+"25/08/1999"  01:54:21  "Definição de Classes"
+
+Campo MEMO
+ - Implementando
+   - TPCP.ObtemNiveisCriticosDeFalhas
+   - Lista de Inteiros
+   - Metodos das classes TFalha e TFalhas
+-----------------------------------------------------------
+data          tempo     nome
+"25/08/1999"  02:00:00  "Revisões Gerais"
+
+Campo MEMO
+ - Melhorando o nome das classes
+-----------------------------------------------------------
+data          tempo     nome
+"26/08/1999"  04:30:07  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Mostrando as falhas PC a PC
+   - Dialogo <prDialogo_FalhasDeUmPC>. Este diálogo usa um objeto: TListaDeFalhas
+-----------------------------------------------------------
+data          tempo     nome
+"26/08/1999"  01:40:00  "Planejamentos"
+
+Campo MEMO
+Planejando as saidas dos resultados
+-----------------------------------------------------------
+data          tempo     nome
+"27/08/1999"  00:30:08  "Documentação"
+
+Campo MEMO
+ - Documentando as classes:
+   - TListadeFalhas
+   - TprFalha
+-----------------------------------------------------------
+data          tempo     nome
+"27/08/1999"  02:09:14  "Implementação da Interface Gráfica"
+
+Campo MEMO
+  - Na janela que mostra as falhas de cada PC mostrarei os intervalos críticos em vermelho
+  - Implementando Tabela: Falhas no Atendimento das Demandas
+-----------------------------------------------------------
+data          tempo     nome
+"27/08/1999"  00:23:37  "Revisão das classes"
+
+Campo MEMO
+Melhorando a classe TprFalha.
+  - Implementando a properiedade: IntervalosCriticos: TListaDeBoleanos
+-----------------------------------------------------------
+data          tempo     nome
+"27/08/1999"  00:36:37  "Definição de Classes"
+
+Campo MEMO
+Implementando a classe TListaDeBoleanos
+-----------------------------------------------------------
+data          tempo     nome
+"31/08/1999"  02:29:46  "Implementação da Interface Gráfica"
+
+Campo MEMO
+- Colocando os dados dos objetos em planilha
+-----------------------------------------------------------
+data          tempo     nome
+"04/09/1999"  03:53:07  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Implemantando
+   - Gráfico X-Tudo do PC
+   - Opções para as séries de Linhas
+   - Opções base para as planilhas (Salvar, Ler, Imprimir, Copiar, etc)
+-----------------------------------------------------------
+data          tempo     nome
+"04/09/1999"  00:29:25  "Revisões Gerais"
+
+Campo MEMO
+ - Bug na coloração das séries do gráficos
+-----------------------------------------------------------
+data          tempo     nome
+"04/09/1999"  00:17:20  "Definição de Classes"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"04/09/1999"  03:00:00  "Reunião"
+
+Campo MEMO
+ - Sobre os reservatórios
+ - Gráficos e Planilhas
+ - Outros
+-----------------------------------------------------------
+data          tempo     nome
+"05/09/1999"  02:09:06  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Implementando Gráficos
+    - X-Tudo
+    - Disponibilidade X Demanda
+    - Volume nos reservatórios
+    - Energia nos reservatórios
+-----------------------------------------------------------
+data          tempo     nome
+"05/09/1999"  03:41:28  "Revisão das classes"
+
+Campo MEMO
+ - Revisão nos métodos que calculam os dados (vetores)
+  - armazenamento das vazões de montante
+
+ - Restruturação dos cálculos
+-----------------------------------------------------------
+data          tempo     nome
+"06/09/1999"  02:32:03  "Definição de Classes"
+
+Campo MEMO
+ - Definindo a classe TListaDeIntervalos
+ - Arrumando as definições anteriores
+-----------------------------------------------------------
+data          tempo     nome
+"07/09/1999"  02:30:38  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Implementando a interface para definição dos intervalos
+-----------------------------------------------------------
+data          tempo     nome
+"08/09/1999"  02:17:41  "Definição de Classes"
+
+Campo MEMO
+ - Criando os métodos:
+   - ObtemDataSet (Dados: TV): TwsDataSet
+   - MostrarDataSet(const Titulo: String; Dados: TwsDataSet)
+   - MostraVariavel(const NomeVar: String)
+-----------------------------------------------------------
+data          tempo     nome
+"08/09/1999"  02:18:58  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Menus
+ - Diálogo dos Intervalos
+ - Planilhas
+-----------------------------------------------------------
+data          tempo     nome
+"10/09/1999"  03:00:00  "Criação de programas de instalação"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"13/09/1999"  03:26:50  "Revisões Gerais"
+
+Campo MEMO
+ - Remoção de Intervalos
+
+ - Comparação de Pontos Flutuantes
+   - números muito parecidos não devem ser considerados diferentes dependendo da precisão
+     - Olhar rotinas Menor e Igual de SysUtil2
+
+ - Erro ao mostrar janela de dados do reservatório
+   - Problemas de conversão de tipos nos componentes do Orpheu
+     - String --> Float
+
+ - Não acha os arquivos quando o diretório corrente muda
+  - É que nem em todos os lugares eu estava fazendo o teste se as propriedades que continham
+    os nomes dos arquivos possuiam caminho, se não possuir temos que considerar o caminho
+    do projeto: DirPes.
+-----------------------------------------------------------
+data          tempo     nome
+"14/09/1999"  02:32:12  "Definição de Classes"
+
+Campo MEMO
+ - Transformando PCs em Reservatórios
+-----------------------------------------------------------
+data          tempo     nome
+"15/09/1999"  04:24:11  "Revisões Gerais"
+
+Campo MEMO
+- Funcoes de tranformação PC-RES-PC
+
+- Erro nos projetos que possuem Reservatórios
+  - Eram os nomes longos no diretório de saída e no nome dos objetos
+
+- Outros
+-----------------------------------------------------------
+data          tempo     nome
+"17/09/1999"  02:14:48  "Revisões Gerais"
+
+Campo MEMO
+ - Eliminando bugs nas Transformações PC-RES-PC
+ - Modificando Menus dos Objetos
+ - Modificando cálculo das falhas: Método ObtemFalhas
+ - Outros
+-----------------------------------------------------------
+data          tempo     nome
+"18/09/1999"  04:01:50  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Janela de opção de Graficos dos PCs
+   - Salvamento dos Esquemas
+   - Novos items adicionados (Vazão total, demandas Totais)
+   - Tipo de Gráfico selecionável (Barras e Linhas)
+-----------------------------------------------------------
+data          tempo     nome
+"18/09/1999"  01:53:43  "Revisões Gerais"
+
+Campo MEMO
+ - Revisões no cálculo das Falhas Críticas
+   - Número de falhas críticas
+-----------------------------------------------------------
+data          tempo     nome
+"21/09/1999"  01:30:03  "Revisões Gerais"
+
+Campo MEMO
+ - Implementando melhorias na janela de visualização das falhas de um PC
+ - Melhorias Gerais
+-----------------------------------------------------------
+data          tempo     nome
+"22/09/1999"  06:00:08  "Revisões Gerais"
+
+Campo MEMO
+ - Melhorando graficação geral
+ - Arrumando Bug na definição dos intervalos
+ - Funções de Copia-Colagem no diálogo de cota-volume
+ - Melhorias nos gráficos
+ - Implementando escolha dos Propagar DOS
+-----------------------------------------------------------
+data          tempo     nome
+"23/09/1999"  01:24:08  "Revisões Gerais"
+
+Campo MEMO
+ - Removido a limitação dos arquivos em 64K
+-----------------------------------------------------------
+data          tempo     nome
+"27/09/1999"  02:21:18  "Revisões Gerais"
+
+Campo MEMO
+ · É necessário que na Árvore do Gerenciador de Objetos, ao lado de cada Classe de Demanda (ou em lugar que fique bem claro e sempre visível) apareça a palavra (PRIMÁRIA, SECUNDÁRIA ou TERCIÁRIA) para facilitar a verificação de qual a PRIORIDADE daquela Classe. Sempre que a prioridade for alterada essa indicação deve imediatamente mudar no indicador da árvore.
+
+· A tecla TAB não está funcionando na ordem certa nas Tabelas de Valores Unitários.
+
+· Os Intervalo Inicial e Intervalo Final das Tabelas de Valores Unitários e de outras semelhantes devem ser preenchidos automaticamente com os valores constantes do período de simulação indicado na Área de Projetos - isso irá facilitar muito a edição.
+
+· Tabelas de Valores Unitários e outras semelhantes - poder-se selecionar mais de um campo para copiar para outros campos da mesma tabela ou de outra.
+
+- O programa só funciona bem quando o Windows está setado com o separador decimal"," (virgula). O ponto tem de ser aceito também.
+
+- Na Janela das Classes de Demandas e das Demandas corrigir: Fator de Retorno para Fração de Retorno.
+
+· ALTERAÇÃO DO SINCRONISMO ENTRE Classes de Demandas e Demandas quanto à atualização automática nas segundas de valores mudados nas primeiras. Desmembrar o Sincronismo por grupos. Assim, no botão opções de cada Demanda teríamos:
+ Sincronizar Tabela de Valores Unitários (On)
+ Sincronizar Tabela de Unidade de Demanda (Off)
+ Sincronizar Tabela de Fatores de Implantação (On)
+
+Observar os "default" acima.
+
+Obs.: Escala de Desenvolvimento, Fração de Retorno e Fator de Conversão são sempre sincronizados, ou seja, nesta versão somente a Classe de Demandas pode determiná-los. OUTRA COISA, PRIORIDADE sempre é sincronizado, ou seja, quem comanda isso é somente a CLASSE DE DEMANDAS.
+Status não cabe o termo sincronizável ou não, ou seja, quando uma Classe de Demanda estiver desligada todas as demanda pertencentes a ela obrigatoriamente estarão e quando a Classe de Demandas estiver ligada uma Demanda poderá ser desligada individualmente. ISSO É IMPORTANTE e acho que já assim mesmo, pelo menos esta era a idéia.
+Nome, Descrição, Comentários são particulares de cada uma - isso já é assim.
+
+-----------------------------------------------------------
+data          tempo     nome
+"28/09/1999"  00:30:36  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Melhorando interface principal
+   - Adicionando campos para visualização dos nomes e descrição dos objetos
+-----------------------------------------------------------
+data          tempo     nome
+"28/09/1999"  00:08:20  "Revisões Gerais"
+
+Campo MEMO
+ - Sincronização dos dados das demandas
+ - Reservatórios andam na tela quando são convertidos
+-----------------------------------------------------------
+data          tempo     nome
+"29/09/1999"  01:53:59  "Revisões Gerais"
+
+Campo MEMO
+ - Quando desligamos o status de uma Classe de demanda, o status das demandas descendentes deverá ficar desabilitada fazendo o mesmo efeito que o status desligado.
+
+ - Atualizando Gerenciador quando mudamos os bitmaps das demandas
+-----------------------------------------------------------
+data          tempo     nome
+"02/10/1999"  08:12:27  "Definição de Classes"
+
+Campo MEMO
+ - Auto-descrição dos objetos (Relatório)
+-----------------------------------------------------------
+data          tempo     nome
+"03/10/1999"  08:48:38  "Definição de Classes"
+
+Campo MEMO
+ - Definição da tabela de classes de demanda
+-----------------------------------------------------------
+data          tempo     nome
+"03/10/1999"  01:35:50  "Revisões Gerais"
+
+Campo MEMO
+  - Arrumando os botões da janela principal
+  - Problemas com o ponto decimal
+-----------------------------------------------------------
+data          tempo     nome
+"05/10/1999"  01:48:08  "Revisões Gerais"
+
+Campo MEMO
+-----------------------------------------------------------
+data          tempo     nome
+"08/10/1999"  04:06:29  "Revisões Gerais"
+
+Campo MEMO
+ - Melhorias nas Planilhas em especial as das Demandas de uma Classe.
+ - Procurando erro das demandas zeradas.
+   - O erro era nas demandas, que achavam que suas classes estavam desligadas.
+-----------------------------------------------------------
+data          tempo     nome
+"23/01/2000"  03:34:26  "Codificação Geral"
+
+Campo MEMO
+- Bloqueando a rede
+- Mostrando ou não os trechos dágua
+- Mostrando um bitmap como fundo da janela
+-----------------------------------------------------------
+data          tempo     nome
+"29/01/2000"  02:57:26  "Codificação Geral"
+
+Campo MEMO
+Melhorando o gerenciamento dos arquivos do sistema
+  - Diretório de saída
+  - Diretório de pesquisa
+-----------------------------------------------------------
+data          tempo     nome
+"30/01/2000"  03:00:00  "Codificação Geral"
+
+Campo MEMO
+Definições de segurança
+  - Implementação feita através de arquivo de configuração criptografado
+  - Criação do programa Cripto (para codificação/decodificação de textos)
+-----------------------------------------------------------
+data          tempo     nome
+"01/02/2000"  04:06:51  "Codificação Geral"
+
+Campo MEMO
+Interface Gráfica
+  - Fazendo com que o fundo de um projeto seje "rolável"  (01:30:00)
+  - Melhorando Gerenciamento da Imagem de Fundo de um projeto (00:36:51)
+
+Comunicação entre Processos
+  - Criando mensagens de automação para o Propagar (02:00:00)
+-----------------------------------------------------------
+data          tempo     nome
+"08/02/2000"  02:49:22  "Revisões Gerais"
+
+Campo MEMO
+  - Arquivo de vazões não pode conter valores negativos
+  - Verificando erro com o diretório de saída de cada projeto
+    - Erro não detectado !!
+
+  - Melhorando gerenciamento gráfico
+  - Melhorias Gerais
+-----------------------------------------------------------
+data          tempo     nome
+"09/02/2000"  04:06:51  "Revisões Gerais"
+
+Campo MEMO
+ - Reservatório andava
+   - Isto acontecia porque o objeto Reservatorio se utilizava do tamanho do shape errado
+
+ - Melhorando definição dos valore nas tabelas das demandas
+
+ - Salvando configuração visual de cada projeto
+-----------------------------------------------------------
+data          tempo     nome
+"17/02/2000"  06:04:27  "Codificação Geral"
+
+Campo MEMO
+ - Melhoramentos na visualização das falhas (03:00:00)
+    - As três ListBox serão substituidas pelos componentes planilha
+
+ - Diferenciação de cores nos gráficos (Falhas com cores diferentes) (03:00:00)
+-----------------------------------------------------------
+data          tempo     nome
+"18/02/2000"  01:02:38  "Codificação Geral"
+
+Campo MEMO
+  - Continuação
+    Diferenciação de cores nos gráficos (Falhas com cores diferentes)
+-----------------------------------------------------------
+data          tempo     nome
+"29/02/2000"  03:10:56  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Melhorando o gerencimento visual das demandas nos PCs
+   Mostrar e esconder
+-----------------------------------------------------------
+data          tempo     nome
+"01/03/2000"  05:03:34  "Documentação"
+
+Campo MEMO
+ - Documentação interna do Propagar
+-----------------------------------------------------------
+data          tempo     nome
+"08/03/2000"  03:43:49  "Implementação da Interface Gráfica"
+
+Campo MEMO
+ - Adaptando o Propagar para uso do Objeto TOutPut (saída genérica)
+ - Mostrando as demandas no Menu dos PCs
+-----------------------------------------------------------
+data          tempo     nome
+"09/03/2000"  03:46:57  "Planejamento e Revisões"
+
+Campo MEMO
+ Implementando o reconhecimento de funções pelo compilador Pasqual
+-----------------------------------------------------------

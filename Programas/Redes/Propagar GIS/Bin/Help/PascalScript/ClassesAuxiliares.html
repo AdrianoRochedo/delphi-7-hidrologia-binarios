@@ -1,0 +1,223 @@
+<!DOCTYPE HTML public "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Classes Auxiliares</title>
+</head>
+
+<body>
+
+<font face="Arial" size="+2" color="Black">
+Classes Auxiliares
+</font>
+<br><br>
+
+<a name="TVariable"></a>
+<font face="Arial" size="+1" color="Black">
+TVariable
+</font>
+<br><br>
+
+<pre>
+  TVariable = <b>class</b>
+    <b>Constructor</b> Create(T: TVariableType; V: Variant);
+
+    <b>property</b> vType       : TVariableType;
+    <b>property</b> Objectclass : TClass;   // Caso a variável seja do tipo OBJECT
+    <b>property</b> Value       : Variant;
+  <b>end</b>;
+</pre>
+
+<a name="TFunctionObject"></a>
+<font face="Arial" size="+1" color="Black">
+TFunctionObject
+</font>
+<br><br>
+
+<pre>
+  TAccessMethod = <b>procedure</b>(<b>Const</b> Func_Name: String; Stack: TexeStack) <b>of</b> object; 
+
+  TFunctionObject = <b>class</b>
+  <b>public</b>
+    <b>constructor</b> Create(<b>Const</b> Name, Comment, Category: String;
+                       ParTypes: Array of TVariableType;
+                       ParClasses: Array of TClass;
+                       ParCats: Array of Boolean;
+                       ResType: TVariableType;
+                       ResObjectClass: TClass;
+                       AM: TAccessMethod);
+
+    <b>property</b> Name             : String;        // Nome da função
+    <b>property</b> Comment          : String;        // Comentário sobre esta função
+    <b>property</b> Category         : String;        // Categoria das rotinas
+    <b>property</b> Parameters       : Byte;          // Número de Parâmetros
+    <b>property</b> ParType [i: byte]: TVariableType; // Tipo dos Parâmetros
+    <b>property</b> ParClass[i: byte]: TClass;        // Tipo da Classe se o parâmetro for do tipo Object
+    <b>property</b> ParCat  [i: byte]: Boolean;       // Categoria do Parametro: True = por Referência; False = Por Cópia
+    <b>property</b> ResType          : TVariableType; // Tipo da função;
+    <b>property</b> ResObjectClass   : TClass;        // Caso o tipo de retorno seja Object
+    <b>property</b> AccessMethod     : TAccessMethod; // Método que fornecerá o serviço
+  <b>end</b>;
+
+  TProcObject = TFunctionObject;
+</pre>
+
+<a name="TFunctionList"></a>
+<font face="Arial" size="+1" color="Black">
+TFunctionList
+</font>
+<br><br>
+
+<pre>
+  TFunctionList = <b>class</b>
+  <b>public</b>
+    <b>constructor</b> Create;
+    <b>destructor</b> Destroy; Override;
+
+    <b>procedure</b> Add(Func: TFunctionObject); <b>overload</b>;
+    <b>procedure</b> Add(Const Name, Comment, Category: String;
+                  ParTypes: Array of TVariableType;
+                  ParClasses: Array of TClass;
+                  ParCats: Array of Boolean;
+                  ResType: TVariableType;
+                  ResObjectClass: TClass;
+                  AM: TAccessMethod); <b>overload</b>;
+
+    <b>function</b>  FunctionByName(<b>const</b> Name: String): TFunctionObject;
+    <b>function</b>  IndexOf(<b>const</b> Name: String): Integer;
+
+    <b>property</b>  Count: Integer;
+    <b>property</b>  Func[i: Integer]: TFunctionObject; <b>default</b>;
+  <b>end</b>;
+
+  TProcList = TFunctionList;
+</pre>
+  
+<a name="TFunctionServices"></a>  
+<font face="Arial" size="+1" color="Black">
+TFunctionServices
+</font>
+<br><br>
+
+<pre>
+  TFunctionServices = <b>class</b>
+  <b>public</b>
+    <b>class procedure</b> AddFunctionsIn (Functions: TFunctionList); <b>virtual</b>; <b>abstract</b>;
+    <b>class procedure</b> AddProcsIn (Procs: TProcList); <b>virtual</b>; <b>abstract</b>;
+  <b>end</b>;
+</pre>
+
+<a name="TpsClass"></a>
+<font face="Arial" size="+1" color="Black">
+TpsClass
+</font>
+<br><br>
+
+<pre>
+  TpsClass = <b>class</b>
+  <b>public</b>
+    <b>constructor</b> Create(<b>Const</b> Name, Comment: String; OC: TClass; <b>const</b> CMN: String);
+    <b>destructor</b>  Destroy; <b>override</b>;
+
+    <b>function</b> CreateObject: TObject; <b>virtual</b>; <b>abstract</b>;
+    <b>procedure</b> AddMethods; <b>virtual</b>; <b>abstract</b>;
+
+    <b>property</b> Name        : String;         // Nome da classe
+    <b>property</b> Comment     : String;         // Coment&aacute;rio, mini-help, etc
+    <b>property</b> Category    : String;         // Categoria da classe
+    <b>property</b> ObjectClass : TClass;         // Tipo da classe
+    <b>property</b> Parent      : TClass;         // Ancestral da classe ObjectClass
+    <b>property</b> Functions   : TFunctionList;  // m&eacute;todos da classe
+    <b>property</b> Procs       : TProcList;      // m&eacute;todos da classe
+  <b>end</b>;
+</pre>
+
+<a name="TClassList"></a>
+<font face="Arial" size="+1" color="Black">
+TClassList
+</font>
+<br><br>
+
+<pre>
+  TClassList = <b>class</b>
+  <b>public</b>
+    <b>constructor</b> Create;
+    <b>destructor</b> Destroy; <b>Override</b>;
+
+    <b>procedure</b> Add(Obj: TpsClass);
+    <b>function</b>  ClassByName(<b>const</b> Name: String): TpsClass;
+    <b>function</b>  IndexOf(<b>const</b> Name: String): Integer;
+
+    <b>property</b>  Clas[i: Integer]: TpsClass; <b>default</b>;
+  <b>end</b>;
+</pre>
+
+<a name="TByteCode"></a>
+<font face="Arial" size="+1" color="Black">
+TByteCode
+</font>
+<br><br>
+
+<pre>
+  TLineCode  = <b>record</b>
+                 Operacao: String;
+                 Op1     : String;
+                 Op2     : String;
+                 Res     : String;
+                 i_Op1   : Integer;
+                 i_Op2   : Integer;
+               <b>end</b>;
+
+  TByteCode = <b>class</b>(TList)
+  <b>public</b>
+    <b>constructor</b> Create;
+    <b>destructor</b> Destroy; <b>Override</b>;
+
+    <b>procedure</b>  Init;
+    <b>procedure</b>  Clear;
+    <b>procedure</b>  AddLine; <b>overload</b>;
+    <b>procedure</b>  AddLine(Code: TLineCode); <b>overload</b>;
+    <b>procedure</b>  Lock(OrdTemp: Integer);
+    <b>procedure</b>  UnLock(OrdTemp: Integer);
+    <b>procedure</b>  Optimize;
+    <b>procedure</b>  Show;
+
+    <b>function</b>   CurrentOrdTemp: Integer;
+    <b>function</b>   NewTemp: String;
+
+    <b>property</b>   LineCode[I: Integer]: TLineCode;
+  <b>end</b>;
+</pre>
+
+<a name="TVirtualMachine"></a>
+<font face="Arial" size="+1" color="Black">
+TVirtualMachine
+</font>
+<br><br>
+
+<pre>
+  // indica a mudança do Program Count (linha atual de execução)
+  TPC_Change = <b>procedure</b>(Sender: TObject; PC: Longword) <b>of</b> Object;
+
+  TVirtualMachine = <b>class</b>
+  <b>public</b>
+    <b>constructor</b> Create(ByteCode: TByteCode);
+    <b>destructor</b> Destroy; <b>override</b>;
+
+    <b>procedure</b> Execute;
+    <b>procedure</b> Stop;
+
+    <b>property</b> ByteCode  : TByteCode;
+    <b>property</b> Funcs     : TFunctionList;
+    <b>property</b> Procs     : TProcList;
+    <b>property</b> Classes   : TClassList;
+
+    // Eventos
+    <b>property</b> OnPC_Change     : TPC_Change;
+    <b>property</b> OnBeforeExecute : TNotifyEvent;
+    <b>property</b> OnAfterExecute  : TNotifyEvent;
+  <b>end</b>;
+</pre>
+
+</body>
+</html>

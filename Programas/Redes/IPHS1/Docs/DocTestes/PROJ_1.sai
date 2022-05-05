@@ -1,0 +1,804 @@
+
+
+          ********************                              ********************
+          *                                                                    *
+          *  INSTITUTO DE PESQUISAS HIDRAULICAS                                *
+          *  UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL                         *
+          *  MODELO IPHS1                                                      *
+          *                                                                    *
+          ********************                              ********************
+
+
+          Proj_1 - teste                                                                  
+
+
+          NUMERO  DE  INTERVALOS  DE TEMPO:      44
+          NUMERO DE OPERACOES HIDROLOGICAS:      17
+          NUMERO DE POSTOS DE CHUVA       :       1
+          NUMERO DE INTERVALOS COM CHUVA  :      44
+
+          DURACAO DO  INTERVALO  DE  TEMPO:     60. SEG.
+
+
+          NUMERO DE POSTOS COM CHUVA:  1
+
+          INT          POSTO
+         TEMPO     1
+           1   60.00
+           2   80.80
+           3   95.00
+           4  103.00
+           5  110.00
+           6  116.00
+           7  121.80
+           8  127.20
+           9  131.70
+          10  135.40
+          11  139.00
+          12  142.40
+          13  145.20
+          14  147.90
+          15  150.50
+          16  153.00
+          17  155.30
+          18  157.60
+          19  159.90
+          20  162.10
+          21  164.10
+          22  166.10
+          23  168.10
+          24  170.10
+          25  171.60
+          26  173.10
+          27  174.50
+          28  175.90
+          29  177.30
+          30  178.70
+          31  180.10
+          32  181.50
+          33  182.90
+          34  184.20
+          35  185.50
+          36  186.80
+          37  188.10
+          38  189.40
+          39  190.70
+          40  192.00
+          41  193.30
+          42  194.50
+          43  195.70
+          44  196.90
+
+
+
+
+          ********************
+          *                  *
+          * OPERACAO NRO   1 *
+          *                  *
+          ********************
+
+
+          Transformação Chuva-Vazão - SubBacia_1 - bacia A1                               
+
+
+
+
+          NCOD=  3  IPP=  1  IPR=  1 ILIST=  1  IS=  1  IE=  0  IOBS=  0
+
+
+          AVALIACAO DE PERDAS
+
+          METODO DO SCS-EE.UU.
+
+          CURVA NUMERO (CN) =       89.
+
+
+
+          INT     PRECIP     PACUM     PERD      PEFCT
+                   (MM)       (MM)     (MM)       (MM)
+
+            1     196.90    196.90    33.23    163.67
+            2     195.70    392.60     2.08    193.62
+            3     194.50    587.10      .75    193.75
+            4     193.30    780.40      .39    192.91
+            5     192.00    972.40      .24    191.76
+            6     190.70   1163.10      .16    190.54
+            7     189.40   1352.50      .11    189.29
+            8     188.10   1540.60      .09    188.01
+            9     186.80   1727.40      .07    186.73
+           10     185.50   1912.90      .05    185.45
+           11     184.20   2097.10      .04    184.16
+           12     182.90   2280.00      .04    182.86
+           13     181.50   2461.50      .03    181.47
+           14     180.10   2641.60      .03    180.07
+           15     178.70   2820.30      .02    178.68
+           16     177.30   2997.60      .02    177.28
+           17     175.90   3173.50      .02    175.88
+           18     174.50   3348.00      .02    174.48
+           19     173.10   3521.10      .01    173.09
+           20     171.60   3692.70      .01    171.59
+           21     170.10   3862.80      .01    170.09
+           22     168.10   4030.90      .01    168.09
+           23     164.10   4195.00      .01    164.09
+           24     159.90   4354.90      .01    159.89
+           25     155.30   4510.20      .01    155.29
+           26     150.50   4660.70      .01    150.49
+           27     145.20   4805.90      .01    145.19
+           28     139.00   4944.90      .01    138.99
+           29     131.70   5076.60      .00    131.70
+           30     121.80   5198.40      .00    121.80
+           31     110.00   5308.40      .00    110.00
+           32      95.00   5403.40      .00     95.00
+           33      60.00   5463.40      .00     60.00
+           34      80.80   5544.20      .00     80.80
+           35     103.00   5647.20      .00    103.00
+           36     116.00   5763.20      .00    116.00
+           37     127.20   5890.40      .00    127.20
+           38     135.40   6025.80      .00    135.40
+           39     142.40   6168.20      .00    142.40
+           40     147.90   6316.10      .00    147.90
+           41     153.00   6469.10      .00    153.00
+           42     157.60   6626.70      .00    157.60
+           43     162.10   6788.80      .00    162.10
+           44     166.10   6954.90      .00    166.10
+
+
+          TOTAL PRECIPITADO   6954.90 MM
+          TOTAL DE PERDAS       37.53 MM
+          TOTAL DE EXCESOS    6917.37 MM
+
+
+
+
+
+          PARAMETROS DA BACIA - METODO DE CLARK
+
+          AREA   INTERVALO DE TEMPO   TEMPO DE CONCENTRACAO   RET. RES. LINEAR
+           KM2         MINUTOS                HORAS               HORAS
+           1.0              1.                  .83                  .04
+
+
+
+          HISTOGRAMA TEMPO-AREA
+
+          I   ORDENADA
+
+          1       .10
+          2       .04
+          3       .03
+          4       .03
+          5       .02
+          6       .02
+          7       .02
+          8       .02
+          9       .02
+         10       .02
+         11       .02
+         12       .01
+         13       .01
+         14       .01
+         15       .01
+         16       .01
+         17       .01
+         18       .01
+         19       .01
+         20       .01
+         21       .01
+         22       .01
+         23       .01
+         24       .01
+         25       .01
+         26       .01
+         27       .01
+         28       .01
+         29       .01
+         30       .01
+         31       .01
+         32       .01
+         33       .01
+         34       .01
+         35       .01
+         36       .01
+         37       .01
+         38       .01
+         39       .02
+         40       .02
+         41       .02
+         42       .02
+         43       .02
+         44       .02
+         45       .02
+         46       .03
+         47       .03
+         48       .04
+         49       .10
+
+
+
+    AT    VAZAO    0        20        40        60        80       100
+                   +---------+---------+---------+---------+---------+
+     1    87.46    .         .      IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     2   198.50    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     3   307.67    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     4   409.18    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     5   501.60    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     6   585.16    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     7   660.69    .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     8   729.18    .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     9   791.58    .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    10   848.76    +---------+-IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    11   901.44    .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    12   950.24    .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    13   995.63    .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    14  1038.03    .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    15  1077.79    .         .   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    16  1115.20    .         .   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    17  1150.51    .         .   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    18  1183.94    .         .    IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    19  1215.64    .         .    IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    20  1245.73    +---------+----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    21  1274.31    .         .    IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    22  1301.24    .         .     IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    23  1325.51    .         .      IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    24  1347.04    .         .       IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    25  1365.77    .         .       IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    26  1382.07    .         .        IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    27  1396.14    .         .         IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    28  1407.90    .         .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    29  1417.05    .         .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIII
+    30  1422.44    +---------+---------+----IIIIIIIIIIIIIIIIIIIIIIIIII
+    31  1423.26    .         .         .       IIIIIIIIIIIIIIIIIIIIIII
+    32  1418.05    .         .         .         .IIIIIIIIIIIIIIIIIIII
+    33  1396.39    .         .         .         .       IIIIIIIIIIIII
+    34  1387.71    .         .         .         .  IIIIIIIIIIIIIIIIII
+    35  1396.28    .         .         .        IIIIIIIIIIIIIIIIIIIIII
+    36  1417.50    .         .         .     IIIIIIIIIIIIIIIIIIIIIIIII
+    37  1449.10    .         .         .   IIIIIIIIIIIIIIIIIIIIIIIIIII
+    38  1488.39    .         .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    39  1533.83    .         .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    40  1584.08    +---------+---------IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    41  1638.68    .         .        IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    42  1697.40    .         .       IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    43  1760.47    .         .      IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    44  1828.21    .         .     IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+
+          HIDROGRAMA RESULTANTE DA OPERACAO:  1
+
+          INT        VAZAO        INT        VAZAO
+         TEMPO       (M3/S)      TEMPO       (M3/S)
+
+            1        87.46         23       1325.51
+            2       198.50         24       1347.04
+            3       307.67         25       1365.77
+            4       409.18         26       1382.07
+            5       501.60         27       1396.14
+            6       585.16         28       1407.90
+            7       660.69         29       1417.05
+            8       729.18         30       1422.44
+            9       791.58         31       1423.26
+           10       848.76         32       1418.05
+           11       901.44         33       1396.39
+           12       950.24         34       1387.71
+           13       995.63         35       1396.28
+           14      1038.03         36       1417.50
+           15      1077.79         37       1449.10
+           16      1115.20         38       1488.39
+           17      1150.51         39       1533.83
+           18      1183.94         40       1584.08
+           19      1215.64         41       1638.68
+           20      1245.73         42       1697.40
+           21      1274.31         43       1760.47
+           22      1301.24         44       1828.21
+
+
+          VOL ESCOADO=    3.06 HM3
+
+
+
+
+          ********************
+          *                  *
+          * OPERACAO NRO   2 *
+          *                  *
+          ********************
+
+
+          Propagação em Reservatório - RES_1 - reservatorio 2                             
+
+
+
+
+          NCOD=  1  IPP=  0  IPR=  1 ILIST=  1  IS=  2  IE=  1  IOBS=  0
+
+          PROPAGACAO EM RESERVATORIO
+
+
+          ESTADO INICIAL S =       .0 M3/S
+
+
+          CURVA VAZAO-VOLUME VALIDA ATE O INTERVALO:  45
+
+          INT     VAZAO     VOLUME
+                  (M3/S)    (M3/S)
+            1       .0         .0
+            2       .0       12.8
+            3       .0       25.4
+            4       .0       37.5
+            5       .0       49.4
+            6       .0       61.0
+            7       .0       72.3
+            8       .5       83.3
+            9      1.4       94.0
+
+
+
+
+    AT    VAZAO    0       200       400       600       800      1000
+                   +---------+---------+---------+---------+---------+
+     1      .00    *         .         .         .         .         .
+     2     5.36    *         .         .         .         .         .
+     3    25.64    .*        .         .         .         .         .
+     4    52.89    . *       .         .         .         .         .
+     5    85.84    .   *     .         .         .         .         .
+     6   123.30    .     *   .         .         .         .         .
+     7   164.20    .       * .         .         .         .         .
+     8   207.65    .         *         .         .         .         .
+     9   252.90    .         . *       .         .         .         .
+    10   299.34    +---------+---*-----+---------+---------+---------+
+    11   346.48    .         .      *  .         .         .         .
+    12   393.91    .         .        *.         .         .         .
+    13   441.31    .         .         . *       .         .         .
+    14   488.43    .         .         .   *     .         .         .
+    15   535.05    .         .         .     *   .         .         .
+    16   581.01    .         .         .        *.         .         .
+    17   626.19    .         .         .         .*        .         .
+    18   670.48    .         .         .         .  *      .         .
+    19   713.81    .         .         .         .    *    .         .
+    20   756.13    +---------+---------+---------+------*--+---------+
+    21   797.38    .         .         .         .        *.         .
+    22   837.53    .         .         .         .         .*        .
+    23   876.48    .         .         .         .         .  *      .
+    24   914.12    .         .         .         .         .    *    .
+    25   950.33    .         .         .         .         .      *  .
+    26   985.01    .         .         .         .         .        *.
+    27  1018.09    .         .         .         .         .         *
+    28  1049.52    .         .         .         .         .         .
+    29  1079.24    .         .         .         .         .         .
+    30  1107.11    +---------+---------+---------+---------+---------+
+    31  1132.96    .         .         .         .         .         .
+    32  1156.51    .         .         .         .         .         .
+    33  1177.04    .         .         .         .         .         .
+    34  1194.64    .         .         .         .         .         .
+    35  1210.80    .         .         .         .         .         .
+    36  1226.85    .         .         .         .         .         .
+    37  1243.75    .         .         .         .         .         .
+    38  1262.17    .         .         .         .         .         .
+    39  1282.55    .         .         .         .         .         .
+    40  1305.18    +---------+---------+---------+---------+---------+
+    41  1330.25    .         .         .         .         .         .
+    42  1357.90    .         .         .         .         .         .
+    43  1388.28    .         .         .         .         .         .
+    44  1421.52    .         .         .         .         .         .
+
+
+          HIDROGRAMA RESULTANTE DA OPERACAO:  2
+
+          INT        VAZAO        INT        VAZAO
+         TEMPO       (M3/S)      TEMPO       (M3/S)
+
+            1          .00         23        876.48
+            2         5.36         24        914.12
+            3        25.64         25        950.33
+            4        52.89         26        985.01
+            5        85.84         27       1018.09
+            6       123.30         28       1049.52
+            7       164.20         29       1079.24
+            8       207.65         30       1107.11
+            9       252.90         31       1132.96
+           10       299.34         32       1156.51
+           11       346.48         33       1177.04
+           12       393.91         34       1194.64
+           13       441.31         35       1210.80
+           14       488.43         36       1226.85
+           15       535.05         37       1243.75
+           16       581.01         38       1262.17
+           17       626.19         39       1282.55
+           18       670.48         40       1305.18
+           19       713.81         41       1330.25
+           20       756.13         42       1357.90
+           21       797.38         43       1388.28
+           22       837.53         44       1421.52
+
+
+          VOL ESCOADO=    2.04 HM3
+
+
+
+
+          ********************
+          *                  *
+          * OPERACAO NRO   3 *
+          *                  *
+          ********************
+
+
+          Transformação Chuva-Vazão - SubBacia_2 - bacia A1                               
+
+
+
+
+          NCOD=  3  IPP=  1  IPR=  1 ILIST=  1  IS=  3  IE=  0  IOBS=  0
+
+
+          AVALIACAO DE PERDAS
+
+          METODO DO SCS-EE.UU.
+
+          CURVA NUMERO (CN) =       89.
+
+
+
+          INT     PRECIP     PACUM     PERD      PEFCT
+                   (MM)       (MM)     (MM)       (MM)
+
+            1     196.90    196.90    33.23    163.67
+            2     195.70    392.60     2.08    193.62
+            3     194.50    587.10      .75    193.75
+            4     193.30    780.40      .39    192.91
+            5     192.00    972.40      .24    191.76
+            6     190.70   1163.10      .16    190.54
+            7     189.40   1352.50      .11    189.29
+            8     188.10   1540.60      .09    188.01
+            9     186.80   1727.40      .07    186.73
+           10     185.50   1912.90      .05    185.45
+           11     184.20   2097.10      .04    184.16
+           12     182.90   2280.00      .04    182.86
+           13     181.50   2461.50      .03    181.47
+           14     180.10   2641.60      .03    180.07
+           15     178.70   2820.30      .02    178.68
+           16     177.30   2997.60      .02    177.28
+           17     175.90   3173.50      .02    175.88
+           18     174.50   3348.00      .02    174.48
+           19     173.10   3521.10      .01    173.09
+           20     171.60   3692.70      .01    171.59
+           21     170.10   3862.80      .01    170.09
+           22     168.10   4030.90      .01    168.09
+           23     164.10   4195.00      .01    164.09
+           24     159.90   4354.90      .01    159.89
+           25     155.30   4510.20      .01    155.29
+           26     150.50   4660.70      .01    150.49
+           27     145.20   4805.90      .01    145.19
+           28     139.00   4944.90      .01    138.99
+           29     131.70   5076.60      .00    131.70
+           30     121.80   5198.40      .00    121.80
+           31     110.00   5308.40      .00    110.00
+           32      95.00   5403.40      .00     95.00
+           33      60.00   5463.40      .00     60.00
+           34      80.80   5544.20      .00     80.80
+           35     103.00   5647.20      .00    103.00
+           36     116.00   5763.20      .00    116.00
+           37     127.20   5890.40      .00    127.20
+           38     135.40   6025.80      .00    135.40
+           39     142.40   6168.20      .00    142.40
+           40     147.90   6316.10      .00    147.90
+           41     153.00   6469.10      .00    153.00
+           42     157.60   6626.70      .00    157.60
+           43     162.10   6788.80      .00    162.10
+           44     166.10   6954.90      .00    166.10
+
+
+          TOTAL PRECIPITADO   6954.90 MM
+          TOTAL DE PERDAS       37.53 MM
+          TOTAL DE EXCESOS    6917.37 MM
+
+
+
+
+
+          PARAMETROS DA BACIA - METODO DE CLARK
+
+          AREA   INTERVALO DE TEMPO   TEMPO DE CONCENTRACAO   RET. RES. LINEAR
+           KM2         MINUTOS                HORAS               HORAS
+            .7              1.                  .04                  .02
+
+
+
+          HISTOGRAMA TEMPO-AREA
+
+          I   ORDENADA
+
+          1       .50
+          2       .50
+
+
+
+    AT    VAZAO    0        20        40        60        80       100
+                   +---------+---------+---------+---------+---------+
+     1   539.80    .         .      IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     2  1412.99    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     3  1891.70    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     4  2097.42    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     5  2180.27    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     6  2208.45    .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     7  2212.53    .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     8  2205.96    .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     9  2194.69    .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    10  2181.32    +---------+-IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    11  2167.01    .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    12  2152.27    .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    13  2137.00    .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    14  2121.17    .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    15  2105.08    .         .   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    16  2088.87    .         .   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    17  2072.61    .         .   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    18  2056.32    .         .    IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    19  2040.02    .         .    IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    20  2023.38    +---------+----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    21  2006.27    .         .    IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    22  1987.29    .         .     IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    23  1959.26    .         .      IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    24  1920.04    .         .       IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    25  1873.98    .         .       IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    26  1822.96    .         .        IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    27  1767.48    .         .         IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    28  1705.45    .         .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    29  1633.97    .         .         .  IIIIIIIIIIIIIIIIIIIIIIIIIIII
+    30  1546.17    +---------+---------+----IIIIIIIIIIIIIIIIIIIIIIIIII
+    31  1436.45    .         .         .       IIIIIIIIIIIIIIIIIIIIIII
+    32  1300.38    .         .         .         .IIIIIIIIIIIIIIIIIIII
+    33  1076.34    .         .         .         .       IIIIIIIIIIIII
+    34   932.14    .         .         .         .  IIIIIIIIIIIIIIIIII
+    35  1011.29    .         .         .        IIIIIIIIIIIIIIIIIIIIII
+    36  1161.79    .         .         .     IIIIIIIIIIIIIIIIIIIIIIIII
+    37  1307.00    .         .         .   IIIIIIIIIIIIIIIIIIIIIIIIIII
+    38  1434.10    .         .         . IIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    39  1539.47    .         .         .IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    40  1626.48    +---------+---------IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    41  1699.26    .         .        IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    42  1762.89    .         .       IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    43  1820.55    .         .      IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    44  1873.65    .         .     IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+
+          HIDROGRAMA RESULTANTE DA OPERACAO:  3
+
+          INT        VAZAO        INT        VAZAO
+         TEMPO       (M3/S)      TEMPO       (M3/S)
+
+            1       539.80         23       1959.26
+            2      1412.99         24       1920.04
+            3      1891.70         25       1873.98
+            4      2097.42         26       1822.96
+            5      2180.27         27       1767.48
+            6      2208.45         28       1705.45
+            7      2212.53         29       1633.97
+            8      2205.96         30       1546.17
+            9      2194.69         31       1436.45
+           10      2181.32         32       1300.38
+           11      2167.01         33       1076.34
+           12      2152.27         34        932.14
+           13      2137.00         35       1011.29
+           14      2121.17         36       1161.79
+           15      2105.08         37       1307.00
+           16      2088.87         38       1434.10
+           17      2072.61         39       1539.47
+           18      2056.32         40       1626.48
+           19      2040.02         41       1699.26
+           20      2023.38         42       1762.89
+           21      2006.27         43       1820.55
+           22      1987.29         44       1873.65
+
+
+          VOL ESCOADO=    4.70 HM3
+
+
+
+
+          ********************
+          *                  *
+          * OPERACAO NRO   4 *
+          *                  *
+          ********************
+
+
+          Propagação em Rio - TrechoDagua_2 - canal-bacia A1                              
+
+
+
+
+          NCOD=  2  IPP=  0  IPR=  1 ILIST=  1  IS=  4  IE=  2  IOBS=  0
+
+
+          PARAMETROS
+
+          AX      N    B     SO    DTCAL    NTRECH    BPLAN    NPLAN    Y0
+         (M)          (M)  (M/M)   (SEG)               (M)             (M)
+
+       100.0   .020  2.0  .0200      60.        10    100.0     .040  1.00
+
+
+          TRECHO EN CANAL COM PLANICIE DE INUNDACAO
+
+
+         I         H       CEL         X         K     VAZAO
+                   M       M/S                  HS      M3/S
+         1       .10      2.54       .49     39.43       .30
+         2       .20      4.03       .47     24.81       .96
+         3       .30      5.28       .46     18.93      1.89
+         4       .40      6.40       .44     15.62      3.06
+         5       .50      7.43       .43     13.46      4.44
+         6       .60      8.39       .41     11.91      6.03
+         7       .70      9.31       .40     10.75      7.80
+         8       .80     10.17       .38      9.83      9.74
+         9       .90     11.01       .37      9.09     11.86
+        10      1.00     11.81       .35      8.47     14.14
+        11      1.10      1.48       .46     67.37     24.14
+        12      1.20      2.23       .45     44.83     43.23
+        13      1.30      2.86       .44     34.97     69.26
+        14      1.40      3.42       .43     29.21    101.35
+        15      1.50      3.94       .41     25.37    138.94
+
+
+
+
+    AT    VAZAO    0        20        40        60        80       100
+                   +---------+---------+---------+---------+---------+
+     1      .00    *         .         .         .         .         .
+     2    49.92    .         .         .   *     .         .         .
+     3   558.68    .         .         .         .         .         .
+     4*********    .         .         .         .         .         .
+     5 31026.22    .         .         .         .         .         .
+     6 35456.86    .         .         .         .         .         .
+     7443462.60    .         .         .         .         .         .
+     8443515.00    .         .         .         .         .         .
+     9443630.40    .         .         .         .         .         .
+    10443620.80    +---------+---------+---------+---------+---------+
+    11443956.30    .         .         .         .         .         .
+    12437463.20    .         .         .         .         .         .
+    13445080.20    .         .         .         .         .         .
+    14446565.00    .         .         .         .         .         .
+    15447793.30    .         .         .         .         .         .
+    16448875.10    .         .         .         .         .         .
+    17449854.70    .         .         .         .         .         .
+    18450771.30    .         .         .         .         .         .
+    19451930.70    .         .         .         .         .         .
+    20453057.00    +---------+---------+---------+---------+---------+
+    21454049.70    .         .         .         .         .         .
+    22454948.30    .         .         .         .         .         .
+    23455777.40    .         .         .         .         .         .
+    24456552.30    .         .         .         .         .         .
+    25457283.50    .         .         .         .         .         .
+    26457977.90    .         .         .         .         .         .
+    27458641.30    .         .         .         .         .         .
+    28459277.80    .         .         .         .         .         .
+    29459890.70    .         .         .         .         .         .
+    30460482.70    +---------+---------+---------+---------+---------+
+    31461055.90    .         .         .         .         .         .
+    32461612.20    .         .         .         .         .         .
+    33462153.10    .         .         .         .         .         .
+    34462680.50    .         .         .         .         .         .
+    35463195.50    .         .         .         .         .         .
+    36463699.10    .         .         .         .         .         .
+    37464192.30    .         .         .         .         .         .
+    38464675.80    .         .         .         .         .         .
+    39465150.70    .         .         .         .         .         .
+    40465617.20    +---------+---------+---------+---------+---------+
+    41466076.10    .         .         .         .         .         .
+    42466527.90    .         .         .         .         .         .
+    43466972.70    .         .         .         .         .         .
+    44467410.90    .         .         .         .         .         .
+
+
+          HIDROGRAMA RESULTANTE DA OPERACAO:  4
+
+          INT        VAZAO        INT        VAZAO
+         TEMPO       (M3/S)      TEMPO       (M3/S)
+
+            1          .00         23      ********
+            2        49.92         24      ********
+            3       558.68         25      ********
+            4     ********         26      ********
+            5     31026.22         27      ********
+            6     35456.86         28      ********
+            7     ********         29      ********
+            8     ********         30      ********
+            9     ********         31      ********
+           10     ********         32      ********
+           11     ********         33      ********
+           12     ********         34      ********
+           13     ********         35      ********
+           14     ********         36      ********
+           15     ********         37      ********
+           16     ********         38      ********
+           17     ********         39      ********
+           18     ********         40      ********
+           19     ********         41      ********
+           20     ********         42      ********
+           21     ********         43      ********
+           22     ********         44      ********
+
+
+          VOL ESCOADO= 1034.08 HM3
+
+
+
+
+          ********************
+          *                  *
+          * OPERACAO NRO   5 *
+          *                  *
+          ********************
+
+
+          Transformação Chuva-Vazão - SubBacia_3 - bacia A2                               
+
+
+
+
+          NCOD=  3  IPP=  1  IPR=  1 ILIST=  1  IS=  5  IE=  0  IOBS=  0
+
+
+          AVALIACAO DE PERDAS
+
+          METODO DO SCS-EE.UU.
+
+          CURVA NUMERO (CN) =       89.
+
+
+
+          INT     PRECIP     PACUM     PERD      PEFCT
+                   (MM)       (MM)     (MM)       (MM)
+
+            1     196.90    196.90    33.23    163.67
+            2     195.70    392.60     2.08    193.62
+            3     194.50    587.10      .75    193.75
+            4     193.30    780.40      .39    192.91
+            5     192.00    972.40      .24    191.76
+            6     190.70   1163.10      .16    190.54
+            7     189.40   1352.50      .11    189.29
+            8     188.10   1540.60      .09    188.01
+            9     186.80   1727.40      .07    186.73
+           10     185.50   1912.90      .05    185.45
+           11     184.20   2097.10      .04    184.16
+           12     182.90   2280.00      .04    182.86
+           13     181.50   2461.50      .03    181.47
+           14     180.10   2641.60      .03    180.07
+           15     178.70   2820.30      .02    178.68
+           16     177.30   2997.60      .02    177.28
+           17     175.90   3173.50      .02    175.88
+           18     174.50   3348.00      .02    174.48
+           19     173.10   3521.10      .01    173.09
+           20     171.60   3692.70      .01    171.59
+           21     170.10   3862.80      .01    170.09
+           22     168.10   4030.90      .01    168.09
+           23     164.10   4195.00      .01    164.09
+           24     159.90   4354.90      .01    159.89
+           25     155.30   4510.20      .01    155.29
+           26     150.50   4660.70      .01    150.49
+           27     145.20   4805.90      .01    145.19
+           28     139.00   4944.90      .01    138.99
+           29     131.70   5076.60      .00    131.70
+           30     121.80   5198.40      .00    121.80
+           31     110.00   5308.40      .00    110.00
+           32      95.00   5403.40      .00     95.00
+           33      60.00   5463.40      .00     60.00
+           34      80.80   5544.20      .00     80.80
+           35     103.00   5647.20      .00    103.00
+           36     116.00   5763.20      .00    116.00
+           37     127.20   5890.40      .00    127.20
+           38     135.40   6025.80      .00    135.40
+           39     142.40   6168.20      .00    142.40
+           40     147.90   6316.10      .00    147.90
+           41     153.00   6469.10      .00    153.00
+           42     157.60   6626.70      .00    157.60
+           43     162.10   6788.80      .00    162.10
+           44     166.10   6954.90      .00    166.10
+
+
+          TOTAL PRECIPITADO   6954.90 MM
+          TOTAL DE PERDAS       37.53 MM
+          TOTAL DE EXCESOS    6917.37 MM
+
+

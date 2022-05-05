@@ -1,0 +1,51 @@
+Subject: IPHS1(1)
+Date: Mon, 06 Aug 2001 19:06:57 -0300
+From: Daniel G Allasia <dallasia@if.ufrgs.br>
+To: João Soares Viegas Filho <jsviegas@uol.com.br>
+
+Envio entao os arquivos segundo o convinado.
+No .doc estao as observaçoes feitas. Cualquer duvida so entrar en contato.
+O Tem o curso na sexta feira, acho dificil tener a versao terminada ate esa
+data.
+
+O exemplo (que nao vai ter seguramente a rede no seu lugar - pergunta: tal
+vez seja que foi salvada sem estar bloqueada, sera isso?, se é isso mandar
+uma mensajem antes de gravar para bloquear ou que bloqueie automaticamente)
+é da bacia do areia (bacia urbana). Os trechos simulados correspondem  a
+bacia urbana onde os condutos foram determinados por equivalencia
+(procurouse um conduto -isto tem que ser explicado no arquivo de ayuda- que
+com seça retangular tivese um comportamente similar (igualdad de
+K-condutividade hidraulica ou conveniance- e Q) para as distintas alturas da
+agua que poderiam ser alcanzadas no mesmo)
+
+O arquivo que envio debe ser trabalhado (ajeitar parametro , etc), so que da
+uma olhada, me devolve e depois eu reviso, ou se achar que é complicado
+demais para exemplo tracamos ele. No entanto achei interesante porque mostra
+como a ferramenta pode ser aplicada a outros casos -condutos circulares- que
+nao estao especificamente considerados.
+
+Daniel G. Allasia P.
+IPH - UFRGS
+http://www.hidrologia.com.ar
+
+                        Name: proba areia.iphs1
+   proba areia.iphs1    Type: application/x-unknown-content-type-iphs1_auto_file
+                    Encoding: 7bit
+
+                  Name: discfi2.bmp
+   discfi2.bmp    Type: Arquivo BMP (image/bmp)
+              Encoding: base64
+
+                 Name: Proj_1.ent
+   Proj_1.ent    Type: Arquivo ENT
+                       (application/x-unknown-content-type-ENT_auto_file)
+             Encoding: quoted-printable
+
+                 Name: PROJ_1.sai
+   PROJ_1.sai    Type: Arquivo SAI
+                       (application/x-unknown-content-type-SAI_auto_file)
+             Encoding: quoted-printable
+
+                         Name: Questoes IPHS1.doc
+   Questoes IPHS1.doc    Type: WINWORD File (application/msword)
+                     Encoding: base64

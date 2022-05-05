@@ -1,0 +1,505 @@
+var
+    // variáveis auxiliares para conter as strings que formaram as variáveis:
+    vazio:                                                   string;
+    // Sinal para a inequação
+    Sinal:                                                   string;
+    // Variavel para conter a equação em formato de string
+    Equacao:                                                 string;
+    // Variável para conter a string com o numero do ano
+    sAno :                                                   string;
+    // Variável para conter a string com o nome de cada demanda
+    NomeDemanda:                                             string;
+    // Variaveis auxiliares para conter o ano inicial de analise e os intervalos de analise
+    AnoInicial, OticaPub, OticaPri, Oticadeanalise :         integer;
+    // variáveis temporárias
+    iPC,iInt,iDem,iAno,indice:                               integer;
+    // Variavel para fazer um teste com intervalo de analise menor
+    Oticateste, NumIntOticateste:                            integer;
+    // Variavel para conter o numero de PCs:
+    ano, mes:                                                integer;
+    // Variavel para conter o nome de cada demanda:
+    NumeroPCs:                                               integer;
+    // Variavel para conter o numero de intervalos de simulação do projeto
+    NumIntSim:                                               integer;
+    // Variavel para conter o intervalo inicial de otimização
+    IntInicial:                                              integer;
+    // Variaveis para conter o numero de intervalos de otimização para Otica Privada e Publica:
+    NumIntOticaPri, NumIntOticaPub, NumIntOticadeanalise:    integer;
+    // variavel para conter a quantidade de anos para calculo do fator de atualização
+    NumeroAnos:                                              integer;
+    //Variavel que define o numero de demandas de cada PC
+    Numerodedemandas:                                        integer;
+    //Variavel para conter o numero que identifica o PC:
+    NumPC:                                                   integer;
+    // Variaveis para fazer a conversao de m3/s para m/intervalo de simulação
+    Conversor, Mes28d, Mes29d, Mes30d, Mes31d:               real;
+    // Variavel para acumular o valor de RHS:
+    RHS:                                                     real;
+    // Variaveis para conter os valores dos coeficientes das equaçoes de Evap e Prec
+    CAE, CBE, CAP, CBP:                                      real;
+    // Variavel para conter o valor do retorno de cada demanda
+    CoefRetorno:                                             real;
+    // Variaveis para conter o fator de desconto adotado e o fator de atualização calculado:
+    FatorDesc, FatorAtual:                                   real;
+    // variavel para conter o coeficiente de cada variável na FO:
+    Coef:                                                    real;
+    // variavel para conter o coeficiente de cada variável na FO:
+    CoefOeM :                                                real;
+    // Variavel que vai conter o objeto PC:
+    PC:                                                      Object;
+    // Variaveis que vao conter as Planilhas com os valores dos investimentos e benefícios
+    // relativos a cada sub-projeto de irrigação existente, ou planejado (aspersao ou inundacao)
+    PlanilhaReserv:                                          Object;
+    FolhaPlanilha:                                           Object;
+        // Variavel que vai conter os objetos Demanda de cada PC:
+    DemandaPC:                                               Object;
+    // variavel que vai conter a string com o caminho do diretorio
+    Folder:                                                  string;
+begin
+
+  //Define qual é o caminho a ser utilizado como diretorio corrente
+  Folder:=  'F:\Projetos\Arquivos de Trabalho\Propagar 3.0\Paracatu\Proj 2\';
+
+  //Inicialização das constantes que conterão as strings que serão utilizadas para formar as variáveis e equaçoes
+  vazio:= '';
+
+  //Estabelece o numero de segundos de acordo com o numero de dias no mes:
+  Mes28d:=28*24*60*60;
+  Mes29d:=29*24*60*60;
+  Mes30d:=30*24*60*60;
+  Mes31d:=31*24*60*60;
+
+
+  // Inicialização das constantes que conterão os valores dos anos iniciais de otimização e os valores
+  // dos intervalos de tempo de análise (Otica publica, privada ou de teste)
+  AnoInicial:= 1975;
+  OticaPub:= 28;
+  OticaPri:= 10;
+  Oticateste:= 2;
+
+  // Escolha da Otica de otimização  e dos intervalos de otimização
+  Oticadeanalise := OticaPri;
+  // Determinação dos periodos dos intervalos de otimizaçao para otica publica e privada:
+  NumIntOticadeanalise := {12*Oticadeanalise} 20;
+
+  //Fator de desconto a ser utilizado no projeto:
+  FatorDesc:= 0.08;
+
+  // Obtem o total de intervalo de simulação
+  NumIntSim := Projeto.Total_IntSim;
+
+  // Vai descobrir qual é o intervalo inicial de otimização
+  for iInt := 1 to NumIntSim do
+      begin
+        Projeto.IntervaloComoData( iInt, mes, ano); // Obtem o mês e o ano do delta T atual
+        if (ano = AnoInicial) and (mes = 1)
+           then IntInicial := iInt
+      end;
+
+  //Cria os objetos para receberem as planílhas com os valores de Custos e Beneficios para os reservatorios
+  PlanilhaReserv := Createobject(TSpreadSheetBook);
+
+  //Ler no diretório especificado a planilha caso ela exista
+  if FileExists(Folder+'CustoReservatorio.xls')
+     then
+        PlanilhaReserv.LoadFromFile(Folder+'CustoReservatorio.xls')
+     else
+        ShowMessage(' Arquivo não encontrado');
+
+
+  // Recebe do projeto o numero de PC existentes
+  NumeroPCs := Projeto.NumPCs;
+
+  Projeto.Equacoes_Escrever('!Modelo de PL para Escolha de reservatorios');
+  Projeto.Equacoes_Escrever('');
+
+  // Introduz no arquivo a palavra reservada de minimização de custos:
+  Projeto.Equacoes_Escrever('MIN');
+  // Introduz no arquivo a palavra que define a FO:
+  Projeto.Equacoes_Escrever('FO)');
+
+
+  // Geração da equação que define a Função objetivo
+  // Varre todos os PCs do projeto
+  for iPC := 1 to NumeroPCs do
+      begin
+         // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+         PC:= Projeto.PC(iPC-1);
+         // Testa se PC eh resrvatorio e diferente do PC
+         if ((PC.Eh_Reservatorio)and(PC.Nome<>'08')) then
+             begin
+               //Converte em numero inteiro a string com o numero do PC
+               NumPC:= trunc(StrToFloat(PC.Nome));
+               //Esvazia a string que vai conter uma equação
+               Equacao := vazio;
+               //Ativa a folha da planilha que contem os custos de implantação dos resrvatorios
+               PlanilhaReserv.setActiveSheetIndex(1);
+               //Recebe essa folha:
+               FolhaPlanilha :=  PlanilhaReserv.ActiveSheet;
+               //ler o valor do coeficiente relativo ao custo de implantação do subprojeto
+               Coef:=FolhaPlanilha.GetFloat(NumPC,1);
+               //Inicia a montagem da equação
+               Equacao := Equacao +'+'+FloatToStr(Coef,3)+' VI'+Pc.Nome+'00';
+               //Começa a varredura anual
+               for iAno := AnoInicial to (AnoInicial+Oticadeanalise-1) do
+                   begin
+                      //Estabelece o numero de anos para o calculo do fator de desconto
+                      NumeroAnos:= iAno-AnoInicial+1;
+                      //Calcula o valor do Fator de atualização
+                      FatorAtual:= 1/(Power(1+FatorDesc,NumeroAnos-1));
+                      //calcula o valor do coeficiente multiplicando:
+                      //1. Fator de atualização calculado
+                      //2. Valor da porcentagem do custo de OeM em relaçao ao custo de implantaçao
+                      //3. Valor do custo de implantação do reservatorio
+                      Coef:=FatorAtual*FolhaPlanilha.GetFloat(NumPC,2)*0.001*FolhaPlanilha.GetFloat(NumPC,1);
+                      //Inicia a montagem da equação
+                      Equacao := Equacao + ' + '+FloatToStr(Coef,3)+' VI'+Pc.Nome+'00';
+                   end;
+               Projeto.Equacoes_Escrever(Equacao);
+             end;
+      end;
+
+  // Introduz no arquivo a palavra reservada que indica o inicio do bloco das restrições:
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!Inicio do bloco das restrições: ');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('ST');
+  Projeto.Equacoes_Escrever('');
+
+  // Geração do bloco "Balanço Hídrico"
+  Projeto.Equacoes_Escrever('! Bloco referente ao balanço hídrico: ');
+  Projeto.Equacoes_Escrever('');
+  //Varredura dos intervalos de tempo considerados para otimização
+  for iInt := IntInicial to (IntInicial+NumIntOticadeanalise-1) do
+    begin
+    Projeto.Equacoes_Escrever('!Intervalo ' + IntToStr(iInt));
+    Projeto.Equacoes_Escrever('');
+    //Executa método que faz o balanço hídrico em cada PC, monta a equação e escreve no arquivo
+    Projeto.Equacoes_GerarBalancoHidrico(iInt);
+    end;
+
+  // Geração do bloco de "definição das demandas em cada PC"
+  // teste para 12 intervalos de tempo:
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('! Bloco referente a definição do termo DMPCim: ');
+  Projeto.Equacoes_Escrever('! DMPCim: - Demanda do PCi no intervalo m ');
+  Projeto.Equacoes_Escrever('');
+
+  //Varredura dos intervalos de tempo considerados para otimização
+  for iInt := IntInicial to (IntInicial+NumIntOticadeanalise-1) do
+     begin
+        // Obtem o mês e o ano do delta T atual
+        Projeto.IntervaloComoData(iInt, mes, ano);
+        // Escreve na janela o intervalo, mes e ano
+        Projeto.Equacoes_Escrever('!Intervalo:' + IntToStr(iInt)+' mes:'+IntToStr(mes)+' ano:'+IntToStr(ano));
+        // Verifica qual é o mes corrente e estabelece o valor do Conversor de m3/s para m3 no intevalo corrente
+        if (mes = 1) or (mes = 3) or (mes = 5) or (mes = 7) or (mes = 8) or (mes = 10) or (mes = 12)
+           then
+              Conversor := Mes31d
+           else
+              if (mes = 4) or (mes = 6) or (mes = 9) or (mes = 11)
+                 then
+                    Conversor := Mes30d
+                 else
+                    if ((ano = 2000) or (ano = 1996) or (ano = 1992) or (ano = 1988) or (ano = 1984) or (ano = 1980) or (ano = 1976))
+                       then
+                          Conversor := Mes29d
+                       else
+                          Conversor := Mes28d;
+        // laço que vai varrer todos os PCs
+        for iPC := 1 to NumeroPCs do
+            begin
+               // Recebe o objeto PC da lista contida no Projeto (inicia com 0)
+               PC:= Projeto.PC(iPC-1);
+               // testa se o PC eh de cabeceira sem influencia dos futuros reservatorios
+               if ((PC.Nome = '01') or (PC.Nome = '03') or (PC.Nome = '06') or (PC.Nome = '14') or (PC.Nome = '15'))
+                  then Sinal := ' <= '
+                  else Sinal := ' = ';
+               // Começa a escrever a equação que define o termo DM para o PC atual
+               Equacao := 'DMD'+ PC.Nome+ IntToStr(iInt)+') ' +'DM' + PC.Nome + IntToStr(iInt);
+               // Recebe o numero de demandas ligadas ao PC atual
+               Numerodedemandas:= PC.Demandas;
+               // Zera o valor do RHS
+               RHS := 0.0;
+               // Varre as demandas do PC atual
+               For iDem := 1 to Numerodedemandas do
+                  begin
+                    //Recebe o objeto Demanda da lista contida no Pc atual (inicia com 0)
+                    DemandaPC:= PC.Demanda(iDem-1);
+                    //Recebe a demanda total mensal das demandas
+                    RHS := RHS + DemandaPC.DemandaTotal(mes,ano)*Conversor;
+                  end;
+               Equacao := Equacao +Sinal+FloatToStr(RHS,2);
+               Projeto.Equacoes_Escrever(Equacao);
+            end;
+        Projeto.Equacoes_Escrever('');
+     end;
+
+  // Geração do bloco de "definição dos retornos em cada PC"
+  // Obs: Nao e necessario gerar o retorno do ultimo PC
+  // teste para 12 intervalos de tempo:
+  Projeto.Equacoes_Escrever('! Bloco referente a definição do termo RTPCim: ');
+  Projeto.Equacoes_Escrever('! RTPCim: ReTorno do PCi no intervalo m');
+  Projeto.Equacoes_Escrever('');
+
+  //Varredura dos intervalos de tempo considerados para otimização
+  for iInt := IntInicial to (IntInicial+NumIntOticadeanalise-1) do
+     begin
+        // Obtem o mês e o ano do delta T atual
+        Projeto.IntervaloComoData(iInt, mes, ano);
+        // Escreve na janela o intervalo, mes e ano
+        Projeto.Equacoes_Escrever('!Intervalo:' + IntToStr(iInt)+' mes:'+IntToStr(mes)+' ano:'+IntToStr(ano));
+        // Verifica qual é o mes corrente e estabelece o valor do Conversor de m3/s para m3 no intevalo corrente
+        if (mes = 1) or (mes = 3) or (mes = 5) or (mes = 7) or (mes = 8) or (mes = 10) or (mes = 12)
+           then
+              Conversor := Mes31d
+           else
+              if (mes = 4) or (mes = 6) or (mes = 9) or (mes = 11)
+                 then
+                    Conversor := Mes30d
+                 else
+                    if ((ano = 2000) or (ano = 1996) or (ano = 1992) or (ano = 1988) or (ano = 1984) or (ano = 1980) or (ano = 1976))
+                       then
+                          Conversor := Mes29d
+                       else
+                          Conversor := Mes28d;
+        // laço que vai varrer todos os PCs
+        for iPC := 1 to NumeroPCs do
+            begin
+               // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+               PC:= Projeto.PC(iPC-1);
+               // testa se o PC eh de cabeceira sem influencia dos futuros reservatorios
+               if ((PC.Nome = '01') or (PC.Nome = '03') or (PC.Nome = '06') or (PC.Nome = '14') or (PC.Nome = '15'))
+                  then Sinal := ' <= '
+                  else Sinal := ' = ';
+               // Testa se a hierarquia do PC atual é maior que 1:
+               if PC.Nome <> '18' then
+                  begin
+                     // Começa a escrever a equação que define o termo DM para o PC atual
+                     Equacao := 'RTN' + PC.Nome + IntToStr(iInt)+') '+'RT' + PC.Nome + IntToStr(iInt);
+                     // Recebe o numero de demandas ligadas ao PC atual
+                     Numerodedemandas:= PC.Demandas;
+                     // Zera o valor do RHS
+                     RHS := 0.0;
+                     // laço que vai varrer todas as demandas
+                     For iDem := 1 to Numerodedemandas do
+                        begin
+                           //Recebe o objeto Demanda da lista contida no Pc atual (inicia com 0)
+                           DemandaPC:= PC.Demanda(iDem-1);
+                           //Recebe o valor do coeficiente de retorno da demanda atual
+                           CoefRetorno:= DemandaPC.FatorDeRetorno;
+                           //Recebe a demanda total mensal das demandas
+                           RHS := RHS + DemandaPC.DemandaTotal(mes,ano)*CoefRetorno*Conversor;
+                        end;
+                    // Escreve o termo RHS na equação relativa ao PC atual
+                    Equacao := Equacao+Sinal+FloatToStr(RHS,2);
+                    // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                    Projeto.Equacoes_Escrever(Equacao);
+                  end
+            end;
+        Projeto.Equacoes_Escrever('');
+     end;
+
+
+  // Geraçao referente a limitação dos volumes maximos dos reservatorios a serem implantados ou nao
+  Projeto.Equacoes_Escrever('! Bloco referente a definição da relação entre a variavel binaria VIPC00,');
+  Projeto.Equacoes_Escrever('! e as variáveis relativas aos armazenamentos dos reservatórios, em cada intervalo');
+  Projeto.Equacoes_Escrever('');
+  // Varredura dos intervalos de tempo considerados para otimização
+  for iInt := IntInicial to (IntInicial+NumIntOticadeanalise-1) do
+     begin
+        // Obtem o mês e o ano do delta T atual
+        Projeto.IntervaloComoData(iInt, mes, ano);
+        // Escreve na janela o intervalo, mes e ano
+        Projeto.Equacoes_Escrever('!Intervalo:' + IntToStr(iInt)+' mes:'+IntToStr(mes)+' ano:'+IntToStr(ano));
+        // laço que vai varrer todos os PCs
+        for iPC := 1 to NumeroPCs do
+            begin
+              // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+              PC:= Projeto.PC(iPC-1);
+              // Testa se PC eh resrvatorio e diferente do PC
+              if (PC.Eh_Reservatorio) then
+                 if PC.Nome<>'08'
+                    then
+                        begin
+                           // Começa a escrever a equação que define o valor do termo VIPC00
+                           Equacao := 'VI'+PC.Nome+IntToStr(iInt)+') '+'SI'+PC.Nome+IntToStr(iInt)+' - '+
+                                      FloatToStr(PC.VolumeMaximo*1000000,1)+' VI'+PC.Nome+'00'+
+                                      ' <= 0.0';
+                           // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                           Projeto.Equacoes_Escrever(Equacao);
+                        end
+                    else
+                        begin
+                           // Escreve a equação que define o armazenamento maximo do PC08
+                           Equacao := 'VI'+PC.Nome+IntToStr(iInt)+') '+'SI'+PC.Nome+IntToStr(iInt)+' <= '+
+                                       FloatToStr(PC.VolumeMaximo*1000000,1);
+                           // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                           Projeto.Equacoes_Escrever(Equacao);
+                        end
+            end
+     end;
+  Projeto.Equacoes_Escrever('');
+
+  // Geração do bloco de "definição da relação entre as variáveis relativas aos armazenamentos (minimo e máximo) dos reservatórios"
+  Projeto.Equacoes_Escrever('! Bloco referente a definição da relação entre os valores, iniciais e finais,');
+  Projeto.Equacoes_Escrever('! das variáveis relativas aos armazenamentos dos reservatórios, em cada intervalo');
+  Projeto.Equacoes_Escrever('');
+  //Varredura dos intervalos de tempo considerados para otimização
+  for iInt := (IntInicial+1) to (IntInicial+NumIntOticadeanalise-1) do
+     begin
+        // Obtem o mês e o ano do delta T atual
+        Projeto.IntervaloComoData(iInt, mes, ano);
+        // Escreve na janela o intervalo, mes e ano
+        Projeto.Equacoes_Escrever('!Intervalo:' + IntToStr(iInt)+' mes:'+IntToStr(mes)+' ano:'+IntToStr(ano));
+        // laço que vai varrer todos os PCs
+        for iPC := 1 to NumeroPCs do
+            begin
+               // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+               PC:= Projeto.PC(iPC-1);
+               // testa se o pc atual é reservatório
+               if PC.Eh_Reservatorio then
+                   begin
+                      //Escreve na equação a relação entre os armazenamentos inicial e final de cada reservatório
+                      Equacao := 'ARM'+PC.Nome+IntToStr(iInt) +') '+'SI'+PC.Nome+IntToStr(iInt)+' - '+'SF'+PC.Nome+IntToStr(iInt-1)+ ' = 0.0';
+                      // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                      Projeto.Equacoes_Escrever(Equacao);
+                   end;
+            end;
+        Projeto.Equacoes_Escrever('');
+     end;
+
+  // Geração do bloco de "definição da relação entre as variáveis relativas aos armazenamentos dos reservatórios,
+  // e os valores de evaporação e precipitação sobre os mesmos
+  Projeto.Equacoes_Escrever('! Bloco referente a definição da relação entre os valores');
+  Projeto.Equacoes_Escrever('! das variáveis relativas aos armazenamentos dos reservatórios,');
+  Projeto.Equacoes_Escrever('! e os valores de precipitação e evaporação em cada intervalo');
+  Projeto.Equacoes_Escrever('');
+  //Varredura dos intervalos de tempo considerados para otimização
+  for iInt := IntInicial to (IntInicial+NumIntOticadeanalise-1) do
+     begin
+        // Obtem o mês e o ano do delta T atual
+        Projeto.IntervaloComoData(iInt, mes, ano);
+        // Escreve na janela o intervalo, mes e ano
+        Projeto.Equacoes_Escrever('!Intervalo:' + IntToStr(iInt)+' mes:'+IntToStr(mes)+' ano:'+IntToStr(ano));
+        // laço que vai varrer todos os PCs
+        for iPC := 1 to NumeroPCs do
+            begin
+               // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+               PC:= Projeto.PC(iPC-1);
+               // testa se o pc atual é reservatório
+               if PC.Eh_Reservatorio then
+                 begin
+                    //Converte em numero inteiro a string com o numero do PC
+                    NumPC:= trunc(StrToFloat(PC.Nome));
+                    //Esvazia a string que vai conter uma equação
+                    Equacao := vazio;
+                    //Ativa a folha da planilha que contem os custos de implantação dos resrvatorios
+                    PlanilhaReserv.setActiveSheetIndex(1);
+                    //Recebe essa folha:
+                    FolhaPlanilha :=  PlanilhaReserv.ActiveSheet;
+                  if PC.Nome='08'
+                     then
+                        begin
+                          //Calcula os valores do coeficientes da equação relativa a evaporação
+                          CBE:=0.0005*FolhaPlanilha.GetFloat(NumPC,3)*0.0001*PC.ObterEvaporacaoUnitaria(iInt);
+                          CAE:=0.0001*FolhaPlanilha.GetFloat(NumPC,4)*PC.ObterEvaporacaoUnitaria(iInt);
+                          if (CBE > 0) //So escreve na equação os termos que tenham coeficiente nao nulo
+                             then
+                                //Escreve na equaçao o valor da evaporaçao unitaria no intervalo atual
+                                Equacao:='EVP'+PC.Nome+IntToStr(iInt)+') ' +'EV'+PC.Nome+IntToStr(iInt) +
+                                         ' - '+FloatToStr(CBE,3)+' SI'+PC.Nome+IntToStr(iInt)+
+                                         ' - '+FloatToStr(CBE,3)+' SF'+PC.Nome+IntToStr(iInt)+' = '+FloatToStr(CAE,3)
+                             else
+                                //Escreve na equaçao o valor da evaporaçao unitaria no intervalo atual
+                                Equacao:='EVP'+PC.Nome+IntToStr(iInt)+') ' +'EV'+PC.Nome+IntToStr(iInt) +' = '+FloatToStr(CAE,3);
+                          // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                          Projeto.Equacoes_Escrever(Equacao);
+
+                          //Calcula os valores do coeficientes da equação relativa a precipitação
+                          CBE:=0.0005*FolhaPlanilha.GetFloat(NumPC,3)*0.0001*PC.ObterPrecipitacaoUnitaria(iInt);
+                          CAP:=0.0001*FolhaPlanilha.GetFloat(NumPC,4)*PC.ObterPrecipitacaoUnitaria(iInt);
+                          if (CBP > 0) //So escreve na equação os termos que tenham coeficiente nao nulo
+                             then
+                                //Escreve na equaçao o valor da evaporaçao unitaria no intervalo atual
+                                Equacao:='PRC'+PC.Nome+IntToStr(iInt)+') '+'PR'+PC.Nome+IntToStr(iInt) +
+                                         ' - '+FloatToStr(CBP,3)+' SI'+PC.Nome+IntToStr(iInt)+
+                                         ' - '+FloatToStr(CBP,3)+' SF'+PC.Nome+IntToStr(iInt)+' = '+FloatToStr(CAP,3)
+                             else
+                                //Escreve na equaçao o valor da evaporaçao unitaria no intervalo atual
+                                Equacao:='PRC'+PC.Nome+IntToStr(iInt)+') '+'PR'+PC.Nome+IntToStr(iInt) +' = '+FloatToStr(CAP,3);
+                          // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                          Projeto.Equacoes_Escrever(Equacao);
+                        end
+                     else
+                        begin
+                          //Calcula os valores do coeficientes da equação relativa a evaporação
+                          CBE:=0.0005*FolhaPlanilha.GetFloat(NumPC,3)*0.0001*PC.ObterEvaporacaoUnitaria(iInt);
+                          CAE:=0.0001*FolhaPlanilha.GetFloat(NumPC,4)*PC.ObterEvaporacaoUnitaria(iInt);
+                          if (CBE > 0) //So escreve na equação os termos que tenham coeficiente nao nulo
+                             then
+                                //Escreve na equaçao o valor da evaporaçao unitaria no intervalo atual
+                                Equacao:='EVP'+PC.Nome+IntToStr(iInt)+') ' +'EV'+PC.Nome+IntToStr(iInt) +
+                                         ' - '+FloatToStr(CBE,3)+' SI'+PC.Nome+IntToStr(iInt)+
+                                         ' - '+FloatToStr(CBE,3)+' SF'+PC.Nome+IntToStr(iInt)+
+                                         ' - '+FloatToStr(CAE,3)+' VI'+PC.Nome+'00'+
+                                         ' = 0.0'
+                             else
+                                //Escreve na equaçao o valor da evaporaçao unitaria no intervalo atual
+                                Equacao:='EVP'+PC.Nome+IntToStr(iInt)+') ' +'EV'+PC.Nome+IntToStr(iInt) +
+                                         ' - '+FloatToStr(CAE,3)+' VI'+PC.Nome+'00'+
+                                         ' = 0.0';
+                          // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                          Projeto.Equacoes_Escrever(Equacao);
+
+                          //Calcula os valores do coeficientes da equação relativa a precipitação
+                          CBE:=0.0005*FolhaPlanilha.GetFloat(NumPC,3)*0.0001*PC.ObterPrecipitacaoUnitaria(iInt);
+                          CAP:=0.0001*FolhaPlanilha.GetFloat(NumPC,4)*PC.ObterPrecipitacaoUnitaria(iInt);
+                          if (CBP > 0) //So escreve na equação os termos que tenham coeficiente nao nulo
+                             then
+                                //Escreve na equaçao o valor da evaporaçao unitaria no intervalo atual
+                                Equacao:='PRC'+PC.Nome+IntToStr(iInt)+') '+'PR'+PC.Nome+IntToStr(iInt) +
+                                         ' - '+FloatToStr(CBP,3)+' SI'+PC.Nome+IntToStr(iInt)+
+                                         ' - '+FloatToStr(CBP,3)+' SF'+PC.Nome+IntToStr(iInt)+
+                                         ' - '+FloatToStr(CAP,3)+' VI'+PC.Nome+'00'+
+                                         ' = 0.0'
+                             else
+                                //Escreve na equaçao o valor da evaporaçao unitaria no intervalo atual
+                                Equacao:='PRC'+PC.Nome+IntToStr(iInt)+') '+'PR'+PC.Nome+IntToStr(iInt) +
+                                         ' - '+FloatToStr(CAP,3)+' VI'+PC.Nome+'00'+
+                                         ' = 0.0';
+                          // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                          Projeto.Equacoes_Escrever(Equacao);
+                        end;
+
+                end
+            end;
+        Projeto.Equacoes_Escrever('');
+      end;
+
+  // Introduz no arquivo a palavra reservada que indica o fim do bloco das restrições:
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!Fim do bloco de restrições:');
+  Projeto.Equacoes_Escrever('END');
+  Projeto.Equacoes_Escrever('');
+
+  // Geração do bloco de "definição da condição binária das variáveis V"
+  Projeto.Equacoes_Escrever('! Bloco referente a definição da condição binária da variável V:');
+  Projeto.Equacoes_Escrever('');
+
+  for iPC := 1 to NumeroPCs do
+      begin
+         // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+         PC:= Projeto.PC(iPC-1);
+         // Testa se Pc eh reservatorio e diferente do PC 08
+              if (PC.Eh_Reservatorio) and (PC.Nome<>'08')
+                 then
+                    begin
+                         // Escreve a linha de comando para o LINDO
+                         Equacao := 'INTEGER '+'VI'+PC.Nome+'00';
+                         // Escreve a equação do PC atual no intervalo atual na unidade de saida
+                         Projeto.Equacoes_Escrever(Equacao);
+                    end
+      end
+
+end.

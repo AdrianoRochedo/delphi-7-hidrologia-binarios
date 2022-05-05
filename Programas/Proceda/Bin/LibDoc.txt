@@ -1,0 +1,718 @@
+Bibliotecas do Pascal Script;
+Rotinas;
+Arquivos;
+function DirectoryExists (String): Boolean;Verifica a existência de um diretório
+function ForceDirectories (String): Boolean;Força a existência de um diretório
+function DeleteFile (String): Boolean;Remove um arquivo especificado pelo nome
+function RenameFile (String, String): Boolean;Renomeia um arquivo
+function ChangeFileExt (String, String): String;Troca a extensão de um arquivo
+function FileExists (String): Boolean;Verifica a existência de um arquivo
+function GetCurrentDir: String;Retorna o diretório corrente
+function SetCurrentDir (String): Boolean;Atribui um diretório corrente
+function CreateDir (String): Boolean;Cria um novo diretório
+function RemoveDir (String): Boolean;Remove um diretório que esteja vazio
+function ExtractFilePath (String): String;Retorna o caminho de um nome de arquivo
+function ExtractFileDir (String): String;Retorna o caminho de um nome de arquivo
+function ExtractFileDrive (String): String;Retorna o drive de um nome de arquivo
+function ExtractFileName (String): String;Retorna o nome e a extensão de um nome de arquivo
+function ExtractFileExt (String): String;Retorna a extensão de um nome de arquivo
+Conversão de Valores;
+function toASCII (Integer): String;Converte um código ASCII para um caracter
+function TimeToString (Real): String;Converte um índice que indica a atual hora do sistema para string
+function FloatToStr (Real, Integer): String;Transforma um número Real em String.Parâmetros: Valor e Número de casas decimais
+function IntToStr (Integer): String;Transforma um número Inteiro em String
+function BooleanToStr (Boolean): String;Transforma um Booleano em String
+Diálogos;
+procedure ShowMessage (String);Mostra uma mensagem em uma janela de diálogo
+procedure CreateException (String);Gera uma exceção com uma determinada mansagem.
+function Question (String): Boolean;Mostra um diálogo com uma pergunta ao usuário.
+function InputBox (String, String, String): String;Mostra um diálogo que permite ao usuário entrar uma stringParâmetros:  - aCaption : Texto da janela  - aPrompt  : Texto que fica em cima da caixa de edição  - Default  : Indica o texto inicialRetorna o texto digitado.
+function InputQuery (String, String, String): Boolean;Mostra um diálogo que permite ao usuário entrar uma stringParâmetros:  - aCaption : Texto da janela  - aPrompt  : Texto que fica em cima da caixa de edição  - Value    : Parâmetro passado por referência, indica o texto inicial e final editadoRetorno:  - Retorna "TRUE" ou "FALSE" dependendo se o usuário pressionar o botão "OK" ou "CANCELAR".
+function SelectDirectory (String, String, String): Boolean;Permite ao usuário escolher um diretórioParâmetros:  - aCaption  : Texto da janela  - Root      : Diretório raiz inicial  - Directory : Parâmetro passado por referência, indica o diretório escolhidoRetorno:  - Retorna "TRUE" ou "falso" dependendo se o usuário pressionar o botão "OK" ou "CANCELAR".
+Matemática e Trigonometria;
+procedure SinCos (Real, Real, Real);Retorna o Seno e o Cosseno de um número
+function SQR (Real): Real;Calcula o quadrado de um número
+function Power (Real, Real): Real;Eleva um número a outroParâmetros: Valor a ser elevado, Potência
+function ArcCos (Real): Real;Calcula o Arco-Cosseno de um número
+function ArcSin (Real): Real;Calcula o Arco-Seno de um número
+function Tan (Real): Real;Calcula o Tangente de um número
+function CoTan (Real): Real;Calcula a Co-Tangente de um número
+function Hypot (Real, Real): Real;Calcula o tamanho da Hipotenusa de um triângulo
+function DegToRad (Real): Real;Converte graus para radianos
+function RadToDeg (Real): Real;Converte radianos para graus
+function Cosh (Real): Real;Calcula o Cosseno Hiperbólico de um número
+function Sinh (Real): Real;Calcula o Seno Hiperbólico de um número
+function Tanh (Real): Real;Calcula a Tangente Hiperbólica de um número
+function ArcCosh (Real): Real;Calcula o Arco-Cosseno Hiperbólico de um número
+function ArcSinh (Real): Real;Calcula o Arco-Seno Hiperbólico de um número
+function ArcTanh (Real): Real;Calcula o Arco-Tangente Hiperbólico de um número
+function LnXP1 (Real): Real;Retorna o Logarítmo Natural de (X+1).Utilize LnXP1 quando o número for um valor próximo a 0
+function Log10 (Real): Real;Retorna o logarítimo de base 10 de um número
+function Log2 (Real): Real;Retorna o logarítimo de base 2 de um número
+function LogN (Real, Real): Real;Retorna o logarítimo de base N de um númeroParâmetros: Base, Valor
+function IntPower (Real, Integer): Real;Calcula a potenciação integral de um númeroParâmetros: Base, Expoente
+function Ldexp (Real, Integer): Real;Calcula X * 2 ** P 
+function Min (Real, Real): Real;Retorna o menor de dois números
+function Max (Real, Real): Real;Retorna o maior de dois números
+function ABS (Real): Real;Retorna o valor absoluto de um número
+function Trunc (Real): Integer;Realiza o truncamento de um número real, retornando um inteiro
+function Round (Real): Integer;Arredonda de um número real para um inteiro
+Sistema;
+procedure FreeObject (TObject);Libera a memória de um Objeto
+procedure Randomize;Inicia o gerenciador de números aleatórios
+procedure Progress_SetMin (Integer);Estabelece o valor mínimo da barra de progresso global
+procedure Progress_SetMax (Integer);Estabelece o valor máximo da barra de progresso global
+procedure Progress_SetValue (Integer);Estabelece o valor atual da barra de progresso global
+procedure Progress_SetMessage (String);Estabelece o texto da barra de progresso global
+procedure KeepRun;Permite que a execução de um Script funcione como uma aplicação, isto é, Mantém em atividade todas as janelas criadas dinamicamente.
+function ObjectIsValid (TObject): Boolean;Verifica se um objeto é válido
+function Random (Integer): Real;Gera um número aleatório x onde 0 >= x < 1 se o intervalo for igual a 0 e umnúmero aleatório x onde 0 >= x < intervalo se intervalo maior que 0
+function GetTickCount: Integer;Retorna o número de milisegundos acumulados deste o Windows foi iniciado
+function GetTime: Real;Retorna um índice que indica a atual hora do sistema
+function GetTimeAsString: String;Retorna um índice que indica a atual hora do sistema como string
+function GetColor (String): Integer;Obtém um código de cor
+Strings;
+procedure Delete (String, Integer, Integer);
+procedure Insert (String, String, Integer);
+procedure StringToStrings (String, TStrings, String);Quebra uma String em n pedaços de acordo com os separadores
+function Pos (String, String): Integer;Retorna o índice do primeiro caracter da sub-string que ocorre na string passadaParâmetros: Sub-String, String
+function Length (String): Integer;Retorna o tamanho de uma stringParâmetros: String
+function Copy (String, Integer, Integer): String;Retorna uma sub-string de uma stringParâmetros: String, Posição Inicial, Quantidade
+function LowerCase (String): String;Converte todos os caracteres de uma string para minúsculo
+function UpperCase (String): String;Converte todos os caracteres de uma string para maiúsculo
+function CompareStr (String, String): Integer;Faz a comparação entre S1 e S2 diferenciando maiúsculas de minúsculasRetorno:  0 se forem iguais  Menor que 0 se S1 for menor que S2  Maior que 0 se S1 for maior que S2
+function CompareText (String, String): Integer;Faz a comparação entre S1 e S2 não diferenciando maiúsculas de minúsculasRetorno:  0 se forem iguais  Menor que 0 se S1 for menor que S2  Maior que 0 se S1 for maior que S2
+function Trim (String): String;Remove os espaços em branco e os caracteres de controle a esquerda e a direita de uma string
+function TrimLeft (String): String;Remove os espaços em branco e os caracteres de controle a esquerda de uma string
+function TrimRight (String): String;Remove os espaços em branco e os caracteres de controle a direita de uma string
+function QuotedStr (String): String;Retorna a string passada entre aspas
+function FormatFloat (String, Real): String;Formata um valor usando uma máscara específica
+function StrToFloat (String): Real;Converte uma string em um valor real
+function LTrimZeros (String): String;Remove os caracteres "0" a esquerda de uma string
+function RightStr (String, Integer): String;Retorna os N caracteres a direita de uma string
+function RTrim (String, String): String;
+function DeleteSubStr (String, String, String): String;Remove uma Sub-String que se encontra entre os caracteres de Inicio e de FimParâmetros: String, Caracter Inicial, Caracter Final
+function ReplaceSubStr (String, String, String): String;Troca uma Sub-String por outraParâmetros: String, Sub-String antiga, Sub-String nova
+function SubString (String, String, String): String;Retorna a Sub-String que se encontra entre os caracteres de Inicio e de FimParâmetros: String, Caracter Inicial, Caracter Final
+function Split (String, String): TStringList;Quebra uma string em pedaçosParâmetros: String, Caracter separador
+function RemoveDuplicates (TStrings): TStrings;Remove as Strings repetidas de uma Lista de Strings
+function StrCenter (String, Integer): String;Centraliza uma string em um determinado número de espaços
+function ChangeChar (String, String, String): String;Troca um caracter por outroParâmetros: String, Caracter antigo, Caracter novo
+function Encrypt (String, Integer): String;Codifica um string usando uma determinada chave
+function Decrypt (String, Integer): String;Decodifica um string usando uma determinada chave
+function AddCharL (String, String, Integer): String;Adiciona um caracter N vezes a esquerda de uma string
+function AddCharR (String, String, Integer): String;Adiciona um caracter N vezes a direita de uma string
+function LeftStr (String, Integer): String;Retorna os N caracteres a esquerda de uma string
+function StrPadZeroL (String, Integer): String;Adiciona "0"s a esquerda de uma string
+function DelSpace1 (String): String;Normaliza os espaços em branco de uma stringEx: "abc   def  gh" -->  "abc def gh"
+function DelSpaces (String): String;Remove os espaços em branco de uma stringEx: "  ab c d ef " --> "abcdef"
+Vetores;
+function ProdEscVec (Real, TwsVec): TwsVec;Realiza o produto entre um escalar e um vetor
+function VecProd (TwsVec, TwsVec): TwsVec;Multiplica dois vetores de comprimentos iguais
+function VecSub (TwsVec, TwsVec): TwsVec;Subtrai dois vetores de comprimentos iguais
+function VecSum (TwsVec, TwsVec): TwsVec;Soma dois vetores de comprimentos iguais
+Diálogos;
+procedure ShowMessage (String);Mostra uma mensagem em uma janela de diálogo
+procedure CreateException (String);Gera uma exceção com uma determinada mansagem.
+function Question (String): Boolean;Mostra um diálogo com uma pergunta ao usuário.
+function InputBox (String, String, String): String;Mostra um diálogo que permite ao usuário entrar uma stringParâmetros:  - aCaption : Texto da janela  - aPrompt  : Texto que fica em cima da caixa de edição  - Default  : Indica o texto inicialRetorna o texto digitado.
+function InputQuery (String, String, String): Boolean;Mostra um diálogo que permite ao usuário entrar uma stringParâmetros:  - aCaption : Texto da janela  - aPrompt  : Texto que fica em cima da caixa de edição  - Value    : Parâmetro passado por referência, indica o texto inicial e final editadoRetorno:  - Retorna "TRUE" ou "FALSE" dependendo se o usuário pressionar o botão "OK" ou "CANCELAR".
+function SelectDirectory (String, String, String): Boolean;Permite ao usuário escolher um diretórioParâmetros:  - aCaption  : Texto da janela  - Root      : Diretório raiz inicial  - Directory : Parâmetro passado por referência, indica o diretório escolhidoRetorno:  - Retorna "TRUE" ou "falso" dependendo se o usuário pressionar o botão "OK" ou "CANCELAR".
+Matemática e Trigonometria;
+procedure SinCos (Real, Real, Real);Retorna o Seno e o Cosseno de um número
+function SQR (Real): Real;Calcula o quadrado de um número
+function Power (Real, Real): Real;Eleva um número a outroParâmetros: Valor a ser elevado, Potência
+function ArcCos (Real): Real;Calcula o Arco-Cosseno de um número
+function ArcSin (Real): Real;Calcula o Arco-Seno de um número
+function Tan (Real): Real;Calcula o Tangente de um número
+function CoTan (Real): Real;Calcula a Co-Tangente de um número
+function Hypot (Real, Real): Real;Calcula o tamanho da Hipotenusa de um triângulo
+function DegToRad (Real): Real;Converte graus para radianos
+function RadToDeg (Real): Real;Converte radianos para graus
+function Cosh (Real): Real;Calcula o Cosseno Hiperbólico de um número
+function Sinh (Real): Real;Calcula o Seno Hiperbólico de um número
+function Tanh (Real): Real;Calcula a Tangente Hiperbólica de um número
+function ArcCosh (Real): Real;Calcula o Arco-Cosseno Hiperbólico de um número
+function ArcSinh (Real): Real;Calcula o Arco-Seno Hiperbólico de um número
+function ArcTanh (Real): Real;Calcula o Arco-Tangente Hiperbólico de um número
+function LnXP1 (Real): Real;Retorna o Logarítmo Natural de (X+1).Utilize LnXP1 quando o número for um valor próximo a 0
+function Log10 (Real): Real;Retorna o logarítimo de base 10 de um número
+function Log2 (Real): Real;Retorna o logarítimo de base 2 de um número
+function LogN (Real, Real): Real;Retorna o logarítimo de base N de um númeroParâmetros: Base, Valor
+function IntPower (Real, Integer): Real;Calcula a potenciação integral de um númeroParâmetros: Base, Expoente
+function Ldexp (Real, Integer): Real;Calcula X * 2 ** P 
+function Min (Real, Real): Real;Retorna o menor de dois números
+function Max (Real, Real): Real;Retorna o maior de dois números
+function ABS (Real): Real;Retorna o valor absoluto de um número
+function Trunc (Real): Integer;Realiza o truncamento de um número real, retornando um inteiro
+function Round (Real): Integer;Arredonda de um número real para um inteiro
+Sistema;
+procedure FreeObject (TObject);Libera a memória de um Objeto
+procedure Randomize;Inicia o gerenciador de números aleatórios
+procedure Progress_SetMin (Integer);Estabelece o valor mínimo da barra de progresso global
+procedure Progress_SetMax (Integer);Estabelece o valor máximo da barra de progresso global
+procedure Progress_SetValue (Integer);Estabelece o valor atual da barra de progresso global
+procedure Progress_SetMessage (String);Estabelece o texto da barra de progresso global
+procedure KeepRun;Permite que a execução de um Script funcione como uma aplicação, isto é, Mantém em atividade todas as janelas criadas dinamicamente.
+function ObjectIsValid (TObject): Boolean;Verifica se um objeto é válido
+function Random (Integer): Real;Gera um número aleatório x onde 0 >= x < 1 se o intervalo for igual a 0 e umnúmero aleatório x onde 0 >= x < intervalo se intervalo maior que 0
+function GetTickCount: Integer;Retorna o número de milisegundos acumulados deste o Windows foi iniciado
+function GetTime: Real;Retorna um índice que indica a atual hora do sistema
+function GetTimeAsString: String;Retorna um índice que indica a atual hora do sistema como string
+function GetColor (String): Integer;Obtém um código de cor
+Strings;
+procedure Delete (String, Integer, Integer);
+procedure Insert (String, String, Integer);
+procedure StringToStrings (String, TStrings, String);Quebra uma String em n pedaços de acordo com os separadores
+function Pos (String, String): Integer;Retorna o índice do primeiro caracter da sub-string que ocorre na string passadaParâmetros: Sub-String, String
+function Length (String): Integer;Retorna o tamanho de uma stringParâmetros: String
+function Copy (String, Integer, Integer): String;Retorna uma sub-string de uma stringParâmetros: String, Posição Inicial, Quantidade
+function LowerCase (String): String;Converte todos os caracteres de uma string para minúsculo
+function UpperCase (String): String;Converte todos os caracteres de uma string para maiúsculo
+function CompareStr (String, String): Integer;Faz a comparação entre S1 e S2 diferenciando maiúsculas de minúsculasRetorno:  0 se forem iguais  Menor que 0 se S1 for menor que S2  Maior que 0 se S1 for maior que S2
+function CompareText (String, String): Integer;Faz a comparação entre S1 e S2 não diferenciando maiúsculas de minúsculasRetorno:  0 se forem iguais  Menor que 0 se S1 for menor que S2  Maior que 0 se S1 for maior que S2
+function Trim (String): String;Remove os espaços em branco e os caracteres de controle a esquerda e a direita de uma string
+function TrimLeft (String): String;Remove os espaços em branco e os caracteres de controle a esquerda de uma string
+function TrimRight (String): String;Remove os espaços em branco e os caracteres de controle a direita de uma string
+function QuotedStr (String): String;Retorna a string passada entre aspas
+function FormatFloat (String, Real): String;Formata um valor usando uma máscara específica
+function StrToFloat (String): Real;Converte uma string em um valor real
+function LTrimZeros (String): String;Remove os caracteres "0" a esquerda de uma string
+function RightStr (String, Integer): String;Retorna os N caracteres a direita de uma string
+function RTrim (String, String): String;
+function DeleteSubStr (String, String, String): String;Remove uma Sub-String que se encontra entre os caracteres de Inicio e de FimParâmetros: String, Caracter Inicial, Caracter Final
+function ReplaceSubStr (String, String, String): String;Troca uma Sub-String por outraParâmetros: String, Sub-String antiga, Sub-String nova
+function SubString (String, String, String): String;Retorna a Sub-String que se encontra entre os caracteres de Inicio e de FimParâmetros: String, Caracter Inicial, Caracter Final
+function Split (String, String): TStringList;Quebra uma string em pedaçosParâmetros: String, Caracter separador
+function RemoveDuplicates (TStrings): TStrings;Remove as Strings repetidas de uma Lista de Strings
+function StrCenter (String, Integer): String;Centraliza uma string em um determinado número de espaços
+function ChangeChar (String, String, String): String;Troca um caracter por outroParâmetros: String, Caracter antigo, Caracter novo
+function Encrypt (String, Integer): String;Codifica um string usando uma determinada chave
+function Decrypt (String, Integer): String;Decodifica um string usando uma determinada chave
+function AddCharL (String, String, Integer): String;Adiciona um caracter N vezes a esquerda de uma string
+function AddCharR (String, String, Integer): String;Adiciona um caracter N vezes a direita de uma string
+function LeftStr (String, Integer): String;Retorna os N caracteres a esquerda de uma string
+function StrPadZeroL (String, Integer): String;Adiciona "0"s a esquerda de uma string
+function DelSpace1 (String): String;Normaliza os espaços em branco de uma stringEx: "abc   def  gh" -->  "abc def gh"
+function DelSpaces (String): String;Remove os espaços em branco de uma stringEx: "  ab c d ef " --> "abcdef"
+Classes;
+TOutPut;Saída Padrão
+Métodos;
+procedure Clear;
+procedure Save;
+procedure SetFileName (String);Dir ao objeto qual o nome do arquivo a ser salvo
+procedure Write (String);Escreve uma String na Saída (OutPut) indicada sem pular linha
+procedure WriteLN (String);Escreve uma String na Saída (OutPut) indicada e pula uma linha
+procedure WriteCenter (String, Integer);Escreve uma string de forma centrada e pula uma linhaParâmetros:   - Texto (String)  - Tamanho da Linha (Inteiro)
+procedure WriteLine (Integer);Pula Linhas no textoParâmetro: Quantidade de linhas
+procedure WriteStrings (TStringList);Mostra o conteúdo de uma lista de strings
+procedure Show;Mostra a Saída (OutPut) indicada
+TStringList;Classe que encapsula uma lista de strings
+Métodos;
+procedure Append (String);Adiciona uma string à listaParâmetros:  string
+procedure AddStrings (TStringList);Adiciona um grupo de strings à listaParâmetros  Grupo de strings: TStringList
+procedure BeginUpdate;Habilita o objeto TStringlist na posição quando a lista de strings está sendo alterada
+procedure Clear;Esvazia a lista e seus objetos associados
+procedure Delete (Integer);Apaga da lista uma string especificada pelo seu índiceParâmetros:  Índice: Integer
+procedure EndUpdate;Habilita o objeto TStringList para manter a posição ao final de uma alteração
+procedure Exchange (Integer, Integer);Troca a posição, na lista, de duas strings especificadas pelo seu índice:Parâmetros:  Índice1, Índice2: Integer
+procedure Insert (Integer, String);Insere uma string na posição (Índice) especificadaParâmetros:  - Índice: Integer,  - string
+procedure LoadFromFile (String);Carrega a lista com as linhas de texto do arquivo especificadoParâmetros:  - Nome do arquivo: String
+procedure SaveToFile (String);Salva as strings da lista em um arquivoParâmetros:  - Nome do Arquivo: string
+procedure SetCommaText (String);A adicionarParâmetros:  - String
+procedure PutObject (Integer, TObject);Altera o objeto associado à string especificada pelo índiceParâmetros:   - Índice: Integer  - Objeto: TObject
+procedure SetValue (String, String);Altera a parte "valor" de uma string na forma "Nome=Valor" especificada pelo nomeParâmetros:  - Nome, Valor: String
+procedure Put (Integer, String);Altera a string da posição (índice) especificadaParâmetros  Índice; integer,  String  
+procedure SetTextStr (String);Altera a string com do texto de todas as strings da lista.As strings são delimitadas por "retorno de carro" e "alimentação de linha"Parâmetros:  - Texto: String
+procedure Sort;Classifica, organiza as strings da lista em ordem ascendente
+procedure SetDuplicates (Integer);Especifica se a lista aceita strings duplicadas em uma lista ordenadaParâmetros  0 - Ignora tentativas de adição  1 - Gera uma exceção  2 - Aceita strings duplicadas
+procedure SetSorted (Boolean);Especifica se a lista for automaticamente organizadaParâmetros:  AutoOrganização: Boolean  
+function Add (String): Integer;Adiciona uma string "S"  no final da listaParâmetros:  S: string;  
+function AddObject (String, TObject): Integer;Adiciona uma string  à lista e associa um objeto à stringParâmetros:  string,   Objeto: TObject
+function Equals (TStringList): Boolean;Compara a lista de strings com a de outro objeto TStringList e retorna "verdadeiro" se forem iguaisParâmetros:  Lista: TStringList
+function IndexOf (String): Integer;Retorna a posição (índice) de uma string na listaParâmetros:  - String
+function IndexOfName (String): Integer;Retorna a posição (índice) da primeira string da lista na forma "Nome=Valor", com o nome especificado.Parâmetros:  - Nome: String
+function IndexOfObject (TObject): Integer;Retorna a posição (índice) da primeira string da lista associada com o objeto especificadoParâmetros:  - Objeto: TObject
+function ObjectByString (String): TObject;Retorna o Objeto associado com a stringSe a string não for encontrada "nil" é retornado.
+function GetCommaText: String;A adicionar
+function Count: Integer;Retorna o número de strings na lista
+function GetName (Integer): String;Retorna a parte nome de uma sring na forma "Nome = Valor"Parâmetros:  - Índice: Integer
+function GetObject (Integer): TObject;Retorna o objeto associado à string especificada pelo índiceParâmetros  - Indíce: Integer
+function GetValue (String): String;Retorna a parte "Valor" de uma string na forma "Nome = valor" especificada pelo nomeParâmetros:  - Nome: string
+function Get (Integer): String;Retorna a string da posição (índice) especificadaParâmetros:  - Índice: Integer
+function GetTextStr: String;Retorna uma string com o texto de todas as strings da lista.As strings delimitadas por "retorno de carro" e "alimentação de linha"
+function GetDuplicates: Integer;Olhar "SetDuplicates"
+function GetSorted: Boolean;Retorna verdadeiro se a lista for automaticamente organizada
+TBooleanList;Encapsula uma lista de valores booleanos
+Métodos;
+procedure Add (Boolean);Adiciona um item Lógico (Verdadeiro/Falso) na lista
+procedure Remove (Integer);Remove um item Lógico (Verdadeiro/Falso) da lista
+Parâmetro: Índice do Item
+procedure Set (Integer, Boolean);
+function Count: Integer;
+function Get (Integer): Boolean;
+TIntegerList;Encapsula uma lista de valores Inteiros
+Métodos;
+procedure Add (Integer);
+procedure Remove (Integer);
+procedure Clear;
+procedure RemoveValue (Integer);
+procedure Set (Integer, Integer);
+procedure SetAsString (Integer, String);
+function Count: Integer;
+function ValueExists (Integer): Boolean;
+function Get (Integer): Integer;
+function GetAsString (Integer): String;
+TDoubleList;Encapsula uma lista de valores Reais (ponto flutuante)
+Métodos;
+procedure Add (Real);
+procedure Remove (Integer);
+procedure Set (Integer, Real);
+procedure SetAsString (Integer, String);
+function Count: Integer;
+function Get (Integer): Real;
+function GetAsString (Integer): String;
+TwsVec;Classe base para as classes de vetores
+Métodos;
+procedure Print (TOutPut);Mostra um vetor em uma saída padrão (OutPut)Parâmetros: OutPut
+procedure Set (Integer, Real);Atribui um valor a um elemento de um vetorParâmetros: Índice do elemento, Valor
+procedure Add (Real);Adiciona um elemento no vetor
+procedure Delete (Integer, Integer);Elimina N valores do vetor a partir de um índiceParâmetros: Índice Inicial, Quantidade
+procedure Fill (Real);Preenche o vetor com um valor específico
+procedure MinMax (Integer, Integer);Retorna os valores mínimo e máximo do vetor Parâmetros:  Min: Variável que receberá o valor mínimo  Max: Variável que receberá o valor máximo
+procedure SetLen (Integer);Especifica um novo tamanho para o vetor
+function Copy: TwsVec;Retorna uma cópia do vetor
+function CopyEx (Integer, Integer): TwsVec;Retorna uma cópia parcial do vetor
+function Get (Integer): Real;Retorna o valor armazenado em um elemento do vetorParâmetros: Índice do elemento
+function IsMissValue (Integer, Real): Boolean;Verifica se um valor é válidoParâmetros: Índice, Valor (Saída)
+function GetLen: Integer;Obtém o tamanho atual do vetor
+function GetAsInteger (Integer): Integer;Obtém um valor como um inteiroParâmetros: Índice
+function GetName: String;Retorna o nome do vetor
+function Mean (Integer): Real;Obtém a média dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Sort (Boolean, Boolean): TwsVec;Ordena o vetor em ordem crescente ou decrescenteParâmetros:  NewVec: TRUE = Cria um novo vetor / FALSE = Ordena o próprio vetor  Order: TRUE = Crescente / FALSE = Decrescente
+function Sum (Integer): Real;Determina o somatório dos valores armazenadosParâmetros: Número de valores válidos (Saída)
+function SumOfSq (Integer): Real;Determina a "soma de quadrados" dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Accum (Boolean): TwsVec;Retorna um vetor com os valores acumulados até a posição consideradaParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          os valores acumulados substituem os valores originais
+function Inv (Boolean): TwsVec;Retorna o inverso de um vetor, isto é, 1/xParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          o proprio vetor será invertido
+function FindGT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores que uma valor pré-determinado.
+function FindGTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores ou iguais a um valor pré-determinado.
+function FindLT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores que uma valor pré-determinado.
+function FindLTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores ou iguais a um valor pré-determinado.
+function FindMinMean (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja média dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function FindMinSun (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja soma dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function Max: Real;Retorna o maior valor encontrado no vetor
+function Min: Real;Retorna o menor valor encontrado no vetor
+function REC (TwsVec): TwsVec;Dado um vetor com índices, é retornado um vetor com os valores que correspondem a estes índices.
+TwsSFVec (TwsVec);Encapsula um vetor de N elementos com índice inicial em 1Armazena números reais de 4 bytes
+Métodos;
+procedure Print (TOutPut);Mostra um vetor em uma saída padrão (OutPut)Parâmetros: OutPut
+procedure Set (Integer, Real);Atribui um valor a um elemento de um vetorParâmetros: Índice do elemento, Valor
+procedure Add (Real);Adiciona um elemento no vetor
+procedure Delete (Integer, Integer);Elimina N valores do vetor a partir de um índiceParâmetros: Índice Inicial, Quantidade
+procedure Fill (Real);Preenche o vetor com um valor específico
+procedure MinMax (Integer, Integer);Retorna os valores mínimo e máximo do vetor Parâmetros:  Min: Variável que receberá o valor mínimo  Max: Variável que receberá o valor máximo
+procedure SetLen (Integer);Especifica um novo tamanho para o vetor
+function Copy: TwsVec;Retorna uma cópia do vetor
+function CopyEx (Integer, Integer): TwsVec;Retorna uma cópia parcial do vetor
+function Get (Integer): Real;Retorna o valor armazenado em um elemento do vetorParâmetros: Índice do elemento
+function IsMissValue (Integer, Real): Boolean;Verifica se um valor é válidoParâmetros: Índice, Valor (Saída)
+function GetLen: Integer;Obtém o tamanho atual do vetor
+function GetAsInteger (Integer): Integer;Obtém um valor como um inteiroParâmetros: Índice
+function GetName: String;Retorna o nome do vetor
+function Mean (Integer): Real;Obtém a média dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Sort (Boolean, Boolean): TwsVec;Ordena o vetor em ordem crescente ou decrescenteParâmetros:  NewVec: TRUE = Cria um novo vetor / FALSE = Ordena o próprio vetor  Order: TRUE = Crescente / FALSE = Decrescente
+function Sum (Integer): Real;Determina o somatório dos valores armazenadosParâmetros: Número de valores válidos (Saída)
+function SumOfSq (Integer): Real;Determina a "soma de quadrados" dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Accum (Boolean): TwsVec;Retorna um vetor com os valores acumulados até a posição consideradaParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          os valores acumulados substituem os valores originais
+function Inv (Boolean): TwsVec;Retorna o inverso de um vetor, isto é, 1/xParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          o proprio vetor será invertido
+function FindGT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores que uma valor pré-determinado.
+function FindGTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores ou iguais a um valor pré-determinado.
+function FindLT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores que uma valor pré-determinado.
+function FindLTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores ou iguais a um valor pré-determinado.
+function FindMinMean (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja média dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function FindMinSun (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja soma dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function Max: Real;Retorna o maior valor encontrado no vetor
+function Min: Real;Retorna o menor valor encontrado no vetor
+function REC (TwsVec): TwsVec;Dado um vetor com índices, é retornado um vetor com os valores que correspondem a estes índices.
+TwsDFVec (TwsVec);Encapsula um vetor de N elementos com índice inicial em 1Armazena números reais de 8 bytes
+Métodos;
+procedure Print (TOutPut);Mostra um vetor em uma saída padrão (OutPut)Parâmetros: OutPut
+procedure Set (Integer, Real);Atribui um valor a um elemento de um vetorParâmetros: Índice do elemento, Valor
+procedure Add (Real);Adiciona um elemento no vetor
+procedure Delete (Integer, Integer);Elimina N valores do vetor a partir de um índiceParâmetros: Índice Inicial, Quantidade
+procedure Fill (Real);Preenche o vetor com um valor específico
+procedure MinMax (Integer, Integer);Retorna os valores mínimo e máximo do vetor Parâmetros:  Min: Variável que receberá o valor mínimo  Max: Variável que receberá o valor máximo
+procedure SetLen (Integer);Especifica um novo tamanho para o vetor
+function Copy: TwsVec;Retorna uma cópia do vetor
+function CopyEx (Integer, Integer): TwsVec;Retorna uma cópia parcial do vetor
+function Get (Integer): Real;Retorna o valor armazenado em um elemento do vetorParâmetros: Índice do elemento
+function IsMissValue (Integer, Real): Boolean;Verifica se um valor é válidoParâmetros: Índice, Valor (Saída)
+function GetLen: Integer;Obtém o tamanho atual do vetor
+function GetAsInteger (Integer): Integer;Obtém um valor como um inteiroParâmetros: Índice
+function GetName: String;Retorna o nome do vetor
+function Mean (Integer): Real;Obtém a média dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Sort (Boolean, Boolean): TwsVec;Ordena o vetor em ordem crescente ou decrescenteParâmetros:  NewVec: TRUE = Cria um novo vetor / FALSE = Ordena o próprio vetor  Order: TRUE = Crescente / FALSE = Decrescente
+function Sum (Integer): Real;Determina o somatório dos valores armazenadosParâmetros: Número de valores válidos (Saída)
+function SumOfSq (Integer): Real;Determina a "soma de quadrados" dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Accum (Boolean): TwsVec;Retorna um vetor com os valores acumulados até a posição consideradaParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          os valores acumulados substituem os valores originais
+function Inv (Boolean): TwsVec;Retorna o inverso de um vetor, isto é, 1/xParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          o proprio vetor será invertido
+function FindGT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores que uma valor pré-determinado.
+function FindGTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores ou iguais a um valor pré-determinado.
+function FindLT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores que uma valor pré-determinado.
+function FindLTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores ou iguais a um valor pré-determinado.
+function FindMinMean (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja média dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function FindMinSun (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja soma dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function Max: Real;Retorna o maior valor encontrado no vetor
+function Min: Real;Retorna o menor valor encontrado no vetor
+function REC (TwsVec): TwsVec;Dado um vetor com índices, é retornado um vetor com os valores que correspondem a estes índices.
+TwsSIVec (TwsVec);Encapsula um vetor de N elementos com índice inicial em 1Armazena números inteiros de 2 bytes
+Métodos;
+procedure Print (TOutPut);Mostra um vetor em uma saída padrão (OutPut)Parâmetros: OutPut
+procedure Set (Integer, Real);Atribui um valor a um elemento de um vetorParâmetros: Índice do elemento, Valor
+procedure Add (Real);Adiciona um elemento no vetor
+procedure Delete (Integer, Integer);Elimina N valores do vetor a partir de um índiceParâmetros: Índice Inicial, Quantidade
+procedure Fill (Real);Preenche o vetor com um valor específico
+procedure MinMax (Integer, Integer);Retorna os valores mínimo e máximo do vetor Parâmetros:  Min: Variável que receberá o valor mínimo  Max: Variável que receberá o valor máximo
+procedure SetLen (Integer);Especifica um novo tamanho para o vetor
+function Copy: TwsVec;Retorna uma cópia do vetor
+function CopyEx (Integer, Integer): TwsVec;Retorna uma cópia parcial do vetor
+function Get (Integer): Real;Retorna o valor armazenado em um elemento do vetorParâmetros: Índice do elemento
+function IsMissValue (Integer, Real): Boolean;Verifica se um valor é válidoParâmetros: Índice, Valor (Saída)
+function GetLen: Integer;Obtém o tamanho atual do vetor
+function GetAsInteger (Integer): Integer;Obtém um valor como um inteiroParâmetros: Índice
+function GetName: String;Retorna o nome do vetor
+function Mean (Integer): Real;Obtém a média dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Sort (Boolean, Boolean): TwsVec;Ordena o vetor em ordem crescente ou decrescenteParâmetros:  NewVec: TRUE = Cria um novo vetor / FALSE = Ordena o próprio vetor  Order: TRUE = Crescente / FALSE = Decrescente
+function Sum (Integer): Real;Determina o somatório dos valores armazenadosParâmetros: Número de valores válidos (Saída)
+function SumOfSq (Integer): Real;Determina a "soma de quadrados" dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Accum (Boolean): TwsVec;Retorna um vetor com os valores acumulados até a posição consideradaParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          os valores acumulados substituem os valores originais
+function Inv (Boolean): TwsVec;Retorna o inverso de um vetor, isto é, 1/xParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          o proprio vetor será invertido
+function FindGT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores que uma valor pré-determinado.
+function FindGTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores ou iguais a um valor pré-determinado.
+function FindLT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores que uma valor pré-determinado.
+function FindLTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores ou iguais a um valor pré-determinado.
+function FindMinMean (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja média dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function FindMinSun (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja soma dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function Max: Real;Retorna o maior valor encontrado no vetor
+function Min: Real;Retorna o menor valor encontrado no vetor
+function REC (TwsVec): TwsVec;Dado um vetor com índices, é retornado um vetor com os valores que correspondem a estes índices.
+TwsLIVec (TwsVec);Encapsula um vetor de N elementos com índice inicial em 1Armazena números inteiros de 4 bytes
+Métodos;
+procedure Print (TOutPut);Mostra um vetor em uma saída padrão (OutPut)Parâmetros: OutPut
+procedure Set (Integer, Real);Atribui um valor a um elemento de um vetorParâmetros: Índice do elemento, Valor
+procedure Add (Real);Adiciona um elemento no vetor
+procedure Delete (Integer, Integer);Elimina N valores do vetor a partir de um índiceParâmetros: Índice Inicial, Quantidade
+procedure Fill (Real);Preenche o vetor com um valor específico
+procedure MinMax (Integer, Integer);Retorna os valores mínimo e máximo do vetor Parâmetros:  Min: Variável que receberá o valor mínimo  Max: Variável que receberá o valor máximo
+procedure SetLen (Integer);Especifica um novo tamanho para o vetor
+function Copy: TwsVec;Retorna uma cópia do vetor
+function CopyEx (Integer, Integer): TwsVec;Retorna uma cópia parcial do vetor
+function Get (Integer): Real;Retorna o valor armazenado em um elemento do vetorParâmetros: Índice do elemento
+function IsMissValue (Integer, Real): Boolean;Verifica se um valor é válidoParâmetros: Índice, Valor (Saída)
+function GetLen: Integer;Obtém o tamanho atual do vetor
+function GetAsInteger (Integer): Integer;Obtém um valor como um inteiroParâmetros: Índice
+function GetName: String;Retorna o nome do vetor
+function Mean (Integer): Real;Obtém a média dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Sort (Boolean, Boolean): TwsVec;Ordena o vetor em ordem crescente ou decrescenteParâmetros:  NewVec: TRUE = Cria um novo vetor / FALSE = Ordena o próprio vetor  Order: TRUE = Crescente / FALSE = Decrescente
+function Sum (Integer): Real;Determina o somatório dos valores armazenadosParâmetros: Número de valores válidos (Saída)
+function SumOfSq (Integer): Real;Determina a "soma de quadrados" dos valores armazenadosparametro: Número de valores válidos (Saída)
+function Accum (Boolean): TwsVec;Retorna um vetor com os valores acumulados até a posição consideradaParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          os valores acumulados substituem os valores originais
+function Inv (Boolean): TwsVec;Retorna o inverso de um vetor, isto é, 1/xParâmetro:  NewVec: Se True um novo vetor é criado para armazenar os resultados, senão          o proprio vetor será invertido
+function FindGT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores que uma valor pré-determinado.
+function FindGTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão maiores ou iguais a um valor pré-determinado.
+function FindLT (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores que uma valor pré-determinado.
+function FindLTE (Real): TwsVec;Retorna um vetor com os índices dos elementos cujos valoressão menores ou iguais a um valor pré-determinado.
+function FindMinMean (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja média dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function FindMinSun (Integer): TwsVec;Procura uma sequência contínua de um vetor linha, cuja soma dos elementos seja mínima. Retorna um vetor com as n posições do vetor original.
+function Max: Real;Retorna o maior valor encontrado no vetor
+function Min: Real;Retorna o menor valor encontrado no vetor
+function REC (TwsVec): TwsVec;Dado um vetor com índices, é retornado um vetor com os valores que correspondem a estes índices.
+TwsMatrix;Classe base para as matrizes
+Métodos;
+procedure Print (TOutPut);Mostra uma matriz em uma saída (OutPut)Parâmetros: OutPut
+procedure Set (Integer, Integer, Real);Atribui um valor a uma Célula de uma matrizParâmetros: Linha, Coluna, Valor
+procedure DeleteCol (Integer);Remove uma coluna
+procedure Add (TwsVec);Insere uma linha no final da matriz
+procedure Inv (Integer);Inverte a matriz através do método de Gauss-Jordan com pivoteamento total
+procedure SetNRows (Integer);
+procedure SetNCols (Integer);
+procedure SetAsString (Integer, Integer, String);
+procedure SetRow (Integer, TwsVec);
+procedure SaveToFile (String);Salva os dados de uma metrix em um arquivo
+procedure SetMLab (String);
+procedure SetRowName (Integer, String);Atribui um nome à linha de uma metriz
+procedure SetColName (Integer, String);Atribui um nome à coluna especificada de uma metriz
+procedure Insert (Integer, TwsVec);Insere uma linha na posição especificadaParâmetros  - Pos : Posição que será ocupada pela nova linha  - L   : Linha que será inserida
+procedure Delete (Integer);Elimina uma linha especificada pelo índice
+procedure DeleteCol (Integer);
+procedure Add (TwsVec);Concatena uma linha à matriz
+procedure Exchange (Integer, Integer);Troca duas linhas entre si  Parâmetros    i, j: Índices das linhas que serão trocadas
+function Get (Integer, Integer): Real;Retorna o valor armazenado em uma CélulaParâmetros: Linha, Coluna
+function Power (Integer): TwsGeneral;Responsável em multiplicar "n" vezes a Matriz A por ela mesma (potência de matriz)Parâmetros: Potência (inteiro)
+function GetNRows: Integer;
+function GetNCols: Integer;
+function IsMissValue (Integer, Integer, Real): Boolean;
+function Transpose: TwsMatrix;Retorna a transposta da matriz que chama o métodoSempre retorna uma matriz geral com a transposta
+function Mult (TwsMatrix, Integer): TwsMatrix; Metodo para o produto de matrizes. Utilizado quando a matriz que chama o metodo é geral,    simétrica, Vandermonde ou Toeplitz  Parâmetros    B: Matriz para o (pos) produto com a matriz que chama o método    ErrCode: Código de erro. O produto somente sera possível (ErrCode retorna 0) se o      número de colunas de quem chama é igual ao número de linhas de B; caso contrário      ErrCode retorna a constante NImprDim (Dimensões impróprias para a operação) e a      função retorna nil  Retorno    Retorna sempre uma matriz geral
+function VecMult (TwsVec, Boolean, Integer): TwsDFVec;Fazer o produto de uma matriz por um vetor Parâmatros   A: Vetor para o produto   PreMult: True se o vetor premultiplicar a matriz; False caso contrario   ErrCode: Código de erro. Retorna 0 se o produto for possível e NImprDim (dimensões     impróprias para a operação) se a) número de componentes do vetor diferente do número     de linhas da matriz (PreMult=True); b) número de colunas da matriz diferente do número     de componentes do vetor (PreMult=False)   Retorno     Retorna sempre um vetor
+function GetAsString (Integer, Integer): String;
+function GetRow (Integer): TwsVec;
+function VecKronecker (TwsVec): TwsMatrix;Obtém o produto de Kronecker de uma matriz por um vetor  Parâmetros    x: Vetor para o produto  Retorno    Se a matriz que chama é de ordem m x n e o vetor é de ordem k então o retorno é uma    matriz geral de ordem m x nk  Valores perdidos    Produto que envolve valor(es) perdidos retorna valor perdido
+function Kronecker (TwsMatrix): TwsMatrix; Retorna o produto de Kronecker entre duas matrizes  Parâmetros    X: Matriz com a qual será feito o produto de Kronecker  Retorno    Se A é a matriz m x n que chama o método e X uma matriz p x q este método retorna uma    matriz geral mp x nq com o produto de Kronecker  Valores perdidos    Não trata
+function ColKronecker (TwsMatrix, Integer, Integer): TwsVec;Retorna o produto de Kronecker entre as colunas especificadas  Parâmetros    X: matriz para o produto    i,j: Índices das colunas da matriz e de X, respectivamente  Retorno    Se a matriz que chama é de ordem m x n e X é de ordem p x q, retorna um vetor (TwsDFVec)    de ordem mp, que corresponde ao produto de Kronecker entre a coluna i da matriz e coluna    j de X  Valores perdidos    Produtos envolvendo valores perdidos retornam valores perdidos
+function HorKronecker (TwsMatrix, Integer): TwsMatrix;   Faz produto de Kronecker linha por linha  Parâmetros    X: Matriz para realização do produto    ErrCode: Código de erro. Retorna 0 se o número de linhas da matriz que chama é igual ao    número de linhas de X; NImprDim (dimensões impróprias para a operação) caso contrário  Retorno    Se A (com dimensão m x n) é a matriz que chama e X é de ordem p x q retorna uma matriz    geral de dimensão m x nq  Valores perdidos    Produto envolvendo valores perdidos retornam valores perdidos.
+function TranspMul1 (TwsMatrix, Integer): TwsMatrix; Faz o produto da matriz (geral, simétrica, Vandermonde ou Toeplitz) pela transposta da    outra sem que a transposição seja explicitamente realizada  Parâmetros    B: Matriz que será transposta para o produto    ErrCode: Código de erro. Retorna 0 (zero) se NCols = B.NCols e NImprDim caso contrário  Retorno    Se A é a matriz que chama o método, retorna uma matriz geral com o produt AB'  Valores perdidos    Não trata
+function LoadFromFile (String): TwsMatrix;
+function GetMLab: String;
+function GetRowName (Integer): String; Retorna o nome da linha especificada  Parâmetros    i: Índice da linha para obtenção do nome
+function GetColName (Integer): String;Retorna o nome da coluna de índice especificado  i: Índice da coluna
+TwsGeneral (TwsMatrix);Encapsula uma matriz Geral N x N
+Métodos;
+procedure Print (TOutPut);Mostra uma matriz em uma saída (OutPut)Parâmetros: OutPut
+procedure Set (Integer, Integer, Real);Atribui um valor a uma Célula de uma matrizParâmetros: Linha, Coluna, Valor
+procedure DeleteCol (Integer);Remove uma coluna
+procedure Add (TwsVec);Insere uma linha no final da matriz
+procedure Inv (Integer);Inverte a matriz através do método de Gauss-Jordan com pivoteamento total
+procedure SetNRows (Integer);
+procedure SetNCols (Integer);
+procedure SetAsString (Integer, Integer, String);
+procedure SetRow (Integer, TwsVec);
+procedure SaveToFile (String);Salva os dados de uma metrix em um arquivo
+procedure SetMLab (String);
+procedure SetRowName (Integer, String);Atribui um nome à linha de uma metriz
+procedure SetColName (Integer, String);Atribui um nome à coluna especificada de uma metriz
+procedure Insert (Integer, TwsVec);Insere uma linha na posição especificadaParâmetros  - Pos : Posição que será ocupada pela nova linha  - L   : Linha que será inserida
+procedure Delete (Integer);Elimina uma linha especificada pelo índice
+procedure DeleteCol (Integer);
+procedure Add (TwsVec);Concatena uma linha à matriz
+procedure Exchange (Integer, Integer);Troca duas linhas entre si  Parâmetros    i, j: Índices das linhas que serão trocadas
+procedure SortRows (TwsLIVec, TwsLIVec);Ordena as linhas da matriz, em ordem ascendente ou descendente, utilizando as colunas indicadas como chaves.Parâmetros:  - Column: Vetor que indica os índices das colunas que funcionarão como chaves de ordenação.  - Ascend: Vetor de mesma dimensão de Column que indica se para a coluna correspondente            a ordenação será ascendente ou descendente. Se para uma coluna a posição Ascend            tiver 0 (zero) na posição correspondente a ordem será descendente; ascendente se tiver            um valor diferente de zero.
+function Get (Integer, Integer): Real;Retorna o valor armazenado em uma CélulaParâmetros: Linha, Coluna
+function Power (Integer): TwsGeneral;Responsável em multiplicar "n" vezes a Matriz A por ela mesma (potência de matriz)Parâmetros: Potência (inteiro)
+function GetNRows: Integer;
+function GetNCols: Integer;
+function IsMissValue (Integer, Integer, Real): Boolean;
+function Transpose: TwsMatrix;Retorna a transposta da matriz que chama o métodoSempre retorna uma matriz geral com a transposta
+function Mult (TwsMatrix, Integer): TwsMatrix; Metodo para o produto de matrizes. Utilizado quando a matriz que chama o metodo é geral,    simétrica, Vandermonde ou Toeplitz  Parâmetros    B: Matriz para o (pos) produto com a matriz que chama o método    ErrCode: Código de erro. O produto somente sera possível (ErrCode retorna 0) se o      número de colunas de quem chama é igual ao número de linhas de B; caso contrário      ErrCode retorna a constante NImprDim (Dimensões impróprias para a operação) e a      função retorna nil  Retorno    Retorna sempre uma matriz geral
+function VecMult (TwsVec, Boolean, Integer): TwsDFVec;Fazer o produto de uma matriz por um vetor Parâmatros   A: Vetor para o produto   PreMult: True se o vetor premultiplicar a matriz; False caso contrario   ErrCode: Código de erro. Retorna 0 se o produto for possível e NImprDim (dimensões     impróprias para a operação) se a) número de componentes do vetor diferente do número     de linhas da matriz (PreMult=True); b) número de colunas da matriz diferente do número     de componentes do vetor (PreMult=False)   Retorno     Retorna sempre um vetor
+function GetAsString (Integer, Integer): String;
+function GetRow (Integer): TwsVec;
+function VecKronecker (TwsVec): TwsMatrix;Obtém o produto de Kronecker de uma matriz por um vetor  Parâmetros    x: Vetor para o produto  Retorno    Se a matriz que chama é de ordem m x n e o vetor é de ordem k então o retorno é uma    matriz geral de ordem m x nk  Valores perdidos    Produto que envolve valor(es) perdidos retorna valor perdido
+function Kronecker (TwsMatrix): TwsMatrix; Retorna o produto de Kronecker entre duas matrizes  Parâmetros    X: Matriz com a qual será feito o produto de Kronecker  Retorno    Se A é a matriz m x n que chama o método e X uma matriz p x q este método retorna uma    matriz geral mp x nq com o produto de Kronecker  Valores perdidos    Não trata
+function ColKronecker (TwsMatrix, Integer, Integer): TwsVec;Retorna o produto de Kronecker entre as colunas especificadas  Parâmetros    X: matriz para o produto    i,j: Índices das colunas da matriz e de X, respectivamente  Retorno    Se a matriz que chama é de ordem m x n e X é de ordem p x q, retorna um vetor (TwsDFVec)    de ordem mp, que corresponde ao produto de Kronecker entre a coluna i da matriz e coluna    j de X  Valores perdidos    Produtos envolvendo valores perdidos retornam valores perdidos
+function HorKronecker (TwsMatrix, Integer): TwsMatrix;   Faz produto de Kronecker linha por linha  Parâmetros    X: Matriz para realização do produto    ErrCode: Código de erro. Retorna 0 se o número de linhas da matriz que chama é igual ao    número de linhas de X; NImprDim (dimensões impróprias para a operação) caso contrário  Retorno    Se A (com dimensão m x n) é a matriz que chama e X é de ordem p x q retorna uma matriz    geral de dimensão m x nq  Valores perdidos    Produto envolvendo valores perdidos retornam valores perdidos.
+function TranspMul1 (TwsMatrix, Integer): TwsMatrix; Faz o produto da matriz (geral, simétrica, Vandermonde ou Toeplitz) pela transposta da    outra sem que a transposição seja explicitamente realizada  Parâmetros    B: Matriz que será transposta para o produto    ErrCode: Código de erro. Retorna 0 (zero) se NCols = B.NCols e NImprDim caso contrário  Retorno    Se A é a matriz que chama o método, retorna uma matriz geral com o produt AB'  Valores perdidos    Não trata
+function LoadFromFile (String): TwsMatrix;
+function GetMLab: String;
+function GetRowName (Integer): String; Retorna o nome da linha especificada  Parâmetros    i: Índice da linha para obtenção do nome
+function GetColName (Integer): String;Retorna o nome da coluna de índice especificado  i: Índice da coluna
+TChart;Encapsula um objeto do tipo TChart
+Métodos;
+procedure SetView3D (Boolean);Mostra o gráfico em 2D ou 3D
+function Title: TStringList;Retorna uma referência a propriedade "Title" no qual é um objeto do tipo TStringList
+function BottonAxis: TChartAxis;Eixo de baixo
+function LeftAxis: TChartAxis;Eixo Esquerdo
+function RightAxis: TChartAxis;
+function TopAxis: TChartAxis;Eixo do Topo
+TChartAxis;Representa um eixo do gráfico
+Métodos;
+procedure setTitle (String);Título do Eixo
+procedure setLogarithmic (Boolean);Informa se a escala dos valores mostrados no eixo é logarítmica
+procedure setMaximum (Real);Informa o valor máximo para o eixo
+procedure setMinimum (Real);Informa o valor mínimo do eixo
+TfoChart;Encapsula uma janela contendo um gráfico
+Métodos;
+procedure Show;Mostra o Gráfico na tela
+procedure setBounds (Integer, Integer, Integer, Integer);Estabelece a posição e o tamanho da janela
+procedure setCaption (String);Estabelece o título da janela
+function Chart: TChart;Obtem uma referência ao objeto "Chart" (TeeChart)
+function Series: TSeriesList;Obtem uma referência as séries do gráfico
+function getCaption: String;Retorna o título da janela
+TSeriesList;Gerencia as séries de um gráfico
+Métodos;
+function AddBarSerie (String, Integer, Integer, Integer): TBarSeries;Adiciona uma série de Barras em um gráficoParâmetros: Titulo, Cor, Tipo, Multi-Tipo
+function AddLineSerie (String, Integer): TLineSeries;Adiciona uma série tipo "Linhas" em um gráficoParâmetros: Título, Cor
+function AddLineSerieEx (String, Integer, TwsVec): TLineSeries;Adiciona uma série tipo "Linhas" em um gráficoParâmetros: Título, Cor, Vetor com os dados
+function AddPointSerie (String, Integer): TPointSeries;Adiciona uma série tipo "Pontos" em um gráficoParâmetros: Título, Cor
+function AddPointSerieEx (String, Integer, TwsVec): TPointSeries;Adiciona uma série tipo "Pontos" em um gráficoParâmetros: Título, Cor, Vetor com os dados
+function AddPieSerie (String): TPieSeries;Adiciona uma série tipo "Pizza" em um gráficoParâmetros: Título
+TChartSeries;Representa os dados de uma série
+Métodos;
+procedure SetXLabel (Integer, String);Estabelece o título de um ponto dado seu índice.
+procedure setValueFormat (String);Estabelece o formato dos valores
+procedure setTitle (String);
+procedure ShowInLegend (Boolean);Estabelece se a série deverá ou não ser mostrada na legenda
+procedure Delete (Integer);Remove um ponto da série
+function Add (Real): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddEx (Real, String, Integer): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddXY (Real, Real, String, Integer): Integer;Adiciona um ponto (X, Y) retornando o índice deste ponto na série.
+function GetXLabel (Integer): String;Retorna o título de um ponto dado seu índice.
+function AddNull (String): Integer;Adiciona um valor nulo
+function Count: Integer;Retorna o número de pontos
+TBarSeries (TChartSeries);Encapsula uma Serie do tipo "Barras"
+Métodos;
+procedure SetXLabel (Integer, String);Estabelece o título de um ponto dado seu índice.
+procedure setValueFormat (String);Estabelece o formato dos valores
+procedure setTitle (String);
+procedure ShowInLegend (Boolean);Estabelece se a série deverá ou não ser mostrada na legenda
+procedure Delete (Integer);Remove um ponto da série
+procedure SetBarWidthPercent (Integer);Configura a largura das barras
+function Add (Real): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddEx (Real, String, Integer): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddXY (Real, Real, String, Integer): Integer;Adiciona um ponto (X, Y) retornando o índice deste ponto na série.
+function GetXLabel (Integer): String;Retorna o título de um ponto dado seu índice.
+function AddNull (String): Integer;Adiciona um valor nulo
+function Count: Integer;Retorna o número de pontos
+TLineSeries (TChartSeries);Encapsula uma Serie do tipo "Linhas"
+Métodos;
+procedure SetXLabel (Integer, String);Estabelece o título de um ponto dado seu índice.
+procedure setValueFormat (String);Estabelece o formato dos valores
+procedure setTitle (String);
+procedure ShowInLegend (Boolean);Estabelece se a série deverá ou não ser mostrada na legenda
+procedure Delete (Integer);Remove um ponto da série
+function Add (Real): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddEx (Real, String, Integer): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddXY (Real, Real, String, Integer): Integer;Adiciona um ponto (X, Y) retornando o índice deste ponto na série.
+function GetXLabel (Integer): String;Retorna o título de um ponto dado seu índice.
+function AddNull (String): Integer;Adiciona um valor nulo
+function Count: Integer;Retorna o número de pontos
+TPointSeries (TChartSeries);Encapsula uma Serie do tipo "Pontos"
+Métodos;
+procedure SetXLabel (Integer, String);Estabelece o título de um ponto dado seu índice.
+procedure setValueFormat (String);Estabelece o formato dos valores
+procedure setTitle (String);
+procedure ShowInLegend (Boolean);Estabelece se a série deverá ou não ser mostrada na legenda
+procedure Delete (Integer);Remove um ponto da série
+function Add (Real): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddEx (Real, String, Integer): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddXY (Real, Real, String, Integer): Integer;Adiciona um ponto (X, Y) retornando o índice deste ponto na série.
+function GetXLabel (Integer): String;Retorna o título de um ponto dado seu índice.
+function AddNull (String): Integer;Adiciona um valor nulo
+function Count: Integer;Retorna o número de pontos
+TPieSeries (TChartSeries);Encapsula uma Serie do tipo "Pizza"
+Métodos;
+procedure SetXLabel (Integer, String);Estabelece o título de um ponto dado seu índice.
+procedure setValueFormat (String);Estabelece o formato dos valores
+procedure setTitle (String);
+procedure ShowInLegend (Boolean);Estabelece se a série deverá ou não ser mostrada na legenda
+procedure Delete (Integer);Remove um ponto da série
+function Add (Real): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddEx (Real, String, Integer): Integer;Adiciona um valor retornando o índice deste ponto na série.
+function AddXY (Real, Real, String, Integer): Integer;Adiciona um ponto (X, Y) retornando o índice deste ponto na série.
+function GetXLabel (Integer): String;Retorna o título de um ponto dado seu índice.
+function AddNull (String): Integer;Adiciona um valor nulo
+function Count: Integer;Retorna o número de pontos
+TPlanilha;Classe que encapsula a funcionalidade de uma Planilha
+Métodos;
+procedure Write (Integer, Integer, String);Escreve um texto na célula[Linha, Coluna]Linha e Coluna começam em 1Parâmetros: Linha, Coluna, Texto
+procedure WriteFloat (Integer, Integer, Real);Escreve um número na célula[Linha, Coluna]Linha e Coluna começam em 1Parâmetros: Linha, Coluna, Valor
+procedure WriteCenter (Integer, Integer, String);Escreve um texto centralizado na célula[Linha, Coluna]Linha e Coluna começam em 1Parâmetros: Linha, Coluna, Texto
+procedure WriteFloatCenter (Integer, Integer, Real);Escreve um número centralizado na célula[Linha, Coluna]Linha e Coluna começam em 1Parâmetros: Linha, Coluna, Valor
+procedure WriteVecInCol (TwsVec, Integer, Integer);Escreve um vetor em uma coluna da planilhaParâmetros: Vetor, Coluna, Linha Inicial
+procedure WriteVecInRow (TwsVec, Integer, Integer);Escreve um vetor em uma linha da planilhaParâmetros: Vetor, Linha, Coluna Inicial
+procedure SetCellFont (Integer, Integer, String, Integer, Integer, Boolean, Boolean, Boolean);Características do texto de uma célula[Linha, Coluna]Linha e Coluna começam em 1Parâmetros:  - Linha  - Coluna  - Nome da fonte  - Tamanho  - Cor  - Negrito  - Itálico  - Sublinhado
+procedure Cut;Recorta o conteúdo da planilha para a clipboard
+procedure Copy;Copia o conteúdo da planilha para a clipboard
+procedure Paste;Cola o conteúdo da clipboard na planilha
+procedure Clear;Limpa o conteúdo da planilha
+procedure Print;Imprime o conteúdo da planilha em uma impressora
+procedure Cut;Recorta o conteúdo da planilha
+procedure Show;Mostra o Planilha
+procedure LoadFromFile (String);Lê o conteúdo de um arquivo para a planilhaParâmetro: Nome do arquivo
+procedure SaveToFile (String, String);Salva o conteúdo da planilha em um arquivoParâmetros: Nome do arquivo, Tipo do Arquivo ("TXT" ou "XLS")
+procedure SetNRows (Integer);Configura o número de linhas da Planilha.
+procedure SetNCols (Integer);Configura o número de Colunas da Planilha.
+function GetFloat (Integer, Integer): Real;Obtém o valor numérico de uma célula.Parâmetros: Linha e Coluna.
+function GetEntry (Integer, Integer): String;Obtém o texto entrado em uma célula.Parâmetros: Linha e Coluna.
+function GetText (Integer, Integer): String;Obtém o texto visualizado em uma célula.Parâmetros: Linha e Coluna.
+function GetNRows: Integer;Retorna o número de linhas da Planilha.
+function GetNCols: Integer;Retorna o número de colunas da Planilha.
+function ColToVec (Integer, Integer, Integer): TwsVec;Retorna um vetor com os dados da coluna da Planilha.Parâmetros: Coluna, Linha Inicial, Linha Final
+function RowToVec (Integer, Integer, Integer): TwsVec;Retorna um vetor com os dados de uma linha da Planilha.Parâmetros: Linha, Coluna Inicial, Coluna Final
+function ColToVec2 (Integer, Integer): TwsVec;Retorna um vetor com os dados da coluna da Planilha.Parâmetros: Coluna, Linha Inicial
+function RowToVec2 (Integer, Integer): TwsVec;Retorna um vetor com os dados de uma linha da Planilha.Parâmetros: Linha, Coluna Inicial
+TSpreadSheetBook;Planilha estilo Excel
+Métodos;
+procedure setCaption (String);Estabelece o título da janela
+procedure setBounds (Integer, Integer, Integer, Integer);Estabelece a posição e o tamanho da janela
+procedure LoadFromFile (String);Faz a leitura de um arquivo
+procedure NewSheet (String);Cria uma nova folha dentro da planilhaParametro: Nome da folha (string)
+procedure SaveToFile (String);Salva o conteúdo da planilha em arquivo
+procedure setActiveSheetIndex (Integer);Muda a folha ativa pelo seu índice
+procedure Show;Mostra a planilha
+procedure ShowModal;Mostra a planilha e só retorna a execução após o fechamento da janela
+function ActiveSheet: TSheet;Retorna a folha ativa
+function getCaption: String;Retorna o título da janela
+function getActiveSheetIndex: Integer;Retorna o índice da folha corrente
+function SheetCount: Integer;Retorna o número de folhas da planilha
+TSheet;Folha de uma planilha.Utilize o botão de função de seu "mouse" para ter acesso a um menu com opções
+Métodos;
+procedure Copy;Copiar
+procedure Cut;Recortar
+procedure Paste;Colar
+procedure setCellFont (Integer, Integer, String, Integer, Integer, Boolean, Boolean);Muda a fonte de uma célulaSe "aFontName" = '' valerá a fonte correnteSe "aSize" = 0 valerá o tamanho correnteParâmetros:   - Linha e Coluna  - Nome da Fonte  - Tamanho  - Cor  - Negrito (boolean)  - Itálico (boolean)
+procedure setColWidth (Integer, Integer);Muda o tamanho da colunaParâmetro: Índice da Coluna e Tamanho
+procedure setShowHeaders (Boolean);Mostra ou não os cabeçalhos da folha corrente
+procedure writeFloat (Integer, Integer, Real, Integer);Escreve um valor em uma célulaParâmetros: Linha, Coluna, Valor e Numero de Casas Decimais
+procedure writeText (Integer, Integer, String);Escreve um texto em uma célulaParâmetros: Linha, Coluna e Texto
+procedure writeCenterFloat (Integer, Integer, Real, Integer);Escreve um valor centralizado em uma célulaParâmetros: Linha, Coluna, Valor e Numero de Casas Decimais
+procedure writeCenterText (Integer, Integer, String);Escreve um texto centralizado em uma célulaParâmetros: Linha, Coluna e Texto
+procedure BoldCell (Integer, Integer);Estabelece o atributo de negrito de uma célulaParâmetros: Linha, Coluna  
+function ColCount: Integer;Número de Colunas com valores válidos
+function GetDisplayText (Integer, Integer): String;Retorna o texto mostrado em uma célula
+function GetFloat (Integer, Integer): Real;Retorna o valor de uma célula
+function GetInt (Integer, Integer): Integer;Retorna o valor inteiro de uma célula
+function GetText (Integer, Integer): String;Retorna o texto de uma célula
+function RowCount: Integer;Número de Linhas com valores válidos
+TproApplication;
+Métodos;
+procedure AddSerie (TSerie);Adiciona uma série na aplicação
+procedure ShowMessage (String);Mostra uma mensagem na aplicação
+function GetDatasetByName (String): TDSInfo;
+function Series: TSeries;Retorna a lista de séries da aplicação
+TDSInfo;Representa um conjunto de postos.
+Métodos;
+procedure getStationNames (TStringList);Retorna o nome dos postos em uma lista de strings
+function Data: TwsDataSet;Retorna os dados (matriz) deste conjunto
+function Filename: String;Retorna o nome do arquivo
+function GetStationByName (String): TStation;Retorna o posto que coincidir com o parâmetro passado ou nil.
+function Station (Integer): Integer;Retorna o i-égimo posto baseado em 0
+function StationCount: Integer;Retorna o número de postos contidos.
+TSerie;Representa uma série de valores
+Métodos;
+procedure AddSerie (TSerie);Adiciona uma outra série como filho desta.
+procedure Admensionalize;Admensiona os valores da série
+procedure Convert (Real);Converte os valores baseado em um fator, isto é, realiza uma multiplicação dos valores pelo fator dado.
+procedure LN;Calcula o Logarítmo Natural de cada um dos valores da série
+procedure Plot (TfoChart, Integer);Plota os dados da série em um gráfico.O segundo parâmetro é utilizado para seleção automática da cor utilizada na série.
+procedure PlotAMD (TfoChart, Integer);Plota a diferença da média acumulada.O segundo parâmetro é utilizado na seleção automática da cor
+procedure ShowDataInSheet (TSpreadSheetBook, Integer);Mostra os valores da série em uma planilha em uma determinada coluna.
+procedure ShowHeaderInSheet (TSpreadSheetBook, Integer);Mostra o cabeçalho da série em uma planilha em uma determinada coluna.
+function Admensioned: Boolean;Retorna se a série foi admensionalizada.
+function Clone: TSerie;Clona o objeto
+function ConvertToDataset: TwsDataSet;Converte o vetor com dados para um Dataset de uma coluna
+function Data: TwsDFVec;Retorna o vetor com os dados da série
+function Name: String;Retorna o nome da série
+function Series: TSeries;Retorna a lista de séries desta série
+function Station: TStation;Retorna a que posto esta série pertence.Se for uma série da aplicação, retornará nil.
+function StrongName: String;Retorna o nome completo da série
+TSeries;Representa uma lista de séries
+Métodos;
+procedure Add (TSerie);Adiciona uma série na lista
+procedure Remove (TSerie);Remove uma série da lista
+function Count: Integer;Retorna o número de séries da lista
+function Serie (Integer): TSerie;Retorna a i-égima série da lista iniciando em 0
+TStation;Representa um posto.
+Métodos;
+procedure AddSerie (TSerie);Adiciona uma série como filha deste posto.
+procedure getValue (Integer);Retorna o valor do i-egimo elemento do posto.
+procedure setValue (Integer, Real);Estabelece o valor do i-egimo elemento do posto.
+function Count: Integer;Retorna o número de valores armazenados por este posto.
+function Description: TStringList;Representa o objeto que armazena as descrições do posto
+function ExtraData: TStringList;Representa o objeto que armazena os dados extras do posto.
+function getDate (Integer): Real;Retorna a data do i-égimo valor do posto
+function IndexOfDate (Real): Integer;Retorna o índice de uma data
+function IsNull (Integer): Boolean;Verifica se um valor do posto é nulo.
+function MonthCount: Integer;Retorna o número de meses contidos pelo posto.Considera somente o periodo de dados.
+function Name: String;Retorna o nome deste posto
+function Series: TSeries;Retorna as séries deste posto

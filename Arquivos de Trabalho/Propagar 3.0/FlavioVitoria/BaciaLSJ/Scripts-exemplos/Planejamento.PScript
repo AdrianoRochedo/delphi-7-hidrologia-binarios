@@ -1,0 +1,50 @@
+    procedure RecalculaDemandasPlanejadas(int, iRes: integer; coef: real);
+    var i   : integer;
+        PC  : object;
+        DTT : real;
+    begin
+      for i := 0 to iRes do
+        begin
+        PC := Projeto.PC(i);
+        DTT := PC.ObterValorDemanda(int, 3, 'T');
+        PC.AtribuiValorDemanda(int, 3, 'P', DTT - coef * DTT);
+        end;
+    end;
+
+var i     : integer;
+    PC    : object;
+    DT    : real;      // Guarda o somatorio das demandas terciarias
+    Sobra : real;      // Sobra de agua no resenvatorio descontando as Dem. Terciarias
+    int   : integer;   // Intervalo atual do projeto
+    iRes  : integer;   // Indice do reservatorio
+begin
+  // Inicializacao das variaveis
+  DT := 0;
+  int := Projeto.Intervalo;
+
+  // Obtem o indice do Reservatorio dado seu nome
+  PC := TprPCP(Projeto.ObjetoPeloNome('ReservatEngenhoBraun'));
+  if ObjectIsValid(PC) then
+     iRes := Projeto.IndiceDoPC(PC)
+  else
+     exit;
+
+  // Percorre todos os PCs ate o reservatorio
+  for i := 0 to iRes do
+    begin
+    PC := Projeto.PC(i);
+    DT := DT + PC.ObterValorDemanda(int, 3, 'T');
+
+    // Para se eh o reservatorio
+    if i = iRes then
+       begin
+       DT := DT + PC.ObterValorDemanda(int, 3, 'T');
+       Sobra := PC.Hm3_m3(PC.ObterVolume(int), int) - DT;
+
+       // Se nao ha agua para atender a demanda primaria deste Res. entao temos
+       // que recalcular as demandas planejadas baseando-se nas demandas terciarias.
+       if Sobra < PC.ObterValorDemanda(int, 1, 'T') then
+          RecalculaDemandasPlanejadas(int, iRes, Sobra / DT);
+       end;
+    end;
+end.

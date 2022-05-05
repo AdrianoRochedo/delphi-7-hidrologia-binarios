@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Classe TPascalScript</title>
+</head>
+
+<body>
+
+<font face="Arial" size="+2" color="Black">
+Classe TPascalScript
+</font><br><br>
+
+<pre>
+  TPascalScript = <b>Class</b>
+  <b>public</b>
+    <b>constructor</b> Create;
+    <b>destructor</b> Destroy; <b>override</b>;
+
+    <b>function</b>  Compile: Boolean;
+    <b>procedure</b> Execute;
+    <b>procedure</b> Stop;
+
+    <b>property</b> Text: TStrings;
+    
+    <b>property</b> Scanner        : TPascalScanner;
+    <b>property</b> ByteCode       : TByteCode;
+    <b>property</b> VirtualMachine : TVirtualMachine;
+
+    <b>property</b> Classes   : TClassList;
+    <b>property</b> Functions : TFunctionList;
+    <b>property</b> Procs     : TProcList;
+
+    <b>property</b> Errors   : TStrings;
+    <b>property</b> Compiled : Boolean;
+    <b>property</b> GerCODE  : Boolean;
+  <b>end</b>;
+</pre>
+
+<font face="Arial" size="+2" color="Black">
+M&eacute;todos
+</font><br><br>
+
+<b>Compile</b>: Boolean<br><br>
+Caso nenhum erro seja encontrado no texto do script, um p-code (execut&aacute;vel)
+ser&aacute; gerado e a propriedade Compiled conter&aacute; o valor "TRUE". 
+Este p-code ser&aacute; armazenado na propriedade ByteCode.
+<br><br>
+
+<b>Execute</b><br><br>
+Se o script j&aacute; foi compilado, o p-code ser&aacute; executado, 
+caso contr&aacute;rio ele ser&aacute; compilado e depois executado.
+<br><br>
+
+<b>Stop</b><br><br>
+Termina a execu&ccedil;&atilde;o de um script.
+<br><br>
+
+<font face="Arial" size="+2" color="Black">
+Propriedades
+</font><br><br>
+
+<b>Text</b> : TStrings<br><br>
+Cont&eacute;m o script a ser compilado e executado
+<br><br>
+    
+<b>Scanner</b> : TPascalScanner<br><br>
+Respons&aacute;vel por separar o script em peda&ccedil;os (Tokens).
+Controla o acesso aos tokens pelo compilador.
+<br><br>
+
+<b>ByteCode</b> : TByteCode<br><br>
+Respons&aacute;vel por armazenar e gerenciar o p-code.
+&Eacute; usado pela m&aacute;quina virtual para executar o script.
+<br><br>
+
+<b>VirtualMachine</b> : TVirtualMachine<br><br>
+M&aacute;quina virtual respons&aacute;vel por executar o p-code.
+<br><br>
+
+<b>Classes</b> : TClassList<br><br>
+Mant&eacute;m uma lista com as caracter&iacute;sticas das classes
+que podem ser instanciadas no Script.
+<br><br>
+
+<b>Functions</b> : TFunctionList<br><br>
+Mant&eacute;m uma lista com as caracter&iacute;sticas das fun&ccedil;&otilde;es que podem
+ser chamadas pelo Script.
+<br><br>
+
+<b>Procs</b> : TProcList<br><br>
+Mant&eacute;m uma lista com as caracter&iacute;sticas dos procedimentos que podem
+ser chamados pelo Script.
+<br><br>
+
+<b>Errors</b> : TStrings<br><br>
+Mant&eacute;m uma lista com as mensagens de erro da &uacute;ltima tentativa de compila&ccedil;&atilde;o
+<br><br>
+
+<b>Compiled</b> : Boolean<br><br>
+Informa se o Script foi compilado com sucesso ou n&atilde;o
+<br><br>
+
+<b>GerCODE</b>  : Boolean<br><br>
+Informa ao compilador se deve ou n&atilde;o gerar o p-code.
+<br><br>
+
+</body>
+</html>

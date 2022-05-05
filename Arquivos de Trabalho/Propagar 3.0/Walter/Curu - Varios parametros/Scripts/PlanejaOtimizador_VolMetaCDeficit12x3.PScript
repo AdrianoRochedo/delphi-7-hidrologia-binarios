@@ -1,0 +1,562 @@
+
+var
+// Essa planeja faz o seguinte, toda vez que é chamada pelo otimizador:
+
+// 1. Recebe do otimizador os 3 valores dos volumes meta, relativos ao intervalo
+//    de tempo vigente para os reservatorios Pentecoste, Gen Sampaio e Caxitore
+//   (o otimizador esta trabalhando com 12 parametros mensais para cada reservatorio)
+
+// 2. Obtem através dos objetos PC correspondentes os valores dos armazenamentos dos reservatórios.
+//    Se for o dt igual a um, pega o volume inicial informado pelo usuario nas caracteristicas dos PCs.
+//    No caso dos demais dt´s pega o volume remanescente após efetuado o balanço hídrico de cada simulaçao,
+//    ou seja, o armazenamento final do dt anterior a simulação atual.
+
+// 3. Determina para os reservatorios Pentecoste, Gen Sampaio e Pentecoste a descarga de acordo com
+//    as suas disponibilidades, com os deficits previstos para o intervalo vigente
+//    e com os valores dos volumes meta da simulaçao atual e do intervalo de tempo mensal correspondente
+
+// 4. confirma as demandas planejadas igualando-as as demandas totais, deixando para o PROPAGARMOO em si
+//    a definição do grau efetivo de atendimento as mesmas, de acordo com os procedimentos internos
+//   (balanço hídrico em cada PC e rotina de racionamento quando necessário) e com as prioridades de atendimento.
+
+// Declaração das variáveis
+    // Variáveis pré-inicializadas (só documentação)
+    // Saida    : Object; {Variável já inicializada pelo sistema}
+    // Projeto  : Object; {Variável já inicializada pelo sistema}
+
+    // Variáveis de trabalho = declaração obrigatória
+
+    // Varáveis p/ conter os objetos PC
+    PCatual,
+    PC01, PC02, PC03, PC04, PC05, PC06, PC07, PC08,
+    PC09, PC10, PC11, PC12, PC13, PC14, PC15, PC16 : Object;
+
+    // Variável para conter os nomes dos PCs
+    ListadePCs : Object; // globais
+
+    // Variáveis para conter contadores, intervalo de tempo atual,
+    // Número de intervalos, numero de PCs do projeto,
+    // e número de reservatórios estratégicos à montante do PC
+    i, j, dt, NumIntSim, NumeroPcs  : Integer;
+
+    // Variáveis para conter mês e ano correspondentes ao deltaT atuaL
+    mes, ano : integer;
+
+    // Variáveis auxiliares:
+    Disponibilidade, Libera               : Real;
+
+    // Variáveis que vão conter os valores dos parâmetros de volume meta,
+    // para cada reservatório estratégico, e que receberão os parâmetros do rosenbrok
+    VolMetaPen                                                                   :Object;
+    VolMetaSam                                                                   :Object;
+    VolMetaCax                                                                   :Object;
+
+    // Variáveis para conter os armazenamentos iniciais dos reservatórios
+    VolInicPC01, VolInicPC07, VolInicPC09                                        : Real;
+
+    // Variáveis para conter os armazenamentos disponívéis das associações de reservatórios
+    VolDispPC01_PC07, VolDispPC01_PC07_PC09                                       : Real;
+
+    // Variáveis para conter o parcelamento de contribuição de cada reservatório
+    ParcReserPC01_DeftPC08, ParcReserPC07_DeftPC08, ParcReserPC01_DeftPC11,
+    ParcReserPC07_DeftPC11, ParcReserPC09_DeftPC11                                : Real;
+
+    // Variaveis para conter as descargas previstas para cada reservatorio:
+    DescargaPrevSam,DescargaPrevPen,DescargaPrevCax                               :Real;
+
+    //Variáveis auxiliares para conter as sobras hídricas dos PCs
+    QSobra2, QSobra3, QSobra4, QSobra5, QSobra6, QSobra8,
+    QSobra10, QSobra11, QSobra12, QSobra13, QSobra14, QSobra15                   : Real;
+
+    // Todas as variáveis a seguir conterão os valores dos retornos
+    // das demandas atendidas em cada PC
+    Ret1_1, Ret3_1,
+    Ret3_2,
+    Ret1_3, Ret3_3,
+    Ret3_4,
+    Ret3_5,
+    Ret3_6,
+    Ret1_7, Ret3_7,
+    Ret3_8,
+    Ret1_9, Ret3_9,
+    Ret3_10,
+    Ret1_11, Ret3_11,
+    Ret3_12,
+    Ret3_13,
+    Ret3_14,
+    Ret1_15, Ret3_15     : Real;
+
+    // Todas as variáveis a seguir conterão os valores das demandas
+    d1_1, d3_1,
+    d3_2,
+    d1_3, d2_3, d3_3,
+    d3_4,
+    d3_5,
+    d3_6,
+    d1_7, d3_7,
+    d3_8,
+    d1_9, d3_9,
+    d3_10,
+    d1_11, d2_11, d3_11,
+    d3_12,
+    d3_13,
+    d3_14,
+    d1_15, d2_15, d3_15,
+    d3_16    : Real;
+
+    // e das afluências em cada PC
+    sb_2, sb_3, sb_4, sb_5, sb_6, sb_8, sb_11,
+    sb_10, sb_12, sb_13, sb_14, sb_15, sb_16 : Real;
+
+    // Variáveis para o cálculo dos défictis hídricos em cada um dos PCs à jusante
+    // dos reservatórios
+    DeftPC02, DeftPC03, DeftPC04, DeftPC05, DeftPC06, DeftPC08,
+    DeftPC10, DeftPC11, DeftPC12, DeftPC13, DeftPC14, DeftPC15, DeftPC16          : Real;
+
+begin
+  dt        := Projeto.intervalo;      // Obtem o intervalo de simulação atual
+  NumIntSim := Projeto.Total_IntSim;     // Obtem o total de intervalo de simulação
+  NumeroPcs := Projeto.NumPCs;           // Obtem o numero de PCs no projeto
+  Projeto.IntervaloComoData(dt, mes, ano); // Obtem o mês e o ano do delta T atual
+
+  // Recupera a variável global com a lista dos PCs
+  ListadePCs     := TStringList(GlobalObjects.Get('ListadePCs'));
+
+  // Recupera objetos definidos como parâmetros do otimizador por procura direta
+  VolMetaPen    := Projeto.Otimizador.Parameters.ParamByName('VolMetaPen'    + IntToStr(mes));
+  VolMetaSam    := Projeto.Otimizador.Parameters.ParamByName('VolMetaSam'    + IntToStr(mes));
+  VolMetaCax    := Projeto.Otimizador.Parameters.ParamByName('VolMetaCax'    + IntToStr(mes));
+
+  // -----------------------------------------
+  // Inicialização de variáveis
+
+   // Inicialização dos PCs
+  PC01 := Projeto.PCPeloNome('PC01');
+  PC02 := Projeto.PCPeloNome('PC02');
+  PC03 := Projeto.PCPeloNome('PC03');
+  PC04 := Projeto.PCPeloNome('PC04');
+  PC05 := Projeto.PCPeloNome('PC05');
+  PC06 := Projeto.PCPeloNome('PC06');
+  PC07 := Projeto.PCPeloNome('PC07');
+  PC08 := Projeto.PCPeloNome('PC08');
+  PC09 := Projeto.PCPeloNome('PC09');
+  PC10 := Projeto.PCPeloNome('PC10');
+  PC11 := Projeto.PCPeloNome('PC11');
+  PC12 := Projeto.PCPeloNome('PC12');
+  PC13 := Projeto.PCPeloNome('PC13');
+  PC14 := Projeto.PCPeloNome('PC14');
+  PC15 := Projeto.PCPeloNome('PC15');
+  PC16 := Projeto.PCPeloNome('PC16');
+
+  // -----------------------------------------
+  // Inicialização de variáveis
+
+  // Obtenção dos fatores de retorno das demandas de cada PC:
+  // Para o exemplo, não existe retorno para as demandas secundárias. Já a primária tem retorno
+  // igual a 0,6 e a terciária 0,1
+
+  // Fatores de Retorno do PC01
+  Ret1_1 := PC01.FatorDeRetorno(1);
+  Ret3_1 := PC01.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC02
+  Ret3_2 := PC02.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC03
+  Ret1_3 := PC03.FatorDeRetorno(1);
+  Ret3_3 := PC03.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC05
+  Ret3_4 := PC04.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC05
+  Ret3_5 := PC05.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC06
+  Ret3_6 := PC06.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC07
+  Ret1_7 := PC07.FatorDeRetorno(1);
+  Ret3_7 := PC07.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC07
+  Ret3_8 := PC08.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC09
+  Ret1_9 := PC09.FatorDeRetorno(1);
+  Ret3_9 := PC09.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC10
+  Ret3_10 := PC10.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC11
+  Ret1_11 := PC11.FatorDeRetorno(1);
+  Ret3_11 := PC11.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC12
+  Ret3_12 := PC12.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC13
+  Ret3_13 := PC13.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC14
+  Ret3_14 := PC14.FatorDeRetorno(3);
+
+  // Fatores de Retorno do PC15
+  Ret1_15 := PC15.FatorDeRetorno(1);
+  Ret3_15 := PC15.FatorDeRetorno(3);
+
+  // Obtenção das demandas de referência e das vazões das sub-bacias de cada PC:
+
+  // Demandas do PC01 (Gen Sampaio)
+  d1_1 := PC01.ObterValorDemanda(dt, 1, 'T');
+  d3_1 := PC01.ObterValorDemanda(dt, 3, 'T');
+
+  // Demandas e afluência da Sub-bacia do PC02
+  d3_2 := PC02.ObterValorDemanda(dt, 3, 'T');
+  sb_2 := PC02.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas e afluência da Sub-bacia do PC03
+  d1_3 := PC03.ObterValorDemanda(dt, 1, 'T');
+  d2_3 := PC03.ObterValorDemanda(dt, 2, 'T');
+  d3_3 := PC03.ObterValorDemanda(dt, 3, 'T');
+  sb_3 := PC03.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas e afluência da Sub-bacia do PC04
+  d3_4 := PC04.ObterValorDemanda(dt, 3, 'T');
+  sb_4 := PC04.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas e afluência da Sub-bacia do PC05
+  d3_5 := PC05.ObterValorDemanda(dt, 3, 'T');
+  sb_5 := PC05.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas e afluência da Sub-bacia do PC06
+  d3_6 := PC06.ObterValorDemanda(dt, 3, 'T');
+  sb_6 := PC06.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas do PC07 (Pentecoste)
+  d1_7 := PC07.ObterValorDemanda(dt, 1, 'T');
+  d3_7 := PC07.ObterValorDemanda(dt, 3, 'T');
+
+  // Demandas e afluência da Sub-bacia do PC08
+  d3_8 := PC08.ObterValorDemanda(dt, 3, 'T');
+  sb_8 := PC08.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas do PC09 (Caxitore)
+  d1_9 := PC09.ObterValorDemanda(dt, 1, 'T');
+  d3_9 := PC09.ObterValorDemanda(dt, 3, 'T');
+
+  // Demandas e afluência da Sub-bacia do PC10
+  d3_10 := PC10.ObterValorDemanda(dt, 3, 'T');
+  sb_10 := PC10.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas do PC11
+  d1_11 := PC11.ObterValorDemanda(dt, 1, 'T');
+  d2_11 := PC11.ObterValorDemanda(dt, 2, 'T');
+  d3_11 := PC11.ObterValorDemanda(dt, 3, 'T');
+  sb_11 := PC11.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas e afluência da Sub-bacia do PC12
+  d3_12 := PC12.ObterValorDemanda(dt, 3, 'T');
+  sb_12 := PC12.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas e afluência da Sub-bacia do PC13
+  d3_13 := PC13.ObterValorDemanda(dt, 3, 'T');
+  sb_13 := PC13.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas do PC14
+  d3_14 := PC14.ObterValorDemanda(dt, 3, 'T');
+  sb_14 := PC14.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas e afluência da Sub-bacia do PC15
+  d1_15 := PC15.ObterValorDemanda(dt, 1, 'T');
+  d2_15 := PC15.ObterValorDemanda(dt, 2, 'T');
+  d3_15 := PC15.ObterValorDemanda(dt, 3, 'T');
+  sb_15 := PC15.ObterVazaoAfluenteSBs(dt);
+
+  // Demandas e afluência da Sub-bacia do PC16
+  d3_16 := PC16.ObterValorDemanda(dt, 3, 'T');
+  sb_16 := PC16.ObterVazaoAfluenteSBs(dt);
+
+  // Cálculo dos déficits hídricos nos PCs à jusante dos reservatórios
+
+  // Déficit hídrico no PC02
+  DeftPC02 :=  d3_2 - sb_2 - ((Ret1_1 * d1_1) + (Ret3_1 * d3_1));
+  Qsobra2 := 0.0;
+  if (DeftPC02 <= 0.0) then  Qsobra2 := ABS(DeftPC02);
+  DeftPC02 := Max(DeftPC02,0.0);
+
+  // Déficit hídrico no PC03
+  DeftPC03 := d1_3 + d2_3 + d3_3 - sb_3 - ((Ret3_2 * d3_2) + Qsobra2);
+  Qsobra3 := 0.0;
+  if (DeftPC03 <= 0.0) then  Qsobra3 := ABS(DeftPC03);
+  DeftPC03 := Max(DeftPC03,0.0);
+
+  // Déficit hídrico no PC04
+  DeftPC04 := d3_4 - sb_4 - ((Ret1_3 * d1_3) + (Ret3_3 * d3_3) + Qsobra3);
+  Qsobra4 := 0.0;
+  if (DeftPC04 <= 0.0) then  Qsobra4 := ABS(DeftPC04);
+  DeftPC04 := Max(DeftPC04,0.0);
+
+  // Déficit hídrico no PC05
+  DeftPC05 := d3_5 - sb_5 - ((Ret3_4 * d3_4) + Qsobra4);
+  Qsobra5 := 0.0;
+  if (DeftPC05 <= 0.0) then  Qsobra5 := ABS(DeftPC05);
+  DeftPC05 := Max(DeftPC05,0.0);
+
+  // Déficit hídrico no PC06
+  DeftPC06 :=  d3_6 - sb_6 - ((Ret3_5 * d3_5) + Qsobra5);
+  Qsobra6 := 0.0;
+  if (DeftPC06 <= 0.0) then  Qsobra6 := ABS(DeftPC06);
+  DeftPC06 := Max(DeftPC06,0.0);
+
+  // Déficit hídrico no PC08
+  DeftPC08 := d3_8 - sb_8 - ((Ret3_6 * d3_6) + Qsobra6 + (Ret1_7 * d1_7) + (Ret3_7 * d3_7));
+  Qsobra8 := 0.0;
+  if (DeftPC08 <= 0.0) then  Qsobra8 := ABS(DeftPC08);
+  DeftPC08 := Max(DeftPC08,0.0);
+
+  // Déficit hídrico no PC10
+  DeftPC10 := d3_10 - sb_10 - ((Ret1_9 * d1_9) + (Ret3_9 * d3_9));
+  Qsobra10 := 0.0;
+  if (DeftPC10 <= 0.0) then  Qsobra10 := ABS(DeftPC10);
+  DeftPC10 := Max(DeftPC10,0.0);
+
+  // Déficit hídrico no PC11
+  DeftPC11 := d1_11 - d2_11 - d3_11 - sb_11 - ((Ret3_10 * d3_10)+ Qsobra10 + (Ret3_8 * d3_8)+ Qsobra8);
+  Qsobra11 := 0.0;
+  if (DeftPC11 <= 0.0) then  Qsobra11 := ABS(DeftPC11);
+  DeftPC11 := Max(DeftPC11,0.0);
+
+  // Déficit hídrico no PC12
+  DeftPC12 := d3_12 - sb_12 - ((Ret1_11 * d1_11) + (Ret3_11 * d3_11) + Qsobra11);
+  Qsobra12 := 0.0;
+  if (DeftPC12 <= 0.0) then  Qsobra12 := ABS(DeftPC12);
+  DeftPC12 := Max(DeftPC12,0.0);
+
+  // Déficit hídrico no PC13
+  DeftPC13 := d3_13 - sb_13 - ((Ret3_12 * d3_12) + Qsobra12);
+  Qsobra13 := 0.0;
+  if (DeftPC13 <= 0.0) then  Qsobra13 := ABS(DeftPC13);
+  DeftPC13 := Max(DeftPC13,0.0);
+
+  // Déficit hídrico no PC14
+  DeftPC13 := d3_14 - sb_14 - ((Ret3_13 * d3_13) + Qsobra13);
+  Qsobra14 := 0.0;
+  if (DeftPC14 <= 0.0) then  Qsobra14 := ABS(DeftPC14);
+  DeftPC14 := Max(DeftPC14,0.0);
+
+  // Déficit hídrico no PC15
+  DeftPC15 := d1_15 - d2_15 - d3_15 - sb_15 - ((Ret3_14 * d3_14) + Qsobra14);
+  Qsobra15 := 0.0;
+  if (DeftPC15 <= 0.0) then  Qsobra15 := ABS(DeftPC15);
+  DeftPC15 := Max(DeftPC15,0.0);
+
+  // Déficit hídrico no PC16
+  DeftPC16 := d3_16 - sb_16 - ((Ret3_15 * d3_15) + Qsobra15);
+  DeftPC16 := Max(DeftPC16,0.0);
+
+
+  // Obtenção dos volumes dos reservatórios no inicio do intervalo
+  If dt = 1
+    Then
+      Begin
+        VolInicPC01 := PC01.VolumeInicial;
+        VolInicPC07 := PC07.VolumeInicial;
+        VolInicPC09 := PC09.VolumeInicial;
+      End
+    Else
+      begin
+        VolInicPC01 := PC01.ObterVolume(dt-1);
+        VolInicPC07 := PC07.ObterVolume(dt-1);
+        VolInicPC09 := PC09.ObterVolume(dt-1);
+      end;
+
+  // Determinação da disponibilidade hídrica das associações de reservatórios
+  VolDispPC01_PC07:= VolInicPC01 + VolInicPC07;
+  VolDispPC01_PC07_PC09 := VolInicPC01 + VolInicPC07 + VolInicPC09;
+
+  // Cálculo das parcelas de contribuição de cada reservatório para os PCs à jusante
+  // de acordo com a topologia da bacia e de acordo com os seus aramazenamentos no início
+  // de cada intervalo
+  ParcReserPC01_DeftPC08 := VolInicPC01 / VolDispPC01_PC07;
+  ParcReserPC07_DeftPC08 := VolInicPC07 / VolDispPC01_PC07;
+  ParcReserPC01_DeftPC11 := VolInicPC01 / VolDispPC01_PC07_PC09;
+  ParcReserPC07_DeftPC11 := VolInicPC07 / VolDispPC01_PC07_PC09;
+  ParcReserPC09_DeftPC11 := VolInicPC09 / VolDispPC01_PC07_PC09;
+
+  // Calculo das demandas previstas para serem liberadas por cada reservatorio
+
+  // 1.Descarga prevista para o reservatorio Gen Sampaio:
+  // Planejamento da descarga da barragem  General Sampaio: PC01
+  // Liberar demandas dos PCs 02, 03, 04, 05, e 06 
+  // Liberar ParcReserPC01-DeftPC08 da demanda do PC 08
+  // Liberar ParcReserPC01-DeftPC11 das demandas dos PCs 11, 12, 13, 14, 15, 16
+  DescargaPrevSam := (DeftPC02 + DeftPC03 + DeftPC04 + DeftPC05 + DeftPC06 + (ParcReserPC01_DeftPC08 * DeftPC08) +
+            (ParcReserPC01_DeftPC11 * (DeftPC11 + DeftPC12 + DeftPC13 + DeftPC14 + DeftPC15 + DeftPC16)));
+  // Converte de m3 para Hm3 o valor calculado para libera
+  DescargaPrevSam := PC01.m3_Hm3(DescargaPrevSam,dt);
+
+  // 2.Descarga prevista para o reservatorio Pereira de Miranda (Pentecoste) : PC 07
+  // Liberar ParcReserPC07-DeftPC08 da demanda do PC 08
+  // Liberar ParcReserPC07-DeftPC11 das demandas dos PCs 11, 12, 13, 14, 15, 16
+  DescargaPrevPen := ((ParcReserPC07_DeftPC08 * DeftPC08) +
+             (ParcReserPC07_DeftPC11 * (DeftPC11 + DeftPC12 + DeftPC13 + DeftPC14 + DeftPC15 + DeftPC16)));
+  // Converte de m3 para Hm3 o valor calculado para libera
+  DescargaPrevPen := PC07.m3_Hm3(DescargaPrevPen,dt);
+
+  // 3.Descarga prevista para o reservatorio Caxitoré: PC09
+  // Liberar demanda do PC 10
+  // Liberar ParcReserPC09-DeftPC11 das demandas dos PCs 11, 12, 13, 14, 15, 16
+  DescargaPrevCax := (DeftPC10 + (ParcReserPC09_DeftPC11 * (DeftPC11 + DeftPC12 + DeftPC13 + DeftPC14 + DeftPC15 + DeftPC16)));
+  // Converte de m3 para Hm3 o valor calculado para libera
+  DescargaPrevCax := PC09.m3_Hm3(DescargaPrevCax,dt);
+
+
+  // Cálculo da liberação de água para os tres reservatórios mais importantes:
+
+  // 1. Planejamento da descarga da barragem  General Sampaio: PC01
+  // Neste script a liberação de água do reservatorio independe das demandas previstas
+  // e so depende da verificação da obdiência do volume meta previsto para o reservatório
+  // com os valores em Hm3
+
+  // A disponibilidade é igual aos seguintes termos:
+  // volume inicial no reservatório,
+  // menos o volume morto,
+  // mais a afluência da subbacia, convertida em Hm3
+  Disponibilidade := VolInicPC01 - PC01.VolumeMinimo + PC01.m3_Hm3(PC01.ObterVazaoAfluenteSBs(dt),dt);
+
+  // Testa se a disponibilidade  é maior que o volume meta previsto para o mes
+  if (Disponibilidade > VolMetaSam.GetValue)
+      // Disponibilidade é maior que o volume meta previsto para o mes
+      then
+         // Testa se a disponibilidade descontada da descarga prevista continua maior que o volume meta
+         if ((Disponibilidade-DescargaPrevSam) > VolMetaSam.GetValue)
+            // Disponibilidade, descontada do volume meta é maior que a descarga prevista
+            then
+                begin
+                    // Libera recebe o valor da descarga pre-estabelecida
+                    Libera := DescargaPrevSam;
+                    // Converte de Hm3 para m3 o valor da liberação
+                    Libera := PC01.Hm3_m3(Libera,dt);
+                    // Atribui o defluvio planejado para o PC01, no dt atual e em m3
+                    PC01.AtribuiDefluvioPlanejado(dt,Libera);
+                end
+            // Disponibilidade, descontada do volume meta é menor que a descarga prevista
+            else
+                begin
+                    // Calcula o excesso d´agua em relação ao volume meta
+                    Libera := Disponibilidade-VolMetaSam.GetValue;
+                    // Converte de Hm3 para m3 o valor da liberação
+                    Libera := PC01.Hm3_m3(Libera,dt);
+                    // Atribui o defluvio planejado para o PC01, no dt atual e em m3
+                    PC01.AtribuiDefluvioPlanejado(dt,Libera);
+                end
+      // Disponibilidade é menor que o volume meta
+      else
+         // Anula o defluvio planejado para o PC01, no dt atual e em m3
+         PC01.AtribuiDefluvioPlanejado(dt,0.0);
+
+
+  // 2. Planejamento da descarga da barragem Pereira de Miranda (Pentecoste) : PC 07
+  // Neste script a liberação de água do reservatorio independe das demandas previstas
+  // e so depende da verificação da obdiência do volume meta previsto para o reservatório
+  // com os valores em Hm3
+
+  // A disponibilidade é igual aos seguintes termos:
+  // volume inicial no reservatório,
+  // menos o volume morto,
+  // mais a afluência da subbacia, convertida em Hm3
+  Disponibilidade := VolInicPC07 - PC07.VolumeMinimo + PC07.m3_Hm3(PC07.ObterVazaoAfluenteSBs(dt),dt);
+
+  // Testa se a disponibilidade no aç GenSampaio é maior que o volume meta do mes
+  if (Disponibilidade > VolMetaPen.GetValue)
+
+     // Disponibilidade é maior que o volume meta previsto para o mes
+     then
+        // Testa se a disponibilidade descontada da descarga prevista continua maior que o volume meta
+        if ((Disponibilidade-DescargaPrevPen) > VolMetaPen.GetValue)
+           // Disponibilidade, descontada do volume meta é maior que a descarga prevista
+           then
+               begin
+                  // Libera recebe o valor da descarga pre-estabelecida
+                   Libera := DescargaPrevPen;
+                   // Converte de Hm3 para m3 o valor da liberação
+                   Libera := PC07.Hm3_m3(Libera,dt);
+                   // Atribui o defluvio planejado para o PC01, no dt atual e em m3
+                   PC07.AtribuiDefluvioPlanejado(dt,Libera);
+               end
+           // Disponibilidade, descontada do volume meta é menor que a descarga prevista
+           else
+               begin
+                   // Calcula o excesso d´agua em relação ao volume meta
+                   Libera := Disponibilidade - VolMetaPen.GetValue;
+                   // Converte de Hm3 para m3 o valor da liberação
+                   Libera := PC07.Hm3_m3(Libera,dt);
+                   // Atribui o defluvio planejado para o PC01, no dt atual e em m3
+                   PC07.AtribuiDefluvioPlanejado(dt,Libera);
+               end
+     // Disponibilidade é menor que o volume meta
+     else
+        // Anula o defluvio planejado para o PC01, no dt atual e em m3
+        PC07.AtribuiDefluvioPlanejado(dt,0.0);
+
+
+  // 3. Planejamento da descarga da barragem Caxitoré: PC09
+  // Neste script a liberação de água do reservatorio independe das demandas previstas
+  // e so depende da verificação da obdiência do volume meta previsto para o reservatório
+  // com os valores em Hm3
+
+  // A disponibilidade é igual aos seguintes termos:
+  // volume inicial no reservatório,
+  // menos o volume morto,
+  // mais a afluência da subbacia, convertida em Hm3
+  Disponibilidade := VolInicPC09 - PC09.VolumeMinimo + PC09.m3_Hm3(PC09.ObterVazaoAfluenteSBs(dt),dt);
+
+  // Testa se a disponibilidade no aç GenSampaio é maior que o volume meta do mes
+  if (Disponibilidade > VolMetaCax.GetValue)
+
+    // Disponibilidade é maior que o volume meta previsto para o mes
+    then
+       // Testa se a disponibilidade descontada da descarga prevista continua maior que o volume meta
+       if ((Disponibilidade-DescargaPrevCax) > VolMetaCax.GetValue)
+           // Disponibilidade, descontada do volume meta é maior que a descarga prevista
+           then
+               begin
+                  // Libera recebe o valor da descarga pre-estabelecida
+                   Libera := DescargaPrevCax;
+                   // Converte de Hm3 para m3 o valor da liberação
+                   Libera := PC09.Hm3_m3(Libera,dt);
+                   // Atribui o defluvio planejado para o PC01, no dt atual e em m3
+                   PC09.AtribuiDefluvioPlanejado(dt,Libera);
+               end
+           // Disponibilidade, descontada do volume meta é menor que a descarga prevista
+           else
+               begin
+                   // Calcula o excesso d´agua em relação ao volume meta
+                   Libera := Disponibilidade - VolMetaCax.GetValue;
+                   // Converte de Hm3 para m3 o valor da liberação
+                   Libera := PC09.Hm3_m3(Libera,dt);
+                   // Atribui o defluvio planejado para o PC01, no dt atual e em m3
+                   PC09.AtribuiDefluvioPlanejado(dt,Libera);
+               end
+    // Disponibilidade é menor que o volume meta
+    else
+       // Anula o defluvio planejado para o PC01, no dt atual e em m3
+       PC09.AtribuiDefluvioPlanejado(dt,0.0);
+
+
+  // Planejamento do atendimento às demanadas em cada PC,
+  // Confirma as demandas totais como planejadas, que serão atendidas na medida do possivel durante a simulação
+  for j := 1 to NumeroPCs do
+    begin
+      // PCatual assume o PC que estiver vigente na varredura do índice j
+      PCatual := Projeto.PCPeloNome(listadePCs.Get(j-1));
+          for i := 1 to 3 do
+            PCatual.AtribuiValorDemanda(dt,i,'P',PCatual.ObterValorDemanda(dt, i, 'T'))
+    //fim da varredura entre os PCs 
+    end;
+
+
+// fim do script da rotina planeja }
+end.

@@ -1,0 +1,24 @@
+var
+    vListaPCs  : object;  // Vetor p/ conter os PCs desde o Reserv. até as demandas
+    PC         : object;
+    N          : integer; // Número de PCs da lista
+    I          : integer; // Var. p/ indexar a lista
+    Falha1 : integer;
+    Falha2 : integer;
+    Falha3 : integer;
+    FOaux  : integer;
+begin
+  FOaux := 0;
+  vListaPCs := TStringList(GlobalObjects.Get('vListaPCs'));
+  N := vListaPCs.Count; // Obtem o número de elementos da lista de PCs
+  for I := 1 to (N-1) do
+    begin
+    PC := TprPCP(vListaPCs.GetObject(I));
+    Falha1 := PC.ObtemFalhas.NumFalhasPrimarias;
+    Falha2 := PC.ObtemFalhas.NumFalhasSecundarias;
+    Falha3 := PC.ObtemFalhas.NumFalhasTerciarias;
+    FOaux := FOaux + (Falha1 + Falha2 + Falha3);
+    end;
+  FO := FOaux;
+  GlobalObjects.Remove('vListaPCs');
+end.

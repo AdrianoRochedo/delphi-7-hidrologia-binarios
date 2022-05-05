@@ -1,0 +1,961 @@
+<font
+   face  = "ARIAL"
+   size  = "4"
+   color = "#0000FF">
+<div
+align = "center"
+<b>
+TSheet<BR>
+</b>
+</div>
+</font>
+<BR>
+Folha de uma planilha.<BR>
+Utilize o botão de função de seu "mouse" para ter acesso a um menu com opções<BR>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "4"
+   color = "#000000">
+<b>
+Métodos<BR>
+</b>
+</font>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+Passagem de Parâmetros: <BR>
+</b>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<font
+   face  = "ARIAL"
+   size  = "2"
+   color = "#0000FF">
+<b>
+AZUL = por Cópia <BR>
+</b>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<font
+   face  = "ARIAL"
+   size  = "2"
+   color = "#FF0000">
+<b>
+VERMELHO = por Referência<BR>
+</b>
+</font>
+<BR>
+<BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure Copy
+</b>
+</font>
+<BR>
+Copiar<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure Cut
+</b>
+</font>
+<BR>
+Recortar<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure Paste
+</b>
+</font>
+<BR>
+Colar<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure setCellFont
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Boolean
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Boolean
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Muda a fonte de uma célula<BR>
+Se "aFontName" = '' valerá a fonte corrente<BR>
+Se "aSize" = 0 valerá o tamanho corrente<BR>
+Parâmetros: <BR>
+  - Linha e Coluna<BR>
+  - Nome da Fonte<BR>
+  - Tamanho<BR>
+  - Cor<BR>
+  - Negrito (boolean)<BR>
+  - Itálico (boolean)<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure setColWidth
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Muda o tamanho da coluna<BR>
+Parâmetro: Índice da Coluna e Tamanho<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure setShowHeaders
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Boolean
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Mostra ou não os cabeçalhos da folha corrente<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure writeFloat
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Real
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Escreve um valor em uma célula<BR>
+Parâmetros: Linha, Coluna, Valor e Numero de Casas Decimais<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure writeText
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Escreve um texto em uma célula<BR>
+Parâmetros: Linha, Coluna e Texto<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure writeCenterFloat
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Real
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Escreve um valor centralizado em uma célula<BR>
+Parâmetros: Linha, Coluna, Valor e Numero de Casas Decimais<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure writeCenterText
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+String
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Escreve um texto centralizado em uma célula<BR>
+Parâmetros: Linha, Coluna e Texto<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+procedure BoldCell
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<BR>
+Estabelece o atributo de negrito de uma célula<BR>
+Parâmetros: Linha, Coluna<BR>
+  <BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function ColCount
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Integer
+</b>
+</font>
+<BR>
+Número de Colunas com valores válidos<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function GetDisplayText
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: String
+</b>
+</font>
+<BR>
+Retorna o texto mostrado em uma célula<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function GetFloat
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Real
+</b>
+</font>
+<BR>
+Retorna o valor de uma célula<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function GetInt
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Integer
+</b>
+</font>
+<BR>
+Retorna o valor inteiro de uma célula<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function GetText
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+ (
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+, 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#0000FF">
+<b>
+Integer
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+) 
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: String
+</b>
+</font>
+<BR>
+Retorna o texto de uma célula<BR>
+<BR>
+<HR><BR>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+function RowCount
+</b>
+</font>
+<font
+   face  = "ARIAL"
+   size  = "3"
+   color = "#000000">
+<b>
+: Integer
+</b>
+</font>
+<BR>
+Número de Linhas com valores válidos<BR>
+<BR>
+<HR><BR>
+<a href = "Index.HTM">Voltar para a Página Principal</a><BR><BR>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Arquivo gerado pela rotina TDSInfo.SaveToFile -->
+<!-- Autor: Adriano Rochedo Conceicao -->
+
+<proceda version="2">
+  <stations>
+    <station name="_41199998">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+  </stations>
+</proceda>

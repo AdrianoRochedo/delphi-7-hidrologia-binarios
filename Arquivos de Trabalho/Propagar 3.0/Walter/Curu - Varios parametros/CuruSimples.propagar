@@ -1,0 +1,2611 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Autor: Adriano Rochedo Conceicao -->
+<!-- Project Type: [ScrollCanvas] -->
+
+<propagar version="4">
+  <geral>
+    <DecimalSeparator>.</DecimalSeparator>
+  </geral>
+  <intervals>
+  </intervals>
+  <demandClasses>
+    <object class="TprClasseDemanda" name="Demanda Rural Difusa" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <bitmap width="20" heigth="20">
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000C6C3C6C6C3C6</L>
+        <L>C6C3C6000000000084000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000084000000C6C3C6</L>
+        <L>C6C3C6000000000084000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000084000000C6C3C6</L>
+        <L>C6C3C6000000000084000084000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000084000084000000C6C3C6</L>
+        <L>C6C3C6000000000084000084000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000000084000084000000C6C3C6</L>
+        <L>C6C3C6C6C3C6000000000084000084000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000000084000084000000C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6000000000084000084000084000000000000C6C3C6C6C3C6C6C3C6C6C3C6000000000000000084000084000084000000C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6000000000084000084FFFFFF000000000000000000000000000000000000FFFFFF000084000084000000C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6000000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6000000FFFFFFFFFFFF000000000000FFFFFFFFFFFF000000000000FFFFFFFFFFFF000000C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000FFFFFFFFFFFF000000000000FFFFFFFFFFFF000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000FFFFFFFFFFFFFFFFFFFFFFFF000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000FFFFFFFFFFFF000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6</L>
+        <L>C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6</L>
+      </bitmap>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>0</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+    </object>
+    <object class="TprClasseDemanda" name="Demanda Localizada1" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description>Demanda Localizada de Prioridade Primária</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Primário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <bitmap width="20" heigth="20">
+        <L>FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFF00FFFF00FFFF00000000000000000000FFFF00FFFF00FFFF00FFFF00FFFF00000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00000000000000000000000000FFFF000000FFFF00FFFF00FFFF00FFFF00FFFF0000000000FFFF84828400FFFF848284FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000084000084000084000084000000FFFF00FFFF00FFFF00FFFF00000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00000000FFFF00FFFF00008400FFFF000000FFFF00FFFF00FFFF00FFFF0000000000FFFF84828400FFFF00FFFF000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000084000084000084000084000000000000000000000000FFFF00000000848284848284848284848284000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00000000FFFF00FFFF00008400FFFF00000000000000000000000000000000000000FFFF84828400FFFF00FFFF000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000084000084000084000084000000000084000084000084000084000000848284848284848284848284000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00000000FFFF00FFFF00008400FFFF00000000008400FFFF00FFFF00008400000000FFFF84828400FFFF00FFFF000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000084000084000084000084000000000084000084000084000084000000848284848284848284848284000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00000000FFFF00FFFF00008400FFFF00000000008400FFFF00FFFF00008400000000FFFF84828400FFFF00FFFF000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000084000084000084000084000000000084000084000084000084000000848284848284848284848284000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000084FF0000FF0000000084000000000084000084848284848284000000848284000000000000848284000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000084FF0000FF0000000084000000000084000084848284848284000000848284000000000000848284000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+      </bitmap>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+    </object>
+    <object class="TprClasseDemanda" name="Demanda Localizada2" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description>Demanda Localizada de Prioridade Secundária</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Secundário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>1</priority>
+      <bitmap width="20" heigth="20">
+        <L>000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000000000000000000FFFFFF000000000000000000000000000000000000FFFFFF000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFF000000000000000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFF000000000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFF000000000000000000C6C3C6C6C3C6C6C3C6C6C3C6000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFF000000C6C3C6C6C3C6000000C6C3C6C6C3C6000000C6C3C6C6C3C6000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFF000000C6C3C6C6C3C6000000C6C3C6C6C3C6000000C6C3C6C6C3C6000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFF000000C6C3C6C6C3C6000000000000C6C3C6C6C3C6000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C6C3C6C6C3C6C6C3C6C6C3C6000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000C6C3C6C6C3C6000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+      </bitmap>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>0</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+    </object>
+    <object class="TprClasseDemanda" name="Demanda Localizada3" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description>Demanda Localizada de Prioridade Terciária</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <bitmap width="20" heigth="20">
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF000000C6C3C600000000FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF000000000000C6C3C6000000C6C3C600000000000000FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00000000000000000000FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00000000000000FFFF00FFFF00FFFF00FFFF000000C6C3C600000000FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000C6C3C6000000000000000000000000000000000000C6C3C600000000000000000000FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000000000000C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C6C6C3C600000000FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000000000000000000000000000000000000000000000000000000000000000C6C3C6C6C3C600000000FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>000000C6C3C600000000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF000000C6C3C600000000FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00000000000000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00000000000000000000FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFF000000FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFF0000FF000000FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFF0000FF000000FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFF0000FF000000FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFF0000FF000000FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFFF000000FFFF00FFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+        <L>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</L>
+      </bitmap>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>0</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000|0.01000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+    </object>
+  </demandClasses>
+  <objects>
+    <object class="TprProjeto_ScrollCanvas" name="Bacia do Rio Curu I" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description>Sistemas de Reservatórios</description>
+      <comments>
+          <string>Operação do sistema de reservatórios da Bacia do Rio Curu de forma desagregada, com cada reservatório sendo responsável pelo atendimento das demandas imediatamente a jusante e com a regra miupe</string>
+          <string></string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <Locked>1</Locked>
+      <ViewDemands>1</ViewDemands>
+      <ViewBackground>1</ViewBackground>
+      <ViewWaterCourses>1</ViewWaterCourses>
+      <WindowState>0</WindowState>
+      <background_File></background_File>
+      <faultLevel>50</faultLevel>
+      <simulationType>1</simulationType>
+      <simulationInterval>4</simulationInterval>
+      <intervals>
+        <interval>1962-1988</interval>
+      </intervals>
+      <outputDir></outputDir>
+      <searchPath></searchPath>
+      <propagarDOS>PropDOS0</propagarDOS>
+      <scripts>
+        <planning_Script>Scripts\PlanejaOtimizador_VolMetaCDeficit12x3.PScript</planning_Script>
+        <debug_Script></debug_Script>
+        <operation_Script></operation_Script>
+        <power_Script></power_Script>
+        <equation_Script>Scripts\Teste de Geracao de Equacoes.PScript</equation_Script>
+      </scripts>
+      <Comp_DC_Action>0</Comp_DC_Action>
+      <HTML_Browser>0</HTML_Browser>
+      <scripts>
+        <startOpt_Script>Scripts\IniciaOtimizadorTsheet_VolMeta12x3.PScript</startOpt_Script>
+        <endOpt_Script>Scripts\FinalizaOtimizadorAGcomTSpreadSheetBook.PScript</endOpt_Script>
+        <ofOpt_Script>Scripts\CalculaOtimizadorMultiTsheet_FONaoPonderada.PScript</ofOpt_Script>
+      </scripts>
+    </object>
+    <object class="TprPCPR" name="PC01" sx="32" sy="240" Factory="" rx="32" ry="240">
+      <description>Açude General Sampaio</description>
+      <comments>
+          <string>Ponto Característico 01, localizado no ponto de descarga do açude General Sampaio, que não possui geração de energia, mas é considerado estratégico na operação do sistema.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>ChSampaio.txt</prec_File>
+      <etp_File>ETPSampaio.txt</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>322.2</maxVol>
+      <minVol>8.5</minVol>
+      <iniVol>161.1</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>1</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="0" vol="0"/>
+        <AV area="0.303" vol="0.435"/>
+        <AV area="1.092" vol="3.959"/>
+        <AV area="3.281" vol="14.918"/>
+        <AV area="7.643" vol="42.22"/>
+        <AV area="14.13" vol="96.654"/>
+        <AV area="23.492" vol="190.712"/>
+        <AV area="34.937" vol="336.709"/>
+        <AV area="47.396" vol="542.624"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="92" Vol="0"/>
+        <AV Quota="95" Vol="0.435"/>
+        <AV Quota="100" Vol="3.959"/>
+        <AV Quota="105" Vol="14.918"/>
+        <AV Quota="110" Vol="42.22"/>
+        <AV Quota="115" Vol="96.654"/>
+        <AV Quota="120" Vol="190.712"/>
+        <AV Quota="125" Vol="336.709"/>
+        <AV Quota="130" Vol="542.624"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_16" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia01" sx="35" sy="267" Factory="" rx="35" ry="267">
+      <description>Sub Bacia de contribuição ao PC01</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC01, com área de 1594.47 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia01.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_1" sx="33" sy="291" Factory="" rx="33" ry="291">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 01</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.02900000|0.02900000|0.02900000|0.02900000|0.02900000|0.02900000|0.02900000|0.02900000|0.02900000|0.02900000|0.02900000|0.02900000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_26" sx="42" sy="219" Factory="" rx="42" ry="219">
+      <description>Demanda Localizada de Prioridade Secundária do PC01</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Secundário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>1</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.40000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada2</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_34" sx="27" sy="201" Factory="" rx="27" ry="201">
+      <description>Demanda Localizada de Prioridade Terciária do PC01</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.01700000|0.01300000|0.00900000|0.01900000|0.02300000|0.04800000|0.06600000|0.05400000|0.01800000|0.01800000|0.01800000|0.01800000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_19" sx="12" sy="221" Factory="" rx="12" ry="221">
+      <description>Demanda Localizada de Prioridade Primária do PC01</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Primário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.01400000|0.01400000|0.01400000|0.01400000|0.01400000|0.01400000|0.01400000|0.01400000|0.01400000|0.01400000|0.01400000|0.01400000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|2.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="PC09" sx="323" sy="58" Factory="" rx="323" ry="58">
+      <description>Açude Caxitoré</description>
+      <comments>
+          <string>Ponto Característico 09, localizado no riacho Caxitoré, no ponto de descarga do açude de mesmo nome, que não possui geração de energia, mas é considerado estratégico na operação do sistema.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>ChCaxitore.txt</prec_File>
+      <etp_File>ETPCaxitore.txt</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>202</maxVol>
+      <minVol>7.5</minVol>
+      <iniVol>101</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>0</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="1.5" vol="5"/>
+        <AV area="2.1" vol="7"/>
+        <AV area="2.7" vol="10"/>
+        <AV area="3.4" vol="13"/>
+        <AV area="4.3" vol="16"/>
+        <AV area="4.9" vol="20"/>
+        <AV area="5.7" vol="26"/>
+        <AV area="6.6" vol="33"/>
+        <AV area="7.5" vol="41"/>
+        <AV area="8.6" vol="49"/>
+        <AV area="9.9" vol="59"/>
+        <AV area="11.3" vol="69"/>
+        <AV area="12.6" vol="81"/>
+        <AV area="13.8" vol="94"/>
+        <AV area="15.2" vol="108"/>
+        <AV area="16.5" vol="123"/>
+        <AV area="18" vol="140"/>
+        <AV area="19.5" vol="158"/>
+        <AV area="20.8" vol="178"/>
+        <AV area="22.5" vol="202"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="54" Vol="5"/>
+        <AV Quota="55" Vol="7"/>
+        <AV Quota="56" Vol="10"/>
+        <AV Quota="57" Vol="13"/>
+        <AV Quota="58" Vol="16"/>
+        <AV Quota="59" Vol="20"/>
+        <AV Quota="60" Vol="26"/>
+        <AV Quota="61" Vol="33"/>
+        <AV Quota="62" Vol="41"/>
+        <AV Quota="63" Vol="49"/>
+        <AV Quota="64" Vol="59"/>
+        <AV Quota="65" Vol="69"/>
+        <AV Quota="66" Vol="81"/>
+        <AV Quota="67" Vol="94"/>
+        <AV Quota="68" Vol="108"/>
+        <AV Quota="69" Vol="123"/>
+        <AV Quota="70" Vol="140"/>
+        <AV Quota="71" Vol="158"/>
+        <AV Quota="72" Vol="178"/>
+        <AV Quota="73" Vol="202"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_17" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia11" sx="305" sy="78" Factory="" rx="305" ry="78">
+      <description>Sub Bacia de contribuição ao PC11.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC11, com área de 1262.59 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia11.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_10" sx="287" sy="96" Factory="" rx="287" ry="96">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 11</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.02300000|0.02300000|0.02300000|0.02300000|0.02300000|0.02300000|0.02300000|0.02300000|0.02300000|0.02300000|0.02300000|0.02300000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_30" sx="347" sy="33" Factory="" rx="347" ry="33">
+      <description>Demanda Localizada de Prioridade Secundária do PC11</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Secundário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>1</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.02000000|0.02000000|0.02000000|0.02000000|0.02000000|0.02000000|0.02000000|0.02000000|0.02000000|0.02000000|0.02000000|0.02000000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|2.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada2</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_43" sx="324" sy="29" Factory="" rx="324" ry="29">
+      <description>Demanda Localizada de Prioridade Terciária do PC11</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.03900000|0.02900000|0.02100000|0.01900000|0.02200000|0.05000000|0.06700000|0.06300000|0.04000000|0.04200000|0.04200000|0.04100000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_23" sx="308" sy="28" Factory="" rx="308" ry="28">
+      <description>Demanda Localizada de Prioridade Primária do PC11</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Primário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.08800000|0.08800000|0.08800000|0.08800000|0.08800000|0.08800000|0.08800000|0.08800000|0.08800000|0.08800000|0.08800000|0.08800000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|2.80000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCPR" name="PC07" sx="368" sy="396" Factory="" rx="368" ry="396">
+      <description>Açude Pereira de Miranda (Pentecoste)</description>
+      <comments>
+          <string>Ponto Característico 07, localizado no Rio Canindé, no ponto de descarga do açude Pereira de Miranda tanbém conhecido como Pentecoste, sem possuir geração de energia, mas é considerado estratégico na operação do sistema.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16711680</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+      <prec_File>ChPentecoste.txt</prec_File>
+      <etp_File>ETPPentecoste.txt</etp_File>
+      <etp_Type>0</etp_Type>
+      <maxVol>395.638</maxVol>
+      <minVol>18.5</minVol>
+      <iniVol>197.819</iniVol>
+      <jusQuota>0</jusQuota>
+      <status>0</status>
+      <operation_Script></operation_Script>
+      <areaVolCurve>
+        <AV area="1.9" vol="0.714"/>
+        <AV area="3" vol="2.771"/>
+        <AV area="4.3" vol="4.828"/>
+        <AV area="5.8" vol="9.902"/>
+        <AV area="8" vol="14.975"/>
+        <AV area="9.9" vol="23.608"/>
+        <AV area="12.5" vol="32.241"/>
+        <AV area="15" vol="45.552"/>
+        <AV area="18" vol="58.863"/>
+        <AV area="21" vol="77.789"/>
+        <AV area="24.5" vol="96.715"/>
+        <AV area="27.3" vol="122.415"/>
+        <AV area="31.8" vol="148.115"/>
+        <AV area="35.3" vol="181.159"/>
+        <AV area="39.4" vol="214.203"/>
+        <AV area="42.8" vol="254.983"/>
+        <AV area="48" vol="295.764"/>
+        <AV area="52.8" vol="345.701"/>
+        <AV area="57" vol="395.638"/>
+      </areaVolCurve>
+      <quotaVolCurve>
+        <AV Quota="40" Vol="0.714"/>
+        <AV Quota="41" Vol="2.771"/>
+        <AV Quota="42" Vol="4.828"/>
+        <AV Quota="43" Vol="9.902"/>
+        <AV Quota="44" Vol="14.975"/>
+        <AV Quota="45" Vol="23.608"/>
+        <AV Quota="46" Vol="32.241"/>
+        <AV Quota="47" Vol="45.552"/>
+        <AV Quota="48" Vol="58.863"/>
+        <AV Quota="49" Vol="77.789"/>
+        <AV Quota="50" Vol="96.715"/>
+        <AV Quota="51" Vol="122.415"/>
+        <AV Quota="52" Vol="148.115"/>
+        <AV Quota="53" Vol="181.159"/>
+        <AV Quota="54" Vol="214.203"/>
+        <AV Quota="55" Vol="254.983"/>
+        <AV Quota="56" Vol="295.764"/>
+        <AV Quota="57" Vol="345.701"/>
+        <AV Quota="58" Vol="395.638"/>
+      </quotaVolCurve>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_18" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia09" sx="387" sy="408" Factory="" rx="387" ry="408">
+      <description>Sub Bacia de contribuição ao PC09.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC09, com área de 2985.30 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia09.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_8" sx="405" sy="411" Factory="" rx="405" ry="411">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 09</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.05500000|0.05500000|0.05500000|0.05500000|0.05500000|0.05500000|0.05500000|0.05500000|0.05500000|0.05500000|0.05500000|0.05500000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_29" sx="350" sy="383" Factory="" rx="350" ry="383">
+      <description>Demanda Localizada de Prioridade Secundária do PC09</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Secundário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>1</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.03700000|0.03700000|0.03700000|0.03700000|0.03700000|0.03700000|0.03700000|0.03700000|0.03700000|0.03700000|0.03700000|0.03700000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.40000000|1.40000000|1.40000000|1.40000000|1.40000000|1.40000000|1.40000000|1.40000000|1.40000000|1.40000000|1.40000000|1.40000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada2</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_41" sx="351" sy="418" Factory="" rx="351" ry="418">
+      <description>Demanda Localizada de Prioridade Terciária do PC 09</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.27200000|0.20500000|0.17100000|0.14800000|0.17100000|0.39500000|0.55600000|0.51600000|0.31600000|0.29900000|0.29300000|0.28500000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_22" sx="351" sy="399" Factory="" rx="351" ry="399">
+      <description>Demanda Localizada de Prioridade Primária do PC09</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Primário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.07200000|0.07200000|0.07200000|0.07200000|0.07200000|0.07200000|0.07200000|0.07200000|0.07200000|0.07200000|0.07200000|0.07200000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|2.30000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC02" sx="110" sy="234" Factory="" rx="110" ry="234">
+      <description>Rio Curu</description>
+      <comments>
+          <string>Este PC está localizado no rio Curu, à montante da foz do riacho Tejuçuoca.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_19" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia02" sx="112" sy="249" Factory="" rx="112" ry="249">
+      <description>Sub Bacia de contribuição ao PC02.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC02, com área de 52.84 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia02.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_2" sx="101" sy="268" Factory="" rx="101" ry="268">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 02</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_35" sx="110" sy="218" Factory="" rx="110" ry="218">
+      <description>Demanda Localizada de Prioridade Terciária do PC02</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.13000000|0.10100000|0.04300000|0.06000000|0.07700000|0.09300000|0.10500000|0.11800000|0.13000000|0.13500000|0.13600000|0.13300000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC10" sx="412" sy="150" Factory="" rx="412" ry="150">
+      <description>Riacho Caxitoré</description>
+      <comments>
+          <string>Este PC está localizado no riacho Caxitoré proximo à sua foz.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_20" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia12" sx="410" sy="174" Factory="" rx="410" ry="174">
+      <description>Sub Bacia de contribuição ao PC12.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC12, com área de 30.16 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia12.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_11" sx="387" sy="170" Factory="" rx="387" ry="170">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 12</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_44" sx="424" sy="134" Factory="" rx="424" ry="134">
+      <description>Demanda Localizada de Prioridade Terciária do PC12</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.08900000|0.06600000|0.04700000|0.03500000|0.04200000|0.07500000|0.08600000|0.09300000|0.09300000|0.09800000|0.09600000|0.09300000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC03" sx="170" sy="233" Factory="" rx="170" ry="233">
+      <description>Rio Curu em Apuiarés</description>
+      <comments>
+          <string>Este PC esta localizado no rio Curu, no município de Apuiarés</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_21" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia04" sx="178" sy="244" Factory="" rx="178" ry="244">
+      <description>Sub Bacia de contribuição ao PC04.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC04, com área de 358.56 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia04.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_4" sx="168" sy="264" Factory="" rx="168" ry="264">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 04</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00700000|0.00700000|0.00700000|0.00700000|0.00700000|0.00700000|0.00700000|0.00700000|0.00700000|0.00700000|0.00700000|0.00700000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_27" sx="185" sy="210" Factory="" rx="185" ry="210">
+      <description>Demanda Localizada de Prioridade Secundária do PC04</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Secundário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>1</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.01900000|0.01900000|0.01900000|0.01900000|0.01900000|0.01900000|0.01900000|0.01900000|0.01900000|0.01900000|0.01900000|0.01900000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.40000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada2</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_36" sx="168" sy="206" Factory="" rx="168" ry="206">
+      <description>Demanda Localizada de Prioridade Terciária do PC04</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.02400000|0.01800000|0.00700000|0.01100000|0.01400000|0.01700000|0.02000000|0.02200000|0.02400000|0.02500000|0.02500000|0.02400000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_20" sx="150" sy="206" Factory="" rx="150" ry="206">
+      <description>Demanda Localizada de Prioridade Primária do PC 04</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Primário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.03100000|0.03100000|0.03100000|0.03100000|0.03100000|0.03100000|0.03100000|0.03100000|0.03100000|0.03100000|0.03100000|0.03100000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|2.20000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC04" sx="236" sy="239" Factory="" rx="236" ry="239">
+      <description>Rio Curu</description>
+      <comments>
+          <string>Este PC está localizado no Rio Curu</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_22" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia05" sx="237" sy="255" Factory="" rx="237" ry="255">
+      <description>Sub Bacia de contribuição ao PC05.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC05, com área de 23.32 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia05.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_37" sx="241" sy="221" Factory="" rx="241" ry="221">
+      <description>Demanda Localizada de Prioridade Terciária do PC05</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.04100000|0.03200000|0.01300000|0.01900000|0.02500000|0.03800000|0.05000000|0.05000000|0.04100000|0.04300000|0.04300000|0.04200000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC05" sx="297" sy="234" Factory="" rx="297" ry="234">
+      <description>Rio Curu - Aç Serrota</description>
+      <comments>
+          <string>Este PC está localizado no rio Curu, no ponto de descarga do açude Serrota</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_23" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia06" sx="299" sy="249" Factory="" rx="299" ry="249">
+      <description>Sub Bacia de contribuição ao PC06.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC06, com área de 301.93 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia06.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_5" sx="293" sy="270" Factory="" rx="293" ry="270">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 06</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_38" sx="299" sy="218" Factory="" rx="299" ry="218">
+      <description>Demanda Localizada de Prioridade Terciária do PC06</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.35100000|0.26600000|0.17500000|0.17200000|0.20800000|0.33400000|0.40700000|0.41600000|0.35700000|0.37500000|0.37200000|0.36500000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC06" sx="354" sy="233" Factory="" rx="354" ry="233">
+      <description>Rio Curu</description>
+      <comments>
+          <string>Este PC está localizado no rio Curu, à montante da foz do rio Canindé.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_24" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia07" sx="352" sy="249" Factory="" rx="352" ry="249">
+      <description>Sub Bacia de contribuição ao PC07.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC07, com área de 212.25 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia07.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_6" sx="343" sy="264" Factory="" rx="343" ry="264">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 07</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_39" sx="361" sy="218" Factory="" rx="361" ry="218">
+      <description>Demanda Localizada de Prioridade Terciária do PC07</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00400000|0.00300000|0.00200000|0.00100000|0.00200000|0.00300000|0.00300000|0.00300000|0.00400000|0.00400000|0.00400000|0.00400000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC08" sx="413" sy="231" Factory="" rx="413" ry="231">
+      <description>Rio Curu</description>
+      <comments>
+          <string>Este PC está localizado no rio Curu, à montante da foz do riacho Caxitoré.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_25" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia10" sx="421" sy="246" Factory="" rx="421" ry="246">
+      <description>Sub Bacia de contribuição ao PC10.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC10, com área de 139.68 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia10.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_9" sx="416" sy="266" Factory="" rx="416" ry="266">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 10</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_42" sx="415" sy="216" Factory="" rx="415" ry="216">
+      <description>Demanda Localizada de Prioridade Terciária do PC10</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.02200000|0.01600000|0.01300000|0.01100000|0.01300000|0.02100000|0.02100000|0.02300000|0.02300000|0.02400000|0.02400000|0.02300000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC11" sx="482" sy="232" Factory="" rx="482" ry="232">
+      <description>Rio Curu</description>
+      <comments>
+          <string>Este PC está localizado no rio Curu, à montante da foz do Riacho Frios</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_26" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia13" sx="485" sy="248" Factory="" rx="485" ry="248">
+      <description>Sub Bacia de contribuição ao PC13.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC13, com área de 44.15 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia13.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_12" sx="478" sy="268" Factory="" rx="478" ry="268">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 13</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000|0.00100000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_31" sx="497" sy="216" Factory="" rx="497" ry="216">
+      <description>Demanda Localizada de Prioridade Secundária do PC13</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Secundário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>1</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.40000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada2</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_45" sx="484" sy="215" Factory="" rx="484" ry="215">
+      <description>Demanda Localizada de Prioridade Terciária do PC13</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.05400000|0.04000000|0.02800000|0.02000000|0.04900000|0.11800000|0.12500000|0.11200000|0.12700000|0.16800000|0.15900000|0.12200000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_24" sx="472" sy="214" Factory="" rx="472" ry="214">
+      <description>Demanda Localizada de Prioridade Primária do PC 13</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Primário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.01800000|0.01800000|0.01800000|0.01800000|0.01800000|0.01800000|0.01800000|0.01800000|0.01800000|0.01800000|0.01800000|0.01800000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.90000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC12" sx="543" sy="237" Factory="" rx="543" ry="237">
+      <description>Rio Curu</description>
+      <comments>
+          <string>Este PC está localizado no rio Curu, próximo à foz do riacho Melancias.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_27" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia16" sx="544" sy="253" Factory="" rx="544" ry="253">
+      <description>Sub Bacia de contribuição ao PC16.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC16, com área de12.83 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia16.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_48" sx="552" sy="226" Factory="" rx="552" ry="226">
+      <description>Demanda Localizada de Prioridade Terciária do PC16</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.13100000|0.09900000|0.07300000|0.05600000|0.06500000|0.11200000|0.12500000|0.13700000|0.13700000|0.14400000|0.14100000|0.13800000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC13" sx="612" sy="243" Factory="" rx="612" ry="243">
+      <description>Rio Curu em Curral Grande</description>
+      <comments>
+          <string>Este PC está localizado no rio Curu na localidade de Curral Grande</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_28" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia17" sx="613" sy="261" Factory="" rx="613" ry="261">
+      <description>Sub Bacia de contribuição ao PC17.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC17, com área de 194.77 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia17.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_15" sx="603" sy="281" Factory="" rx="603" ry="281">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 17</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_49" sx="620" sy="228" Factory="" rx="620" ry="228">
+      <description>Demanda Localizada de Prioridade Terciária do PC17</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.67000000|0.51800000|0.38300000|0.29800000|0.33800000|0.52000000|0.57100000|0.64400000|0.69300000|0.73200000|0.71600000|0.69700000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC14" sx="684" sy="245" Factory="" rx="684" ry="245">
+      <description>Rio Curu - Projeto Curu-Paraipaba</description>
+      <comments>
+          <string>este PC está localizado no rio Curu, na tomada d'água do Projeto Curu-Paraipaba</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_29" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia18" sx="682" sy="258" Factory="" rx="682" ry="258">
+      <description>Sub Bacia de contribuição ao PC18.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC18, com área de 307.81 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia18.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_16" sx="680" sy="275" Factory="" rx="680" ry="275">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 18</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000|0.00600000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_50" sx="686" sy="229" Factory="" rx="686" ry="229">
+      <description>Demanda Localizada de Prioridade Terciária do PC18</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.52900000|1.95600000|1.41400000|1.10500000|1.27600000|2.15300000|2.45200000|2.64500000|2.63300000|2.77600000|2.70700000|2.63600000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|2.30000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC15" sx="754" sy="241" Factory="" rx="754" ry="241">
+      <description>Rio Curu</description>
+      <comments>
+          <string>Este Pc está localizado no Rio Curu</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_30" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprSubBacia" name="SubBacia19" sx="748" sy="257" Factory="" rx="748" ry="257">
+      <description>Sub Bacia de contribuição ao PC19.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC19, com área de 216.52 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia19.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_17" sx="739" sy="277" Factory="" rx="739" ry="277">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 19</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000|0.00400000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_33" sx="762" sy="225" Factory="" rx="762" ry="225">
+      <description>Demanda Localizada de Prioridade Secundária do PC19</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Secundário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>1</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.08300000|0.08300000|0.08300000|0.08300000|0.08300000|0.08300000|0.08300000|0.08300000|0.08300000|0.08300000|0.08300000|0.08300000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|2.60000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada2</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_51" sx="743" sy="221" Factory="" rx="743" ry="221">
+      <description>Demanda Localizada de Prioridade Terciária do PC19</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.46600000|0.36700000|0.27200000|0.21800000|0.24500000|0.38400000|0.42900000|0.46800000|0.47800000|0.50700000|0.49500000|0.48200000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_25" sx="727" sy="222" Factory="" rx="727" ry="222">
+      <description>Demanda Localizada de Prioridade Primária do PC19</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Primário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.6</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.02500000|0.02500000|0.02500000|0.02500000|0.02500000|0.02500000|0.02500000|0.02500000|0.02500000|0.02500000|0.02500000|0.02500000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|2.40000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada1</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+    <object class="TprPCP" name="PC16" sx="818" sy="237" Factory="" rx="818" ry="237">
+      <description>Foz do Rio Curu</description>
+      <comments>
+          <string>Este PC está localizado na Foz do Rio Curu.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <viewDemands>1</viewDemands>
+      <color>16777215</color>
+      <generatePower>0</generatePower>
+      <generatorEfficiency>0.93</generatorEfficiency>
+      <maxTurbineOutlet>0</maxTurbineOutlet>
+      <aducEfficiency>0.97</aducEfficiency>
+      <turbinesEfficiency>0.9</turbinesEfficiency>
+      <powerDemand>0</powerDemand>
+      <waterfall>0</waterfall>
+      <powerDemand_File></powerDemand_File>
+      <power_Script></power_Script>
+    </object>
+    <object class="TprSubBacia" name="SubBacia20" sx="833" sy="247" Factory="" rx="833" ry="247">
+      <description>Sub Bacia de contribuição ao PC20.</description>
+      <comments>
+          <string>Esta sub-bacia é contribuinte ao PC20, com área de 165.35 km2, tendo sido suas vazões mensais calculadas pelo MODHAC, com os valores já em m3/s.</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <area>1</area>
+      <outlet_File>VazSubbacia20.txt</outlet_File>
+      <coefs>
+        <coef>1</coef>
+      </coefs>
+    </object>
+    <object class="TprDemanda" name="Demanda_18" sx="833" sy="272" Factory="" rx="833" ry="272">
+      <description>Demanda Rural Difusa Na Bacia de Contribuição 20</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas difusas totais que devem ser descontadas das vazões geradas nas bacias de contribuição, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>0</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000|0.00300000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Rural Difusa</DemandClass>
+      <Group></Group>
+      <Type>0</Type>
+    </object>
+    <object class="TprDemanda" name="Demanda_52" sx="831" sy="223" Factory="" rx="831" ry="223">
+      <description>Demanda Localizada de Prioridade Terciária do PC20</description>
+      <comments>
+          <string>Esta Classe de demanda corresponde às demandas localizadas totais que devem ser levadas em conta no balanço hídrico de cada PC, com grau de prioridade Terciário, com os valores unitários da tabela já em m3/s</string>
+      </comments>
+      <scripts>
+      </scripts>
+      <DefaultScript>0</DefaultScript>
+      <status>1</status>
+      <priority>2</priority>
+      <developmentFactor>1</developmentFactor>
+      <conversionFactor>1</conversionFactor>
+      <returnFactor>0.1</returnFactor>
+      <WCU_Name>m3/s</WCU_Name>
+      <WDU_Name>1</WDU_Name>
+      <dataSynchronize>1</dataSynchronize>
+      <UV_Sync>0</UV_Sync>
+      <DU_Sync>0</DU_Sync>
+      <IF_Sync>0</IF_Sync>
+      <unitaryValues>
+        <uv>(1962-1988)|0.10500000|0.08300000|0.06100000|0.04900000|0.05600000|0.08600000|0.09400000|0.10300000|0.10800000|0.11500000|0.11200000|0.10900000</uv>
+      </unitaryValues>
+      <implantationFactories>
+        <if>(1962-1988)|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000|1.00000000</if>
+      </implantationFactories>
+      <demandUnits>
+        <du>(1962-1988)|1.00000000</du>
+      </demandUnits>
+      <DemandClass>Demanda Localizada3</DemandClass>
+      <Group></Group>
+      <Type>1</Type>
+    </object>
+  </objects>
+  <relationships>
+    <rel obj1="PC01" obj2="PC02"/>
+    <rel obj1="PC01" obj2="SubBacia01"/>
+    <rel obj1="SubBacia01" obj2="Demanda_1"/>
+    <rel obj1="PC01" obj2="Demanda_26"/>
+    <rel obj1="PC01" obj2="Demanda_34"/>
+    <rel obj1="PC01" obj2="Demanda_19"/>
+    <rel obj1="PC09" obj2="PC10"/>
+    <rel obj1="PC09" obj2="SubBacia11"/>
+    <rel obj1="SubBacia11" obj2="Demanda_10"/>
+    <rel obj1="PC09" obj2="Demanda_30"/>
+    <rel obj1="PC09" obj2="Demanda_43"/>
+    <rel obj1="PC09" obj2="Demanda_23"/>
+    <rel obj1="PC07" obj2="PC08"/>
+    <rel obj1="PC07" obj2="SubBacia09"/>
+    <rel obj1="SubBacia09" obj2="Demanda_8"/>
+    <rel obj1="PC07" obj2="Demanda_29"/>
+    <rel obj1="PC07" obj2="Demanda_41"/>
+    <rel obj1="PC07" obj2="Demanda_22"/>
+    <rel obj1="PC02" obj2="PC03"/>
+    <rel obj1="PC02" obj2="SubBacia02"/>
+    <rel obj1="SubBacia02" obj2="Demanda_2"/>
+    <rel obj1="PC02" obj2="Demanda_35"/>
+    <rel obj1="PC10" obj2="PC11"/>
+    <rel obj1="PC10" obj2="SubBacia12"/>
+    <rel obj1="SubBacia12" obj2="Demanda_11"/>
+    <rel obj1="PC10" obj2="Demanda_44"/>
+    <rel obj1="PC03" obj2="PC04"/>
+    <rel obj1="PC03" obj2="SubBacia04"/>
+    <rel obj1="SubBacia04" obj2="Demanda_4"/>
+    <rel obj1="PC03" obj2="Demanda_27"/>
+    <rel obj1="PC03" obj2="Demanda_36"/>
+    <rel obj1="PC03" obj2="Demanda_20"/>
+    <rel obj1="PC04" obj2="PC05"/>
+    <rel obj1="PC04" obj2="SubBacia05"/>
+    <rel obj1="PC04" obj2="Demanda_37"/>
+    <rel obj1="PC05" obj2="PC06"/>
+    <rel obj1="PC05" obj2="SubBacia06"/>
+    <rel obj1="SubBacia06" obj2="Demanda_5"/>
+    <rel obj1="PC05" obj2="Demanda_38"/>
+    <rel obj1="PC06" obj2="PC08"/>
+    <rel obj1="PC06" obj2="SubBacia07"/>
+    <rel obj1="SubBacia07" obj2="Demanda_6"/>
+    <rel obj1="PC06" obj2="Demanda_39"/>
+    <rel obj1="PC08" obj2="PC11"/>
+    <rel obj1="PC08" obj2="SubBacia10"/>
+    <rel obj1="SubBacia10" obj2="Demanda_9"/>
+    <rel obj1="PC08" obj2="Demanda_42"/>
+    <rel obj1="PC11" obj2="PC12"/>
+    <rel obj1="PC11" obj2="SubBacia13"/>
+    <rel obj1="SubBacia13" obj2="Demanda_12"/>
+    <rel obj1="PC11" obj2="Demanda_31"/>
+    <rel obj1="PC11" obj2="Demanda_45"/>
+    <rel obj1="PC11" obj2="Demanda_24"/>
+    <rel obj1="PC12" obj2="PC13"/>
+    <rel obj1="PC12" obj2="SubBacia16"/>
+    <rel obj1="PC12" obj2="Demanda_48"/>
+    <rel obj1="PC13" obj2="PC14"/>
+    <rel obj1="PC13" obj2="SubBacia17"/>
+    <rel obj1="SubBacia17" obj2="Demanda_15"/>
+    <rel obj1="PC13" obj2="Demanda_49"/>
+    <rel obj1="PC14" obj2="PC15"/>
+    <rel obj1="PC14" obj2="SubBacia18"/>
+    <rel obj1="SubBacia18" obj2="Demanda_16"/>
+    <rel obj1="PC14" obj2="Demanda_50"/>
+    <rel obj1="PC15" obj2="PC16"/>
+    <rel obj1="PC15" obj2="SubBacia19"/>
+    <rel obj1="SubBacia19" obj2="Demanda_17"/>
+    <rel obj1="PC15" obj2="Demanda_33"/>
+    <rel obj1="PC15" obj2="Demanda_51"/>
+    <rel obj1="PC15" obj2="Demanda_25"/>
+    <rel obj1="PC16" obj2="SubBacia20"/>
+    <rel obj1="SubBacia20" obj2="Demanda_18"/>
+    <rel obj1="PC16" obj2="Demanda_52"/>
+  </relationships>
+</propagar>

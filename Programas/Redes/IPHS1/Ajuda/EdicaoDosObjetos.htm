@@ -1,0 +1,451 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Edicao Dos Objetos</title>
+</head>
+
+<!-- BeginBlock Cabecalho -->
+<body bgcolor="#FFFFFF" text="#000000" background="Imagens/IPHS1_Fundo.jpg" link="#0066FF" vlink="#CC9933" alink="#00CC00">
+
+<table border="0" Width="100%">
+<tr>
+    <td>
+    <font size="3" color="#000099">
+    IPHS1 para Windows
+    </font>
+    </td>
+    
+    <td>
+    <a href="Index.htm">    
+    <img src="Imagens/LARRW.GIF" 
+         width="31" height="31" border="0" align="right"
+         alt="Índice Principal">
+    </a>
+    </td>
+</tr>
+</table>
+<br>
+<!-- EndBlock Cabecalho -->
+
+<P>A edição de cada um dos elementos que compõe o Módulo Rio 
+(Ponto de Controle, Reservatório, Trecho de água e Derivação) 
+ou o Módulo Bacia (Sub-bacia) permite introduzir no sistema as 
+informações necessárias à execução dos modelos 
+hidrológicos necessários à obtenção dos hidrogramas de 
+projeto referentes a cada operação hidrológica por eles representadas. 
+Abaixo é dada a explicação de como o usuário deve proceder em 
+cada caso.</P>
+
+<a name="#PC"><B>Edição de Pontos de Controle (Módulo Rio)</B></a>
+
+<P>Os Pontos de Controle, conforme já mencionado acima, correspondem ao 
+Módulo Rio e sua principal finalidade é propiciar a soma de hidrogramas 
+de outras operações hidrológicas que ficam imediatamente à 
+montante. Pode-se ter ligado a um Ponto de Controle: uma ou mais Sub-bacias (representando 
+o processo de transformação precipitação-vazão na superfície da bacia), um ou 
+mais Trechos de água que ficam à montante e um Trecho de água 
+à jusante (que representam a propagação em canais) e uma Derivação.</P>
+
+<P>A Edição dos Dados dos Pontos de Controle é feita como se segue:</P>
+
+<LI>Dá-se um &quot;duplo clique&quot; com o ponteiro do mouse sobre um PC na 
+área de Projeto ou, então, através do ícone apropriado no 
+Gerenciador de Objetos. Com isso é aberta a janela &quot;PC&quot; ilustrada abaixo.</LI>
+
+<P>Aberta a janela, o usuário poderá <I>editar</I> os campos Nome, 
+Descrição e Comentários.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Imagens/Image32.jpg"></P>
+<B>Janela "Dados de um PC"</B>
+</FONT>
+</center>
+
+<P>Adicionalmente, o usuário deverá selecionar &quot;sim&quot; ou 
+&quot;não&quot; para as opções referentes a &quot;Graficar Hidrograma Calculado&quot; e 
+&quot;Imprimir Tabela do Hidrograma&quot;. Essas opções referem-se à informações que 
+devem ser passadas ao IPHS1 DOS. No caso da graficação do hidrograma calculado ser 
+selecionada como &quot;sim&quot; o usuário deverá informar nos campos Vazão Mínima e 
+Vazão Máxima os intervalos para graficação. Em caso de ser selecionada a opção 
+&quot;Não&quot; esses campos serão desativados para seleção.</P>
+
+<P>A opção &quot;Possui Dados Observados&quot; se assinalada com &quot;sim&quot; 
+significará que existem dados observados relativos ao Hidrograma de Saída do PC ( 
+obtido através dos soma dos hidrogramas que lhe são afluentes). Nesse caso, o usuário 
+deverá informar qual arquivo contém esses dados. Isso é feito, clicando com o ponteiro 
+do mouse sobre o botão à direita do campo destinado à inserção do nome do arquivo, o 
+usuário terá acesso a um janela de seleção de arquivos, a partir da 
+qual poderá fazer a escolha daquele que contiver os dados observados.</P>
+
+<a name="#SB"><B>Edição de Sub-bacias</B></a>
+
+<P>O Módulo Bacia é representado pelo Elemento Sub-Bacia e pelo seu ícone correspondente, 
+representando a operação de transformação precipitação-vazão na superfície da bacia.</P>
+
+<P>A Edição de Sub-bacias é feita do seguinte modo:</P>
+
+<LI>Dá-se um &quot;duplo clique&quot; com o ponteiro do mouse sobre a Sub-bacia na área 
+de Projeto ou, então, através do ícone apropriado do Gerenciador de Objetos. Com isso é 
+aberta a janela &quot;Dados de uma Sub-Bacia&quot; ilustrada abaixo.</LI>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Imagens/Image33.jpg" WIDTH=464 HEIGHT=395></P>
+<B><P>Janela "Dados de uma Sub-Bacia".</P></B>
+</FONT>
+</center>
+
+<P>Nessa janela são editados além dos campos Nome, Descrição e Comentários, também os 
+campos área e Tempo de Concentração. Os campos &quot;Graficar Hidrograma Calculado&quot;, 
+&quot;Imprimir Tabela do Hidrograma&quot; e &quot;Possui Dados Observados&quot;, tem o 
+mesmo significado que no item anterior.</P>
+
+<P>Adicionalmente, o usuário deverá selecionar ou a opção &quot;Transformação 
+Chuva-Vazão&quot; ou &quot;Hidrograma&quot;. A primeira delas, habilita o acesso à 
+uma segunda janela, ilustrada pela abaixo, a qual possibilita a inserção e 
+edição de dados básicos da bacia e a seleção dos modelos a serem utilizados para a 
+separação do escoamento e para o escoamento superficial na bacia. A segunda opção, 
+acontece quando o usuário já possui dados referentes à transformação precipitação-vazão, 
+na forma de um arquivo texto, onde as vazões, em número igual ao mencionado no 
+projeto como <I>N&uacute;mero de Intervalos de Tempo com Chuva</I>, são colocadas em 
+formato livre.</P>
+
+<P>Escolhida a opção &quot;Transformação Chuva-Vazão&quot;, o usuário, clicando com o 
+ponteiro do mouse no botão à esquerda desse campo, terá acesso a uma outra janela com 
+essa denominação e ilustrada pela Figura abaixo.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV.jpg"></P>
+<B><P>Janela "Transformação Chuva-Vazão"</P></B>
+</FONT>
+</center>
+
+<P>Nessa janela, o usuário precisa informar a área da Bacia em km<SUP>2</SUP> e o Tempo 
+de Concentração em h; selecionar, dentre os Postos de Chuva já inseridos na  
+<a href="Imagens/Image14.jpg">Janela de Projeto</a> aqueles que tem influ&ecirc;ncia na 
+sub-bacia em questão, indicando os Coeficientes de Thiessen que lhes correspondem; assinalar se a 
+Tormenta de Projeto deve ser reordenada (quando a precipitação é obtida de curvas i-d-f) 
+ou não (quando a precipitação corresponde a uma série definida); se a Tabela de Escoamento 
+e Perdas deve ser impressa como resultado de saída; selecionar os Métodos de Separação do 
+Escoamento e de Propagação das Vazões na superfície da bacia; e, se deve ou não ser feita 
+a Propagação do Escoamento de Base.</P>
+
+<P>No caso em que a Tormenta de Projeto deva ser reordenada, o usuário precisará fornecer 
+em termos percentuais (25%, 50% ou 75%) o tempo de pico da precipitação. Isso poderá ser 
+feito através da janela auxiliar (Tormenta Reordenada) ilustrada pela Figura acima.</P>
+
+<P>A <U>separação do escoamento</U> e o <U>escomento superficial</U> deverão ter seus 
+métodos escolhidos conforme se segue:</P>
+
+<LI>Separação do Escoamento - Método IPHII:</LI>
+<P>Selecionada esta opção o usuário terá acesso à janela &quot;IPHII&quot;, ilustrada  
+abaixo, onde deverá informar a Capacidade de Infiltração, I0 (mm/h), para t= 0, a 
+Capacidade de Infiltração Mínima, IB  (mm/h), o par&acirc;metro H, a Capacidade Máxima do 
+Reservatório Superficial, RMAX(mm), a porcentagem de área Impermeável na bacia e a Vazão 
+de Base Específica no início da chuva (m<SUP>3</SUP>/s/km<SUP>2</SUP>).</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_IPHII.jpg"></P>
+<B><P>Separação do Escoamento - Método IPHII"</P></B>
+</FONT>
+</center>
+
+<LI>Separação do Escoamento - Método SCS:</LI>
+<P>No caso da separação do escoamento ser realizada utilizando-se o Método SCS, o usuário 
+deverá fornecer o par&acirc;metro Curva N&uacute;mero (CN), através da janela 
+&quot;SCS&quot; ilustrada abaixo.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_SCS.jpg"></P>
+<B><P>Separação do Escoamento - Método IPHII"</P></B>
+</FONT>
+</center>
+
+<LI>Separação do Escoamento - Método HEC1</LI>
+<P>Se a opção for o Método HEC1, o usuário deverá indicar o Valor Inicial do Coeficiente 
+de Perdas, o valor da L&acirc;mina de Precipitação Limite para incremento do Coeficiente 
+de Perdas, a declividade do Gráfico Semi-Logarítmico e o Expoente da Intensidade da 
+Precipitação, conforme a janela HEC ilustrada abaixo.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_HEC.jpg"></P>
+<B><P>Separação do Escoamento - Método HEC1"</P></B>
+</FONT>
+</center>
+
+<LI>Separação do Escoamento - Método FI.</LI>
+<P>No caso de uso do Método FI, será indicado através da janela &quot;FI&quot; a Perda 
+Inicial em mm e o índice FI em mm/h.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_FI.jpg"></P>
+<B><P>Separação do Escoamento - Método FI"</P></B>
+</FONT>
+</center>
+
+<LI>Separação do Escoamento - Método Holtan:</LI>
+<P>O Método de Holtan necessita o Estado Inicial do Reservatório de Umidade do Solo (mm), 
+o Expoente Empírico, a Infiltração Base (mm/h) e a Capacidade de Infiltração Inicial (mm/h).</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_HOLTAN.jpg"></P>
+<B><P>Separação do Escoamento - Método HOLTAN"</P></B>
+</FONT>
+</center>
+
+<LI>Escoamento Superficial - Método HU Observado.</LI>
+<P>O usuário pode fornecer as ordenadas de um hidrograma unitário HU[1mm, t) observado na 
+bacia. Caso seja essa o opção selecionada para o Escoamento Superficial na janela 
+&quot;Transformação Chuva-Vazão&quot;, o usuário deverá utilizar o botão à 
+esquerda do campo selecionado para abrir a janela &quot;HU&quot; (Figura abaixo) e nesta 
+inserir o N&uacute;mero de Ordenadas do HU bem como seus valores.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_HU.jpg"></P>
+<B><P>Separação do Escoamento - Método HU"</P></B>
+</FONT>
+</center>
+
+<LI>Escoamento Superficial - Método de Clark.</LI>
+<P>Para utilização do Método de Clark, o usuário deverá fornecer na janela própria 
+o par&acirc;metro KS de retardo do reservatório linear simples em h, o par&acirc;metro 
+XN referente à forma do histograma tempo-área, a declividade da bacia em mm/km (quando o 
+tempo de concentração for fornecido este dado será desconsiderado), o n&uacute;mero de 
+ordenadas do histograma tempo-área e os seus valores relativamente a uma área unitária.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_CLARK.jpg"></P>
+<B><P>Separação do Escoamento - Método CLARK"</P></B>
+</FONT>
+</center>
+
+<LI>Escoamento Superficial - Método HYMO (Nash Modificado).</LI>
+<P>Selecionando o Método Nash Modificado  o usuário deverá fornecer na janela 
+&quot;HYMO&quot; o valor em h do par&acirc;metro de retardo do reservatório linear 
+simples e o tempo de pico do HU em h. No caso desses valores serem desconhecidos o 
+usuário pode fornecer a diferença de nível da sub-bacia e o comprimento do canal 
+principal de modo que aqueles valores possam ser calculados, pelo modelo, em função 
+desses.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_HYMO.jpg"></P>
+<B><P>Separação do Escoamento - Método HYMO"</P></B>
+</FONT>
+</center>
+
+<LI>Escoamento Superficial - Método do Hidrograma Triangular SCS.</LI>
+<P>Para utilizar o Hidrograma Unitário Triangular SCS o usuário deverá fornecer a 
+declividade da bacia caso não tenha fornecido o tempo de concentração da mesma. Caso 
+isso tenha sido feito, o valor atribuído à declividade será desconsiderado.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDaSubBacia_TCV_HTSCS.jpg"></P>
+<B><P>Separação do Escoamento - Método do Hidrograma Triangular SCS</P></B>
+</FONT>
+</center>
+
+<a name="#TD"><B>Edição de Trechos de água</B></a>
+
+<P>Como já foi mencionado, os Trechos de água representam <I>Operações Hidrológicas </I> 
+do Módulo Rio, ou seja, de Propagação da água em Canais.</P>
+
+<P>A Edição de Dados de um Trecho de água  pode ser feita da seguinte forma:</P>
+
+<LI>Dá-se um &quot;duplo clique&quot; com o ponteiro do mouse sobre o PC na área de 
+Projeto ou, então, através do ícone apropriado do Gerenciador de Projeto. Com isso é 
+aberta a janela &quot;Trecho D’água&quot; ilustrada abaixo.</LI>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/TrechoDagua.jpg"></P>
+<B><P>Janela para Edição de Dados de um Trecho D'água (Módulo Rio: Propagação em Canais)</P></B>
+</FONT>
+</center>
+
+<P>Aberta a janela, da mesma forma que para os PCs, o usuário poderá <I>editar</I> os 
+campos Nome, Descrição e Comentários.</P>
+
+<P>Os campos &quot;Graficar Hidrograma Calculado&quot; e &quot;Imprimir Tabela do 
+Hidrograma&quot; devem receber o mesmo tratamento já mencionado no item anterior, o 
+mesmo acontecendo com o campo &quot;Possui Dados Observados&quot;. Nesse &uacute;ltimo 
+caso, os dados observados referir-se-ão ao hidrograma da seção de saída do Trecho de 
+água.</P>
+
+<P>Além disso, o usuário deverá selecionar o Método de Propagação do Escoamento em canais
+para o Trecho de água. A Figura acima ilustra as opções disponíveis e que são: (1) Muskingum, 
+(2) Muskingum-Cunge Linear; (3) Muskingum-Cunge Não-Linear e (4) Muskingum-Cunge com 
+Planície de Inundação. Abaixo são apresentados cada caso.</P>
+
+<LI>Método de Muskingum Clássico</LI>
+<P>O método de Muskingum Clássico necessita que sejam informada os valores do 
+par&acirc;metro X da função X=<I>f</I>(Q), do par&acirc;metro K da função 
+K = <I>f</I>(Q) e o valor de Q correspondente a ambos. Isso é feito através de uma 
+tabela como a ilustrada na janela &quot;Muskingum K=F(Q) e X=F(Q)&quot; abaixo.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/TrechoDagua_KX.jpg"></P>
+<B><P>Método de Muskingum Clássico</P></B>
+</FONT>
+</center>
+
+<LI>Método de Muskingum-Cunge Linear</LI>
+<P>Para utilizar o Método de Muskingum-Cunge Linear, os dados a serem fornecidos são: a 
+vazão de refer&ecirc;ncia Q<SUB>0</SUB>(m<SUP>3</SUP>/s), a largura do canal (m), o 
+comprimento do trecho de propagação (m), a declividade do fundo do canal (m/m), o intervalo
+ de tempo de cálculo (s), o n&uacute;mero de sub-trechos a serem considerados e a 
+ rugosidade dos sub-trechos. O n&uacute;mero do hidrograma de contribuição lateral, quando 
+ houver, é automaticamente detectado pelo programa de modo que o usuário não tem acesso a 
+ este campo, sendo que para que ali aparecerá o n&uacute;mero correspondente após a 
+ primeira execução do mesmo.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/TrechoDagua_CL.jpg"></P>
+<B><P>Método de Muskingum-Cunge Linear</P></B>
+</FONT>
+</center>
+
+<LI>Método de Muskingum-Cunge Não-Linear</LI>
+<P>O Método de Muskingum-Cunge Não-Linear necessita dos seguintes dados: ), a largura do canal (m), o comprimento do trecho de propagação (m), a declividade do fundo do canal (m/m), o intervalo de tempo de cálculo (s), o n&uacute;mero de sub-trechos a serem considerados e a rugosidade dos sub-trechos. Da mesma forma que no anterior, o n&uacute;mero do hidrograma de contribuição lateral, quando houver, é automaticamente detectado pelo programa de modo que o usuário não tem acesso a este campo, sendo que para que ali aparecerá o n&uacute;mero correspondente após a primeira execução do mesmo.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/TrechoDagua_CNL.jpg"></P>
+<B><P>Método de Muskingum-Cunge Não-Linear</P></B>
+</FONT>
+</center>
+
+<LI>Método de Muskingum-Cunge com Planície de Inundação</LI>
+<P>No Método de Muskingum-Cunge com Planície de Inundação, além dos dados referentes à calha principal: a largura do canal (m), o comprimento do trecho de propagação (m), a declividade do fundo do canal (m/m), o intervalo de tempo de cálculo (s), o n&uacute;mero de sub-trechos a serem considerados e a rugosidade dos sub-trechos; o usuário tem de fornecer aqueles referentes ao leito maior que são: largura da planície de inundação (m), rugosidade da planície de inundação e cota do fundo da planície de inundação (m). Aqui também o n&uacute;mero do hidrograma de contribuição lateral é determinado automaticamente.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/TrechoDagua_CPI.jpg"></P>
+<B><P>Método de Muskingum-Cunge com Planície de Inundação</P></B>
+</FONT>
+</center>
+
+<a name="#RES"><B>Edição de Reservatórios</B></a>
+
+<P>Os reservatórios correspondem ao Modelo Rio e, neste, à modelagem do amortecimento de 
+ondas de cheia pelo método de Pulz.</P>
+
+<P>A edição de um Reservatório é feita da seguinte forma:</P>
+
+<LI>Dá-se um &quot;duplo clique&quot; com o ponteiro do mouse sobre o PC na área de 
+Projeto ou, então, através do ícone apropriado do Gerenciador de Projeto. Com isso é 
+aberta a janela &quot;Reservatório&quot; ilustrada pela Figura abaixo.</LI>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/Reservatorio.jpg"></P>
+<B><P>Janela de Edição dos Dados de Reservatórios</P></B>
+</FONT>
+</center>
+
+<P>A edição dos campos Nome, Descrição e Comentários é a mesma indicada no item referente 
+a Edição de Pontos de Controle. O mesmo acontece para a seleção do  &quot;sim&quot; ou 
+&quot;não&quot; para as opções referentes a &quot;Graficar Hidrograma Calculado&quot; e 
+&quot;Imprimir Tabela do Hidrograma&quot;. No caso da graficação do hidrograma calculado 
+ser selecionada como &quot;sim&quot; o usuário deverá informar nos campos Vazão Mínima e 
+Vazão Máxima os intervalos para graficação. Em caso de ser selecionada a opção 
+&quot;Não&quot;, esses campos serão desativados para seleção.</P>
+
+<P>A opção &quot;Possui Dados Observados&quot; se assinalada com &quot;sim&quot;, conforme 
+já foi mencionado acima, significa que existem dados observados relativos ao Hidrograma de 
+Saída do PC. Nesse caso, o usuário deverá informar qual arquivo contém esses dados. Isso é 
+feito, clicando com o ponteiro do mouse sobre o botão à direita do campo destinado à 
+inserção do nome do arquivo, o usuário terá acesso a um janela de seleção de arquivos, 
+a partir da qual poderá fazer a escolha daquele que contiver os dados observados.</P>
+
+<P>Além disso, o usuário deverá informar o armazenamento inicial do reservatório em 
+m<SUP>3</SUP>/s, ou seja, o armazenamento correspondente a um intervalo de tempo de um 
+segundo. </P>
+
+<P>O campo &quot;N&uacute;mero de Movimentação das Estruturas Extravasoras&quot; quando 
+maior que a unidade permite que, através do botão &quot;Editar Tabela Q= <I>f</I>(S)&quot;, 
+seja inserida a tabela que relaciona o armazenamento, S, no reservatório com a vazão 
+daquela posição da estrutura extravasora. Caso existam mais de uma posição deverão ser 
+inseridas as tabelas correspondentes. Por outro lado, no caso desse n&uacute;mero ser 0 
+(zero) o botão ao lado dá acesso a uma janela onde dever ser indicados: o n&uacute;mero 
+de pontos da tabela H = <I>f</I>(S), seus valores, o Coeficiente de Descarga, a largura (m) 
+e a cota da Crista (m) do Vertedor.</P>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDoReservatorio_TabH.jpg"></P>
+<B><P>Estruturas Extravasoras (H)</P></B>
+</FONT>
+</center>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/EdicaoDosDadosDoReservatorio_TabQ.jpg"></P>
+<B><P>Estruturas Extravasoras (Q)</P></B>
+</FONT>
+</center>
+
+<B>Substituição de PCs por Reservatórios e vice-versa</B>
+
+<P>Após construída a Rede Hidrológica, é possível fazer-se a substituição de um PC por 
+um Reservatório e vice-versa. Para fazer isso é necessário proceder-se da seguinte forma:</P>
+
+<LI>Primeiro, seleciona-se o PC ou o Reservatório, depois, clica-se no ícone de 
+substituição (Quadro 2) correspondente. A substituição é automática.</LI>
+
+<P>No caso da substituição de um PC por um Reservatório é necessário, após a 
+transformação, completarem-se as informações necessárias. Quando for ao contrário 
+as informações excedentes (do reservatório) serão perdidas. Nesse caso, se o Projeto 
+não for salvo após a alteração,  bastará carregá-lo novamente para voltar à situação 
+anterior, sem perda de informações. Sugere-se que, quando forem feitas alterações 
+desse tipo, com o propósito de serem testadas hipóteses distintas, que cada uma delas 
+seja salva com um Nome de Arquivo de Projeto diferente. </P>
+
+<b>Clonagem e C&oacute;pia de Objetos.</b>
+
+<p>Além da criação e da edição, é possível que objetos sejam clonados e/ou tenham seus dados copiados de outros.</p>
+<p>A operação de clonagem é realizada apenas sobre PCs e Reservatórios e significa a criação de outro objeto igual, com o mesmo ícone de representação e os mesmos dados. Apenas o nome do objeto é diferente por razões óbvias.</p>
+<p>Já, a operação de cópia, é realizada sobre qualquer objeto previamente criado e para o qual são copiados os dados de outro objeto igual. Neste caso específico, é aberta uma janela complementar que pede que o usuário indique de qual objeto os dados serão copiados.</p>
+<p>O acesso ao menu que permite essas operações sobre objetos é feito com a utilização do botão direito do mouse sobre um objeto previamente selecionado.</p>
+
+<center>
+<FONT SIZE="2">
+<P><IMG SRC="Janelas/Menu_Copia_Clonagem.JPG"></P>
+<B><P>Menu de acesso às opções Clonar Objeto e Copiar Dados</P></B>
+</FONT>
+</center>
+
+<!-- BeginBlock Rodape -->
+<br>
+<table border="0" Width="100%">
+<tr>
+    <td>
+    <font size="3" color="#000099">
+    IPHS1 para Windows
+    </font>
+    </td>
+    
+    <td>
+    <a href="Index.htm">    
+    <img src="Imagens/LARRW.GIF" 
+         width="31" height="31" border="0" align="right"
+         alt="Índice Principal">
+    </a>
+    </td>
+</tr>
+</table>
+<!-- EndBlock Rodape -->
+</html>

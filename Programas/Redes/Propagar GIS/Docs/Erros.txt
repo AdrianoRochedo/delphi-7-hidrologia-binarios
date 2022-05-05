@@ -1,0 +1,3 @@
+ERROS:
+
+  - Erro de leitura quando uma camada nao existe.

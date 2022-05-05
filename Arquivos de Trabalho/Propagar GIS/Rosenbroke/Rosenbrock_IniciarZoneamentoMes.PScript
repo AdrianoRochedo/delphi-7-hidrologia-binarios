@@ -1,0 +1,347 @@
+var Jan1, Jan2, Jan3 : object; // Objetos - parâmetros do Rosenbrock
+    Fev1, Fev2, Fev3 : object;
+    Mar1, Mar2, Mar3 : object;
+    Abr1, Abr2, Abr3 : object;
+    Mai1, Mai2, Mai3 : object;
+    Jun1, Jun2, Jun3 : object;
+    Jul1, Jul2, Jul3 : object;
+    Ago1, Ago2, Ago3 : object;
+    Set1, Set2, Set3 : object;
+    Out1, Out2, Out3 : object;
+    Nov1, Nov2, Nov3 : object;
+    Dez1, Dez2, Dez3 : object;
+
+begin
+  Projeto.Rosenbrock.Parameters.Clear;
+  Projeto.Rosenbrock.SetDecStep(0.5);
+  Projeto.Rosenbrock.SetMaxSimulations(500);
+  Projeto.Rosenbrock.SetMaxTimeSimulation(60*60*1000);
+  Projeto.Rosenbrock.SetTolerante(0.01);
+  Projeto.Rosenbrock.ShowFO(0, 150);
+
+  Jan1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jan1.SetName('Jan1');
+  Jan1.SetValue(10);
+  Jan1.SetStep(5);
+  Jan1.SetLowLimit(0);
+  Jan1.SetHiLimit(20);
+  Jan1.SetTolerance(0.1);
+//Jan1.Show(0, 250);
+
+  Jan2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jan2.SetName('Jan2');
+  Jan2.SetValue(40);
+  Jan2.SetStep(5);
+  Jan2.SetLowLimit(20);
+  Jan2.SetHiLimit(60);
+  Jan2.SetTolerance(0.1);
+//Jan2.Show(0, 300);
+
+  Jan3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jan3.SetName('Jan3');
+  Jan3.SetValue(80);
+  Jan3.SetStep(5);
+  Jan3.SetLowLimit(60);
+  Jan3.SetHiLimit(100);
+  Jan3.SetTolerance(0.1);
+//Jan3.Show(0, 400);
+
+  Fev1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Fev1.SetName('Fev1');
+  Fev1.SetValue(10);
+  Fev1.SetStep(5);
+  Fev1.SetLowLimit(0);
+  Fev1.SetHiLimit(20);
+  Fev1.SetTolerance(0.1);
+//Fev1.Show(60, 200);
+
+  Fev2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Fev2.SetName('Fev2');
+  Fev2.SetValue(40);
+  Fev2.SetStep(5);
+  Fev2.SetLowLimit(20);
+  Fev2.SetHiLimit(60);
+  Fev2.SetTolerance(0.1);
+//Fev2.Show(60, 300);
+
+  Fev3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Fev3.SetName('Fev3');
+  Fev3.SetValue(80);
+  Fev3.SetStep(5);
+  Fev3.SetLowLimit(60);
+  Fev3.SetHiLimit(100);
+  Fev3.SetTolerance(0.1);
+//Fev3.Show(60, 400);
+
+  Mar1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Mar1.SetName('Mar1');
+  Mar1.SetValue(10);
+  Mar1.SetStep(5);
+  Mar1.SetLowLimit(0);
+  Mar1.SetHiLimit(20);
+  Mar1.SetTolerance(0.1);
+//Mar1.Show(120, 200);
+
+  Mar2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Mar2.SetName('Mar2');
+  Mar2.SetValue(40);
+  Mar2.SetStep(5);
+  Mar2.SetLowLimit(20);
+  Mar2.SetHiLimit(60);
+  Mar2.SetTolerance(0.1);
+//Mar2.Show(120, 300);
+
+  Mar3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Mar3.SetName('Mar3');
+  Mar3.SetValue(80);
+  Mar3.SetStep(5);
+  Mar3.SetLowLimit(60);
+  Mar3.SetHiLimit(100);
+  Mar3.SetTolerance(0.1);
+//Mar3.Show(120, 400);
+
+  Abr1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Abr1.SetName('Abr1');
+  Abr1.SetValue(10);
+  Abr1.SetStep(5);
+  Abr1.SetLowLimit(0);
+  Abr1.SetHiLimit(20);
+  Abr1.SetTolerance(0.1);
+//Abr1.Show(180, 250);
+
+  Abr2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Abr2.SetName('Abr2');
+  Abr2.SetValue(40);
+  Abr2.SetStep(5);
+  Abr2.SetLowLimit(20);
+  Abr2.SetHiLimit(60);
+  Abr2.SetTolerance(0.1);
+//Abr2.Show(180, 300);
+
+  Abr3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Abr3.SetName('Abr3');
+  Abr3.SetValue(80);
+  Abr3.SetStep(5);
+  Abr3.SetLowLimit(60);
+  Abr3.SetHiLimit(100);
+  Abr3.SetTolerance(0.1);
+//Abr3.Show(180, 400);
+
+  Mai1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Mai1.SetName('Mai1');
+  Mai1.SetValue(10);
+  Mai1.SetStep(5);
+  Mai1.SetLowLimit(0);
+  Mai1.SetHiLimit(20);
+  Mai1.SetTolerance(0.1);
+//Mai1.Show(240, 200);
+
+  Mai2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Mai2.SetName('Mai2');
+  Mai2.SetValue(40);
+  Mai2.SetStep(5);
+  Mai2.SetLowLimit(20);
+  Mai2.SetHiLimit(60);
+  Mai2.SetTolerance(0.1);
+//Mai2.Show(240, 300);
+
+  Mai3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Mai3.SetName('Mai3');
+  Mai3.SetValue(80);
+  Mai3.SetStep(5);
+  Mai3.SetLowLimit(60);
+  Mai3.SetHiLimit(100);
+  Mai3.SetTolerance(0.1);
+//Mai3.Show(240, 400);
+
+  Jun1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jun1.SetName('Jun1');
+  Jun1.SetValue(10);
+  Jun1.SetStep(5);
+  Jun1.SetLowLimit(0);
+  Jun1.SetHiLimit(20);
+  Jun1.SetTolerance(0.1);
+//Jun1.Show(300, 200);
+
+  Jun2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jun2.SetName('Jun2');
+  Jun2.SetValue(40);
+  Jun2.SetStep(5);
+  Jun2.SetLowLimit(20);
+  Jun2.SetHiLimit(60);
+  Jun2.SetTolerance(0.1);
+//Jun2.Show(300, 300);
+
+  Jun3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jun3.SetName('Jun3');
+  Jun3.SetValue(80);
+  Jun3.SetStep(5);
+  Jun3.SetLowLimit(60);
+  Jun3.SetHiLimit(100);
+  Jun3.SetTolerance(0.1);
+//Jun3.Show(300, 400);
+
+  Jul1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jul1.SetName('Jul1');
+  Jul1.SetValue(10);
+  Jul1.SetStep(5);
+  Jul1.SetLowLimit(0);
+  Jul1.SetHiLimit(20);
+  Jul1.SetTolerance(0.1);
+//Jul1.Show(360, 200);
+
+  Jul2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jul2.SetName('Jul2');
+  Jul2.SetValue(40);
+  Jul2.SetStep(5);
+  Jul2.SetLowLimit(20);
+  Jul2.SetHiLimit(60);
+  Jul2.SetTolerance(0.1);
+//Jul2.Show(360, 300);
+
+  Jul3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Jul3.SetName('Jul3');
+  Jul3.SetValue(80);
+  Jul3.SetStep(5);
+  Jul3.SetLowLimit(60);
+  Jul3.SetHiLimit(100);
+  Jul3.SetTolerance(0.1);
+//Jul3.Show(360, 400);
+
+  Ago1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Ago1.SetName('Ago1');
+  Ago1.SetValue(10);
+  Ago1.SetStep(5);
+  Ago1.SetLowLimit(0);
+  Ago1.SetHiLimit(20);
+  Ago1.SetTolerance(0.1);
+//Ago1.Show(420, 250);
+
+  Ago2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Ago2.SetName('Ago2');
+  Ago2.SetValue(40);
+  Ago2.SetStep(5);
+  Ago2.SetLowLimit(20);
+  Ago2.SetHiLimit(60);
+  Ago2.SetTolerance(0.1);
+//Ago2.Show(420, 300);
+
+  Ago3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Ago3.SetName('Ago3');
+  Ago3.SetValue(80);
+  Ago3.SetStep(5);
+  Ago3.SetLowLimit(60);
+  Ago3.SetHiLimit(100);
+  Ago3.SetTolerance(0.1);
+//Ago3.Show(420, 400);
+
+  Set1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Set1.SetName('Set1');
+  Set1.SetValue(10);
+  Set1.SetStep(5);
+  Set1.SetLowLimit(0);
+  Set1.SetHiLimit(20);
+  Set1.SetTolerance(0.1);
+//Set1.Show(480, 200);
+
+  Set2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Set2.SetName('Set2');
+  Set2.SetValue(40);
+  Set2.SetStep(5);
+  Set2.SetLowLimit(20);
+  Set2.SetHiLimit(60);
+  Set2.SetTolerance(0.1);
+//Set2.Show(480, 300);
+
+  Set3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Set3.SetName('Set3');
+  Set3.SetValue(80);
+  Set3.SetStep(5);
+  Set3.SetLowLimit(60);
+  Set3.SetHiLimit(100);
+  Set3.SetTolerance(0.1);
+//Set3.Show(480, 400);
+
+  Out1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Out1.SetName('Out1');
+  Out1.SetValue(10);
+  Out1.SetStep(5);
+  Out1.SetLowLimit(0);
+  Out1.SetHiLimit(20);
+  Out1.SetTolerance(0.1);
+//Out1.Show(540, 200);
+
+  Out2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Out2.SetName('Out2');
+  Out2.SetValue(40);
+  Out2.SetStep(5);
+  Out2.SetLowLimit(20);
+  Out2.SetHiLimit(60);
+  Out2.SetTolerance(0.1);
+//Out2.Show(540, 300);
+
+  Out3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Out3.SetName('Out3');
+  Out3.SetValue(80);
+  Out3.SetStep(5);
+  Out3.SetLowLimit(60);
+  Out3.SetHiLimit(100);
+  Out3.SetTolerance(0.1);
+//Out3.Show(540, 400);
+
+  Nov1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Nov1.SetName('Nov1');
+  Nov1.SetValue(10);
+  Nov1.SetStep(5);
+  Nov1.SetLowLimit(0);
+  Nov1.SetHiLimit(20);
+  Nov1.SetTolerance(0.1);
+//Nov1.Show(600, 250);
+
+  Nov2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Nov2.SetName('Nov2');
+  Nov2.SetValue(40);
+  Nov2.SetStep(5);
+  Nov2.SetLowLimit(20);
+  Nov2.SetHiLimit(60);
+  Nov2.SetTolerance(0.1);
+//Nov2.Show(600, 300);
+
+  Nov3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Nov3.SetName('Nov3');
+  Nov3.SetValue(80);
+  Nov3.SetStep(5);
+  Nov3.SetLowLimit(60);
+  Nov3.SetHiLimit(100);
+  Nov3.SetTolerance(0.1);
+//Nov3.Show(600, 400);
+
+  Dez1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Dez1.SetName('Dez1');
+  Dez1.SetValue(10);
+  Dez1.SetStep(5);
+  Dez1.SetLowLimit(0);
+  Dez1.SetHiLimit(20);
+  Dez1.SetTolerance(0.1);
+//Dez1.Show(660, 200);
+
+  Dez2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Dez2.SetName('Dez2');
+  Dez2.SetValue(40);
+  Dez2.SetStep(5);
+  Dez2.SetLowLimit(20);
+  Dez2.SetHiLimit(60);
+  Dez2.SetTolerance(0.1);
+//Dez2.Show(660, 300);
+
+  Dez3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Dez3.SetName('Dez3');
+  Dez3.SetValue(80);
+  Dez3.SetStep(5);
+  Dez3.SetLowLimit(60);
+  Dez3.SetHiLimit(100);
+  Dez3.SetTolerance(0.1);
+//Dez3.Show(660, 400);
+
+  Projeto.Rosenbrock.ShowManager(0, 285);
+end.

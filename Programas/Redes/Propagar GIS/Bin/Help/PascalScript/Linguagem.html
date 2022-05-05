@@ -1,0 +1,891 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Linguagem</title>
+</head>
+
+<body>
+
+<font face="Arial" size="+2" color="Black">
+<center>Linguagem</center><br>
+</font>
+
+<ul>
+<li><a href="#1">Elementos Sintáticos</a></a></li>
+<li><a href="#2">Elementos Sintáticos Fundamentais</a></li>
+<li><a href="#3">Comentários</a></li>
+<li><a href="#4">Identificadores</a></li>
+<li><a href="#5">Palavras Reservadas</a></li>
+<li><a href="#6">Números</a></li>
+<li><a href="#7">Characteres String</a></li>
+<li><a href="#8">Sobre Expressões</a></li>
+<li><a href="#9">Sobre Operadores</a></li>
+<li><a href="#10">Operadores Aritméticos</a></li>
+<li><a href="#11">Operadores Lógicos </a></li>
+<li><a href="#12">Operadores String</a></li>
+<li><a href="#13">Operadores Relacionais</a></li>
+<li><a href="#14">Precedência dos Operadores</a></li>
+<li><a href="#15">Chamada de Funções</a></li>
+<li><a href="#16">Typecast</a></li>
+<li><a href="#18">Sobre Declarações e Comandos</a></li>
+<li><a href="#19">Declarações</a></li>
+<li><a href="#20">Comandos</a></li>
+<li><a href="#21">Comandos Simples</a></li>
+<li><a href="#22">Comando de Atribuição</a></li>
+<li><a href="#23">Chamada de Funções e Procedimentos</a></li>
+<li><a href="#24">Comandos Estruturados</a></li>
+<li><a href="#25">Comandos Compostos</a></li>
+<li><a href="#26">Comando IF</a></li>
+<li><a href="#27">Controle de Loops</a></li>
+<li><a href="#28">Comando While</a></li>
+<li><a href="#29">Comando For</a></li>
+<li><a href="#30">Criação de Objetos</a></li>
+<li><a href="#31">Comando CreateObject</a></li>
+</ul>
+<br>
+
+<a name="1"></a>
+<font face="Arial" size="+1" color="Black">
+Elementos Sintáticos<br>
+</font>
+<br>
+O Pascal Script utiliza o conjunto de caracteres ASCII, incluíndo as letras de "A" a "Z" e "a" a "z", os dígitos de "0" a "9" e outros caracteres padrão. Ele ignora a diferença entre letras maiúsculas e minúsculas.
+<br><br>
+Os Elementos Sintáticos Fundamentais, chamados Tokens, combinam-se para formar expressões, declarações e comandos. Um comando descreve uma ação algoritmica que pode ser executada com um programa.
+<br><br>
+Uma expressão é uma unidade sintática que ocorre com um comando e denota um valor. Uma declaração define um identificador (tal como um nome de função ou variável) que pode ser utilizado em em expressões e comandos, e, onde for apropriado, alocar memória para um identificador. 
+<br><br>
+
+<a name="2"></a>
+<font face="Arial" size="+1" color="Black">
+Elementos Sintáticos Fundamentais<br>
+</font>
+<br>
+Em um nível simples, um programa é uma sequência de tokens delimitados por separadores. Um token é a menor unidade de texto em um programa. Um separador é um espaço em branco ou um comentário. Estritamente falando, não é sempre necessário colocar um separador entre dois tokens; por exemplo, o fragmento de código
+<br><br>
+Size:=20;Price:=10;
+<br><br>
+é perfeitamente legal. Convensão e legibilidade, no entanto, ditam que nós deveríamos ter escrito
+<br><br>
+Size  := 20;
+Price := 10;
+<br><br>
+Tokens são categorizados como símbolos especiais, identificadores, palavras reservadas, números e caracteres strings. Um separador pode ser parte de um token somente somente se o token é um caracter string. Identificadores adjacentes, palavras reservadas e números devem possuir pelo menos um separador entre eles.
+<br><br>
+
+<a name="3"></a>
+<font face="Arial" size="+1" color="Black">
+Comentários<br>
+</font>
+<br>
+Comentários säo textos introduzimos no meio do código do programa com a intençäo de torná-lo  mais claro. É  uma  boa  prática  em  programaçäo inserir comentários no meio dos nossos programas. No Script, tudo que estiver entre  os  símbolos "{" e "}" ou após o símbolo "//" será considerado como comentário.
+<br><br>
+Exemplos:
+<pre>
+  // Isto é um comentário de uma linha
+
+  {
+  Isto é um bloco
+  com duas linhas de comentário
+  }
+</pre>
+
+<a name="3"></a>
+<font face="Arial" size="+1" color="Black">
+Estrutura de um programa em PascalScript<br>
+</font>
+<br>
+Todo programa em PascalScript é subdividido em 3 áreas:
+<br><br>
+<pre>
+        - cabeçalho do programa [Opcional]
+        - área de declaraçöes [Opcional]
+        - corpo do programa
+</pre>		
+Na definiçäo padräo da linguagem  Pascal, o  Cabeçalho  do   programa é obrigatório,  no  entanto,  no  Script ele é opcional. 
+<br><br>
+A área de declaraçöes é o lugar onde são definidas as variáveis.
+<br><br>
+O PascalScript possui 5  tipos  de variáveis pré-definidas a
+saber: Integer, Real, Boolean, String e Object. 
+<br><br>
+Todas as variáveis utilizadas no programa devem ser declaradas na
+sub-área Var, pois a alocaçäo de espaço de memória para as variáveis é feita durante a compilaçäo.
+<br><br>
+
+<a name="4"></a>
+<font face="Arial" size="+1" color="Black">
+Identificadores<br>
+</font>
+<br>
+O PascalScript possui inúmeros identificadores pré-definidos, que  näo fazem  parte   da   definiçäo   padräo   da   linguagem  Script Pascal.  Esses identificadores consistem  em  Procedures  e  Functions, que podem ser utilizados normalmente na construçäo de programas. Exemplos:
+<br><br>
+<pre>    
+    Beep          : Emite um som
+    ShowMessage() : Mostra uma mensagemna tela
+</pre>
+Regras para formaçäo de identificadores:
+<br><br>
+    <ul>1-) O primeiro caractere do identificador deverá ser obrigatoriamente uma letra ou um underscore "_".<br>
+    2-) Os demais caracteres podem ser letras, dígitos ou underscores.<br>
+    3-) Näo pode ser palavra reservada.
+	</ul>
+
+Exemplos de identificadores válidos:
+<br><br>
+<pre>
+        Meu_Nome
+        MEU_NOME   (igual ao anterior)
+        __Linha
+        EXemplo23
+</pre>		
+Exemplos de identificadores näo válidos:
+<br><br>
+<pre>
+        2teste      : começa com número
+        Exemplo 23  : tem um espaço
+</pre>
+Identificadores de Qualificação
+<br><br>
+Qualificadores podem ser iterativos.<br>
+Por exemplo: OutPut.Show<br>
+chama o método Show do objeto OutPut
+<br><br>
+
+<a name="5"></a>
+<font face="Arial" size="+1" color="Black">
+Palavras Reservadas<br>
+</font>
+<br>
+As palavras reservadas do Pascal Script säo palavras que fazem parte  da sua  estrutura e possuem significados pré-determinados. Elas näo podem ser redefinidas e  näo  podem  ser  utilizadas  como dentificadores de variáveis, procedures, functions, etc.<br> 
+As palavras reservadas são:
+<br><br>
+<pre>
+	program                              
+	var
+	string        
+	integer
+	real
+	boolean
+	object
+	begin
+	end   
+	while                 
+	do
+	for                  
+	to
+	downto                
+	if                        
+	then
+	else       
+	not
+	and                    
+	or
+</pre>                    
+
+<a name="6"></a>
+<font face="Arial" size="+1" color="Black">
+Números<br>
+</font>
+<br>
+No Pascal Script, podemos trabalhar com números inteiros e reais. Os números reais também podem ser representados em notação científica.
+<br><br>
+Números inteiros são representados internamente como números reais.
+<br><br>
+
+<a name="7"></a>
+<font face="Arial" size="+1" color="Black">
+Characteres String<br>
+</font>
+<br>
+Strings säo conjunto de caracteres entre aspas simples. 
+Exemplos:
+<br><br>
+<pre>
+  'isto é uma string' { isto é uma string }
+  '123456'            { 123456 }
+  ''''                { ' }
+  ''                  { string nula }
+  ' '                 { um espaço }
+</pre>
+
+<a name="8"></a>
+<font face="Arial" size="+1" color="Black">
+Sobre Expressões<br>
+</font>
+<br>
+Uma expressão é um conjunto de operandos unidos por operadores, de forma a computar um valor ou resultado.
+<br><br>   
+Os operandos podem ser variáveis, constantes ou valores gerados por funções.  
+<br><br>
+Os operadores identificam as operações a serem efetuadas sobre os operandos. Cada tipo de dados possui um conjunto de operadores relacionados. Os operadores classificam-se como Unários e Binários, conforme tenham um ou dois operandos, respectivamente.  
+<br><br>
+<pre>
+  X                   { variável }
+  15                  { constante inteira }
+  InterestRate        { variável }
+  Calc(X,Y)           { chamada de função }
+  X * Y               { produto de X por Y }
+  Z / (1 - Z)         { divizão de Z por (1 - Z) }
+  X = 1.5             { Lógico (Boolean) }
+  not Feito           { negação de uma variável lógica (Boolean) }
+</pre>
+
+<a name="9"></a>
+<font face="Arial" size="+1" color="Black">
+Sobre Operadores<br>
+</font>
+<br>
+Operadores tais como as funções pré-definidas são partes da linguagem Pascal Script. 
+<br><br>
+Operadores incluem:<br>
+&nbsp;&nbsp;  *, /, +, –, mod, div, and, or, not, =, >, <, <>, <=, >=
+<br><br>
+
+<a name="10"></a>
+<font face="Arial" size="+1" color="Black">
+Operadores Aritiméticos<br>
+</font>
+<br>
+
+<pre>
+    +     adiçäo
+    -     subtraçäo
+    *     multiplicaçäo
+    /     divisão real
+    div   divisão inteira
+    mod   resto de uma divisão inteira
+
+Exemplo
+
+    <b>program</b> Operadores_aritimeticos;
+    <b>var</b> x, y, z : integer;
+        r1, r2  : real;
+    <b>begin</b>
+       x := 10;
+       y := 20 <b>div</b> 10;
+       z := x+y <b>mod</b> y;
+       OutPut.Write(z); <i><font color="#808080">// escreve o valor de z em um console</font></i>
+       x := 20 / 3;
+       y := 20 * 3;
+       OutPut.Write(x);   
+       OutPut.Write(y);   
+       r1 := 3.24;
+       r2 := r1 / 2.3;
+       OutPut.Write(r2);
+    <b>end</b>.
+</pre>
+
+<a name="11"></a>
+<font face="Arial" size="+1" color="Black">
+Operadores Lógicos (Booleanos) <br>
+</font>
+<br>
+<pre>
+    AND   -->  E lógico
+    OR    -->  OU lógico
+</pre>
+Estes operadores só aceitam como operandos, valores lógicos, ou  seja, valores TRUE ou FALSE .
+<br><br>
+A operaçäo AND resulta em TRUE se e somente se todos os operandos forem TRUE, se um deles ou mais de um for FALSE então o resultado será FALSE.
+<br><br>
+A operaçäo OR resulta TRUE quando pelo menos um dos operandos for TRUE.
+<br><br>
+Exemplo 1:
+<br><br>
+<pre>
+    <b>program</b> operadores_logicos;
+    <b>var</b> x,y : boolean;
+    <b>begin</b>
+      x := TRUE;
+      y := FALSE;
+	   
+      <b>if</b> x OR y <b>then</b>
+         OutPut.Write(<font color="#0000ff">'Esta linha será impressa'</font>);
+		  
+      <b>if</b> x AND y <b>then</b>  
+         OutPut.Write(<font color="#0000ff">'Esta linha não será vista'</font>);
+    <b>end</b>.
+
+Exemplo 2:
+
+    <b>while</b> (I <= Length(S)) and (S[I] <> ',') <b>do</b>
+      <b>begin</b>
+      ...
+      Inc(I);
+      <b>end</b>;
+</pre>
+
+<a name="12"></a>
+<font face="Arial" size="+1" color="Black">
+Operadores String<br>
+</font>
+<br>
+Os operadores relacionais =, <>, <, >, <=, and >= operam também sobre strings. O operador "+" concatena duas strings.
+<br><br>
+<pre>
+Exemplo 1:
+    b := ('Adriano' = 'adriano') --> FALSO
+
+Exemplo 2:
+    'Isto é uma ' + 'string' --> 'Isto é uma string'
+</pre>	 
+<br><br>
+
+<a name="13"></a>
+<font face="Arial" size="+1" color="Black">
+Operadores Relacionais<br>
+</font>
+<br>
+O Pascal Script possui ao todo 6 operadores relacionais que  säo   muito utilizados nas tomadas de decisöes, säo eles:
+<br><br>
+<pre>
+    =       igual
+    <>      diferente
+    >       maior que
+    <       menor que
+    >=      maior ou igual que
+    <=      menor ou igual que
+
+    Exemplos:
+
+    1) Se A=30  e B=50 entäo
+         ( A = B ) --> FALSE
+         ( A < B ) --> TRUE
+
+    2) Se A=TRUE e B=FALSE então
+         ( A <> B ) --> TRUE
+         ( A =  B ) --> FALSE
+
+    3) Se A=50 , B=35, C='A' , D='B' então
+         ( ( A < B ) OR ( C < D ) ) --> TRUE
+</pre>
+
+A  avaliaçäo  será  verdadeira se   uma  ou  outra  expressão   for
+verdadeira, no caso, como C < D entäo a resposta é TRUE
+<br><br>
+
+<a name="14"></a>
+<font face="Arial" size="+1" color="Black">
+Precedência dos Operadores<br>
+</font>
+<br>
+Se vários operadores aparecerem em uma expressão, a ordem de execução das operações será dada segundo os critérios abaixo :
+<br><br>
+   <ul>
+    <li>pelo emprego explícito de parênteses</li>
+    <li>pela ordem de precedência existente entre os operadores</li>
+    <li>se existirem operadores de mesma ordem de precedência, a
+        avaliação será feita da esquerda para a direita.</li>
+	</ul>
+
+Ordem de Precedência dos Operadores ( da maior para a menor )
+<br><br>
+<pre>
+  <b>Operadores</b>                    <b>Categoria</b>
+  (  )                          Parêntesis
+  @   not                       Operadores Unários
+  *  /  div  mod                Operadores Multiplicativos
+  and  +  -  or                 Operadores Aditivos
+  =  <>  <   >  <=   >=         Operadores Relacionais
+</pre>
+
+Exemplos
+<br><br>
+  <pre>X + Y * Z</pre>
+
+Multiplica Y vezes Z, então adiciona X ao resultado; "*" é realizado primeiro, porque sua prioridade é maior do que a do "+". Mas
+<br><br>
+  <pre>X - Y + Z</pre>
+
+primeiro subtrai Y de X, então adiciona Z ao resultado; "-" e "+" possuem a mesma precedencia, então a operação da esquerda é realizada primeiro.
+<br><br>
+Você pode usar parenteses para controlar as regras de precedencia.
+Uma expressão com parênteses é avaliada primeiro, eles são tratados como operandos simples
+<br><br>
+Exemplo
+<br><br>
+  <pre>(X + Y) * Z</pre>
+
+multiplica Z vezes a soma de X por Y.
+<br><br>
+Parenteses são as vezes necessários em situações onde, a primeira vista, não seriam necessários. Por exemplo, considere a expressão:
+<br><br>
+  <pre>X = Y or X = Z</pre>
+
+A interpretação lógica desta expressão é obvia
+<br><br>
+  <pre>(X = Y) or (X = Z)</pre>
+
+Sem parênteses, no entanto, o compilador seguirá as regras de precedencia e lerá
+<br><br>
+  <pre>(X = (Y or X)) = Z</pre>
+
+no qual o resultado é um erro de compilação a menos que Z seja um Booleano.
+<br><br>
+Parenteses oferecem facilidade para se escreer e ler código, já que,
+eles são, estritamente falando, superfluos. Repare na expressão abaixo:
+<br><br>
+  <pre>X + (Y * Z)</pre>
+
+Aqui os parenteses não são necessários (para o compilador), mas eles tornam o código claro para o programador enfatizando a precedencia.
+<br><br>
+
+<a name="15"></a>
+<font face="Arial" size="+1" color="Black">
+Chamada de Funções<br>
+</font>
+<br>
+Por que funções retornam um valor, funções podem ser chamadas em expressões. Por exemplo, se você definir uma função chamada "Calc" com dois argumentos e de retorno inteiro, então a chamada de Calc(22, 45) é uma expressão inteira.
+<br><br>
+Exemplos de chamada de funções
+<br><br>
+<pre>
+  Sum(A, 63)
+  Max(147, J)
+  Sin(X + Y) 
+  Volume(Raio, Largura)
+  GetValue
+  AlgumObjeto.AlgumMetodo(X, Y, Z)
+</pre>  
+
+<a name="16"></a>
+<font face="Arial" size="+1" color="Black">
+Typecast<br>
+</font>
+<br>
+Serve para tratar um tipo de objeto como outro.<br>
+A sintáxe para o typecast é:
+<br><br>
+<pre>
+    tipoIdentificador(variável Object)
+</pre> 
+Exemplo:
+<pre>
+     <b>program</b> Planeja_LiberaDemandas_PC9;
+     <b>var</b> V  : Object;
+         dt : Integer;
+     <b>begin</b>
+       V := TwsVec(GlobalObjects.Get(<font color="#0000ff">'Meu vetor'</font>));
+       <b>if</b> ObjectIsValid(V) <b>then</b> V.Print(Saida);
+     <b>end</b>.
+</pre>
+
+<a name="18"></a>
+<font face="Arial" size="+1" color="Black">
+Sobre Declarações e Comandos<br>
+</font>
+<br>
+Um programa consiste enteiramente de declarações e comandos, os quais são organizados em blocos.
+<br><br>
+Constituição básica de um programa
+<br><br>
+<pre>
+  - Identificação do Programa [opcional]
+  - Bloco de Declarações de Variáveis [opcional]
+  - Bloco Principal
+    - Comandos Simples ou Compostos
+</pre>
+Ex:
+<br><br>
+<pre>
+    <b>program</b> Identificacao;
+    <b>var</b>
+       v1, v2: Tipo;
+       v3, v4: Tipo;
+    <b>begin</b>
+       comando 1;
+       comando 2;
+       ...
+       comando N;
+    <b>end</b>.  	
+</pre>
+
+<a name="19"></a>
+<font face="Arial" size="+1" color="Black">
+Declarações<br>
+</font>
+<br>
+Uma variável é um valor que pode ser alterado dentro de um programa.  Todas as variáveis usadas num programa devem ser declaradas usando a cláusula VAR, dentro da seção de declarações.  Nesse comando, além de indicar o nome que deseja para as variáveis, indica-se também qual o tipo que as mesmas estão associadas.
+<br><br>
+Sintaxe:
+<br><br>
+<pre>
+<b>var</b>   identif [ , identif ]... : tipo-do-dado;
+    [ identif [ , identif ]... : tipo-do-dado; ] ...
+</pre>	
+
+O tipo-do-dado é um dos tipos pré-definidos.
+<br><br>
+Ex.:
+<br><br>
+<pre>
+  <b>var</b> 
+    Soma, Total, Salario : Real;
+    Idade, Contador      : Integer;
+    Planilha             : Object;
+    Nome                 : String;
+    PossuiDireitoFerias  : Boolean;
+</pre>
+
+Tipos de dados pré-definidos
+<br><br>
+<pre>
+   - Real        Números em Ponto Flutuante 
+   - Integer     Números Inteiros
+   - Boolean     Valores Lógicos (true/false)
+   - String      Sequência de Caracteres entre Aspas
+   - Object      Instâncias de Classes
+</pre>
+
+<a name="20"></a>
+<font face="Arial" size="+1" color="Black">
+Comandos<br>
+</font>
+<br>
+Comandos definem ações algorítmicas em um programa. Comandos simples como atribuições e chamadas de procedimentos podem se combinar para formar laços, comandos condicionais e outros comandos estruturados.<br>
+Multiplos comandos em um bloco devem ser separados por um ponto e vírgula.
+<br><br>
+
+<a name="21"></a>
+<font face="Arial" size="+1" color="Black">
+Comandos Simples<br>
+</font>
+<br>
+Um comando simples não contém qualquer outro comando. Comandos simples incluem atribuições, chamadas de procedimentos e funções.
+<br><br>
+
+<a name="22"></a>
+<font face="Arial" size="+1" color="Black">
+Comando de Atribuição<br>
+</font>
+<br>
+Usado para atribuir o valor de uma expressão a uma variável.
+<br><br>
+Sintaxe:<br>
+<pre>
+     Variável := Expressão
+</pre>
+Exemplos:
+<br><br>
+<pre>
+     A := 10;
+     Nome := <font color="#0000ff">'Adriano Rochedo'</font>;
+     X := Y + Z;
+     Terminado := (I >= 1) and (I < 100);
+     I := Sqr(J) - I * K;
+     Planilha := CreateObject(<font color="#0000ff">'TPlanilha'</font>);
+     X := umVetor.get(5) * umVetor.get(6);
+</pre>  
+
+<a name="23"></a>
+<font face="Arial" size="+1" color="Black">
+Chamada de Funções e Procedimentos<br>
+</font>
+<br>
+Uma chamada de procedimento consiste em uma referência a um nome de procedimento seguido de sua lista de parâmetros se requerido. Um procedimento pode pertencer a uma classe, neste caso ele faz parte dos métodos desta classe.
+<br><br>
+Exemplos:
+<br><br>
+<pre>
+  PrintHeading;
+  Transpose(A, N, M);
+  Find(Smith, William);
+  OutPut.Write('Hello world!');
+  DoSomething(.., .., ..);
+  MeuObjeto.AlgumMetodo(X, Y);
+</pre>
+
+Funções, tais como os procedimentos, podem ser tratadas como comandos.
+<br><br>
+<pre>
+  MinhaFunção(X);
+</pre>
+
+Quando você usa uma função deta maneira, seu valor de retorno é discartado.
+<br><br>
+
+<a name="24"></a>
+<font face="Arial" size="+1" color="Black">
+Comandos Estruturados<br>
+</font>
+<br>
+Comandos estruturados são construídos com base em outros comandos. Utilize um comando estruturado quando você querer executar outros comandos sequencialmente, condicionalmente ou repetidamente. 
+<br><br>
+Um comando estruturado pode ser formado por um ou mais blocos constituíntes. 
+<br><br>
+Um comando condicional, isto é, um comando IF executa um dos seus dois blocos constituintes dependendo do critério especificado.
+<br><br>
+Comandos que formam laços, tais como os comandos WHILE e FOR, executam uma sequência de comandos repetidamente.
+<br><br>
+
+<a name="25"></a>
+<font face="Arial" size="+1" color="Black">
+Comandos Compostos<br>
+</font>
+<br>
+Consiste de um ou vários comandos que devam ser executados sequencialmente, sendo usado em situações onde a sintaxe de alguns comandos do Pascal permite apenas um único comando.
+<br><br>
+Os comandos que fazem parte de um comando composto são separados por ponto-e-vírgula, devendo começar e terminar pelas palavras reservadas BEGIN e END respectivamente, de acordo com a sintaxe:
+<br><br>
+<pre>
+    <b>begin</b>
+    comando [ ; comando ]...
+    <b>end</b>;
+</pre>
+    
+Exemplo:
+<br><br>
+<pre>
+    <b>if</b> A > B <b>then</b>
+       <b>begin</b>
+       Temp := A;
+       A    := B;
+       B    := Temp;
+       <b>end</b>;
+</pre>	   
+
+<a name="26"></a>
+<font face="Arial" size="+1" color="Black">
+Comando IF<br>
+</font>
+<br>
+O comando IF permite ao programa tomar decisões e pode ter duas sintaxes:
+<br><br>
+Primeira sintaxe:
+<br><br>
+<pre>
+    <b>if</b> expressão_lógica <b>then</b> Comando;
+</pre>
+
+Se a expressão_lógica resultar em um valor verdadeiro (TRUE), entäo o comando será executado caso contrário não. Para os casos em que tivermos mais de um comando para serem executados, eles deveräo ser acomodados em um bloco "Begin End" .
+<br><br>
+<pre>
+    <b>if</b> expressão_lógica <b>then</b>
+       <b>begin</b>
+       Comando_1;
+       Comando_2;
+       Comando_N;
+       <b>end</b>;
+</pre>
+
+No caso acima, se expressão_lógica for TRUE entäo todos os comandos inclusos entre as palavras "begin" e "end" seräo executados, caso  contrário näo.
+<br><br>
+Segunda sintaxe:
+<br><br>
+<pre>
+    <b>if</b> expressão_lógica <b>then</b> 
+       Comando_1
+    <b>else</b> 
+       Comando_2;
+</pre>
+
+Neste caso, se expressão_lógica for TRUE entäo comando_1 será executado e comando_2 não, caso contrário, comando_2 será executado e comando_1 não. Repare que näo temos ";" no final de comando_1 pois o comando ainda não está terminado.
+<br><br>
+Podemos também escrever:
+<br><br>
+<pre>
+    <b>if</b> expressão_lógica <b>then</b> 
+       <b>begin</b>
+       Comando_1;
+       Comando_2;
+       <b>end</b> // não tem ";"
+    <b>else</b> 
+       <b>begin</b>
+       Comando_3;
+       Comando_4;
+       <b>end</b>;
+</pre>
+
+Exemplos:
+<br><br>
+<pre>
+    <b>program</b> Exemplo_1;
+    <b>var</b> i: Integer;
+    <b>begin</b>
+      i := InputBox_i(<font color="#0000ff">'Digite um inteiro maior que 100'</font>);
+      <b>if</b> i > 100 <b>then</b>
+         ShowMessage(<font color="#0000ff">'Maior que 100 !!'</font>)
+      <b>else</b> 
+         ShowMessage(<font color="#0000ff">'Menor ou igual a 100'</font>);
+    <b>end</b>.
+	
+    <b>program</b> Exemplo_2;
+    <b>var</b> n1, n2: Integer;
+    <b>begin</b>
+      n1 := InputBox_i(<font color="#0000ff">'Primeiro número'</font>);
+      n2 := InputBox_i(<font color="#0000ff">'Segundo número'</font>);
+      <b>if</b> n1 > n2 <b>then</b>
+         ShowMessage(<font color="#0000ff">'O primeiro número é o maior'</font>)
+      <b>else</b> 
+         <b>if</b> n2 > n1 <b>then</b>
+            ShowMessage(<font color="#0000ff">'O segundo número é o maior'</font>)
+         <b>else</b> 
+            ShowMessage(<font color="#0000ff">'Os dois números são iguais'</font>);
+    <b>end</b>.
+</pre>
+
+<a name="27"></a>
+<font face="Arial" size="+1" color="Black">
+Controle de Loops<br>
+</font>
+<br>
+Laços permitem que o programador execute um sequência de comandos repetidamente, usando uma condição de controle ou variável para determinar quando a execução irá terminar.
+<br><br>
+No PascalScript possuímos dois tipos de Laços: While e For
+<br><br>
+
+<a name="28"></a>
+<font face="Arial" size="+1" color="Black">
+Laço While<br>
+</font>
+<br>
+A estrutura While..Do permite controlar o número de vezes que um
+comando ou um bloco de comandos será executado.  
+<br><br>
+Sintaxe
+<br><br>
+<pre>
+    <b>while</b> expressão_lógica do comando;
+
+    ou
+
+    <b>while</b> expressão_lógica do
+      <b>begin</b>
+      comando_1;
+      comando_2;
+      <b>end</b>;
+</pre>
+
+Exemplo:
+<br><br>
+<pre>
+    <b>program</b> Exemplo_1;
+    <b>var</b> i: Integer;
+    <b>begin</b>
+      OutPut.Clear;
+      i := 0;
+      <b>while</b> (i < 11) <b>do</b>
+        <b>begin</b>
+        OutPut.WriteInteger(i);
+        i := i + 1;
+        <b>end</b>;
+    <b>end</b>.
+</pre>
+	
+<a name="29"></a>
+<font face="Arial" size="+1" color="Black">
+Laço For<br>
+</font>
+<br>
+Este comando permite que comandos sejam repetidos um certo número de vezes. 
+<br><br>
+Sintaxe
+<br><br>
+<pre>
+    <b>for</b> [variável] <b>:=</b> [valor_inicial] <b>to/downto</b> [valor_final] 
+	[step incremento] <b>do</b> comando;
+</pre>	
+
+"step" assume o valor 1 quando omitido.	
+<br><br>
+A variável deverá ser, obrigatoriamente, do tipo Integer ou Real. 
+A variaçäo da variável entre valor inicial e valor final será  crescente e de "step" em "step", quando utilizamos a palavra "to" e decrescente de "step" em "step", quando utilizamos a palavra "downto".
+<br><br>
+Exemplos:
+<br><br>
+<pre>
+    <b>program</b> Exemplos_de_For;
+    <b>var</b> i: Integer;
+	    r: Real;
+    <b>begin</b>
+       OutPut.Clear;
+
+       <b>for</b> i := 10 <b>to</b> 15 <b>do</b> 
+         OutPut.WriteInteger(i); 
+
+       <b>for</b> i := 10 <b>to</b> 150 <b>step</b> 10 <b>do</b> 
+         OutPut.WriteInteger(i); 
+		 
+       <b>for</b> r := 0.1 <b>to</b> 1 <b>step</b> 0.1 <b>do</b> 
+         OutPut.WriteFloat(r); 
+		 
+       OutPut.Show;	 
+    <b>end</b>.
+
+    <b>Program</b> Fatorial;<i> 
+    {
+    Programa para cálculo do fatorial de um número. 
+    Lembrando que o fatorial de um número é definido
+    como segue:
+       N! = 1 * 2 * 3 * 4 * ... * N
+       e  
+       0! = 1
+    }
+</i>    <b>Var</b> n, Fatorial, i: Integer;
+        msg: String;
+    <b>begin</b>
+      n := InputBox_i(<font color="#0000ff">'Entre com um número'</font>);
+      <b>if</b> n >= 0 <b>then</b> 
+         <b>begin</b>
+         Fatorial := 1;
+         
+         <b>for</b> i := 1 <b>to</b> n <b>do</b>
+           Fatorial := Fatorial * i;
+		
+         msg := <font color="#0000ff">'Fatorial de '</font> + ValToStr(n) + <font color="#0000ff">' '</font> +
+                <font color="#0000ff">'= '</font> + ValToStr(Fatorial);
+         ShowMessage(msg);
+         <b>end</b>;
+    <b>end</b>.
+</pre>
+
+<a name="30"></a>
+<font face="Arial" size="+1" color="Black">
+Criação de Objetos<br>
+</font>
+<br>
+O Pascal Script é uma linguagem baseada em objetos, e como tal, permite
+a criação de instâncias de classes.
+<br><br>
+A maior parte dos objetos podem ser criados através do comando CreateObject().
+Outros só podem ser criados se existirem funções específicas.
+<br><br>
+
+<a name="31"></a>
+<font face="Arial" size="+1" color="Black">
+Comando CreateObject<br>
+</font>
+<br>
+Este comando permite a criação de instâncias de classes de objetod.
+<br><br>
+Sintaxe:
+<pre>
+    CreateObject('Nome da Classe')
+</pre>
+Exemplo:
+<pre>
+    <b>Program</b> Teste_Panilha;
+    <b>Var</b>
+       i, ii  : Integer;
+       S      : String;
+       P      : Object;
+    <b>begin</b>
+      P := CreateObject(<font color="#0000ff">'TPlanilha'</font>);
+    
+      P.SetCellFont(1, 1, <font color="#0000ff">'ARIAL'</font>, 14, 0, True, True, False);
+      P.Write(1, 1, <font color="#0000ff">'Adriano'</font>);
+    
+      <b>for</b> i := 5 <b>to</b> 10 <b>do</b> 
+        P.WriteFloatCenter(i, 3, i*0.3);
+		
+      P.Copy;
+      P.SaveToFile(<font color="#0000ff">'D:\temp\ScriptPlanilha.xls'</font>, <font color="#0000ff">'XLS'</font>);
+      P.SaveToFile(<font color="#0000ff">'D:\temp\ScriptPlanilha.txt'</font>, <font color="#0000ff">'TXT'</font>);
+      P.Show;
+    <b>end</b>.
+</pre>
+
+</body>
+</html>

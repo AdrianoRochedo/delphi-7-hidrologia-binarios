@@ -1,0 +1,134 @@
+[Localidade Porto Alegre - IPH]
+Nome=Porto Alegre - IPH
+Comentario=IPH
+Latitude=30º 02' 00"
+Longitude=51º 13' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=509.859  0.196  10  0.72
+
+[Localidade Porto Alegre - Plúvio 1.3]
+Nome=Porto Alegre - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=30º 02' 00"
+Longitude=51º 13' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=627.54  0.31  7.9  0.74
+
+[Localidade Porto Alegre - AEROPORTO]
+Nome=Porto Alegre - AEROPORTO
+Comentario=AEROPORTO
+Latitude=30º 02' 00"
+Longitude=51º 13' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=748.342  0.191  10  0.803
+
+[Localidade Porto Alegre - 8. DISTRITO DE METEOROLOGIA]
+Nome=Porto Alegre - 8. DISTRITO DE METEOROLOGIA
+Comentario=8. DISTRITO DE METEOROLOGIA
+Latitude=30º 02' 00"
+Longitude=51º 13' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=2491.78  0.192  16  1.021
+
+[Localidade Alegrete - Plúvio 1.3]
+Nome=Alegrete - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=29º 46' 00"
+Longitude=55º 47' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=777.44  0.13  3.5  0.67
+
+[Localidade Bagé - Plúvio 1.3]
+Nome=Bagé - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=31º 20' 00"
+Longitude=54º 05' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=604.9  0.21  3.25  0.72
+
+[Localidade Caxias do Sul - Plúvio 1.3]
+Nome=Caxias do Sul - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=29º 10' 00"
+Longitude=51º 12' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=702.71  0.24  8.85  0.74
+
+[Localidade Cruz Alta - Plúvio 1.3]
+Nome=Cruz Alta - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=28º 38' 00"
+Longitude=53º 37' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=863.25  0.14  3.6  0.7
+
+[Localidade Encruzilhada do Sul - Plúvio 1.3]
+Nome=Encruzilhada do Sul - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=30º 33' 00"
+Longitude=52º 31' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=431.09  0.19  3.7  0.64
+
+[Localidade Iraí - Plúvio 1.3]
+Nome=Iraí - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=27º 11' 00"
+Longitude=53º 17' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=598.65  0.2  4.4  0.67
+
+[Localidade Passo Fundo - Plúvio 1.3]
+Nome=Passo Fundo - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=27º 16' 00"
+Longitude=52º 25' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=670.74  0.21  7.9  0.74
+
+[Localidade Rio Grande - Plúvio 1.3]
+Nome=Rio Grande - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=32º 02' 00"
+Longitude=52º 06' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=774.14  0.23  6.9  0.74
+
+[Localidade Santa Maria - Plúvio 1.3]
+Nome=Santa Maria - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=29º 41' 00"
+Longitude=53º 49' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=870.38  0.24  15.2  0.73
+
+[Localidade Santa Vitória do Palmar - Plúvio 1.3]
+Nome=Santa Vitória do Palmar - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=33º 31' 00"
+Longitude=53º 22' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=1036.5  0.28  22.8  0.77
+
+[Localidade São Luiz Gonzaga - Plúvio 1.3]
+Nome=São Luiz Gonzaga - Plúvio 1.3
+Comentario=Plúvio 1.3
+Latitude=28º 24' 00"
+Longitude=54º 58' 00"
+Equacoes=1
+Equacao1=Padrão
+Parametros1=1038.51  0.15  6.0  0.76

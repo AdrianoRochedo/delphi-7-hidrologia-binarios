@@ -1,0 +1,63 @@
+Bom, vamos aos comentarios iniciais.
+
+Nao tenho certeza se estes novos dados sobre qualidade deverao estar
+agregados diretamente nas demandas pois nem sempre havera despejo de
+produtos como retorno delas. Bom, isto configura uma situacao opcional,
+e se eh opcional, acredito que o que mais se encaixa aqui seria a criacao
+de um novo hidro-componente independente, este sim podera ser conectado
+a uma demanda ou a um PC ou ainda a um trecho-dagua.
+
+Se conectada a uma demanda, podera utilizar as informacoes desta,
+tais como "fator de retorno" entre outras.
+
+Como componente independente, poderemos ter lancamentos de poluentes em
+qualquer lugar sem a necessidade de demandas como no exemplo que voce deu ...
+"industria retire agua do sub-solo, ao inves de retirar do rio e depois
+lanca no rio o efluente com uma vazao associada" e ainda a possibilidade
+de classes descendentes com diferentes calculos.
+
+Acredito que esta seja a melhor solucao, ela eh um pouca mais complicada
+de ser gerenciada mais eh mais flexivel.
+
+Aceito sugestao para o nome desta nova classe caso esta seja a solucao
+escolhida.
+
+-----------------------------------------------------------------------------
+
+Quanto aos parametros ...
+
+        Ka    =    Tasa de reaeración (l/T)
+        Kr    =    Tasa de remoción de DBOC (l/T)
+        Kd    =    Tasa de deoxigenación carbonácea (l/T)
+        Krn   =    Tasa de remoción DBON (l/T)
+        Kn    =    Tasa de deoxigenación nitrogenada (l/T)
+
+... creio que deveriam ser de cada PC. Tambem poderia existir um
+lugar onde informariamos os valores padroes, isto poderia ser feito depois.
+
+-----------------------------------------------------------------------------
+
+Quanto ao tempo, acredito que uma semana nao seja uma meta realista, pois
+o que voces chamam de adaptacao eh na verdade um novo modulo de simulacao
+que utilizara muito da base existente.
+
+Esta adaptacao na verdade eh igual a:
+
+  - Criacao de novos dialogos
+  - Talvez a criacao de novas classes
+  - Novas validacoes
+  - Serializacao dos novos dados (salvamento/leitura em arquivo)
+  - Gerenciamento/visulizacao dos resultados
+  - Entre outros.
+
+Eh bastante trabalho !!!
+
+-----------------------------------------------------------------------------
+
+Bom, vou adiantando o que for independente.
+
+-----------------------------------------------------------------------------
+
+  Viegas, se voce falar com o Lanna, aproveita para lembrar a ele de me
+  pagar no inicio do mes.
+

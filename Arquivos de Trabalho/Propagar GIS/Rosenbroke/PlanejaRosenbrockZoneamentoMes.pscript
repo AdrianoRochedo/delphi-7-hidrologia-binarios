@@ -1,0 +1,315 @@
+program PlanejaZoneamento;
+
+var Saida    : object; {Variável já inicializada pelo sistema}
+    Projeto  : object; {Variável já inicializada pelo sistema}
+    // Declaração das variáveis auxiliares
+    PCReserv   : string;  // Var. p/ conter o nome do primeiro PC da lista
+    PCDemandas : string;  // Var. p/ conter o nome do último PC da lista
+    vListaPCs  : object;  // Vetor p/ conter os PCs desde o Reserv. até as demandas
+    N          : integer; // Número de PCs da lista
+    I          : integer; // Var. p/ indexar a lista
+    II         : integer; // Var. p/ indexar
+    vVolume1   : object;  // Vetor p/ conter os 12 Parâmetros Nivel1 do Zoneamento
+    vVolume2   : object;  // Vetor p/ conter os 12 Parâmetros Nivel2 do Zoneamento
+    vVolume3   : object;  // Vetor p/ conter os 12 Parâmetros VEspera do Zoneamento
+    Volume1    : real;    // Var. p/ conter o Parâmetro Nivel1 p/ o cálculo
+    Volume2    : real;    // Var. p/ conter o Parâmetro Nivel2 p/ o cálculo
+    Volume3    : real;    // Var. p/ conter o Parâmetro Vol. de Espera p/ o cálculo
+    Mes        : integer; // Var. p/ conter o mês referente ao dt atual
+    Ano        : integer; // Var. p/ conter o ano referente ao dt atual
+    PC         : object;  // Var. p/ conter o objeto PC (qualquer PC)
+    PCAnt      : object;  // Var. p/ conter o objeto PC Anterior a qualquer PC
+    PCR        : object;  // Var. p/ conter o objeto PCR (reservatório)
+    PCMontante : object;  // Var. p/ conter o objeto PC de montante
+    Plan       : object;  // Var. Planilha p/ conter dados de entrada do usuário
+    dt         : integer; // Intervalo de Tempo
+    DemReservatorio  : real; // Demandas do PC Reservatório
+    Dem1, Dem2, Dem3 : real; // Demandas prim., sec. e terciária de cada PC
+    DemAnt1, DemAnt2, DemAnt3 : real; // Demandas do PC Anterior (PCAnt)
+    RetAnt1, RetAnt2, RetAnt3 : real; // Fração de retorno dessas demandas
+    CoefPri, CoefSec, CoefTer : real; // Coef. de Racionamento de cada demanda
+
+    SB               : real; // Vazões afluentes das sub-bacias ao PC em estudo
+    Aux              : real; // Var. Auxiliar p/ conter demandas residuais
+    DemResidual      : real; // Demanda não atendida pelas afluências das bacias
+    DemResidualHm3   : real; // Demanda não atendida pelas afluências em Hm3
+    AfluHm3          : real; // Afluência total ao reservatório em Hm3
+    VazaoPCsMontante : real; // Vazões de PCs de montante
+    VolInicInterv    : real; // Volume do reservatório no início do dt
+    VolDisp          : real; // Volume disponível no reservatório no início do dt
+    CapUtil          : real; // Capacidade Util do Reservatório (VOLmax-VOLmin)
+    Disp             : real; // Disponibilidade hídrica no intervalo de tempo
+    L                : real; // Vazão de água a liberar do reservatório no dt
+    Vertimento       : real; // Var. p/ conter o Possível Vertimento do Reservatório
+    Int_Simul        : integer; // Número de intervalos de simulação
+
+    Jan1, Jan2, Jan3 : object; // Objetos que contém os parâmetros do Rosenbrock
+    Fev1, Fev2, Fev3 : object;
+    Mar1, Mar2, Mar3 : object;
+    Abr1, Abr2, Abr3 : object;
+    Mai1, Mai2, Mai3 : object;
+    Jun1, Jun2, Jun3 : object;
+    Jul1, Jul2, Jul3 : object;
+    Ago1, Ago2, Ago3 : object;
+    Set1, Set2, Set3 : object;
+    Out1, Out2, Out3 : object;
+    Nov1, Nov2, Nov3 : object;
+    Dez1, Dez2, Dez3 : object;
+
+begin
+  dt := Projeto.ObtemDeltaT; // Obtem Delta-T atual e atribui à variável dt
+  Int_Simul := Projeto.Total_IntSim; // Obtem o número de intervalos de simulação
+  
+  if dt = 1 then
+     begin
+     // Dados do usuário - Via arq.EXCELL (Nomes dos PCs Reserv. e das demandas)
+     Plan := CreateObject(TPlanilha);
+     Plan.LoadFromFile('F:\Projetos\Hidrologia\Programas\Redes\Propagar\Exemplos\Rosenbroke\RosenZoneamentoMes.xls');
+     PCReserv   := Plan.GetEntry(1,1); // Ret. string da L1 e C1 da Plan.
+     PCDemandas := Plan.GetEntry(1,2); // Ret. string da L1 e C2 da Plan.
+     // Criação da lista de PCs apartir dos pontos dados pelo usuário
+     vListaPCs := Projeto.PCsEntreDois(PCReserv,PCDemandas);
+     // Recupera objetos definidos como parâmetros do Rosenbrock
+     Jan1 := Projeto.Rosenbrock.Parameters.ParamByName('Jan1');
+     Jan2 := Projeto.Rosenbrock.Parameters.ParamByName('Jan2');
+     Jan3 := Projeto.Rosenbrock.Parameters.ParamByName('Jan3');
+     Fev1 := Projeto.Rosenbrock.Parameters.ParamByName('Fev1');
+     Fev2 := Projeto.Rosenbrock.Parameters.ParamByName('Fev2');
+     Fev3 := Projeto.Rosenbrock.Parameters.ParamByName('Fev3');
+     Mar1 := Projeto.Rosenbrock.Parameters.ParamByName('Mar1');
+     Mar2 := Projeto.Rosenbrock.Parameters.ParamByName('Mar2');
+     Mar3 := Projeto.Rosenbrock.Parameters.ParamByName('Mar3');
+     Abr1 := Projeto.Rosenbrock.Parameters.ParamByName('Abr1');
+     Abr2 := Projeto.Rosenbrock.Parameters.ParamByName('Abr2');
+     Abr3 := Projeto.Rosenbrock.Parameters.ParamByName('Abr3');
+     Mai1 := Projeto.Rosenbrock.Parameters.ParamByName('Mai1');
+     Mai2 := Projeto.Rosenbrock.Parameters.ParamByName('Mai2');
+     Mai3 := Projeto.Rosenbrock.Parameters.ParamByName('Mai3');
+     Jun1 := Projeto.Rosenbrock.Parameters.ParamByName('Jun1');
+     Jun2 := Projeto.Rosenbrock.Parameters.ParamByName('Jun2');
+     Jun3 := Projeto.Rosenbrock.Parameters.ParamByName('Jun3');
+     Jul1 := Projeto.Rosenbrock.Parameters.ParamByName('Jul1');
+     Jul2 := Projeto.Rosenbrock.Parameters.ParamByName('Jul2');
+     Jul3 := Projeto.Rosenbrock.Parameters.ParamByName('Jul3');
+     Ago1 := Projeto.Rosenbrock.Parameters.ParamByName('Ago1');
+     Ago2 := Projeto.Rosenbrock.Parameters.ParamByName('Ago2');
+     Ago3 := Projeto.Rosenbrock.Parameters.ParamByName('Ago3');
+     Set1 := Projeto.Rosenbrock.Parameters.ParamByName('Set1');
+     Set2 := Projeto.Rosenbrock.Parameters.ParamByName('Set2');
+     Set3 := Projeto.Rosenbrock.Parameters.ParamByName('Set3');
+     Out1 := Projeto.Rosenbrock.Parameters.ParamByName('Out1');
+     Out2 := Projeto.Rosenbrock.Parameters.ParamByName('Out2');
+     Out3 := Projeto.Rosenbrock.Parameters.ParamByName('Out3');
+     Nov1 := Projeto.Rosenbrock.Parameters.ParamByName('Nov1');
+     Nov2 := Projeto.Rosenbrock.Parameters.ParamByName('Nov2');
+     Nov3 := Projeto.Rosenbrock.Parameters.ParamByName('Nov3');
+     Dez1 := Projeto.Rosenbrock.Parameters.ParamByName('Dez1');
+     Dez2 := Projeto.Rosenbrock.Parameters.ParamByName('Dez2');
+     Dez3 := Projeto.Rosenbrock.Parameters.ParamByName('Dez3');
+
+     vVolume1 := CreateObject(TwsSFVec,12); // Cria 3 vetores com os 12 parâmetros
+     vVolume2 := CreateObject(TwsSFVec,12);
+     vVolume3 := CreateObject(TwsSFVec,12);
+
+     vVolume1.Set(1,Jan1.GetValue); // Atribui ao vetor os 12 valores de Nivel1 (%)
+     vVolume1.Set(2,Fev1.GetValue); // retirados dos respectivos objetos-
+     vVolume1.Set(3,Mar1.GetValue); // parâmetros do Rosenbrock
+     vVolume1.Set(4,Abr1.GetValue);
+     vVolume1.Set(5,Mai1.GetValue);
+     vVolume1.Set(6,Jun1.GetValue);
+     vVolume1.Set(7,Jul1.GetValue);
+     vVolume1.Set(8,Ago1.GetValue);
+     vVolume1.Set(9,Set1.GetValue);
+     vVolume1.Set(10,Out1.GetValue);
+     vVolume1.Set(11,Nov1.GetValue);
+     vVolume1.Set(12,Dez1.GetValue);
+
+     vVolume2.Set(1,Jan2.GetValue); // Atribui ao vetor os 12 valores de Nivel2 (%)
+     vVolume2.Set(2,Fev2.GetValue); // retirados dos respectivos objetos-
+     vVolume2.Set(3,Mar2.GetValue); // parâmetros do Rosenbrock
+     vVolume2.Set(4,Abr2.GetValue);
+     vVolume2.Set(5,Mai2.GetValue);
+     vVolume2.Set(6,Jun2.GetValue);
+     vVolume2.Set(7,Jul2.GetValue);
+     vVolume2.Set(8,Ago2.GetValue);
+     vVolume2.Set(9,Set2.GetValue);
+     vVolume2.Set(10,Out2.GetValue);
+     vVolume2.Set(11,Nov2.GetValue);
+     vVolume2.Set(12,Dez2.GetValue);
+
+     vVolume3.Set(1,Jan3.GetValue); // Atribui ao vetor os 12 valores de Nivel3 (%)
+     vVolume3.Set(2,Fev3.GetValue); // retirados dos respectivos objetos-
+     vVolume3.Set(3,Mar3.GetValue); // parâmetros do Rosenbrock
+     vVolume3.Set(4,Abr3.GetValue);
+     vVolume3.Set(5,Mai3.GetValue);
+     vVolume3.Set(6,Jun3.GetValue);
+     vVolume3.Set(7,Jul3.GetValue);
+     vVolume3.Set(8,Ago3.GetValue);
+     vVolume3.Set(9,Set3.GetValue);
+     vVolume3.Set(10,Out3.GetValue);
+     vVolume3.Set(11,Nov3.GetValue);
+     vVolume3.Set(12,Dez3.GetValue);
+
+
+     GlobalObjects.Add('vListaPCs', vListaPCs); // Adiciona-o à lista global
+     GlobalObjects.Add('vVolume1', vVolume1); // Adiciona-o à lista global
+     GlobalObjects.Add('vVolume2', vVolume2); // Adiciona-o à lista global
+     GlobalObjects.Add('vVolume3', vVolume3); // Adiciona-o à lista global
+     FreeObject(Plan);
+     end
+  else
+     begin
+     vListaPCs  := TStringList(GlobalObjects.Get('vListaPCs')); // Recupera var. globais
+     vVolume1   := TwsDFVec(GlobalObjects.Get('vVolume1')); // Recupera var. globais
+     vVolume2   := TwsDFVec(GlobalObjects.Get('vVolume2')); // Recupera var. globais
+     vVolume3   := TwsDFVec(GlobalObjects.Get('vVolume3')); // Recupera var. globais
+     end;
+
+  PCR := TprPCP(vListaPCs.GetObject(0)); // Atribui o Reserv. à var. PCR
+  if dt = 1 then VolInicInterv := PCR.VolumeInicial
+            else VolInicInterv := PCR.ObtemVolume(dt-1);
+
+  VolDisp := VolInicInterv - PCR.VolumeMinimo; // Calcula o vol. disp. atual do res.
+  AfluHm3 := PCR.m3_Hm3_Intervalo(PCR.ObtemVazaoAfluenteSBs);
+  VazaoPCsMontante := 0;
+  if PCR.PCs_aMontante > 0 then
+     begin
+     for II := 0 to (PCR.PCs_aMontante - 1) do
+         begin
+         PCMontante := PCR.PC_aMontante(II);
+         Projeto.RealizaBalancoHidricoAte(PCMontante);
+         VazaoPCsMontante := VazaoPCsMontante + PCMontante.ObtemDefluencia(dt);
+         end;
+     VazaoPCsMontante := PCR.m3_Hm3_Intervalo(VazaoPCsMontante);
+     end;
+  Disp    := VolDisp + AfluHm3 + VazaoPCsMontante; // Calcula a disponibilidade hídrica no res. no Dt
+  CapUtil := PCR.VolumeMaximo - PCR.VolumeMinimo; // Calcula a capacidade útil do reserv.
+
+  DemReservatorio := 0;
+  for II := 1 to 3 do
+     DemReservatorio := DemReservatorio + PCR.ObtemValorDemanda(dt, II, 'T');
+  DemReservatorio := PCR.m3_Hm3_Intervalo(DemReservatorio);
+
+  Projeto.DeltaT_ComoData(dt, Mes, Ano); // Retorna o mês e o ano do dt atual
+  // Nivel1= Percentual do Vol. Max. do reserv. contido na posição "Mes" de vNivel1
+  Volume1  := PCR.VolumeMaximo*(vVolume1.Get(Mes))/100 - PCR.VolumeMinimo;
+  // Nivel2= Percentual do Vol. Max. do reserv. contido na posição "Mes" de vNivel2
+  Volume2  := PCR.VolumeMaximo*(vVolume2.Get(Mes))/100 - PCR.VolumeMinimo;
+  // VEspera= Percentual do Vol. Max. do reserv. contido na posição "Mes" de vVEspera
+  Volume3  := PCR.VolumeMaximo*(vVolume3.Get(Mes))/100 - PCR.VolumeMinimo;
+
+
+  // Teste do volume disponível no reservatório
+  if (Disp - DemReservatorio) > Volume2 then
+     begin
+     CoefPri := 1;
+     CoefSec := 1;
+     CoefTer := 1;
+     end
+  else
+    if (Disp - DemReservatorio) > Volume1 then
+      begin
+      CoefPri := 1;
+      CoefSec := 1;
+      CoefTer := 0;
+      end
+    else
+      begin
+      CoefPri := 1;
+      CoefSec := 0;
+      CoefTer := 0;
+      end;
+
+  N := vListaPCs.Count; // Obtem o número de elementos da lista de PCs
+  Aux := 0; // Atribui primeiro valor à variável auxiliar
+  for I := 1 to (N-1) do
+    begin
+    PC    := TprPCP(vListaPCs.GetObject(I)); // Atribui o PC de índice I à var. PC
+    Dem1 := CoefPri * (PC.ObtemValorDemanda(dt, 1, 'T')); // Demanda Prim.Total no dt
+    PC.AtribuiValorDemanda(dt, 1, 'P', Dem1);
+    Dem2 := CoefSec * (PC.ObtemValorDemanda(dt, 2, 'T')); // Demanda Sec.Total no dt
+    PC.AtribuiValorDemanda(dt, 2, 'P', Dem2);
+    Dem3 := CoefTer * (PC.ObtemValorDemanda(dt, 3, 'T')); // Demanda Terc.Total no dt
+    PC.AtribuiValorDemanda(dt, 3, 'P', Dem3);
+    SB   := PC.ObtemVazaoAfluenteSBs; // Vazão Afluente das Sub-bacias no dt
+    PCAnt := TprPCP(vListaPCs.GetObject(I-1)); // Atribui o PC de índice I-1 à var. PCAnt
+    DemAnt1 := CoefPri * (PCAnt.ObtemValorDemanda(dt, 1, 'T')); // Demanda Prim.Total no dt do PCAnt
+    DemAnt2 := CoefSec * (PCAnt.ObtemValorDemanda(dt, 2, 'T')); // Demanda Sec.Total no dt do PCAnt
+    DemAnt3 := CoefTer * (PCAnt.ObtemValorDemanda(dt, 3, 'T')); // Demanda Terc.Total no dt do PCAnt
+    RetAnt1 := PCAnt.FatorDeRetorno(1); // Fator de Ret. da Demanda Primária do PCAnt
+    RetAnt2 := PCAnt.FatorDeRetorno(2); // Fator de Ret. da Demanda Secundária do PCAnt
+    RetAnt3 := PCAnt.FatorDeRetorno(3); // Fator de Ret. da Demanda Terciária do PCAnt
+    VazaoPCsMontante := 0;
+    if PC.PCs_aMontante > 1 then
+       begin
+         for II := 0 to (PC.PCs_aMontante - 1) do
+           begin
+           PCMontante := PC.PC_aMontante(II);
+           if PCMontante <> PCAnt then
+              begin
+              Projeto.RealizaBalancoHidricoAte(PCMontante);
+              VazaoPCsMontante := VazaoPCsMontante + PCMontante.ObtemDefluencia(dt);
+              end;
+           end;
+       end;
+
+    DemResidual := DemResidual + (Dem1 + Dem2 + Dem3) - SB - VazaoPCsMontante
+                   - (DemAnt1 * RetAnt1 + DemAnt2 * RetAnt2 + DemAnt3 * RetAnt3);
+    Aux := Max(Aux,Max(DemResidual,0));
+    end;
+
+  // Cálculo da demanda residual
+  DemResidual := Aux;
+  DemResidualHm3 := PC.m3_Hm3_Intervalo(DemResidual);
+
+  {Quando a água geranda nas próprias sub-bacias atenderem as demandas o valor
+   de DemResidual será negativo. Então faz-se L = 0}
+  if DemResidual <= 0 then
+     begin
+     if (Disp - DemReservatorio) <= Volume3 then L := 0
+     else
+       begin
+       Vertimento := (Disp - DemReservatorio) - Volume3;
+       L := PCR.Hm3_m3_Intervalo(Vertimento);
+       end;
+     end
+  else //Se as afl.das sub-bacias não atendem às demandas, aplica-se o Zoneamento
+    if (Disp - DemReservatorio) <= PCR.VolumeMinimo then L := 0 // Verifica disp. hídr. p/ atender demandas
+    else
+      if (Disp - DemReservatorio) <= Volume3 then L := DemResidual
+      else
+        begin
+        Vertimento := (Disp - DemReservatorio) - Volume3; // Possível vertimento do reserv.
+        if Vertimento < DemResidualHm3 then L := DemResidual
+        else L := PCR.Hm3_m3_Intervalo(Vertimento); // Conv. Vertimento p/ m3
+        end;
+
+  {O valor a ser liberado é atribuído à propriedade (variável) DefluvioPlanejado
+   no intervalo dt, ou seja, DeltaT atual}
+  PCR.AtribuiDefluvioPlanejado(dt, L);
+
+  // Escrita do Arquivo LOG
+     Saida.WriteLN('-----------------------');
+     Saida.WriteLN('Intervalo         : ' + ValToStr(dt));
+     Saida.WriteLN('Volume1           : ' + ValToStr(Volume1));
+     Saida.WriteLN('Volume2           : ' + ValToStr(Volume2));
+     Saida.WriteLN('Volume3           : ' + ValToStr(Volume3));
+   //Saida.WriteLN('Vol.Inic. Interv. : ' + ValToStr(VolInicInterv));
+   //Saida.WriteLN('Vol. Disp.        : ' + ValToStr(VolDisp));
+   //Saida.WriteLN('CapUtil           : ' + ValToStr(CapUtil));
+   //Saida.WriteLN('Vz. Aflu.         : ' + ValToStr(AfluHm3));
+   //Saida.WriteLN('Disp              : ' + ValToStr(Disp));
+   //Saida.WriteLN('DemReservatorio   : ' + ValToStr(DemReservatorio));
+   //Saida.WriteLN('DemResiualdHm3    : ' + ValToStr(DemResidualHm3));
+   //Saida.WriteLN('Vertimento        : ' + ValToStr(Vertimento));
+   //Saida.WriteLN('L                 : ' + ValToStr(L));
+
+  if dt = Projeto.Total_IntSim then
+    begin
+//    GlobalObjects.Remove('vListaPCs');
+    GlobalObjects.Remove('vVolume1');
+    GlobalObjects.Remove('vVolume2');
+    GlobalObjects.Remove('vVolume3');
+    //Saida.Show;
+    end;
+end.

@@ -1,0 +1,36 @@
+// Demo que mostra a utilização de alguns médotos das classes
+// TListaDeFalhas e TprFalha
+
+var Falhas: Object;
+    Falha : Object;
+    s, s2: String;
+begin
+  Falhas := Projeto.PCPeloNome('PC_1').ObtemFalhas;
+
+  s := 'Mostra todas as informações sobre as falhas primárias:' + #13 +
+       'Num. Falhas Primarias: ' + ValToStr(Falhas.NumFalhasPrimarias) + #13 +
+       'Intervalos Totais: ' + ValToStr(Falhas.IntervalosTotais(1)) + #13 +
+       'Intervalos Críticos: ' + ValToStr(Falhas.IntervalosCriticos(1)) + #13 +
+       'Anos Críticos: ' + ValToStr(Falhas.AnosCriticos(1));
+
+  ShowMessage(s);
+
+  if Falhas.NumFalhasPrimarias > 0 then
+     begin
+     Falha := Falhas.ObtemFalhaPrimaria(0);
+     if Falha.Eh_FalhaCritica then s2 := 'Sim' else s2 := 'Não';
+     s := 'Mostra informações sobre a primeira falha primária:' + #13 +
+          'Ano: ' + Falha.sAno + #13 +
+          'FalhaCritica: ' + s2 + #13 +
+          'Num. de intervalos neste ano: ' + ValToStr(Falha.Intervalos.NumDeElementos) + #13 +
+          'Num. de intervalos críticos neste ano: ' + ValToStr(Falha.IntervalosCriticos.NumDeElementos);
+     ShowMessage(s);
+     end;
+
+  if InputBox('Responda Sim ou Não' ,
+              'Mostrar as Falhas do PC_1',
+              'Sim') = 'Sim' then
+     Falhas.MostrarFalhas
+  else
+     FreeObject(Falhas);
+end.

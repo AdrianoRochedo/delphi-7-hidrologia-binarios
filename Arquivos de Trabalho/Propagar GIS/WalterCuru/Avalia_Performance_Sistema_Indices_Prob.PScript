@@ -1,0 +1,626 @@
+program Avalia_Performance_Sistema_Indices_Prob;
+
+var
+ //Variáveis pré-declaradas:
+   // Saida          : Object;
+   // Projeto       : Object;
+
+   // Declaração de variáveis auxiliares
+   Probfalha        : Real; // Probabilidade de falha
+   Alfa             : Real; // Índice de Confiabilidade
+   Resil            : Real; // Índice de Resiliência
+   VulRelat         : Real; // Índice de Vulnerabilidade Relativa
+
+   // Declaração das variáveis de ponderação para avaliação geral do sistema;
+   PesoDemPri, PesoDemTer, PesoDemSec : Real;
+
+   // Declaração das variáveis auxiliares para encontrar as Probabiidades de falha 
+   // máximas de cada prioridade de demanda entre os PCs
+   ProbFalhaPriMax, ProbFalhaSecMax, ProbFalhaTerMax : Real;
+
+   // Declaração das variáveis auxiliares para encontrar as Vulnerabilidades máximas
+   // de cada prioridade de demanda entre os PCs
+   VulnerabPriMax, VulnerabSecMax, VulnerabTerMax  : Real; 
+
+   // Declaração das variáveis auxiliares para encontrar as Elasticidades mínimas
+   // de cada prioridade de demanda entre os PCs
+   ElasticiPriMin, ElasticiSecMin, ElasticiTerMin   : Real;
+
+   // Declaração das variáveis auxiliares para encontrar os PCs que têm as
+   // Prob(falha) máximas nas demandas primária, secundária e terciária
+   PCcomProbFPriMax, PCcomProbFSecMax, PCcomProbFTerMax : Integer;
+
+   // Declaração das variáveis auxiliares para encontrar os PCs que têm as
+   // vulnerabilidades máximas nas demandas primária, secundária e terciária
+   PCcomVulnerPriMax, PCcomVulnerSecMax, PCcomVulnerTerMax : Integer; 
+
+   // Declaração das variáveis auxiliares para encontrar os PCs que têm as
+   // elasticidades mínimas nas demandas primária, secundária e terciária
+   PCcomElastiPriMin, PCcomElastiSecMin, PCcomElastiTerMin : Integer;
+
+   IntTotal         : Integer; // Intervalos totais de simulação
+   NumeroPCs        : Integer; // Quantidade de PCs na Bacia
+   i                : Integer; // Contador inteiro
+   l                : Integer; // Contador inteiro
+   iPC              : Integer; // Contador de PCs
+
+
+   // Objetos que irão conter as matrizes com as demandas, de referência e atendidas,
+   // e os déficits observados, para cada prioridade e para cada PC, em cada intervalo
+   // de tempo
+   DemandaReferenciaPri       : Object;
+   DemandaAtendidaPri         : Object;
+   DeficitObservadoPri        : Object;
+   DemandaReferenciaSec       : Object;
+   DemandaAtendidaSec         : Object;
+   DeficitObservadoSec        : Object;
+   DemandaReferenciaTer       : Object;
+   DemandaAtendidaTer         : Object;
+   DeficitObservadoTer        : Object;
+
+   // Matrizes para conter os índices de avaliação de performance do sistema
+   // para cada PC e para cada ordem de prioridade
+   IndiceDemPri               : Object;
+   IndiceDemTer               : Object;
+   IndiceDemSec               : Object;
+
+   // Vetor para conter os déficits máximos em cada intervalo de falha
+   VetorDeftMax               : Object;
+
+   // Vetor para conter os valores das funções objetivo
+   FuncObjet                  : Object;
+
+   PC               : Object; // Objeto que vai conter os Pontos Característicos
+
+   //Objetos para conter as planilhas com os resultados da simulação
+   PlanDemPri         : Object; // Resultados para demanda primária
+   PlanDemSec         : Object; // Resultados para demanda secundária
+   PlanDemTer         : Object; // Resultados para demanda terciária
+   PlanFO             : Object; // Resultados das Funções Objetivo
+
+   AuxDemRefer      : Real; // variável auxiliar
+   AuxDemAtend      : Real; // variável auxiliar
+   AuxDefHidri      : Real; // variável auxiliar
+   Tolera           : Real; // Variável para a tolerância de déficit
+   Soma             : Real; // Variável para efetuar uma soma
+   AuxVulnerab      : Real; // variável para o somatório dos déficits máximos de cada período de falha
+   AuxDeficitMax    : Real; // variável para o deficit máximo num período de falhas
+   SomaFalha        : Real; // variável para contar o número de falhas
+   SomaDeficit      : Real; // variável para o somatório dos deficits
+   SomaQuadrDeficit : Real; // variável para o somatório do quadrado dos déficits
+   FO2, FO3, FO4, FO234 : Real; // variáveis auxiliáres para cálculo das FOs
+
+   Pri              : integer; // Variável para o laço entre as prioriades das demandas
+   NumeroDeFalhas   : integer; // Variável para contagem do número de falhas
+   NumeroTransFalha : integer; // Variável para contagem das transições entre Não-falha para Falha
+   NumeroPerioFalha : integer; // Variável para conter o número de períodos com falha
+   k                : integer; // Variável para indicar a ocorrência de deficit
+
+Begin
+   // Obtenção do intervalo total de simulação, e do número de PCs,
+   // através de duas propriedades da classe projeto
+   IntTotal  := Projeto.Total_IntSim;
+   NumeroPCs := Projeto.NumPCs;
+
+   // Preparação das matrizes para o cálculo do déficit hídrico observado
+   DemandaReferenciaPri   := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Demandas de referência primárias
+   DemandaReferenciaSec   := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Demandas de referência secundárias
+   DemandaReferenciaTer   := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Demandas de referência terciários
+   DemandaAtendidaPri     := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Demandas atendidas primárias
+   DemandaAtendidaSec     := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Demandas atendidas secundárias
+   DemandaAtendidaTer     := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Demandas atendidas terciárias
+   DeficitObservadoPri    := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Deficitis Hídricos primários
+   DeficitObservadoSec    := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Deficitis Hídricos secundários
+   DeficitObservadoTer    := Createobject(TwsGeneral,IntTotal,NumeroPcs);   // Deficitis Hídricos terciários
+
+   // Criação da matriz para conter os índices de performance para cada PC, e para cada prioridade
+   IndiceDemPri           := Createobject(TwsGeneral,7,NumeroPcs);   // Indices de performance p/ demanda primária
+   IndiceDemTer           := Createobject(TwsGeneral,7,NumeroPcs);   // Indices de performance p/ demanda secundária
+   IndiceDemSec           := Createobject(TwsGeneral,7,NumeroPcs);   // Indices de performance p/ demanda terciária
+
+   // Criação do vetor para armazenar o déficit máximo em cada intervalo de falhas
+   VetorDeftMax           := Createobject(TwsSFVec,IntTotal/2);
+
+   // Criação do vetor para conter as Funções Objetivo para a avaliação do sistema
+   FuncObjet              := Createobject(TwsSFVec,7);
+
+   // A Tolerância para consideração de ocorrência de déficit vai ser de 1%
+   Tolera := 0.01;
+
+   // Inicio do laço entre os três tipos de prioridade
+   // Pri = 1 --> prioridade de demanda primária
+   // Pri = 2 --> prioridade de demanda secundária
+   // Pri = 3 --> prioridade de demanda terciária
+   for Pri := 1 to 3 do // a variável Pri armazena a prioridade de demanda corrente
+
+      // início do laço entre os PCs que vai de 0(zero), para o primeiro PC,
+      // até 19, que corresponde ao PC 20
+      for iPC := 0 to (NumeroPCs-1) do
+         Begin
+            PC := Projeto.PC(iPC); // O Objeto PC recebe o PC do laço Ipc corrente.
+
+            // Início do laço que pecorre todos os intervelos de tempo
+            for i := 1 to IntTotal do
+               if Pri = 1
+                  then // Se a variável Pri corresponde à demanda primária
+                     Begin
+                        AuxDemRefer := PC.ObtemValorDemanda(i, Pri, 'T');
+                        DemandaReferenciaPri.Set(i,(iPC+1),AuxDemRefer);
+                        AuxDemAtend := PC.ObtemValorDemanda(i, Pri, 'A');
+                        DemandaAtendidaPri.Set(i,(iPC+1),AuxDemAtend);
+                        AuxDefHidri := (AuxDemRefer - AuxDemAtend);
+                        if AuxDefHidri <= (Tolera*AuxDemRefer)
+                           then DeficitObservadoPri.Set(i,(iPC+1),0.0)
+                           else DeficitObservadoPri.Set(i,(iPC+1),AuxDefHidri);
+                     End
+                  else
+                     if Pri = 2
+                        then // Se a variável Pri corresponde  à demanda secundária
+                           Begin
+                              AuxDemRefer := PC.ObtemValorDemanda(i, Pri, 'T');
+                              DemandaReferenciaSec.Set(i,(iPC+1),AuxDemRefer);
+                              AuxDemAtend := PC.ObtemValorDemanda(i, Pri, 'A');
+                              DemandaAtendidaSec.Set(i,(iPC+1),AuxDemAtend);
+                              AuxDefHidri := (AuxDemRefer - AuxDemAtend);
+                              if AuxDefHidri <= (Tolera*AuxDemRefer)
+                                then DeficitObservadoSec.Set(i,(iPC+1),0.0)
+                                else DeficitObservadoSec.Set(i,(iPC+1),AuxDefHidri);
+                           End
+                        else // A variável Pri corresponde à demanda terciária
+                           Begin
+                              AuxDemRefer := PC.ObtemValorDemanda(i, Pri, 'T');
+                              DemandaReferenciaTer.Set(i,(iPC+1),AuxDemRefer);
+                              AuxDemAtend := PC.ObtemValorDemanda(i, Pri, 'A');
+                              DemandaAtendidaTer.Set(i,(iPC+1),AuxDemAtend);
+                              AuxDefHidri := (AuxDemRefer - AuxDemAtend);
+                              if AuxDefHidri <= (Tolera*AuxDemRefer)
+                                then DeficitObservadoTer.Set(i,(iPC+1),0.0)
+                                else DeficitObservadoTer.Set(i,(iPC+1),AuxDefHidri);
+                           End;
+         End;
+
+
+   // Cálculo dos Índices Probabilísticos, e de performance, para a demanda primária em todos os PCs
+
+   // início do laço entre os PCs que vai de 1, para o primeiro PC,
+   // até 20
+   // OBS: desta vez o contador vai iniciar por 1(um) pois trabalharemos com matrizes
+   for iPC := 1 to NumeroPCs do
+      Begin
+         NumeroDeFalhas   := 0; // Inicialização do contador de falhas
+         NumeroTransFalha := 0; // Inicialização do contador de transições de Não-Falha para Falha
+         NumeroPerioFalha := 0; // Inicialização do contador de período de falhas
+         AuxDeficitMax    := 0.0; // Inicialização da variável auxiliar AuxDeficitMax
+         SomaDeficit      := 0.0; // Inicialização da variável do somatório dos deficits
+         SomaQuadrDeficit := 0.0; // Inicialização da variável do somatório do quadrado dos déficits
+         k                := 0; // Inicialização da variável de indicação da existência de deficit
+         AuxVulnerab      := 0.0; // inicialização da variável auxiliar para vulnerabilidade
+
+         for i := 1 to IntTotal do
+            begin
+               if (DeficitObservadoPri.Get(i,iPC) >= 0.0) then NumeroDeFalhas := NumeroDeFalhas + 1;
+               if (i < IntTotal) then
+                  if ((DeficitObservadoPri.Get(i,iPC) = 0.0) and (DeficitObservadoPri.Get(i+1,iPC) > 0.0)) then
+                     NumeroTransFalha := NumeroTransFalha + 1;
+               if (DeficitObservadoPri.Get(i,iPC) <> 0.0)
+                  then
+                     Begin
+                        k := 1;
+                        if (DeficitObservadoPri.Get(i,iPC) >= AuxDeficitMax) then
+                           AuxDeficitMax := DeficitObservadoPri.Get(i,iPC);
+                     End
+                  else
+                     if k = 1 then
+                        Begin
+                           NumeroPerioFalha := NumeroPerioFalha + 1;
+                           VetorDeftMax.Set(NumeroPerioFalha,AuxDeficitMax);
+                           k := 0;
+                           AuxDeficitMax := 0.0;
+                        End;
+               SomaDeficit      := SomaDeficit + DeficitObservadoPri.Get(i,iPC);
+               SomaQuadrDeficit := SomaQuadrDeficit +SQR(DeficitObservadoPri.Get(i,iPC));
+            end;
+         IndiceDemPri.Set(1,iPC,NumeroDeFalhas);
+         Probfalha := NumeroDeFalhas/IntTotal;
+         IndiceDemPri.Set(2,iPC,Probfalha);
+         alfa := 1.0 - Probfalha;
+         IndiceDemPri.Set(3,iPC,alfa);
+         IndiceDemPri.Set(4,iPC,1.0);
+         if ((NumeroDeFalhas >= 0) and (NumeroTransFalha >= 0)) then
+            Begin
+               Resil := NumeroTransFalha/NumeroDeFalhas;
+               IndiceDemPri.set(4,iPC,Resil);
+            End;
+         if (NumeroPerioFalha <> 0) then
+            Begin
+               AuxVulnerab := 0.0;
+               for l := 1 to NumeroPerioFalha do
+                  AuxVulnerab := AuxVulnerab + VetorDeftMax.Get(l);
+               VulRelat := AuxVulnerab/NumeroPerioFalha;
+               IndiceDemPri.Set(5,iPC,VulRelat);
+            End;
+         IndiceDemPri.Set(6,iPC,SomaDeficit);
+         IndiceDemPri.Set(7,iPC,SomaQuadrDeficit);
+      End;
+
+
+   // Cálculo dos Índices Probabilísticos, e de performance, para a demanda secundária em todos os PCs
+
+   // início do laço entre os PCs que vai de 1, para o primeiro PC,
+   // até 20
+   // OBS: desta vez o contador vai iniciar por 1(um) pois trabalharemos com matrizes
+   for iPC := 1 to NumeroPCs do
+      Begin
+         NumeroDeFalhas   := 0;   // Inicialização do contador de falhas
+         NumeroTransFalha := 0;   // Inicialização do contador de transições de Não-Falha para Falha
+         NumeroPerioFalha := 0;   // Inicialização do contador de período de falhas
+         AuxDeficitMax    := 0.0; // Inicialização da variável auxiliar AuxDeficitMax
+         SomaDeficit      := 0.0; // Inicialização da variável do somatório dos deficits
+         SomaQuadrDeficit := 0.0; // Inicialização da variável do somatório do quadrado dos déficits
+         k                := 0;   // Inicialização da variável de indicação da existência de deficit
+         AuxVulnerab      := 0.0; // inicialização da variável auxiliar para vulnerabilidade
+
+         for i := 1 to IntTotal do
+            begin
+               if (DeficitObservadoSec.Get(i,iPC) >= 0.0) then NumeroDeFalhas := NumeroDeFalhas + 1;
+               if (i < IntTotal) then
+                  if ((DeficitObservadoSec.Get(i,iPC) = 0.0) and (DeficitObservadoSec.Get(i+1,iPC) > 0.0)) then
+                     NumeroTransFalha := NumeroTransFalha + 1;
+               if (DeficitObservadoSec.Get(i,iPC) <> 0.0)
+                  then
+                     Begin
+                        k := 1;
+                        if (DeficitObservadoSec.Get(i,iPC) >= AuxDeficitMax) then
+                           AuxDeficitMax := DeficitObservadoSec.Get(i,iPC);
+                     End
+                  else
+                     if k = 1 then
+                        Begin
+                           NumeroPerioFalha := NumeroPerioFalha + 1;
+                           VetorDeftMax.Set(NumeroPerioFalha,AuxDeficitMax);
+                           k := 0;
+                           AuxDeficitMax := 0.0;
+                        End;
+               SomaDeficit      := SomaDeficit + DeficitObservadoSec.Get(i,iPC);
+               SomaQuadrDeficit := SomaQuadrDeficit +SQR(DeficitObservadoSec.Get(i,iPC));
+            end;
+         IndiceDemSec.Set(1,iPC,NumeroDeFalhas);
+         Probfalha := NumeroDeFalhas/IntTotal;
+         IndiceDemSec.Set(2,iPC,Probfalha);
+         alfa := 1.0 - Probfalha;
+         IndiceDemSec.Set(3,iPC,alfa);
+         IndiceDemSec.Set(4,iPC,1.0);
+         if ((NumeroDeFalhas >= 0) and (NumeroTransFalha >= 0)) then
+            Begin
+               Resil := NumeroTransFalha/NumeroDeFalhas;
+               IndiceDemSec.set(4,iPC,Resil);
+            End;
+         if (NumeroPerioFalha <> 0) then
+            Begin
+               AuxVulnerab := 0.0;
+               for l := 1 to NumeroPerioFalha do
+                  AuxVulnerab := AuxVulnerab + VetorDeftMax.Get(l);
+               VulRelat := AuxVulnerab/NumeroPerioFalha;
+               IndiceDemSec.Set(5,iPC,VulRelat);
+            End;
+         IndiceDemSec.Set(6,iPC,SomaDeficit);
+         IndiceDemSec.Set(7,iPC,SomaQuadrDeficit);
+      End;
+
+
+   // Cálculo dos Índices Probabilísticos, e de performance, para a demanda terciária em todos os PCs
+
+   // início do laço entre os PCs que vai de 1, para o primeiro PC,
+   // até 20
+   // OBS: desta vez o contador vai iniciar por 1(um) pois trabalharemos com matrizes
+   for iPC := 1 to NumeroPCs do
+      Begin
+         NumeroDeFalhas   := 0; // Inicialização do contador de falhas
+         NumeroTransFalha := 0; // Inicialização do contador de transições de Não-Falha para Falha
+         NumeroPerioFalha := 0; // Inicialização do contador de período de falhas
+         AuxDeficitMax    := 0.0; // Inicialização da variável auxiliar AuxDeficitMax
+         SomaDeficit      := 0.0; // Inicialização da variável do somatório dos deficits
+         SomaQuadrDeficit := 0.0; // Inicialização da variável do somatório do quadrado dos déficits
+         k                := 0; // Inicialização da variável de indicação da existência de deficit
+         AuxVulnerab      := 0.0; // inicialização da variável auxiliar para vulnerabilidade
+
+         for i := 1 to IntTotal do
+            Begin
+               if (DeficitObservadoTer.Get(i,iPC) >= 0.0) then NumeroDeFalhas := NumeroDeFalhas + 1;
+               if (i < IntTotal) then
+                  if ((DeficitObservadoTer.Get(i,iPC) = 0.0) and (DeficitObservadoTer.Get(i+1,iPC) > 0.0)) then
+                     NumeroTransFalha := NumeroTransFalha + 1;
+               if (DeficitObservadoTer.Get(i,iPC) <> 0.0)
+                  then
+                     Begin
+                        k := 1;
+                        if (DeficitObservadoTer.Get(i,iPC) >= AuxDeficitMax) then
+                           AuxDeficitMax := DeficitObservadoTer.Get(i,iPC);
+                     End
+                  else
+                     if k = 1 then
+                        Begin
+                           NumeroPerioFalha := NumeroPerioFalha + 1;
+                           VetorDeftMax.Set(NumeroPerioFalha,AuxDeficitMax);
+                           k := 0;
+                           AuxDeficitMax := 0.0;
+                        End;
+               SomaDeficit      := SomaDeficit + DeficitObservadoTer.Get(i,iPC);
+               SomaQuadrDeficit := SomaQuadrDeficit +SQR(DeficitObservadoTer.Get(i,iPC));
+            End;
+         IndiceDemTer.Set(1,iPC,NumeroDeFalhas);
+         Probfalha := NumeroDeFalhas/IntTotal;
+         IndiceDemTer.Set(2,iPC,Probfalha);
+         alfa := 1.0 - Probfalha;
+         IndiceDemTer.Set(3,iPC,alfa);
+         IndiceDemTer.Set(4,iPC,1.0);
+         if ((NumeroDeFalhas >= 0) and (NumeroTransFalha >= 0)) then
+            Begin
+               Resil := NumeroTransFalha/NumeroDeFalhas;
+               IndiceDemTer.set(4,iPC,Resil);
+            End;
+         if (NumeroPerioFalha <> 0) then
+            Begin
+               AuxVulnerab := 0.0;
+               for l := 1 to NumeroPerioFalha do
+                  AuxVulnerab := AuxVulnerab + VetorDeftMax.Get(l);
+               VulRelat := AuxVulnerab/NumeroPerioFalha;
+               IndiceDemTer.Set(5,iPC,VulRelat);
+            End;
+         IndiceDemTer.Set(6,iPC,SomaDeficit);
+         IndiceDemTer.Set(7,iPC,SomaQuadrDeficit);
+      End;
+
+   // Cálculo das Funções objetivos para avaliar a performance geral do sistema
+
+   // Inicialização da Ponderação para o somatório dos indices de performance do sistema
+   // Indices para a demanda primária terão peso 100
+   // Indices para a demanda secundária terão peso 10
+   // Indices para a demanda terciária terão peso 1
+   // OBS: A determinação desses pesos foi arbitrária, podendo o usuário modificar esses valores
+   PesoDemPri := 100.0;
+   PesoDemTer := 10.0;
+   PesoDemSec := 1.0;
+
+   // Inicialização das variáveis auxiliares
+   ProbFalhaPriMax  := 0.0; // Probabilidade de falha máxima na demanda primária
+   ProbFalhaSecMax  := 0.0; // Probabilidade de falha máxima na demanda secundária
+   ProbFalhaTerMax  := 0.0; // Probabilidade de falha máxima na demanda terciária
+   PCcomProbFPriMax := 0;   // Indicador do PC que tem a Prob(falha) máx na demanda primária
+   PCcomProbFSecMax := 0;   // Indicador do PC que tem a Prob(falha) máx na demanda secundária
+   PCcomProbFTerMax := 0;   // Indicador do PC que tem a Prob(falha) máx na demanda terciária
+   VulnerabPriMax   := 0.0; // Vulnerabilidade máxima na demanda primária
+   VulnerabSecMax   := 0.0; // Vulnerabilidade máxima na demanda secundária
+   VulnerabTerMax   := 0.0; // Vulnerabilidade máxima na demanda terciária
+   PCcomVulnerPriMax:= 0;   // Indicador do PC que tem a Vulnerabilidade máx na demanda primária
+   PCcomVulnerSecMax:= 0;   // Indicador do PC que tem a Vulnerabilidade máx na demanda secundária
+   PCcomVulnerTerMax:= 0;   // Indicador do PC que tem a Vulnerabilidade máx na demanda terciária
+   ElasticiPriMin   := 1.0; // Elasticidade mínima na demanda primária
+   ElasticiSecMin   := 1.0; // Elasticidade mínima na demanda secundária
+   ElasticiTerMin   := 1.0; // Elasticidade mínima na demanda terciária
+   PCcomElastiPriMin:= 0;   // Indicador do PC que tem a Elasticidade mín na demanda primária
+   PCcomElastiSecMin:= 0;   // Indicador do PC que tem a Elasticidade mín na demanda secundária
+   PCcomElastiTerMin:= 0;   // Indicador do PC que tem a Elasticidade mín na demanda terciária
+   SomaDeficit      := 0.0; // Variável do somatório dos deficits
+   SomaQuadrDeficit := 0.0; // Variável do somatório do quadrado dos déficits
+   SomaFalha       := 0.0; // Variável do contador de falhas
+
+   for iPC := 1 to NumeroPCs do
+      Begin
+         SomaDeficit := SomaDeficit + (PesoDemPri*IndiceDemPri.Get(6,iPC)) + (PesoDemSec*IndiceDemSec.Get(6,iPC)) + (PesoDemTer*IndiceDemTer.Get(6,iPC));
+         SomaQuadrDeficit := SomaQuadrDeficit + (PesoDemPri*IndiceDemPri.Get(7,iPC)) + (PesoDemSec*IndiceDemSec.Get(7,iPC)) + (PesoDemTer*IndiceDemTer.Get(7,iPC));
+         SomaFalha := SomaFalha + (PesoDemPri*IndiceDemPri.Get(1,iPC)) + (PesoDemSec*IndiceDemSec.Get(1,iPC)) + (PesoDemTer*IndiceDemTer.Get(1,iPC));
+
+         // Os índices probabilísticos dos PCs 3, 8, 14 e 15, não devem ser considerados no
+         // cálculo das funções objetivos, pois os mesmos não sofrem influência da opertação
+         // dos reservatórios
+
+         // OBS: Não foram usados as funções Max e Min, associadas à classe TwsVec,
+         //      Para não correr o risco de valores, mínimos ou máximos, de algum
+         //      índice probabilístico ser exatamente de algum desses PCs.
+         if ((iPC <> 3) or (iPC <> 8) or (iPC <> 14) or (iPC <> 15)) then
+            Begin
+
+               // Devemos descobrir qual é o valor da probabilidade de falha máxima
+               // e qual é o PC que a possui, isto em cada uma das prioridades de
+               // demanda (Primária, Secundária e Terciária)
+               if (ProbFalhaPriMax < IndiceDemPri.Get(2,iPC)) then
+                  Begin
+                     PCcomProbFPriMax := iPC;
+                     ProbFalhaPriMax  := IndiceDemPri.Get(2,iPC);
+                  End;
+               if (ProbFalhaSecMax < IndiceDemSec.Get(2,iPC)) then
+                  Begin
+                     PCcomProbFSecMax := iPC;
+                     ProbFalhaSecMax  := IndiceDemSec.Get(2,iPC);
+                  End;
+               if (ProbFalhaTerMax < IndiceDemTer.Get(2,iPC)) then
+                  Begin
+                     PCcomProbFTerMax := iPC;
+                     ProbFalhaTerMax  := IndiceDemTer.Get(2,iPC);
+                  End;
+
+               // Devemos descobrir qual é o valor da vulnerabilidade máxima
+               // e qual é o PC que a possui, isto em cada uma das prioridades de
+               // demanda (Primária, Secundária e Terciária)
+               if (VulnerabPriMax < IndiceDemPri.Get(5,iPC)) then
+                  Begin
+                     PCcomVulnerPriMax := iPC;
+                     VulnerabPriMax    := IndiceDemPri.Get(5,iPC);
+                  End;
+               if (VulnerabSecMax < IndiceDemSec.Get(5,iPC)) then
+                  Begin
+                     PCcomVulnerSecMax := iPC;
+                     VulnerabSecMax    := IndiceDemSec.Get(5,iPC);
+                  End;
+               if (VulnerabTerMax < IndiceDemTer.Get(5,iPC)) then
+                  Begin
+                     PCcomVulnerTerMax := iPC;
+                     VulnerabTerMax    := IndiceDemTer.Get(5,iPC);
+                  End;
+
+               // Devemos descobrir qual é o valor da elasticidade mínima
+               // e qual é o PC que a possui, isto em cada uma das prioridades de
+               // demanda (Primária, Secundária e Terciária)
+               if (ElasticiPriMin > IndiceDemPri.Get(4,iPC)) then
+                  Begin
+                     PCcomElastiPriMin := iPC;
+                     ElasticiPriMin    := IndiceDemPri.Get(4,iPC);
+                  End;
+               if (ElasticiSecMin > IndiceDemSec.Get(4,iPC)) then
+                  Begin
+                     PCcomElastiSecMin := iPC;
+                     ElasticiSecMin    := IndiceDemSec.Get(4,iPC);
+                  End;
+               if (ElasticiTerMin > IndiceDemTer.Get(4,iPC)) then
+                  Begin
+                     PCcomElastiTerMin := iPC;
+                     ElasticiTerMin    := IndiceDemTer.Get(4,iPC);
+                  End;
+            End;
+      End;
+
+   FO2 := (PesoDemPri*IndiceDemPri.Get(2,PCcomProbFPriMax)) +
+          (PesoDemSec*IndiceDemSec.Get(2,PCcomProbFSecMax)) +
+          (PesoDemTer*IndiceDemTer.Get(2,PCcomProbFTerMax));
+   FuncObjet.Set(2,FO2);
+
+   FO3 := (-PesoDemPri*IndiceDemPri.Get(4,PCcomElastiPriMin)) +
+          (-PesoDemSec*IndiceDemSec.Get(4,PCcomElastiSecMin)) +
+          (-PesoDemTer*IndiceDemTer.Get(4,PCcomElastiTerMin));
+   FuncObjet.Set(3,FO3);
+
+   FO4 := (PesoDemPri*IndiceDemPri.Get(5,PCcomVulnerPriMax)) +
+          (PesoDemSec*IndiceDemSec.Get(5,PCcomVulnerSecMax)) +
+          (PesoDemTer*IndiceDemTer.Get(5,PCcomVulnerTerMax));
+   FuncObjet.Set(4,FO4);
+
+   FO234 := FuncObjet.Get(2) + FuncObjet.Get(3) + (0.1*FuncObjet.Get(4));
+   FuncObjet.Set(5,FO234);
+
+   FuncObjet.Set(6,SomaDeficit);
+   FuncObjet.Set(7,SomaQuadrDeficit);
+   FuncObjet.Set(1,SomaFalha);
+
+   // Criação dos objetos para apresentação dos resultados
+   PlanDemPri := CreateObject(TPlanilha); // Cria uma planilha
+   PlanDemSec := CreateObject(TPlanilha); // Cria uma planilha
+   PlanDemTer := CreateObject(TPlanilha); // Cria uma planilha
+   PlanFO     := CreateObject(TPlanilha); // Cria uma planilha
+
+   // Preenchimento do cabeçalho da planilha para demanda primária
+   PlanDemPri.Write(1, 1, 'Resultado dos Índices Probabilísticos para a demanda primária');
+   PlanDemPri.Write(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanDemPri.Write(4, 1, 'PC ');
+   PlanDemPri.Write(4, 2, 'N.F. ');
+   PlanDemPri.Write(4, 3, 'Prob(Falha)');
+   PlanDemPri.Write(4, 4, 'Confiabilidade');
+   PlanDemPri.Write(4, 5, 'Elaticidade');
+   PlanDemPri.Write(4, 6, 'Vulnerabilidade');
+   PlanDemPri.Write(4, 7, 'Soma(Def)');
+   PlanDemPri.Write(4, 8, 'Soma SQR(Def)');
+
+   // Preenchimento do cabeçalho da planilha para demanda secundária
+   PlanDemSec.Write(1, 1, 'Resultado dos Índices Probabilísticos para a demanda secundária');
+   PlanDemSec.Write(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanDemSec.Write(4, 1, 'PC ');
+   PlanDemSec.Write(4, 2, 'N.F. ');
+   PlanDemSec.Write(4, 3, 'Prob(Falha)');
+   PlanDemSec.Write(4, 4, 'Confiabilidade');
+   PlanDemSec.Write(4, 5, 'Elaticidade');
+   PlanDemSec.Write(4, 6, 'Vulnerabilidade');
+   PlanDemSec.Write(4, 7, 'Soma(Def)');
+   PlanDemSec.Write(4, 8, 'Soma SQR(Def)');
+
+   // Preenchimento do cabeçalho da planilha para demanda terciária
+   PlanDemTer.Write(1, 1, 'Resultado dos Índices Probabilísticos para a demanda terciária');
+   PlanDemTer.Write(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanDemTer.Write(4, 1, 'PC ');
+   PlanDemTer.Write(4, 2, 'N.F. ');
+   PlanDemTer.Write(4, 3, 'Prob(Falha)');
+   PlanDemTer.Write(4, 4, 'Confiabilidade');
+   PlanDemTer.Write(4, 5, 'Elaticidade');
+   PlanDemTer.Write(4, 6, 'Vulnerabilidade');
+   PlanDemTer.Write(4, 7, 'Soma(Def)');
+   PlanDemTer.Write(4, 8, 'Soma SQR(Def)');
+
+   for iPC := 1 to NumeroPCs do
+      Begin
+         PC := Projeto.PC(iPC-1); // O Objeto PC recebe o PC do laço (Ipc corrente - 1).
+
+         PlanDemPri.Write(4 + iPC, 1, PC.Nome);
+         PlanDemPri.WriteFloat(4 + iPC, 2, IndiceDemPri.Get(1,iPC));
+         PlanDemPri.WriteFloat(4 + iPC, 3, IndiceDemPri.Get(2,iPC));
+         PlanDemPri.WriteFloat(4 + iPC, 4, IndiceDemPri.Get(3,iPC));
+         PlanDemPri.WriteFloat(4 + iPC, 5, IndiceDemPri.Get(4,iPC));
+         PlanDemPri.WriteFloat(4 + iPC, 6, IndiceDemPri.Get(5,iPC));
+         PlanDemPri.WriteFloat(4 + iPC, 7, IndiceDemPri.Get(6,iPC));
+         PlanDemPri.WriteFloat(4 + iPC, 8, IndiceDemPri.Get(7,iPC));
+
+         PlanDemSec.Write(4 + iPC, 1, PC.Nome);
+         PlanDemSec.WriteFloat(4 + iPC, 2, IndiceDemSec.Get(1,iPC));
+         PlanDemSec.WriteFloat(4 + iPC, 3, IndiceDemSec.Get(2,iPC));
+         PlanDemSec.WriteFloat(4 + iPC, 4, IndiceDemSec.Get(3,iPC));
+         PlanDemSec.WriteFloat(4 + iPC, 5, IndiceDemSec.Get(4,iPC));
+         PlanDemSec.WriteFloat(4 + iPC, 6, IndiceDemSec.Get(5,iPC));
+         PlanDemSec.WriteFloat(4 + iPC, 7, IndiceDemSec.Get(6,iPC));
+         PlanDemSec.WriteFloat(4 + iPC, 8, IndiceDemSec.Get(7,iPC));
+
+         PlanDemTer.Write(4 + iPC, 1, PC.Nome);
+         PlanDemTer.WriteFloat(4 + iPC, 2, IndiceDemTer.Get(1,iPC));
+         PlanDemTer.WriteFloat(4 + iPC, 3, IndiceDemTer.Get(2,iPC));
+         PlanDemTer.WriteFloat(4 + iPC, 4, IndiceDemTer.Get(3,iPC));
+         PlanDemTer.WriteFloat(4 + iPC, 5, IndiceDemTer.Get(4,iPC));
+         PlanDemTer.WriteFloat(4 + iPC, 6, IndiceDemTer.Get(5,iPC));
+         PlanDemTer.WriteFloat(4 + iPC, 7, IndiceDemTer.Get(6,iPC));
+         PlanDemTer.WriteFloat(4 + iPC, 8, IndiceDemTer.Get(7,iPC));
+      End;
+
+   // Prenchimento da planilha com o resultado das funções objetivo
+   PlanFO.Write(1, 1, 'Resultado das funções-objetivo para o sistema de reservatórios');
+   PlanFO.Write(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanFO.Write(4, 1, 'F.O.1');
+   PlanFO.Write(4, 2, 'F.O.2');
+   PlanFO.Write(4, 3, 'F.O.3');
+   PlanFO.Write(4, 4, 'F.O.4');
+   PlanFO.Write(4, 5, 'F.O.5');
+   PlanFO.Write(4, 6, 'F.O.6');
+   PlanFO.Write(4, 7, 'F.O.7');
+   PlanFO.WriteFloat(5, 1, FuncObjet.Get(1));
+   PlanFO.WriteFloat(5, 2, FuncObjet.Get(2));
+   PlanFO.WriteFloat(5, 3, FuncObjet.Get(3));
+   PlanFO.WriteFloat(5, 4, FuncObjet.Get(4));
+   PlanFO.WriteFloat(5, 5, FuncObjet.Get(5));
+   PlanFO.WriteFloat(5, 6, FuncObjet.Get(6));
+   PlanFO.WriteFloat(5, 7, FuncObjet.Get(7));
+
+
+   // Mostra os dados em forma de planilha e gráfico
+   PlanDemPri.Show;
+   PlanDemSec.Show;
+   PlanDemTer.Show;
+   PlanFO.Show;
+
+   // libração dos objetos criados temporariamente
+   FreeObject(DemandaReferenciaPri);
+   FreeObject(DemandaReferenciaSec);
+   FreeObject(DemandaReferenciaTer);
+   FreeObject(DemandaAtendidaPri);
+   FreeObject(DemandaAtendidaSec);
+   FreeObject(DemandaAtendidaTer);
+   FreeObject(DeficitObservadoPri);
+   FreeObject(DeficitObservadoSec);
+   FreeObject(DeficitObservadoTer);
+   FreeObject(IndiceDemPri);
+   FreeObject(IndiceDemTer);
+   FreeObject(IndiceDemSec);
+   FreeObject(VetorDeftMax);
+   FreeObject(FuncObjet);
+
+      {Os objetos Planilha, grafico e Series (S1 ... S4) não deverão
+      ser destruídos,pois continuarãm a existirem após a execução de
+      script (mostrarão os dados) e serão destruídos automaticamente
+      ao serem fechados pelo usuário}
+End.                   
+
+

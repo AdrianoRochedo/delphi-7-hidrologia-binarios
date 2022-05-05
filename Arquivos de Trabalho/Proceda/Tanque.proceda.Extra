@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Arquivo gerado pela rotina TDSInfo.SaveToFile -->
+<!-- Autor: Adriano Rochedo Conceicao -->
+
+<proceda version="1.1">
+  <stations>
+    <station name="_2047034_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2047034</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2045023_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2045023</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2044041_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2044041</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2044039_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2044039</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2044024_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2044024</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2044021_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2044021</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2044001_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2044001</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2043052_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2043052</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2043049_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.2043049</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1946015_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1946015</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1945022_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1945022</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944062_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1944062</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944053_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1944053</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944052_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1944052</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944051_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1944051</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944048_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1944048</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1943066_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1943066</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1847018_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1847018</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1846018_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1846018</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1844015_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1844015</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1843009_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1843009</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1746013_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1746013</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1746012_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1746012</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1744025_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1744025</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1646010_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1646010</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1645016_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1645016</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1645015_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1645015</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1643009_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1643009</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1547003_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1547003</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1546008_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1546008</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1546007_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1546007</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1544029_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1544029</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1544020_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1544020</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1544006_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1544006</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1446003_NC_1">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieTanqueEvapo.Clima.1446003</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+  </stations>
+</proceda>

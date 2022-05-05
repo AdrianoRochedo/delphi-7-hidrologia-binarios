@@ -1,0 +1,11 @@
+           5 \\numero de dias para o qual se conhece G 
+10/05 \\data 1
+       1.00 \g para data 1
+10/06 
+       2.00
+10/07
+       3.00
+10/08 \\data n 
+       4.00 g para a data n
+10/09
+       5.00

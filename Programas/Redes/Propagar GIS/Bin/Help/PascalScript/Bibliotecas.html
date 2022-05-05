@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Bibliotecas</title>
+</head>
+
+<body>
+	   
+<font face="Arial" size="+2" color="Black">
+Bibliotecas
+</font>
+<br><br>
+Define-se por biblioteca o conjunto de rotinas (fun&ccedil;&otilde;es / 
+procedimentos) e classes que n&atilde;o fazem parte da linguagem em si mas
+que podem ser acessadas gra&ccedil;as as liga&ccedil;oes que o compilador
+executa.
+<br><br>
+
+<font face="Arial" size="+2" color="Black">
+Exemplo: Biblioteca matem&aacute;tica
+</font>
+<br><br>
+Um exemplo de biblioteca matem&aacute;tica poderia ser constitu&iacute;do 
+por v&aacute;rias dezenas de rotinas e objetos. Ex:<br><br>
+
+  <dd><b>Function</b> SQR(x: Real): Real;
+  <dd><b>Function</b> Power(x, y: Real): Real;
+  <dd><b>Function</b> Cos(x: Real): Real;
+  <dd><b>Function</b> Int(x: Real): Integer;
+  <dd>...
+  <br>
+  <dd><b>Classe</b> TMatrix (representa uma matrix N x N elementos)
+  <dd><b>Classe</b> TVector (representa um vetor de N elementos)
+  <dd>...
+
+<br><br>
+
+<font face="Arial" size="+2" color="Black">
+Como criar uma biblioteca
+</font>
+<br><br>
+Mostraremos agora como &eacute; f&aacute;cil criar uma biblioteca para 
+ser usada pela classe TPascalScript.
+<br><br>
+
+<font face="Arial" size="+1" color="Black">
+Definindo Classes:
+</font>
+<br><br>
+Passos:<br><br>
+<table>
+<tr>
+	<td width=30></td>
+	<td>
+	1) Utilize a unidade <i>drPascal</i><br>
+    2) Descenda uma classe de <i>TpsClass</i><br> 
+    3) Defina os m&eacute;todos de acesso aos m&eacute;todos (amXXX)<br>
+    4) Defina o m&eacute;todo de cria&ccedil;&atilde;o da inst&acirc;ncia "<b>CreateObject</b>" (Opcional)<br>
+	5) Defina o médodo que define a estrutura dos m&eacute;todos "<b>AddMethods</b>"<br>
+	6) Por &uacute;ltimo, dentro da rotina API, crie uma inst&acirc;ncia desta classe<br>
+	</td>
+</tr>
+</table>
+<br>
+Ex:<br><br>
+
+<pre>
+  TpsOutPut_Class = <b>Class</b>(TpsClass)
+  <b>public</b>
+    <b>function</b> CreateObject: TObject; <b>override</b>;
+    <b>procedure</b> AddMethods; <b>override</b>;
+
+    <b>class procedure</b> amWrite(<b>Const</b> Func_Name: String; Stack: TexeStack);
+    <b>class procedure</b> amShowOutPut(<b>Const</b> Func_Name: String; Stack: TexeStack);
+  <b>end</b>;
+  
+<b>function</b> TpsOutPut_Class.CreateObject: TObject;
+<b>begin</b>
+  Result := TOutPut.Create;
+<b>end</b>;
+
+<b>procedure</b> TpsOutPut_Class.AddMethods;
+<b>begin</b>
+  <b>with</b> Procs <b>do</b>
+    <b>begin</b>
+    Add(<font face="" color="Blue">'Write'</font>,
+    <font face="" color="Blue">'Escreve uma String na Saída (OutPut) indicada'#13</font> +
+    <font face="" color="Blue">'Parâmetros: Texto'</font>,
+    <font face="" color="Blue">''</font>,
+    [pvtString], 
+    [nil], 
+    [False], 
+    pvtNull, 
+    TObject, 
+    amWrite);
+
+    Add(<font face="" color="Blue">'Show'</font>,
+    <font face="" color="Blue">'Mostra a Saída (OutPut) indicada'</font>,
+    <font face="" color="Blue">''</font>,
+    [], 
+    [], 
+    [], 
+    pvtNull, 
+    TObject, 
+    amShowOutPut);
+    <b>end</b>;
+<b>end</b>;
+
+<b>class procedure</b> TpsOutPut_Class.amShowOutPut(<b>const</b> Func_Name: String; Stack: TexeStack);
+<b>var</b> O: TOutPut;
+<b>begin</b>
+  <font face="" color="Navy"><i>// O Parâmetro "Self" é o último na pilha</i></font>
+  O := TOutPut(Stack.AsObject(1));
+  O.FileName := WindowsTempDir + <font face="" color="Blue">'OutPut_Pasqual.txt'</font>;
+  O.Save;
+  O.Show;
+<b>end</b>;
+
+<b>class procedure</b> TpsOutPut_Class.amWrite(<b>const</b> Func_Name: String; Stack: TexeStack);
+<b>var</b> O: TOutPut;
+<b>begin</b>
+  <font face="" color="Navy"><i>// O Parâmetro "Self" é o último na pilha</i></font>
+  O := TOutPut(Stack.AsObject(2));
+  O.DocType := dtTEXT;
+  O.Write(Stack.AsString(1));
+<b>end</b>;
+</pre>
+
+<font face="Arial" size="+1" color="Black">
+Definindo Fun&ccedil;&otilde;es e Procedimentos:
+</font>
+<br><br>
+Passos:<br><br>
+<table>
+<tr>
+	<td width=30></td>
+	<td width=15 valign="TOP">1)</td>
+	<td>
+    Descenda uma classe de <i>TFunctionServices</i> para as funções e outra
+    para os procedimentos
+	</td>
+</tr>
+
+<tr>
+    <td width=30></td>
+	<td width=15 valign="TOP">2)</td>
+    <td>Defina os métodos de acesso para cada uma das funções e dos 
+	    procedimentos (amXXX)
+	</td>
+</tr>
+
+<tr>
+    <td width=30></td>
+	<td width=15 valign="TOP">3)</td>
+    <td>Escreva o método de definição de funções (AddFunctionIn) 
+	    e o método de definição de procedimentos (AddProcsIn)
+	</td>
+</tr>
+</table>
+<br>
+Ex:<br><br>
+
+<pre>
+  TSystem_Procs = <b>class</b>(TFunctionServices)
+  <b>public</b>
+    <b>class procedure</b> AddProcsIn(Procs: TProcList); override;
+    <b>class procedure</b> amFreeObject(<b>Const</b> Func_Name: String; Stack: TexeStack);
+    <b>class procedure</b> amShowMessage(<b>Const</b> Func_Name: String; Stack: TexeStack);
+  <b>end</b>;
+
+  TSystem_Functions = <b>class</b>(TFunctionServices)
+  <b>public</b>
+    <b>class procedure</b> AddFunctionsIn(Functions: TFunctionList); override;
+    <b>class procedure</b> amFloatToStr(<b>Const</b> Func_Name: String; Stack: TexeStack);
+  <b>end</b>;
+
+
+<i><font face="" color="Navy">{ TSystem_Functions }</font></i>
+
+<b>class procedure</b> TSystem_Functions.AddFunctionsIn(Functions: TFunctionList);
+<b>begin</b>
+  <b>with</b> Functions <b>do</b>
+    <b>begin</b>
+    Add(<font face="" color="Blue">'ValToStr'</font>,
+    <font face="" color="Blue">'Tranforma um valor numérico em String'#13</font> +
+    <font face="" color="Blue">'Parâmetro: Valor a ser convertido'</font>,
+    <font face="" color="Blue">'Rotinas ou classes b&aacute;sicas do sistema'</font>,
+    [pvtReal], 
+    [nil], 
+    [False], 
+    pvtString, 
+    TObject, 
+    amFloatToStr);
+ <b>end</b>;
+<b>end</b>;
+
+<b>class procedure</b> TSystem_Functions.amFloatToStr(<b>const</b> Func_Name: String; Stack: TexeStack);
+<b>begin</b>
+  Stack.PushString( FloatToStr(Stack.AsFloat(1)) );
+<b>end</b>;
+
+<i><font face="" color="Navy">{ TSystem_Procs }</font></i>
+
+<b>class procedure</b> TSystem_Procs.AddProcsIn(Procs: TProcList);
+<b>begin</b>
+  <b>with</b> Procs <b>do</b>
+    <b>begin</b>
+    Add(<font face="" color="Blue">'FreeObject'</font>,
+    <font face="" color="Blue">'Libera a memória de um Objeto'#13</font> +
+    <font face="" color="Blue">'Parâmetro: Objeto'</font>,
+    <font face="" color="Blue">'Rotinas ou classes b&aacute;sicas do sistema'</font>,
+    [pvtObject], 
+    [TObject], 
+    [True], 
+    pvtNull, 
+    TObject, 
+    amFreeObject);
+
+    Add(<font face="" color="Blue">'ShowMessage'</font>,
+    <font face="" color="Blue">'Mostra uma mensagem em uma janela de diálogo'#13</font> +
+    <font face="" color="Blue">'Parâmetro: Mensagem'</font>,
+    <font face="" color="Blue">'Rotinas ou classes b&aacute;sicas do sistema'</font>,
+    [pvtString], 
+    [nil], 
+    [False], 
+    pvtNull, 
+    TObject, 
+    amShowMessage);
+    <b>end</b>;
+<b>end</b>;
+
+<b>class procedure</b> TSystem_Procs.amFreeObject(<b>const</b> Func_Name: String; Stack: TexeStack);
+<b>var</b> Ref: TVariable;
+<b>begin</b>
+  Ref := Stack.AsReferency(1);
+  TObject(integer(Ref.Value)).Free;
+  Ref.Value := 0;
+<b>end</b>;
+
+<b>class procedure</b> TSystem_Procs.amShowMessage(<b>const</b> Func_Name: String; Stack: TexeStack);
+<b>begin</b>
+  ShowMessage(Stack.AsString(1));
+<b>end</b>;
+</pre>
+
+<font face="Arial" size="+2" color="Black">
+Regras de acesso aos Par&acirc;metros
+</font>
+<br><br>
+<table>
+<tr>
+	<td width=30></td>
+	<td width=15 valign="TOP">1)</td>
+	<td>
+    Todo acesso a parâmetros através dos métodos Stack.AsXXX(i) deve ser feito
+    antes de um Stack.PushXXX (resultado)
+	</td>
+</tr>
+
+<tr>
+    <td width=30></td>
+	<td width=15 valign="TOP">2)</td>
+    <td>
+    O usuário deverá utilizar o método correto Stack.AsXXX(i) de acordo com
+    o tipo do parâmetro i
+	</td>
+</tr>
+
+<tr>
+    <td width=30></td>
+	<td width=15 valign="TOP">3)</td>
+    <td>
+    Para melhor performance o usuário deverá utilizar os métodos Stack.AsXXX(i)
+    apenas uma vez. Caso seja necessário, copie o valor retornado para uma
+    variável do tipo correspondente
+	</td>
+</tr>
+
+<tr>
+    <td width=30></td>
+	<td width=15 valign="TOP">4)</td>
+    <td>
+    O primeiro parâmetro tem ordem 1
+	</td>
+</tr>
+
+<tr>
+    <td width=30></td>
+	<td width=15 valign="TOP">5)</td>
+    <td>
+    Parâmetros do Tipo Object sempre são passados por referência.
+    Utilize o método Stack.AsObject(i)
+	</td>
+</tr>
+
+<tr>
+    <td width=30></td>
+	<td width=15 valign="TOP">6)</td>
+    <td>
+    Parâmetros passados por refer&ecirc;ncia (exceto tipos Object) 
+	dever&atilde;o ser acessados atrav&eacute;s do método 
+	Stack.AsReferency(i).Value
+	</td>
+</tr>
+</table>
+<br>
+
+<font face="Arial" size="+2" color="Black">
+Utiliza&ccedil;&atilde;o dos m&eacute;todos da Pilha (TexeStack):
+</font>
+
+<pre>      
+<b>Leitura dos Parâmetros por categoria de passagem (referência/valor):</b>
+
+    Integer (valor)      --> Stack.AsInteger (ordem do parâmetro)
+    Real    (valor)      --> Stack.AsFloat   (ordem do parâmetro)
+    Boolean (valor)      --> Stack.AsBoolean (ordem do parâmetro)
+    String  (valor)      --> Stack.AsString  (ordem do parâmetro)
+    Object  (referência) --> Stack.AsObject  (ordem do parâmetro)
+    
+    Integer, Real, Boolean, String (referência) -->
+       Stack.AsReferency(ordem do parâmetro).Value
+    
+    OBS: O método Stack.AsReferency retorna um Objeto do tipo TVariable
+</pre>
+
+<pre>
+<b>Resultado das fun&ccedil;&otilde;es:</b>
+
+    Integer  --> Stack.PushInteger
+    Real     --> Stack.PushFloat
+    Boolean  --> Stack.PushBoolean
+    String   --> Stack.PushString
+    Object   --> Stack.PushObject
+</pre>
+
+<font face="Arial" size="+1" color="Black">
+Definindo o ponto de entrada da unidade:
+</font>
+<br>
+
+<pre>
+<b>procedure</b> API(Compiler: TPascalScript);
+<b>begin</b>
+  TSystem_Functions.AddFunctionsIn(Compiler.Functions);
+  TSystem_Procs.AddProcsIn(Compiler.Procs);
+  TpsOutPut_Class.Create(
+    TOutPut, 
+    nil, <font face="" color="Navy"><i>// Ancestral da classe TOutPut, neste caso n&atilde;o existe</i></font>
+    <font face="" color="Blue">'Saída Padrão'</font>,
+    <font face="" color="Blue">'Rotinas ou classes b&aacute;sicas do sistema'</font>, 
+    <font face="" color="Blue">'CreateObject'</font>,
+    Compiler.Classes);
+<b>end</b>;
+</pre>
+
+</body>
+</html>

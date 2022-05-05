@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Mini-Manual: Utilização Geral</title>
+	<link rel="StyleSheet" href="..\estilo.css" type="text/css">
+</head>
+
+<body>
+
+<center>
+<h1>PROCEDA</h1>
+<h2>Mini-Manual</h2>
+<h3>Utilização Geral</h3>
+</center>
+
+<br>
+<h3>Abrindo Arquivos</h3>
+
+Os arquivos do Proceda são inconfundíveis pois possuem como extensão o próprio 
+nome do programa.<br>
+Ex: "Paracatu.proceda".<br>
+<br>
+Também poderá existir um arquivo associado ao arquivo "*.proceda". Este arquivo
+possuirá a extensão "extra" e conterá informações adicionais.<br>
+Ex: "Paracatu.proceda.extra"<br>
+<br>
+Os dois arquivos deverão permanecerem sempre juntos mesmo que isto não seja 
+necessário.<br>
+
+<br>
+<img src="Imagens/Abrindo arquivos.jpg"><br>
+<br>
+
+Após a abertura, as informações estarão disponívies no painel esquerdo da tela 
+em forma de árvore hierárquica.<br>
+ATENÇÃO: Mais de um arquivo poderá estar aberto ao mesmo tempo.
+
+<h3>Trabalhando com as informações dos arquivos</h3>
+
+<img src="Imagens/Acoes Coletivas.jpg" width="645" height="394"><br>
+<br>
+
+Após aberto o arquivo será criado um nó dentro da sub-pasta "Dados" e este nó 
+receberá o nome do arquivo sem seu caminho. Dentro deste novo nó encontraremos
+outros sub-nós: Dados Temporais, Propriedades, Conecções e Arquivos Associados.
+<br>
+
+<h4>Dados Temporais</h4> 
+
+Este é o nó mais importante do programa, dentro dele encontraremos os nós que 
+representam os postos. Estes dados ficam nesta pasta pois estão extremamente 
+vinculados ao tempo.
+
+<h4>Propriedades, Conecções e Arquivos Associados</h4>
+
+São nós secundários, fora "Conecções" (que ainda não foi implementado), os 
+outros nós somente mostram informações relacionadas ao arquivo e aos dados.
+
+<h3>Ações</h3>
+
+Como se pode notar pela imagem acima, todas as ações do programa são 
+contextualizadas de acordo com o item da árvore selecionado. Portanto se
+uma ação não é mostrada ou está indisponível, é porque ela não é aplicável ao
+item selecionado.
+<br>
+<br>
+ATENÇÃO: Mais de um item pode estar selecionado ao mesmo tempo.
+<br>
+<br>
+Neste caso, somente as ações comuns aos items selecionados são mostradas.
+<br>
+<br>
+As ações de um menu de contexto poderão estar agrupadas em ações Individuais ou 
+Coleticas. As ações do menu principal e da barra de ferramentas são somente 
+ações individuais.
+
+<h4>Ações Individuais</h4>
+
+São ações aplicadas individualmente a cada um dos itens selecionados.<br>
+Ex: Visualização em Planilha<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Será criada uma planilha individual para cada item
+selecionado.
+<br>
+<br>
+<img src="Imagens/Acoes Individuais.jpg">
+<br>
+<br>
+<img src="Imagens/Acoes Individuais 2.jpg">
+
+<h4>Ações Coletivas</h4>
+
+São ações que, quando aplicadas, geralmente resultam em um único resultado 
+combinando os itens selecionados.<br>
+Ex: Visualização em Planilha<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Será criada uma única planilha que conterá os 
+itens, por exemplo, um em cada coluna.
+<br>
+<br>
+<img src="Imagens/Acoes Coletivas.jpg">
+<br>
+<br>
+<img src="Imagens/Acoes Coletivas 2.jpg">
+
+<h3>Importando Dados</h3>
+
+<img src="Imagens/Importando Arquivos.jpg">
+<br>
+<br>
+<img src="Imagens/Importando Arquivos 2.jpg">
+<br>
+<br>
+A primeira parte da janela mostra os módulos de importação (plugins) 
+disponíveis. Abaixo é mostrado as propriedades do módulo selecionado, estas
+propriedades influem na maneira como os arquivos são importados. A seguir  
+vem os arquivos a serem importados, mesmo que a lista contenha mais do que
+um arquivo, estes arquivos serão importados para dentro do Proceda como
+um único conjunto de postos.
+
+<h3>Geração de Séries Temporais (em Experimentação)</h3>
+
+Uma série é obtida pela aplicação de um algorítmo que agrega/seleciona/modifica
+os dados de um posto.
+<br>
+Ex: Totais Mensais<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Série obtida sobre dados diários onde cada elemento
+é obtido totalizando-se os valores diários de um mês.
+<br>
+<br>
+<img src="Imagens/Gerando Series.jpg">
+<br>
+<br>
+<img src="Imagens/Visualizacao coletiva de Series em uma Planilha.jpg">
+
+<h3>Análise das Séries</h3>
+
+<img src="Imagens/Acoes em uma ou mais Series.jpg" width="716" height="499" alt="" border="0">
+
+<h3>Gráficos Dupla-Massa e Curva de Permanencia</h3>
+
+Sâo realizados através das ações coletivas.<br> 
+No gráfico Dupla-Massa, as coordenadas Y dos pontos são fornecidas pelos valores
+da primeira série selecionada e as coordenadas X são fornecidas pela média dos valores 
+encontrados nas séries restantes.
+<br>
+<br>
+<img src="Imagens/Series - GRFs - DM e CP.jpg" width="549" height="577" alt="" border="0">
+
+<h3>Estatísticas Descritivas</h3>
+
+Fornece um conjunto básico de medidas de posição e percentis para todas as 
+séries selecionadas.
+<br>
+<br>
+<img src="Imagens/DLG - Estatisticas Descritivas.jpg" width="424" height="383" alt="" border="0">
+<br>
+<br>
+<img src="Imagens/Estatisticas Descritivas.jpg" width="720" height="551" alt="" border="0">
+<br>
+<br>
+
+<h3>Análise de Frequências</h3>
+
+Realiza a análise de frequências para todas as séries selecionadas.
+<br>
+<br>
+<img src="Imagens/DLG - Analise de frequencia.jpg" width="266" height="400" alt="" border="0">
+<br>
+<br>
+<img src="Imagens/Analise de Frequencias.jpg" width="1024" height="768" alt="" border="0">
+<br>
+
+<h3>Análise de Correlações</h3>
+
+Realiza a análise de correlações de todas as séries selecionadas.
+Nas próximas versões estes dados serão utilizados no preenchimento automático
+das falhas.
+<br>
+<br>
+<img src="Imagens/Analise de Correlacoes.jpg" width="1024" height="768" alt="" border="0">
+<br>
+Para séries mensais, a correlação poderá ser executada mês a mês.
+
+<center><h2>Banco de Dados</h2></center>
+
+<h3>Criando uma Conecção</h3>
+
+<img src="Imagens/BD - Criando uma coneccao.jpg" width="694" height="404" alt="" border="0">
+
+<h3>Tipos de Conecção</h3>
+
+Até o momento, somente conecções a banco de dados padrão "Access" são permitidas.<br>
+Em versões futuras outros tipos de conecções serão permitidas.
+<br>
+<br>
+<img src="Imagens/BD - Tipos de Coneccao.jpg" width="160" height="154" alt="" border="0">
+
+<h3>Dados da Conecção</h3>
+
+Para cada tipo de conecção, uma conjunto diferente de dados poderá ser requisitado.<br>
+Por exemplo, para que uma conecção "Access" seja criada, é necessário a indicação
+do arquivo "mdb" e de um título para a conecção.
+<br>
+<br> 
+<img src="Imagens/BD - Dados da coneccao.jpg" width="481" height="161" alt="" border="0">
+
+<h3>Janela de Login</h3>
+
+Dependendo do banco de dados, um "Login" poderá ser requisitado, caso não hajam
+usuários cadastrados deixe os campos em branco e precione o botão "OK" que a conecção
+será estabelecida.
+<br>
+<br>
+<img src="Imagens/BD - Login.jpg" width="279" height="200" alt="" border="0">
+
+<h3>Visualizando uma Tabela</h3>
+
+As mesmas regras para os "nós" da árvore de objetos das conecções estão valendo.
+Dependendo do tipo de objeto selecionado, poderão existir ações individuais ou 
+coletivas.
+<br>
+<br>
+<img src="Imagens/BD - Visualizando uma tabela.jpg" width="749" height="577" alt="" border="0">
+
+<h3>Banco de Dados Padronizados</h3>
+
+São banco de dados que possuem determinados tipos de dados, isto é, que possuem
+certos tipos de tabelas e estas tabelas possuem certos tipos de campos.
+<br>
+<br> 
+O Proceda sempre tentará enquadrar um banco de dados em um padrão, se nenhum
+padrão for reconhecido ele será enquadrado no padrão genérico e as ações sobre 
+ele serão limitadas as ações genéricas. 
+
+<h3>Banco de Dados Padrão ANA-Hidro</h3>
+
+São banco de dados que possuem pelo menos as seguintes tabelas:<br>
+<br>
+<ul>
+  <li>Chuvas</li>
+  <li>Cotas</li>
+  <li>Vazoes</li>
+  <li>Series_Chuvas</li>
+  <li>Series_Cotas</li>
+  <li>Series_Vazoes</li>
+</ul>
+
+<h3>Reconhecimento Automático de Dados</h3>
+
+Se um banco de dados for padronizado, certos tipos de informações poderão ser
+reconhecidas automaticamente, como por exemplo os postos de chuva ou de vazão
+de um banco de dados padrão ANA-Hidro. E com estas informações reconhecidas, 
+determinados tipos de ações poderão ser disponibilizadas. 
+
+<h3>Reconhecimento de Postos</h3>
+
+Como dito acima, sempre que possível o sistema tentará reconhecer os dados 
+sobre os postos disponibilizados.<br>
+
+<h3>Conversão de Postos</h3>
+
+Com os postos reconhecidos o sistema disponibilizará a ação de conversão automática
+para o formato interno do Proceda.
+
+<!--  
+<br>
+<br>
+<b>ATENÇÃO:</b><br>
+Por enquanto somente os dados sequenciais dos postos serão reconhecidos, isto é,
+não poderá haver alternancia entre os códigos dos postos.<br>
+Ex:<br> 
+<b>Reconhecido corretamente</b><br>
+&nbsp;&nbsp;&nbsp;AAAAABBBBBCCCCC
+<br>
+<b>Não-reconhecido corretamente</b><br>
+&nbsp;&nbsp;&nbsp;AAAAABBAAAABBBBBBBBAAA
+-->
+
+<br>
+<br>
+<img src="Imagens/BD - Convertendo postos para o Proceda.jpg" width="754" height="417" alt="" border="0">
+<br>
+<br>
+<img src="Imagens/BD - Resultado da conversao dos postos para o Proceda.jpg" width="865" height="419" alt="" border="0">
+<br>
+<br>
+Após a conversão ser realizada, a conecção poderá ser liberada pelo usuário caso
+ele não necessite mais.<br>
+O arquivo "proceda" criado permanecerá em memória até ser salvo em disco pelo usuário.
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+  Versão    Descrição
+    1.91    - Revisando opções de Sincronização de Dados nas demandas
+
+    1.92    - Reformulado a sincronizacao de dados com as demandas
+
+    1.93    - Adicionando capacidade de "Drag-Files"
+
+    1.95    - Consertado alguns bugs pequenos
+            - Incluída a interface das classes TListaDeFalhas e TprFalha no PascalScript
+            - O PascalScript possui agora Sub-Rotinas internas
+
+    1.96    - Bug fix em uma planilha
+
+    1.97    - Mais métodos para o Pascal Script
+
+    2.01    - Verificando o funcionamento do objeto "GlobalObjects"
+            - Verificando o funcionamento do objeto "Tform_WindowsManager"
+            - Melhorando o gerenciamento de erros de execução de Simulações
+
+    2.10    - Compilado com Delphi 6 pela primeira vez
+
+    2.20    - Revisões na execução em modo DOS
+
+    2.23    - Bug fix na visualização da Matriz de Contribuição das SubBacias
+            - Bug fix na edição dos coefs. de contribuição das SubBacias
+            - Grafico de Pontos no X-Tudo
+            - Ponto ou vírgula nas edições de valores numéricos
+            - Duplo-Click no gerenciador de objetos abre os diálogos dos objetos
+            - Bug fix na remoção de períodos das tabelas de unidades
+            - Remoção de objetos via tecla "DEL"
+
+    2.24    - Bug Fix no posicionamento dos objetos quando existe Scroll        
+            - Criação da janela de Histórico
+            - Mostrar Demandas do Projeto não afeta as demandas difusas
+            - Melhorias na Janela Principal
+            - Trocado "Dem.Ref" por "Dem.Total"
+            - Selecionar o projeto também pelo caption da janela
+            - Incluída a possibilidade de entrada de valores em notação científica e
+              valores negativos na unidade drEdit
+            - Utilizando caminhos relativos para os arquivos (sempre que nao comecar por x:\)
+            - Permitido modificar as cores dos PCs e Reservatórios
+            - Janelas de Gráficos e Planilhas agora são MDIChilds
+            - Melhorado a seleção de objetos
+
+    2.30    - Novas opções para o gerenciamento da geração de energia em PCs e Reservatorios    
+
+    2.31    - Bug fix na geração de Energia dentro do balanço hídrico do PC
+
+    2.40    - Incluído o módulo de monitoração de variáveis
+
+    2.41    - Bug fix na geração de código do PascalScript
+
+    2.42    - Melhorias na rotina Balanço Hidrico de Reservatório
+            - Incluídas mas duas funções no Pascal Script: ABS e Trunc
+
+    2.43   - Incluído na biblioteca de Gráficos do PascalScript mais algumas opções.
+
+    2.44   - Atualização para o novo sistema de troca de mensagens entre objetos.
+           - Melhorias gerais na interface
+
+    2.45   - Melhorias no mecanismo de Otimização
+           - Janela para gerenciamento dos parâmetros
+
+    2.46   - demandas só podem ser criadas se os dados de sua classe estiverem corretos
+
+    2.50   - Novo método de racionamento.
+             No Reservatório leva em conta as demandas Operadas para racionar água.
+             Retirado a informação de CRC
+
+    3.00   - GIS
+           - Re-nomeamento de certas unidades e formulários                

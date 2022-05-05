@@ -1,0 +1,236 @@
+DLG_DrawWIN
+  - TprDialogo_AreaDeProjeto
+    Janela onde a rede hidrológica é definida.
+
+pr_DialogoBase
+  - TprDialogo_Base
+    Diálogo para edição das propriedades básicas dos objetos
+
+pr_Dialogo_PCP
+  - TprDialogo_PCP
+    Diálogo para edição das propriedades dos objetos do tipo TprPCP (PCs comuns)
+
+pr_Dialogo_PCPR
+  - TprDialogo_PCPR
+    Diálogo para edição das propriedades dos objetos do tipo TprPCPR (Reservatórios)
+
+pr_Dialogo_SB
+  - TprDialogo_SB
+    Diálogo para edição das propriedades dos objetos do tipo TprSubBacia (Sub-Bacias)
+
+pr_Dialogo_TD
+  - TprDialogo_TD
+    Diálogo para edição das propriedades dos objetos do tipo TprTrechoDagua (Trechos D'agua)
+
+pr_Dialogo_Demanda_Opcoes
+  - TprDialogo_OpcoesDeDemanda
+    Diálogo para edição das propriedades de sincronização de dados dos objetos
+    do tipo TprDemanda (Demandas)
+
+pr_Dialogo_ClasseDeDemanda
+  - TprDialogo_ClasseDeDemanda
+    Diálogo para edição das propriedades dos objetos do tipo TprClasseDemanda (Classes de Demanda)
+
+pr_Dialogo_Demanda
+  - TprDialogo_Demanda
+    Diálogo para edição das propriedades dos objetos do tipo TprDemanda (Demandas)
+
+pr_Dialogo_Projeto
+  - TprDialogo_Projeto
+    Diálogo para edição das propriedades dos objetos do tipo TprProjeto (Projeto)
+
+pr_Dialogo_Demanda_TVU
+  - TprDialogo_TVU
+    Diálogo para edição dos Valores Unitários das demandas (TprDemanda)
+
+pr_Dialogo_Demanda_TFI
+  - TprDialogo_TFI
+    Diálogo para edição dos Fatores de Implantação das demandas (TprDemanda)
+
+pr_Dialogo_Demanda_TUD
+  - TprDialogo_TUD
+    Diálogo para edição das Unidades de Demanda das Demandas (TprDemanda)
+
+pr_Dialogo_PCPR_Curvas
+  - TprDialogo_Curvas
+    Diálogo para edição das curvas Área-Volume e Cota-Volume dos Reservatórios (TprPCPR)
+
+AboutForm
+  - TprDialogo_About
+    Diálogo de apresentação do programa Propagar 2000
+
+pr_Gerenciador
+  - TprDialogo_Gerenciador
+    Janela onde é mostrada uma árvore hierárquica contendo os objetos de um projeto.
+    Estes objetos podem ser editados diretamente.
+
+pr_Dialogo_MatContrib
+  - TprDialogo_MatContrib
+    Janela onde é mostrada a matriz de contribuição dos PCs
+
+pr_Dialogo_FalhasDeUmPC
+  - TprDialogo_FalhasDeUmPC
+    Janela onde é mostrada as falhas de suprimento das demandas por um PC
+
+pr_Dialogo_PlanilhaBase
+  - TprDialogo_PlanilhaBase
+    Janela que encapsula as propriedades básicas de um Planilha
+
+pr_Dialogo_Planilha_FalhasDasDemandas
+  - TprDialogo_Planilha_FalhasDasDemandas
+    Planilha ajustada para mostrar as falhas das demandas de um projeto
+
+prDialogo_Planilha_DemandasDeUmaClasse
+  - TprDialogoPlanilha_DemandasDeUmaClasse
+    Planilha ajustada para mostrar os dados referentes as demandas de uma classe de demanda
+
+pr_Dialogo_Planilha_DadosDosObjetos
+  - TprDialogo_Planilha_DadosDosObjetos
+    Planilha ajustada para mostrar os dados dos objetos (vetores)
+
+pr_Dialogo_Grafico_PCs_XTudo
+  - TprDialogo_Grafico_PCs_XTudo
+    Diálogo onde são apresentadas opções para escolha de quais dados de um PC
+    deverão ser graficados.
+
+pr_Dialogo_Grafico_PCsRes_XTudo
+  - TprDialogo_Grafico_PCsRes_XTudo
+    Descendente de TprDialogo_Grafico_PCs_XTudo. Acrescenta as opções dos dados dos
+    Reservatórios.
+
+pr_Dialogo_Intervalos
+  - TprDialogo_Intervalos
+    Diálogo onde são feitas as definições dos intervalos de análise.
+
+prDialogo_EscolherClasseDemanda
+  - TprDialogoEscolherClasseDemanda
+    Diálogo simples para escolha de qual classe uma demanda pertencerá
+
+pr_Dialogo_Projeto_RU
+  - TprDialogo_Projeto_RU
+    Diálogo para a definição das rotinas do usuário
+
+************************ Classes auxiliares ***********************
+
+esquemas_OpcoesGraf
+  - TListaDeEsquemasGraficos
+    Lista que guarda as diversas configurações gráficas do usuário
+
+Lib_Propagar
+  - TpsProjeto_Class
+    Implementa os métodos e propriedades da classe TprProjeto acessíveis via Script
+
+  - TpsPCP_Class
+    Implementa os métodos e propriedades da classe TprPCP e TprPCPR acessíveis via Script
+
+**************** Classes de Terceiros - Auxiliares independentes ***************
+
+Simulation
+  - TSimulation
+    Classe que encapsula o mecanismo genérico de simulação computacional baseado em
+    eventos e passagem de tempo.
+
+    Metodos
+      procedure Execute
+      procedure Stop
+
+    Propriedades/Eventos
+      OnBeforeExecute : procedure
+      OnAfterExecute  : procedure
+      OnClock         : procedure
+      OnEvent         : procedure
+
+drPascal
+  - TPascalScript
+    Classe que reconhece/compila/executa scripts baseados na linguagem Object Pascal
+
+    Metodos
+      procedure Compile
+      procedure Execute
+
+    Propriedades
+      Text      : TStrings
+      Lib       : TLib
+      Variables : TVariables
+      Compiled  : Boolean
+
+Lib_GlobalObjects
+  - TGlobalObjects
+    Classe que encapsula o mecanismo de gerenciamento de Variáveis Globais (instâncias
+    de objetos) acessíveis via programação direta ou indireta por Script
+
+    Metodos
+      procedure Add(Name: String; Object: TObjects)
+      procedure Remove(Name: String)
+      function  ObjectByName(Name: String): TObject
+
+    Propriedades
+      Count: Integer
+
+wsMatrix
+  - TwsMatrix
+    Classe que encapsula a funcionalidade de matrizes matemáticas e
+    conjuntos de dados (objetos parecidos com tabelas de banco de dados)
+
+    Metodos
+      constructor Create(nRows, nCols: Integer)
+      procedure Add(Row: TwsVec)
+      procedure Remove(Row: Integer)
+
+    Propriedades
+      Data[i, j]: Real
+      nRows     : Integer
+      nCols     : Integer
+
+wsVec
+  - TwsVec
+    Classe que encapsula a funcionalidade dos vetores
+
+    Metodos
+      constructor Create(Len: Integer)
+      procedure Add(x: Real)
+      procedure Remove(i: Integer)
+
+    Propriedades
+      Data[i]: Real
+      Len    : Integer
+
+drGraficos
+  - TgrGrafico
+    Encapsula a funcionalidade dos gráficos
+
+    Metodos
+      function AdicionaSerieDeLinhas(...): TChartSerie
+      function AdicionaSerieDePontos(...): TChartSerie
+      function AdicionaSerieDeBarras(...): TChartSerie
+
+    Propriedades
+      Series: TListaDeSeries
+
+  - TListaDeSeries
+    Gerencia as séries de um gráfico
+
+    Metodos
+      function Adicionar(Serie: TChartSerie)
+
+    Propriedades
+      Serie[i]: TChartSerie
+
+  - TListaDeGraficos
+    Gerencia os gráficos que não foram destruídos pelo usuário
+
+    Metodos
+      function Adicionar(Grafico: TgrGrafico)
+
+    Propriedades
+      Grafico[i]: TgrGrafico
+
+Listas
+  - TListaDeInteiros
+    Gerencia uma lista de números inteiros
+
+  - TListaDeReais
+    Gerencia uma lista de números em ponto flutuante (reais)
+
+  - TListaDeBooleanos
+    Gerencia uma lista de valores lógicos (Verdadeiro/Falso)

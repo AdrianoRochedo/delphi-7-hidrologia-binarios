@@ -1,0 +1,3 @@
+           5\\tipo de esqumema de rega {1,2,3,5}
+       0.50       0.30       0 \\(% de RU na camada inicial) (% de RU na camada restante) (numero de dias para parar a rega neste caso e sempre 0)
+

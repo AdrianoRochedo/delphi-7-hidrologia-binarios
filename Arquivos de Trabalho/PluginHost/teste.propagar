@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Autor: Adriano Rochedo Conceicao -->
+<!-- Project Type: [ScrollCanvas] -->
+
+<propagar version="2">
+  <geral>
+    <DecimalSeparator>.</DecimalSeparator>
+  </geral>
+  <objects>
+    <object class="TprProjeto_ScrollCanvas" name="Proj_1" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <Locked>0</Locked>
+      <ViewDemands>0</ViewDemands>
+      <ViewBackground>0</ViewBackground>
+      <ViewWaterCourses>1</ViewWaterCourses>
+      <WindowState>0</WindowState>
+      <background_File></background_File>
+      <outputDir></outputDir>
+      <searchPath></searchPath>
+      <scripts>
+      </scripts>
+    </object>
+    <object class="TprPC" name="Proj_2" sx="60" sy="41" Factory="" rx="60" ry="41">
+      <description></description>
+      <comments>
+      </comments>
+    </object>
+    <object class="TprTrechoDagua" name="TrechoDagua_1" sx="0" sy="0" Factory="" rx="0" ry="0">
+      <description></description>
+      <comments>
+      </comments>
+      <minOutlet>0</minOutlet>
+      <maxOutlet>0</maxOutlet>
+      <Comprimento>0</Comprimento>
+      <AreaSecaoMedia>0</AreaSecaoMedia>
+      <PerimSecaoMedia>0</PerimSecaoMedia>
+      <LargBocaSecaoMedia>0</LargBocaSecaoMedia>
+      <RaioHidrologico>0</RaioHidrologico>
+      <CoefManning>0</CoefManning>
+      <Declividade>0</Declividade>
+    </object>
+    <object class="TprPC" name="Proj_3" sx="136" sy="81" Factory="" rx="136" ry="81">
+      <description></description>
+      <comments>
+      </comments>
+    </object>
+  </objects>
+  <relationships>
+    <rel obj1="Proj_2" obj2="Proj_3"/>
+  </relationships>
+</propagar>

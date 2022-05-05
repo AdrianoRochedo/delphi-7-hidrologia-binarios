@@ -1,0 +1,54 @@
+CHUVAZ 3 (CHUVA)
+	Postos
+		(obj) Posto A
+			(act) Mostrar em Planilha
+			(act) Calcular Totais Anuais
+				(obj) Serie de Totais Anuais (*4)
+					(act) Calcular Coeficientes de Correlacao
+					(act) Mostrar em Grafico
+					(act) Mostrar em Planilha
+					Preenchimento de Falhas 
+						(act) Vetor Regional
+							(obj) Serie Preenchida Tipo 1
+								Analize de Frequencia (*2)
+									(act) Empirica
+									(act) Teorica
+						(act) Regressao Linear Simples
+							(obj) Serie Preenchida Tipo 2 (*3)
+								(act) Grafico Dupla Massa
+								idem 2
+						(act) Regressao Linear Multipla
+							idem 3
+			Diarios
+				Duracao Parcial
+					(act) Calcular Maximos 
+						(obj) Serie de Maximos Anuais (*1)
+							(act) Calcular Coeficientes de Correlacao
+							(act) Mostrar em Grafico
+							(act) Mostrar em Planilha
+							(act) Grafico Dupla Massa
+							idem 2
+					(act) Calcular Minimos
+						idem 1
+					...
+				Series Anuais
+					(act) Calcular Maximos 
+						idem 1
+					(act) Calcular Minimos 
+						idem 1
+					...
+			Mensais
+				Duracao Parcial
+					(act) Calcular Maximos
+						idem 4
+					(act) Calcular Minimos
+						idem 4
+					...
+				Series Anuais
+					(act) Calcular Maximos
+						idem 4
+					(act) Calcular Minimos
+						idem 4
+					...
+		(obj) Posto B
+			...

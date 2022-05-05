@@ -1,0 +1,23 @@
+De: Flávio Hadler Tröger [fhtroger@pop.com.br]
+Enviado em: quarta-feira, 11 de agosto de 2004 20:06
+Para: jsviegas@uol.com.br
+Assunto: Projeto
+
+Oi Viegas
+
+Td bem aí? Espero que sim.
+
+Te escrevo sobre o projeto:
+
+Aqui na ANA não temos disponíveis dados de registradores (linígrafos e pluviógrafos), assim, apenas o que consegui p/ a Rita é uma pré-seleção de postos que têm essas leituras (o inventário das estações) que poderiam nos interessar. Fiz uma seleção prévia dentro do BD da ANA, em função de coordenadas e postos ativos. O resultado dessa busca segue em anexo em no arquivo "DadosHidro_Rita.zip" (ao ser descompactado apresenta um arquivo em acess, gerado pelo hidro). A Rita pode ler esse arquivo no hidro (parte de inventário) e, a patir da lista de estações que poderiam nos interessar e da lista de entidades, tentar obter essas leituras. Se ela não conseguir, ainda não sei se poderei conseguir por aqui, pois esses dados são das entidades que os produziram e a ANA ainda não mantém dados de registradores em seu BD. Se a Rita definir algumas dessas estações, posso tentar conseguir algo daquelas que são telemétricas. Vamos ver se dá certo.
+
+Sobre informações de geoprocessamento, ainda estou buscando dados e definindo planos de informações que poderiam nos interessar. Creio que em dois ou três dias poderei mandar alguma coisa que sirva ao Fabrício. Me avisa que produtos o Fabrício já tem e o que é mais importante p/ ele. Isso facilita minha busca.
+
+Sobre os dados hidrológicos para os modelos (nossa parte, mais especificamente) estou buscando informações. Já tenho um conjunto básico de estações selecionadas pelas coordenadas da região, mas ainda não selecionei as séries propriamente ditas, pq a avaliação da qualidade dos dados (sem o PROCEDA) é lenta. Ver falhas, etc.
+
+Estou mandando em anexo os aruivos "ModeloSeriesChuVazHidro.zip" que contém arquivos gerados pelo hidro, com séries de chuva (1 arquivo) e de vazão (outro .mdb), para servirem de modelo de arquivos, com dados de vários postos, para entrada (importação) pelo PROCEDA. Esses são gerados por usuários dentro da ana (arquivo .mdb com vários postos). Outro modelo é o fornecido pela HIDROWEB (usuários externos à ANA), onde contém apenas os dados de um posto. Este modelo segue no arquivo "ModeloHidrowebChuvas.zip".
+
+Espero que essas primeiras informações ajudem e espero sua resposta. Aqui sigo buscando dados de geo e hidrológicos.
+
+Me mantenha informado do acontece aí.
+Flávio.

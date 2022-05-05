@@ -1,0 +1,17 @@
+1.32
+    - Diálogo "Mostrar Falhas dos PCs" modificado:
+      - As Caixas de listas foram trocadas por uma planilha
+
+    - Gráficos
+      - As demandas atendidas e o volume dos reservatórios são plotados com cores
+        diferentes para suas falhas
+
+1.33
+    - Melhoramentos no gerencimento visual das demandas dos PCs
+      - Mostrar ou Esconder as demandas
+        - Pelo menu local (PCP e PCPR)
+        - Pelo menu geral (projeto)
+
+1.34
+    - Aplicação das regras de nomenclatura (INTERNO)        
+

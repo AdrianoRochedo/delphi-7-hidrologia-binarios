@@ -1,0 +1,17 @@
+Arquivos
+  
+  - Paracatu 1\ParacatuWalter.propagar
+    - Geracao de HTML via script
+
+  - Sao Chico\SaoChicoComZoom.propagar
+    - Geracao de equacoes e Otimizacao via Solver
+    - Estabelecimento dos valores dos objetos via arquivo
+
+  - Curu - Varios parametros\CuruSimples.propagar
+    - Otimizacao via algoritmo genetico e Rosenbroke de varios parametros
+
+  - Curu - 4 parametros\CuruSimples.propagar
+    - Otimizacao via algoritmo genetico e Rosenbroke de 4 parametros
+
+  - FlavioVitoria\BaciaLSJ\Bacia_LSJ_11Sub_bacias_Pel_1_ResCOM_SCRIP.propagar
+    - Utilizacao de Objetos Cenarios de Demanda

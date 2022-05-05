@@ -1,0 +1,39 @@
+var Vol1, Vol2, Vol3 : object; // Objetos - parâmetros do Rosenbrock
+
+begin
+  Projeto.Rosenbrock.Parameters.Clear;
+  Projeto.Rosenbrock.SetDecStep(0.5);
+  Projeto.Rosenbrock.SetMaxSimulations(500);
+  Projeto.Rosenbrock.SetMaxTimeSimulation(60*60*1000);
+  Projeto.Rosenbrock.SetTolerante(0.1);
+  Projeto.Rosenbrock.ShowFO(0,150);
+
+  Vol1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Vol1.SetName('Vol1');
+  Vol1.SetValue(10);
+  Vol1.SetStep(5);
+  Vol1.SetLowLimit(0);
+  Vol1.SetHiLimit(20);
+  Vol1.SetTolerance(0.05);
+//Vol1.Show(0, 250);
+
+  Vol2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Vol2.SetName('Vol2');
+  Vol2.SetValue(40);
+  Vol2.SetStep(5);
+  Vol2.SetLowLimit(20);
+  Vol2.SetHiLimit(60);
+  Vol2.SetTolerance(0.5);
+//Vol2.Show(0, 300);
+
+  Vol3 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Vol3.SetName('Vol3');
+  Vol3.SetValue(80);
+  Vol3.SetStep(5);
+  Vol3.SetLowLimit(60);
+  Vol3.SetHiLimit(100);
+  Vol3.SetTolerance(0.05);
+//Vol3.Show(0, 400);
+
+  Projeto.Rosenbrock.ShowManager(0, 285);
+end.

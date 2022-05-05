@@ -1,0 +1,163 @@
+  Versao   Descricao
+
+    0.01   - Iniciando a construcao das interfaces graficas
+
+    0.02   - Implementando a funcionalidade basica das classes e interfaces
+
+    0.03   - Iniciando a implemntacao da funcionalidade do programa
+
+    1.00   - Funcionalidade basica implementada
+
+    1.01   - Bug fix na execucao do IPHS1 DOS
+           - Leitura do Hidrograma Resultante de cada objeto
+
+    1.02   - Geracao de varios graficos como resultado
+
+    1.04   - Separacao de Escoamento - SCS (Inteiro para Real)
+
+    1.05   - Legendas das Series nos graficos so aparecem se existe mais de uma Serie
+
+    1.06   - O IPHS1 DOS exige que o nome dos arquivos tenha no maximo 8 caracteres (ExecutarSimulacao)
+
+    1.07   - Sistema de Ajuda implementado
+
+    1.08   - Graficos agora apresentam planilha com os dados plotados
+
+    1.10   - Bugs Fixs
+
+    1.20   - Compilado com Delphi 6 pela primeira vez
+
+    1.21   - Clonagem de PCs e Reservatorios
+
+    1.22   - Copia dos dados das instancias
+           - Conversao PC --> RES --> PC
+
+    1.23   - Retirada das interfaces as opcoes GHC e ITH
+           - Restricao no Numero de Intervalos de Chuva X Numero de Intervalos
+           - Criacao da Janela de Historico
+
+    1.24   - Bug fix na identificacao dos objetos pelo Numero da Operacao Hidrologica
+
+    1.30   - Revisada a forma do calculo dos numero dos hidrogramas de entrada e saida dos objetos    
+           - Bug fix em MostrarTabPrecipitacao dos Objetos
+           - Agora nos graficos de Hidrograma Resultante aparecem os Hid. de Entrada e os de Saida
+           - Plotagem de Hidrogramas Resultantes em um mesmo grafico
+           - Hidrogramas Resultantes em uma mesma planilha
+           - Bug Fix no posicionamento dos objetos quando existe Scroll
+           - Melhorias na Janela Principal
+           - Selecionar o projeto tambem pelo caption da janela
+           - Utilizando caminhos relativos para os arquivos (sempre que nao comecar por x:\)
+           - Janelas de Graficos e Planilhas agora sao MDIChilds
+           - Remocao de objetos via tecla 'DEL'
+           - Duplo-Click no gerenciador de objetos abre o dialogo de edicao
+           - Tratamento apropriado para o estilo MDIChild em Graficos
+           - Ajustes no Dir. de Saida dos arquivos
+           - Grafico do Hid. Resultante das Sub-Bacias agora possuem Planilha
+           - Melhorado os Titulos das janelas de graficos e planilhas
+           - O '.' e o separador decimal para todos os arquivos de dados
+
+    1.31   - Codigo da operacao e somente para leitura
+           - 'Mixima' corrigida para 'Minima'
+           - Bug fix no menu Fechar da janela principal
+           - Vol. Escoado retirado dos graficos
+           - Padronizacao das unidades utilizadas pelo sistema
+           - Exclusao do Menu SubBacia: Plotar Perdas X P.Efetiva
+           - Exclusao da Prec.Acum. do grafico da Tabela de Precipitacao
+           - Opcao de tipo de arquivo setado para Chuva Acumulada
+
+    1.32   - Melhorias Gerais
+           - Bug fix no Hidrograma Lido das Sub-Bacias
+
+    1.34   - Varias modificacoes
+           - Melhorias nas validacoes
+
+    1.35   - Bug fix na geracao de codigo do PascalScript
+
+    1.36   - Incluido mais algumas opcoes na biblioteca de Graficos do PascalScript.
+
+    1.40   - O sistema aceita agora varias estruturas extravasoras para os reservatorio.
+           - Criacao do utilitario 'CurvasIDF'
+           - Criacao do utilitario 'Calculo de CN'
+           - Pronto para a implementacao de Multi-linguagem (portugues, espanhol, ingles)
+
+    1.45   - Melhoramentos na interface
+           - Assistente de preenchimento de dados
+           - As validacoes dos dados agora somente sao realizadas na execucao de uma simulacao
+           - Possibilidade do intervalo de simulacao ser maior que a duracao da chuva
+           - Melhoramentos dos utilitarios 'CurvasIDF' e 'Calculo de CN'
+
+    1.50   - Concertado 'ASH' por 'NASH'
+           - Vinculado o metodo IPHII com o CLARK e vice-versa
+           - Por default, 1 posto de chuva = 1.00
+           - Trocado label 'Reordenar Tormenta'
+           - Trocado FI por simbolo do vazio (cod. ascii 216)
+           - Label trocado: 'm3/s' por '1000 m3'
+           - Adicionado ao icone 'raio' a palavra 'Simular'
+           - Trocado label 'Executar' por 'Simular'
+           - Retirado em Musk-Cunge o N. do hid. de cont. literal
+           - Melhorias na remocao de objetos
+           - Ajuda de como comecar a edicao de um projeto em branco
+           - Arrumado pedido de salvamento de proj. modificado quando o programa era fechado.
+           - Formatado numeros em duas casas dec. nas planilhas
+           - Entrada de chuva atraves de Planilha, arquivo e IDF
+           - 'Imprime tabela de perdas' agora sempre e verdadeiro e a opcao foi retirada da tela
+           - Proy.exe atualizado para a versao 1.5
+
+    1.51   - Miscelaneos
+
+    2.00   - Novo metodo no Trecho-Dagua (Muskingum-Cunge para Conduto Fechado).
+           - Plotagem de Curvas de Vazoes Controladas
+           - Plotagem de Extravazamentos em Trechos-Dagua
+           - Restruturacao das informacoes no reservatorio
+           - Animacao dos Niveis do Reservatorio.
+           - Nova operacao implementada (Derivacao com % de vazao)
+           - Melhorias Gerais
+
+    2.01   - Melhorias Gerais
+           - Novas Validacoes
+           - Novos dados nos trechos-dagua
+           - Reformulacao da interface do 'Caculo de CN'
+
+    2.02   - Bug fix na escolha do tipo de tormenta ao selecionar um arquivo
+           - Bug fix na formatacao dos valores dos Coefs. de Thiessen
+           - Os arquivos gerados (.ent, .sai, comentarios) saem agora em uma janela filha
+
+    2.03   - Miscelaneos
+
+    2.061  - Bug fix no hidrograma lateral (sujeira)
+           - Bug fix dos memos nos windows 9x
+           - Bug fix na acao de remocao de alguns componentes da rede hidrologica
+           - Bug fix no redimensionamento de janelas na Janela Principal
+           - Remocao dos dir. de saida e pesquisa
+           - Remocao de dois itens do menu Visualizar
+           - Vazao de Referencia nao e mais impressa quando tipo = Munkingum-Cunge Nao Linear
+           - Em Munkingum-Cunge Nao Linear o 'Num. de Sub-Trechos' e o 'Intervalo de Tempo de Calculo',
+             por enquanto, nao podem ser automaticos, isto e, deverao ser diferentes de 0
+           - Derivacoes so podem ser criadas nos ultimos PCs
+           - Validacoes nos Orificios e Vertedores dos Reservatorios
+           - Melhorias no mecanismo de nomenclatura dos objetos
+           - A arvore de objetos agora mostra as sub-bacias dos Trechos-Dagua
+           - Graf. CExHR agora tambem plota os dados observados
+           - Mais validacoes nas opcoes das sub-bacias
+
+    2.08   - Mais algumas validacoes
+           - Possibilidade do uso de derivacoes intermediarias
+           - Corrigido o problema de copia de algums objetos
+           - Corrigido o problema de visualizacao das cotas do reservatorio em Planilha
+           - Melhorado o grafico de Cotas do reservatorio
+           - Corrigido a validacao do metodo HYMO nas Sub-Bacias
+           - Malhorado visualizacao do nivel dos reservatorios
+           - Validacao do arquivo de Dados Observados
+           - Redefinida a interface para os condutos fechados
+           - Desabilitada a opcao 'dados observados' nos PCs
+           - Plotagem do Hidrograma resultante nas Derivacoes
+           - Miscelaneos
+
+    2.10   - Ajustes na interface dos condutos fechados
+
+    2.11   - Bug fix na definicao do codigo da operacao 'Hidrograma Lido'
+           - Melhor controle sobre a definicao dos postos de chuva de um projeto
+           - Melhorias nos graficos
+
+    2.12   - Melhorado a verificacao da soma dos coeficientes de Thiessen 
+

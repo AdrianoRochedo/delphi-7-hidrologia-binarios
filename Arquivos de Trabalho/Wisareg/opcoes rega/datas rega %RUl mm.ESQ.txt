@@ -1,0 +1,13 @@
+           3\\tipo de esqumema de rega {1,2,3,5}
+       0.70       0.40       0\\(% de RU na camada inicial) (% de RU na camada restante) (numero de dias para parar a rega)
+           5\\numero de regas
+ 10/04 \\data da 1ª rega
+      0.55 \\volume a regar (% de RU) se for maior que 1 é entendido como volume 
+ 20/06
+      0.45
+ 30/06
+      0.35
+ 10/07
+      0.24
+ 19/08
+      0.26

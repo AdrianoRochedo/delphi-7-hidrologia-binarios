@@ -1,0 +1,121 @@
+program PlanejaRegraPadrao;
+
+var Saida    : object; {Variável já inicializada pelo sistema}
+    Projeto  : object; {Variável já inicializada pelo sistema}
+
+    // Declaração das variáveis auxiliares
+    PCReserv   : string;  // Var. p/ conter o nome do primeiro PC da lista
+    PCDemandas : string;  // Var. p/ conter o nome do último PC da lista
+    VListaPCs  : object;  // Vetor p/ conter os PCs desde o Reserv. até as demandas
+    N          : integer; // Número de PCs da lista
+    I          : integer; // Var. p/ indexar a lista
+    PC         : object;  // Var. p/ conter o objeto PC (qualquer PC)
+    dt         : integer; // Intervalo de Tempo
+
+    Dem1, Dem2, Dem3 : real; // Demandas prim., sec. e terciária de cada PC
+    Ret1, Ret2, Ret3 : real; // Fração de retorno das respectivas demandas
+    SB               : real; // Afluência das sub-bacias aos PCs
+    DemResidual      : real; // Demanda não atendida pelas afluências das bacias
+    DemResidualHm3   : real; // Demanda não atendida pelas afluências em Hm3
+    AfluHm3          : real; // Afluência total ao reservatório em Hm3
+    VolInicInterv    : real; // Volume do reservatório no início do dt
+    VolDisp          : real; // Volume disponível no reservatório no início do dt
+    CapUtil          : real; // Capacidade Util do Reservatório (VOLmax-VOLmin)
+    Disp             : real; // Disponibilidade hídrica no intervalo de tempo
+    Dispm3           : real; // Disponib. hídrica no intervalo de tempo em m3/s
+    L                : real; // Vazão de água a liberar do reservatório no dt
+    Vertimento       : real; // Vertimento no reservatório (excesso de água) no dt
+    Vertimentom3     : real; // Vertimento no reservatório em m3/s
+
+    VDefluPlan       : object;  // Vetor auxiliar para defluvio planejado
+    Int_Simul        : integer; // Número de intervalos de simulação
+
+begin
+  dt := Projeto.ObtemDeltaT; // Obtem Delta-T atual e atribui à variável dt
+  Int_Simul := Projeto.Total_IntSim; // Obtem o número de intervalos de simulação
+  
+  if dt = 1 {and (GlobalObjects.Exists('LiberaOpera')} then
+     begin
+      // Criação da variável global VecDefluPlan
+      VDefluPlan := CreateObject(TwsDFVec, Int_Simul); // Cria objeto vetor aux.
+      GlobalObjects.Add('VDefluPlan', VDefluPlan);     // Adiciona-o à lista global
+      // Entrada de dados do usuário via arquivo EXCELL
+        {Os nomes dos PCs reservatório e das demandas a serem atendidas}
+      PCReserv := 'Queimado';
+      PCDemandas := 'PC_15';
+
+      // Criação e atribuição da lista de PCs apartir dos pontos dados pelo usuário
+      VListaPCs := Projeto.PCsEntreDois(PCReserv,PCDemandas);
+      N := VListaPCs.Count; // Obtem o número de elementos da lista de PCs
+     end
+  else
+     VDefluPlan := TwsDFVec(GlobalObjects.Get('VDefluPlan')); // Recupera var. globais
+
+  {Atribui à var. PC o primeiro PC (reservatório), permitindo o acesso a quaisquer
+   atributos do PC reservatório}
+  PC      := VlistaPCs.GetObject(1); // Atribui o Reserv. à var. PC
+  CapUtil := PC.VolumeMaximo-PC.VolumeMinimo; // Calcula a capacidade útil do reserv.
+  AfluHm3 := PC.m3_Hm3_Intervalo(PC.ObtemVazaoAfluenteSBs);
+
+  if dt = 1 then VolInicInterv := PC.VolumeInicial
+            else VolInicInterv := PC.ObtemVolume(dt-1);
+
+  VolDisp := VolInicInterv - PC.VolumeMinimo; // Calcula o vol. disp. atual do res.
+  Disp    := VolDisp + AfluHm3; // Calcula a disponibilidade hídrica no res. no Dt
+  Dispm3  := PC.Hm3_m3_Intervalo(Disp); // Converte Disp para m3
+  Vertimento   := Disp - CapUtil; // Calcula o possível vertimento do reserv.
+  Vertimentom3 := PC.Hm3_m3_Intervalo(Vertimento); // Converte Vertimento p/ m3
+
+  for I = 2 to N do
+    begin
+      PC := VlistaPCs.GetObject(I); // Atribui o PC de índice I à var. PC
+      Dem1 := PC.ObtemValorDemanda(dt, 1, 'T'); // Demanda Prim.(1) Total (T) no dt
+      Dem2 := PC.ObtemValorDemanda(dt, 2, 'T'); // Demanda Sec.(2) Total (T) no dt
+      Dem3 := PC.ObtemValorDemanda(dt, 3, 'T'); // Demanda Terc.(3) Total (T) no dt
+      Ret1 := PC.FatorDeRetorno(1); // Fator de Retorno da Demanda Primária do PC
+      Ret2 := PC.FatorDeRetorno(2); // Fator de Retorno da Demanda Secundária do PC
+      Ret3 := PC.FatorDeRetorno(3); // Fator de Retorno da Demanda Terciária do PC
+      SB   := PC.ObtemVazaoAfluenteSBs; // Vazão Afluente das Sub-bacias no dt
+      // Cálculo da demanda (residual) não atendida pelas afluências das sub-bacias
+      DemResidual := DemResidual + (1 - Ret1) * Dem1 + (1 - Ret2) * Dem2 +
+                                   (1 - Ret3) * Dem3 - SB
+    end;
+    
+  // Cálculo da demanda residual - Desconsiderar os retornos do último PC
+  DemResidual := DemResidual + Ret1 * Dem1 + Ret2 * Dem2 + Ret3 * Dem3
+  DemResidualHm3 := PC.m3_Hm3_Intervalo(DemResidual);
+
+  {Quando a água geranda nas próprias sub-bacias atenderem as demandas o valor
+   de DemResidual será negativo. Então faz-se L = 0}
+  if DemResidual <= 0 then L := 0
+  else // Se afluências das sub-bacias não atendem às demandas, aplica-se a Regra Padrão
+    if Disp <= 0 then L := 0 // Verifica a disp. hídrica p/ atender às demandas
+    else
+      if Disp < DemResidualHm3 then L := Dispm3
+      else
+        if Disp <= CapUtil then L := DemResidual
+        else
+          if Vertimento < DemResidualHm3 then L := DemResidual
+          else L := Vertimentom3;
+
+  {O valor a ser liberado é atribuído à propriedade (variável) DefluvioPlanejado
+   no intervalo dt, ou seja, DeltaT atual}
+  PC.AtribuiDefluvioPlanejado(dt, L);
+  VDefluPlan.Set(dt, L);
+
+  // Escrita do Arquivo LOG
+     Saida.WriteLN('-----------------------');
+     Saida.WriteLN('Planeja');
+     Saida.WriteLN('Intervalo         : ' + ValToStr(dt));
+     Saida.WriteLN('Vol.Inic. Interv. : ' + ValToStr(VolInicInterv));
+     Saida.WriteLN('Vol. Disp.        : ' + ValToStr(VolDisp));
+     Saida.WriteLN('Vol. Max.         : ' + ValToStr(PC.VolumeMaximo));
+     Saida.WriteLN('Vol. Min.         : ' + ValToStr(PC.VolumeMinimo));
+     Saida.WriteLN('Vz. Aflu.         : ' + ValToStr(PC.ObtemVazaoAfluenteSBs));
+     Saida.WriteLN('Disp              : ' + ValToStr(Disp));
+     Saida.WriteLN('DemResiualdHm3    : ' + ValToStr(DemResidualHm3));
+     Saida.WriteLN('CapUtil           : ' + ValToStr(CapUtil));
+     Saida.WriteLN('Vertimento        : ' + ValToStr(Vertimento));
+     Saida.WriteLN('L                 : ' + ValToStr(L));
+
+end.

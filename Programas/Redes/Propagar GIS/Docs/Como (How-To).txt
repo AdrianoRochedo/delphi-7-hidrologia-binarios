@@ -1,0 +1,63 @@
+  - Implementar diálogos para gerenciamento dos dados dos objetos
+    - Devemos prover os Métodos para os descendentes de TprBase2:
+      - CriaDialogo        (Para criação polimórfica da interface)
+      - PegaDadosDoDialogo (Pega os dados fornecidos pelo usuário)
+      - PoeDadosNoDialogo  (Põe os dados que estão na instância no diálogo)
+      - ValidaDados        (Valida os dados digitados [Opcional].
+                           (O método detecta automaticamente se estamos editando as
+                            informações no Diálogo ou não)
+
+  - Implementar armazenagem/recuparação de informações
+    - Devemos prover os métodos para os descendentes de TprBase2:
+      - LerDoArquivo       (Recupera informações armazenadas em disco)
+      - SalvarEmArquivo    (Armazena informações em disco)
+
+  - Implementar representação visual
+    - Devemos prover:
+      - Uma classe descendente de TBaseShape (implementa a representação visual)
+      - Sobreescrever o método "CriaImagem" nos descendentes de TprBase2
+        (método que cria uma instância de um descendente de TBaseShape)
+
+  - Implementar o gerenciamento dos dados
+    - Devemos prover os seguintes métodos para os descendentes de TprBase2:
+      - AdicionaObjeto     (faz as conecções com outros objetos)
+      - ObtemPrefixo       (obtém um prefixo para o objeto)
+      - ValidaDados        (Valida os dados armazenados na instância)
+
+  - Implementar a Destruição dos Objetos
+    - Todos os objetos destroem seus próprios objetos
+    - No caso dos PCs e SubBacias, eles contém outros objetos (listas)
+      - Portanto, cada objeto deverá em um certo momento destruir seus objetos referenciados.
+        - Isto é feito no Método LimpaObjetos que não está atrelado ao método Destroy
+      - Olhar também os métodos que respondem a mensagem: UM_OBJETO_SE_DESTRUINDO
+
+  - Implementar o gerenciamento visual da rede
+    - Olhar método AtualizaTela da Área de Projeto
+    - Olhar o método "Paint" de cada descendente de TBaseShape na umidade Shapes.pas
+
+  - Fazer para os objetos poderem receber mensagens através da rotina "SendMessageToObjects"
+    - 1. Os objetos precisam ser descendentes de TadvObject
+    - 2. Estes objetos precisam sobreescrever o método ReceiveMessage
+    - 3. Estes objetos devem registrar as mensagens que querem receber
+    - 4. Ao serem destruídos, estes objetos devem de-registrar as mensagens
+
+  - Fazer para obter os dados de tabelas indexadas por datas. Ex: Tabale de Unidades de Demanda
+    - 1. Devemos informar ao objeto que contém as tabelas a Data atual
+         A data atual pode ser obtida convertendo-se o Delta T atual para uma Data
+    - 2. Acessando as tabelas através das propriedades:
+           UnidadeDeDemanda
+           UnidadeDeConsumo
+           FatorDeImplantacao
+
+  - Implementar uma Simulação
+    - Sobreescrever o método "PrepararParaSimulacao" nos descendentes de TprBase2
+    - Olhar os métodos da Área de Projeto:
+      - IniciarSimulacao_1
+      - FinalizarSimulacao_1
+      - Temporizador_1
+      - Simulacao_1
+      - AtualizacaoVisual_1;
+      - SimulacaoTerminou
+      - DisparaSimulacao
+
+

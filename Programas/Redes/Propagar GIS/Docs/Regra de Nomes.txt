@@ -1,0 +1,24 @@
+PREFIXOS (para variáveis ou constantes):
+
+  g       : Variáveis Glovais (Acessíveis em todo software)
+  i       : Variáveis do tipo Inteiras
+  f       : Variáveis do tipo Reais (ponto flutuante)
+  s       : Variáveis do tipo String
+  p       : Variáveis Ponteiro
+  a       : Variáveis do tipo Array
+  F       : Indica que a variável é um campo privado de um Objeto (Field)
+
+  cMSG    : Constante mensagem de erro (string)
+  ca      : Constante Array
+
+  UM      : sigla de User Message
+  AM      : sigla de Application Message
+
+PREFIXOS (para tipos):
+
+  T       : Classes
+  TRec    : Registros
+  TEnum   : Tipo enumerado --> Ex: (aaa, bbb, ccc)
+  TSet    : Tipo conjuntos --> Set Of ...
+
+

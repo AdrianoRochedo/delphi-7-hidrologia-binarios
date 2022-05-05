@@ -1,0 +1,350 @@
+CasaboBase - Situacion Actual
+       150        43         1        72    3600.0
+         1         1
+      1.02      1.09      1.17      1.27      1.39      1.54      1.74      2.03
+      2.47      4.85      8.53     15.18      8.53      4.85      2.47      2.03
+      1.74      1.54      1.39      1.27      1.17      1.09      1.02      0.98
+      0.96      0.93      0.91      0.88      0.88      0.84      0.82      0.81
+      0.79      0.77      0.76      0.74      0.73      0.72      0.71      0.69
+      0.68      0.67      0.66      0.65      0.64      0.63      0.63      0.62
+      0.60      0.60      0.59      0.58      0.57      0.57      0.56      0.55
+      0.54      0.54      0.53      0.52      0.52      0.52      0.51      0.51
+      0.50      0.49      0.49      0.48      0.48      0.47      0.47      0.47
+Transformação Chuva-Vazão - Sub-bacia G - G
+         3         1         1         1         1         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         5
+      35.0       1.3       2.0      10.0
+         2         0
+      0.61       7.8
+Propagação em Rio - TrechoDagua 10 - 10
+         2         0         1         1         2         1         0         1
+       0.0       0.0
+         5         2
+       0.0         2
+      0.03
+         1       6.0      15.0       0.0       0.0      0.02     400.0      10.0       4.0       0.0         0         0
+         1       6.0      15.0       0.0       0.0      0.02
+Transformação Chuva-Vazão - Sub-bacia J - J
+         3         1         1         1         3         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         2
+      72.0
+         2         0
+      0.48       4.2
+Propagação em Rio - TrechoDagua 14 - 14
+         2         0         1         1         4         3         0         1
+       0.0       0.0
+         2
+       0.0
+      45.0       6.0     350.0      12.0       7.0         0         0      0.02         0
+Transformação Chuva-Vazão - Sub-bacia B - B
+         3         1         1         1         5         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         2
+      80.0
+         2         0
+      0.45       8.0
+Transformação Chuva-Vazão - Sub-Bacia C - C
+         3         1         1         1         6         0         0         1
+       0.0       0.0       0.0
+         1         1
+         1
+         1
+       0.5
+         5
+      25.0       1.4       2.5      10.0
+         2         0
+      0.45       5.4
+Soma de Hidrogramas - Ponto de Controle 1 - 
+         5         0         1         1         7         0         0         1
+       0.0       0.0
+         2
+         5         6
+Transformação Chuva-Vazão - Sub-bacia C1 - C1
+         3         1         1         1         8         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         2
+      83.0
+         2         0
+      0.15       5.4
+Propagação em Rio - TrechoDagua 6 - 6
+         2         0         1         1         9         7         0         1
+       0.0       0.0
+         2
+       0.0
+      30.0       6.0     250.0      12.0       7.0         0         0      0.02         8
+Transformação Chuva-Vazão - Sub-bacia D - D
+         3         1         1         1        10         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         1
+      20.0       5.0       0.3       2.5      0.01       0.0
+         4         0
+       3.0       7.0       1.5      0.51
+Propagação em Rio - TrechoDagua 1 - 
+         2         0         1         1        11        10         0         1
+       0.0       0.0
+         4
+       0.0
+       3.0       1.0     257.0      10.0       6.0         0         0      0.02         0
+      70.0      0.01       5.0
+Transformação Chuva-Vazão - Sub-bacia K1 - K1
+         3         1         1         1        12         0         0         1
+       0.0       0.0       0.0
+         1         1
+         1
+         1
+       0.5
+         4
+      12.0       6.0
+         2         0
+      0.45       3.0
+Transformação Chuva-Vazão - Sub-bacia K - K
+         3         1         1         1        13         0         0         1
+       0.0       0.0       0.0
+         1         1
+         1
+         1
+       0.5
+         4
+      13.0       6.0
+         2         0
+       0.2       1.8
+Soma de Hidrogramas - Ponto de Controle 15 - 
+         5         0         1         1        14         0         0         1
+       0.0       0.0
+         3
+         4        12        13
+Propagação em Rio - TrechoDagua 13 - 13
+         2         0         1         1        15        14         0         1
+       0.0       0.0
+         2
+       0.0
+      50.0       6.0     300.0      12.0       5.0         0         0      0.03         0
+Transformação Chuva-Vazão - Sub-bacia A - A
+         3         1         1         1        16         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         4
+      10.0       5.0
+         2         0
+      0.52      10.0
+Soma de Hidrogramas - Ponto de Controle 2 - 
+         5         0         1         1        17         0         0         1
+       0.0       0.0
+         2
+         9        16
+Propagação em Rio - TrechoDagua 5 - 5
+         2         0         1         1        18        17         0         1
+       0.0       0.0
+         2
+       0.0
+      70.0       5.0     350.0      12.0       6.0         0         0      0.03         0
+Transformação Chuva-Vazão - Sub-bacia H - H
+         3         1         1         1        19         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         3
+       0.4      35.0       1.2       1.0
+         3         0
+       0.1       1.0       1.5
+Transformação Chuva-Vazão - Sub-bacia H1 - H1
+         3         1         1         1        20         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         3
+       0.5      30.0       1.3       1.0
+         3         0
+      0.21       1.0       1.5
+Soma de Hidrogramas - Ponto de Controle 14 - 
+         5         0         1         1        21         0         0         1
+       0.0       0.0
+         3
+         2        19        20
+Propagação em Rio - TrechoDagua 9 - 9
+         2         0         1         1        22        21         0         1
+       0.0       0.0
+         5         1
+       0.0         0
+         2       4.0       0.0       0.0       0.0      0.02     430.0      12.0       5.5       0.0         0         0
+Transformação Chuva-Vazão - Sub-Bacia E - E
+         3         1         1         1        23         0         0         1
+       0.0       0.0       0.0
+         1         1
+         1
+         1
+       0.5
+         2
+      80.0
+         2         0
+      0.45       4.8
+Transformação Chuva-Vazão - Sub-bacia E1 - E1
+         3         1         1         1        24         0         0         1
+       0.0       0.0       0.0
+         1         1
+         1
+         1
+       0.5
+         2
+      80.0
+         2         0
+      0.15       2.4
+Soma de Hidrogramas - Ponto de Controle 12 - 
+         5         0         1         1        25         0         0         1
+       0.0       0.0
+         3
+        11        23        24
+Propagação em Rio - Trecho Dagua 2 - 
+         2         0         1         1        26        25         0         1
+       0.0       0.0
+         4
+       0.0
+      26.0       9.0     265.0      12.0       8.0         0         0      0.02         0
+      70.0      0.01       6.0
+Propagação em Rio - TrechoDagua 3 - 
+         2         0         1         1        27        26         0         1
+       0.0       0.0
+         2
+       0.0
+      50.0       6.0     355.0      11.0       4.0         0         0      0.03         0
+Transformação Chuva-Vazão - Sub-bacia F - F
+         3         1         1         1        28         0         0         1
+       0.0       0.0       0.0
+         1         1
+         1
+         1
+       0.5
+         2
+      70.0
+         2         0
+      0.08       2.4
+Transformação Chuva-Vazão - Sub-bacia F1 - F1
+         3         1         1         1        29         0         0         1
+       0.0       0.0       0.0
+         1         1
+         1
+         1
+       0.5
+         2
+      75.0
+         2         0
+      0.17       4.8
+Soma de Hidrogramas - Ponto de Controle 13 - 
+         5         0         1         1        30         0         0         1
+       0.0       0.0
+         3
+        27        28        29
+Propagação em Rio - TrechoDagua 4 - 
+         2         0         1         1        31        30         0         1
+       0.0       0.0
+         1         5      12.0       6.0       8.0
+       0.2    3600.0       0.0
+       0.2    3600.0      10.0
+       0.2    3600.0      15.0
+       0.2    3600.0      20.0
+       0.2    3600.0      40.0
+Soma de Hidrogramas - Ponto de Controle 5 - 
+         5         0         1         1        32         0         0         1
+       0.0       0.0
+         2
+        18        31
+Propagação em Rio - TrechoDagua 7 - 7
+         2         0         1         1        33        32         0         1
+       0.0       0.0
+         2
+       0.0
+      45.0       6.0     250.0       4.0       0.0         0         0      0.03         0
+Soma de Hidrogramas - Reservatorio 1 - 1
+         5         0         1         1        34         0         0         1
+       0.0       0.0
+         2
+        22        33
+Propagação em Reservatório - Reservatorio 1 - 1
+         1         0         1         1        35        34         0         1
+       0.0       0.0
+         0       0.0       7.5         6
+       0.0       0.0
+       2.0    1000.0
+       4.0    2000.0
+       6.0    3000.0
+       7.0    3500.0
+       8.0    4000.0
+         1         0       0.2
+       1.5      10.0       7.0
+Transformação Chuva-Vazão - Sub-bacia I1 - I1
+         3         1         1         1        36         0         0         1
+       0.0       0.0       0.0
+         1         0
+         1
+         1
+         3
+       0.6      25.0       1.3       1.0
+         3         0
+      0.31       2.0       0.5
+Propagação em Rio - TrechoDagua 11 - 11
+         2         0         1         1        37        35         0         1
+       0.0       0.0
+         1         4       9.0       3.0       7.0
+       0.5    1200.0       0.0
+       0.5    1200.0      15.0
+       0.5    1200.0      20.0
+       0.5    1200.0      34.0
+Transformação Chuva-Vazão - Sub-bacia I - I
+         3         1         1         1        38         0         0         1
+       0.0       0.0       0.0
+         1         1
+         1
+         1
+       0.5
+         3
+       0.5      20.0       1.3       1.0
+         3         0
+      0.37       1.0       1.5
+Soma de Hidrogramas - Ponto de Controle 6 - 
+         5         0         1         1        39         0         0         1
+       0.0       0.0
+         2
+        37        38
+Propagação em Rio - TrchoDagua 12 - 12
+         2         0         1         1        40        39         0         1
+       0.0       0.0
+         5         1
+       0.0         0
+         2       8.0       0.0       0.0       0.0      0.03     400.0      12.0       4.0       0.0         0         0
+Soma de Hidrogramas - Ponto de Controle 7 - 
+         5         0         1         1        41         0         0         1
+       0.0       0.0
+         2
+        15        40
+Propagação em Rio - TrechoDagua 15 - 15
+         2         0         1         1        42        41         0         1
+       0.0       0.0
+         4
+       0.0
+      20.0       5.0     390.0      12.0       4.0         0         0      0.02         0
+      50.0      0.01       4.0
+Derivação - Derivacao 1 - 1
+         8         0         1         1        43        42         0         1
+       0.0       0.0
+       0.2

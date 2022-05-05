@@ -1,0 +1,24 @@
+PROJETO ------------
+NivelDeFalha
+
+PCP ----------------
+RendiAduc
+RendiTurb
+RendiGera
+QMaxTurb
+QuedaFixa
+DemEnergetica
+
+PCPR -------------------------
+VolumeMaximo
+VolumeMinimo
+VolumeInicial
+CotaJusante
+
+DEMANDA ----------------------
+EscalaDeDesenvolvimento
+FatorDeConversao
+FatorDeRetorno
+UnidadeDeConsumo (ano, mes)
+UnidadeDeDemanda (ano)
+FatorDeImplantacao (ano)

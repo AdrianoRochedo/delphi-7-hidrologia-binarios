@@ -1,0 +1,18 @@
+Trecho-Dagua
+
+edC       Comprimento            FComprimento
+edASM     AreaSecaoMedia         FAreaSecaoMedia
+edPSM     PerimSecaoMedia        FPerimSecaoMedia
+edLBSM    LargBocaSecaoMedia     FLargBocaSecaoMedia
+edRH      RaioHidrologico        FRaioHidrologico
+edCM      CoefManning            FCoefManning
+edD       Declividade            FDeclividade
+
+Descarga
+
+edCargaDBOC    CargaDBOC          FCargaDBOC       
+edCargaDBON    CargaDBON          FCargaDBON       
+edCargaColif   CargaColiformios   FCargaColiformios
+edConDBOC      ConcentracaoDBOC   FConcentracaoDBOC
+edConDBON      ConcentracaoDBON   FConcentracaoDBON
+

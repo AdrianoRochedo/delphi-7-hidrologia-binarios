@@ -1,0 +1,190 @@
+program Geral_IndicesProbabilisticos_TodosPCs;
+
+var
+ //Variáveis pré-declaradas:
+   // Saida          : Object;
+   // Projeto       : Object;
+
+ //Declaração de variáveis auxiliares
+    Alfa     : Real; // Índice de Confiabilidade
+    TFmedio  : Real; // Tempo médio em falha
+    Resil    : Real; // Índice de Resiliência
+    VulTot   : Real; // Índice de Vulnerabilidade Total
+    VulRelat : Real; // Índice de Vulnerabilidade Relativa
+
+    IntTotal : Integer; // Intervalos totais de simulação
+    i        : Integer; // Contador inteiro
+    iPC      : Integer; // Contador de PCs
+    Zt       : Integer; // Contador dos Zs
+    Wt       : Integer; // Contador dos Ws
+
+    Cor      : Integer; //
+
+    // Objetos que irão conter o vetor com as demandas, de referência e atendidas,
+    // para cada prioridade
+    // 1 - primária
+    // 2 - secundária
+    // 3 - tercíária
+    DemRef1, DemRef2, DemRef3       : Object;
+    DemAtend1, DemAtend2, DemAtend3 : Object;
+
+    PC       : Object; // Objeto que vai conter os Pontos Característicos
+    Planilha : Object; // Objeto que vai conter uma planilha
+    Grafico  : Object; // Objeto que vai conter um gráfico
+    S1       : Object; // Objeto auxiliar que vai conter uma série para o gráfico
+    S2       : Object; // Objeto auxiliar que vai conter uma série para o gráfico
+    S3       : Object; // Objeto auxiliar que vai conter uma série para o gráfico
+    S4       : Object; // Objeto auxiliar que vai conter uma série para o gráfico
+
+    Aux      : Real; // variável auxiliar
+    Soma     : Real; // Variável para efetuar uma soma
+
+    Pri      : integer; // Variável para o laço entre as prioriades das demandas
+
+Begin
+     // Obtenção do intervalo total de simulação através de uma propriedade da classe projeto
+     IntTotal := Projeto.Total_IntSim;
+
+     // Preparação dos vetores para as demandas de referência e atendidas
+     DemRef1   := Createobject(TwsSFVec,IntTotal);   // Demanda de referência primária
+     DemAtend1 := Createobject(TwsSFVec,IntTotal);   // Demanda atendida primária
+     DemRef2   := Createobject(TwsSFVec,IntTotal);   // Demanda de referência secundária
+     DemAtend2 := Createobject(TwsSFVec,IntTotal);   // Demanda atendida secundária
+     DemRef3   := Createobject(TwsSFVec,IntTotal);   // Demanda de referência terciária
+     DemAtend3 := Createobject(TwsSFVec,IntTotal);   // Demanda atendida terciária
+
+     // Iniciação de parâmetro:
+     for Pri := 1 to 3 do // a variável Pri armazena a prioridade de demanda corrente
+
+       // início do laço entre os PCs que vai de 0(zero), para o primeiro PC,
+       // até 19, que corresponde ao PC 20
+       for iPC := 0 to Projeto.NumPCs-1 do
+         Begin
+           PC := Projeto.PC(iPC); // O Objeto PC recebe o PC do laço Ipc corrente.
+
+           // Início do laço que pecorre todos os intervelos de tempo
+           for i := 1 to IntTotal do
+             if Pri = 1 // Se a variável Pri corresponde à demanda primária
+               then
+                 Begin
+                   Aux := PC.ObtemValorDemanda(i, Pri, 'T');
+                   DemRef1.Set(i, Aux);
+                   Aux := PC.ObtemValorDemanda(i, Pri, 'A');
+                   DemAtend1.Set(i, Aux);
+                 End
+               else
+                 if Pri = 2 // Se a variável Pri corresponde  à demanda secundária
+                   then
+                     Begin
+                       Aux := PC.ObtemValorDemanda(i, Pri, 'T');
+                       DemRef2.Set(i, Aux);
+                       Aux := PC.ObtemValorDemanda(i, Pri, 'A');
+                       DemAtend2.Set(i, Aux);
+                     End
+                   else // A variável Pri corresponde à demanda terciária
+                     Begin
+                       Aux := PC.ObtemValorDemanda(i, Pri, 'T');
+                       DemRef3.Set(i, Aux);
+                       Aux := PC.ObtemValorDemanda(i, Pri, 'A');
+                       DemAtend3.Set(i, Aux);
+                     End;
+         End;
+
+     // Criação dos objetos para apresentação dos resultados
+     Planilha := CreateObject(TPlanilha); // Cria uma planilha
+
+     // Preenchimento do cabeçalho da planilha
+     Planilha.Write(1, 1, 'Resultado dos Índices Probabilísticos');
+     Planilha.Write(2, 1, 'Projeto ' + Projeto.Nome);
+     Planilha.Write(4, 2, 'I.C.');
+     Planilha.Write(4, 3, 'I.R.');
+     Planilha.Write(4, 4, 'I.V.R.');
+     Planilha.Write(4, 5, 'I.V.T.');
+
+     Grafico := CreateObject(TgrGrafico); // Criação de um objeto gráfico
+
+     // Preparação das séries de barras
+     S1 := Grafico.Series.AddBarSerie('I.C.',   getColor('red'),    0, 1);
+     S2 := Grafico.Series.AddBarSerie('I.R.',   getColor('green'),  0, 1);
+     S3 := Grafico.Series.AddBarSerie('I.V.R.', getColor('yellow'), 0, 1);
+
+     Cor := getColor('TeeColor');
+
+     // -------  Início do Cálculo dos Índices Probabilísticos -----
+
+     // Laço para todos os PCs:
+
+     for iPC := 0 to Projeto.NumPCs-1 do
+         Begin
+              PC := Projeto.PC(iPC);
+              // Calculo do Índice de Confiabilidade
+              Soma := 0;
+              for i := 1 to IntTotal do
+                  Begin
+                       if DemAtend1.Get(i) < DemRef1.Get(i)
+                          then Zt := 0
+                          else Zt := 1;
+                       Soma := Soma + Zt;
+                  End;
+              Alfa := Soma/intTotal;
+
+              // Cálculo do Índice de Resiliência (Elasticidade)
+              Soma := 0;
+              for i := 1 to IntTotal-1 do
+                  Begin
+                       if Not(DemAtend1.Get(i) < DemRef1.Get(i))
+                          and (DemAtend1.Get(i+1) < DemRef1.Get(i+1))
+                            then Wt := 1
+                            else Wt := 0;
+                       Soma := Soma + Wt;
+                  End;
+              Aux := Soma/IntTotal;
+              if Aux=0
+                 then TFmedio := 0
+                 else TFmedio := (1-Alpha)/Aux;
+              if TFmedio=0
+                 then Resil := 1
+                 else Resil := 1/TFmedio;
+
+              // Cálculo do índice de vulnerabilidade
+              Soma   := 0;
+              VulTot := 0;
+              for i := 1 to IntTotal do
+                  if DemAtend1.Get(i) < DemRef1.Get(i) then
+                     begin
+                          VulTot := VulTot + DemRef1.Get(i) - DemAtend1.Get(i);
+                          Soma   := Soma + DemRef1.Get(i);
+                     end;
+              if Soma = 0
+                 then VulRelat := 0
+                 else VulRelat := VulTot/Soma;
+
+              // ------ Final do Cálculo dos Índices -----
+         end;
+
+     // Apresentação dos resultados
+     Planilha.Write(5 + iPC, 1, PC.Nome);
+     Planilha.WriteFloat(5 + iPC, 2, Alpha);
+     Planilha.WriteFloat(5 + iPC, 3, Resil);
+     Planilha.WriteFloat(5 + iPC, 4, Vulrelat);
+     Planilha.WriteFloat(5 + iPC, 5, VulTot);
+
+     S1.AddEx(Alpha,    PC.Nome, Cor);
+     S2.AddEx(Resil,    PC.Nome, Cor);
+     S3.AddEx(VulRelat, PC.Nome, Cor);
+
+     // Mostra os dados em forma de planilha e gráfico
+     Planilha.Show;
+     grafico.Show;
+
+     // libração dos objetos craidos temporariamente
+     GlobalObjects.RemoveAndFree(DemRef1);
+     GlobalObjects.RemoveAndFree(DemAtend1);
+
+     {Os objetos Planilha, grafico e Series (S1 ... S4) não deverão
+      ser destruídos,pois continuarãm a existirem após a execução de
+      script (mostrarão os dados) e serão destruídos automaticamente
+      ao serem fechados pelo usuário.}
+End.                   
+
+

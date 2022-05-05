@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Arquivo gerado pela rotina TDSInfo.SaveToFile -->
+<!-- Autor: Adriano Rochedo Conceicao -->
+
+<proceda version="2">
+  <stations>
+    <station name="_2044003_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1945002_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944016_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944010_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1946000_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2045002_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2046007_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2044007_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944004_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1845014_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1845002_M2">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944011_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_2045005_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1943000_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1943023_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1944024_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1845002_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+    <station name="_1846003_M">
+      <type></type>
+      <unit></unit>
+      <description>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+  </stations>
+</proceda>

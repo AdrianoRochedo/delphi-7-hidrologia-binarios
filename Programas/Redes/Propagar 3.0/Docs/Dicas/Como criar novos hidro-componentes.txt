@@ -1,0 +1,37 @@
+  - Crie um descendente de THidroComponente e sobreescreva os metodos:
+
+      function ObterPrefixo: String; Override;
+      function CriarDialogo: TprDialogo_Base; Override;
+      function CriarImagemDoComponente(): TdrBaseShape;  Override;
+      function ReceiveMessage(const MSG: TadvMessage): Boolean; Override;
+      procedure PegarDadosDoDialogo(d: TprDialogo_Base); Override;
+      procedure PorDadosNoDialogo(d: TprDialogo_Base); Override;
+      procedure internalToXML(); override;
+      procedure fromXML(no: IXMLDomNode); override;
+      procedure getActions(Actions: TActionList); override;
+      procedure PrepararParaSimulacao(); override;
+
+  - Crie um descendente de TprDialogo_Base
+
+  - Na janela principal atualiza os metodos:
+
+    procedure AtualizarMenus(Obj: THidroComponente);
+    procedure Ferramentas_Click(Sender: TObject);
+    function TrataStatusDoBotaoDaAreaDeProjeto(const ID_Botao: String): boolean;
+
+  - Na classe TfoAreaDeProjeto_Base atualize:
+
+    function ObjetoPodeSerConectadoEm(const ID: String; Objeto: THidroComponente): Boolean;
+    function DesenharFrame(Obj: TObject): boolean;
+    procedure DesenharRede(); virtual;
+    procedure ExecutarClick(Sender: TObject; Pos: TMapPoint; Obj: THidroComponente); virtual;
+
+  - Para Salvar e Recuperar os dados atualize:
+
+    - procedure TprProjeto.SaveToXML(const Filename: String);
+      - procedure SaveObjects()
+      - procedure SaveRelationships()
+
+    - procedure TprProjeto.LoadFromXML(const Filename: String);
+      - procedure LoadObjects()
+      - procedure LoadRelationships()

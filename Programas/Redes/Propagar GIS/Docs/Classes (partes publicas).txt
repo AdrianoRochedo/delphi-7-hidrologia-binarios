@@ -1,0 +1,571 @@
+UNIDADE pr_Classes ---------------------------------------------------------------------
+
+   TListaDeObjetos
+   TListaDePCs
+   TListaDeClassesDemanda
+   TprFalha
+   TListaDeFalhas
+   TListaDeIntervalos
+
+   TAdvObject
+      TprBase
+         TprBase2
+            TprProjeto
+            TprSubBacia
+            TprTrechoDagua
+            TprClasseDemanda
+               TprDemanda
+            TprPC
+               TprPCP
+                  TprPCPR
+
+UNIDADE DLG_DrawWIN --------------------------------------------------------------------
+
+   TprDialogo_AreaDeProjeto
+
+INTERFACES PÚBLICAS --------------------------------------------------------------------
+
+TListaDeObjetos = Class
+    constructor Create;
+    Destructor  Destroy; override;
+
+    function  IndiceDo(Objeto: TprBase2): Integer;
+    procedure Deletar(Indice: Integer);
+    function  Remover(Objeto: TprBase2): Integer;
+    function  Adicionar(Objeto: TprBase2): Integer;
+    procedure RemoverNulos;
+    procedure Ordenar(FuncaoDeComparacao: TListSortCompare);
+
+    property LiberarObjetos         : Boolean;
+    property Objeto[index: Integer] : TprBase2;
+    property Objetos                : Integer;
+end;
+
+// --------------------------//---------------------------------//-------------------------
+
+TListaDePCs = Class
+    constructor Create;
+    destructor Destroy; override;
+
+    function CriaPC(out Index: Integer; Pos: TPoint; Form: TForm; UmaTabelaDeNomes: TStrings; Menu: TPopupMenu): TprPC;
+    function CriaReservatorio(out Index: Integer; Pos: TPoint; Form: TForm; UmaTabelaDeNomes: TStrings; Menu: TPopupMenu): TprPC;
+    function AdicionaPC(PC: TprPC): Integer;
+    function RemovePC(PC: TprPC): boolean;
+    function IndiceDoPC(PC: TprPC): Integer;
+
+    procedure CalculaHierarquia;
+    procedure Ordenar;
+
+    property PCs: Integer;
+    property PC[index: Integer]: TprPC;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TListaDeClassesDemanda = class
+    constructor Create;
+    destructor Destroy; Override;
+
+    procedure LerDoArquivo(Arquivo: TIF);
+    procedure SalvarEmArquivo(Arquivo: TIF);
+
+    procedure Adicionar(DM: TprClasseDemanda);
+    procedure Editar(DM: TprClasseDemanda);
+    function  Remover(DM: TprClasseDemanda): Boolean;
+
+    procedure Limpar;
+    function  ClassePeloNome(Const NomeClasse: String): TprClasseDemanda;
+
+    property Classes                 : Integer;
+    property Classe[indice: Integer] : TprClasseDemanda;
+    property Bitmap[indice: Integer] : TBitmap;
+    property EventoDeMudanca         : TEventoDeMudanca;
+    property Projeto                 : TForm;
+    property TabelaDeNomes           : TStrings;
+end;    
+
+//--------------------------//---------------------------------//-------------------------
+
+TprFalha = class
+    constructor Create(Ano, Intervalo: Integer; Const DR, DA, NCF: Real);
+    destructor Destroy; override;
+
+    property Ano                : Integer;
+    property sAno               : String;
+    property FalhaCritica       : Boolean;
+    property Intervalos         : TListaDeInteiros;
+    property IntervalosCriticos : TListaDeBoleanos;
+    property DemsRef            : TListaDeReais;
+    property DemsAten           : TListaDeReais;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TListaDeFalhas = class
+    constructor Create(Projeto: TprProjeto);
+    Destructor  Destroy; override;
+
+    function  FalhaPeloAno(Tipo: TEnumPriorDemanda; const Ano: String): TprFalha;
+    function  Adicionar(Tipo: TEnumPriorDemanda; Intervalo: Integer; const DR, DA, NCF: Real): Integer;
+    function  MostrarFalhas: TForm;
+
+    function IntervalosTotais(Tipo: TEnumPriorDemanda): Integer;
+    function AnosCriticos(Tipo: TEnumPriorDemanda): Integer;
+    function IntervalosCriticos(Tipo: TEnumPriorDemanda): Integer;
+
+    property Projeto: TprProjeto;
+
+    property FalhaPrimaria   [i: Integer]: TprFalha;
+    property FalhaSecundaria [i: Integer]: TprFalha;
+    property FalhaTerciaria  [i: Integer]: TprFalha;
+
+    property FalhasPrimarias   : Integer;
+    property FalhasSecundarias : Integer;
+    property FalhasTerciarias  : Integer;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TListaDeIntervalos = Class
+    constructor Create;
+    destructor  Destroy; override;
+
+    procedure Adicionar(Ini, Fim: Integer; const Nome: String; Habilitado: Boolean);
+    procedure Remover(indice: Integer);
+    procedure Limpar;
+
+    property IntIni      : TListaDeInteiros;
+    property IntFim      : TListaDeInteiros;
+    property NumInts     : Integer;
+
+    property Nome       [i: Integer] : String;
+    property sDataIni   [i: Integer] : String;
+    property sDataFim   [i: Integer] : String;
+    property Habilitado [i: Integer] : Boolean;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TAdvObject = class
+    Constructor Create;
+    Destructor  Destroy; override;
+
+    procedure RegisterMessage(MSG: Cardinal);
+    function  UnRegisterMessage(MSG: Cardinal): Integer;
+    function  ReceiveMessage(Const MSG: TadvMessage): Boolean; virtual;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprBase = class(TAdvObject)
+    constructor Create;
+    destructor Destroy; override;
+
+    property Visitado   : Boolean;
+    property Projeto    : TprProjeto;
+    property Modificado : Boolean;
+    property Bloqueado  : Boolean;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprBase2 = class(TprBase)
+    constructor Create(UmaTabelaDeNomes: TStrings; Projeto: TForm);
+    destructor  Destroy; override;
+
+    function  CriarGrafico_Default(const Titulo: String; Intervalo: Integer): TgrGrafico;
+    procedure DefinirEixoX_Default(Serie: TChartSeries; Intervalo: Integer);
+
+    function  MostraDialogo: Integer;
+    procedure MostraPlanilha;
+    procedure MostraDataSet(const Titulo: String; Dados: TwsDataSet);
+    procedure MostraMenu(x: Integer = -1; y: Integer = -1); Virtual;
+    procedure MostraVariavel(const NomeVar: String); Virtual; Abstract;
+
+    function  ObtemDataSet(Dados: TV): TwsDataSet;
+
+    function  AdicionaObjeto(Obj: TprBase2): Integer; Virtual; Abstract;
+    procedure LerDoArquivo(Ini: TIF; Const Secao: String); Virtual;
+    procedure SalvarEmArquivo(Arquivo: TIF); Virtual;
+
+    procedure Diagnostico(var TudoOk: Boolean; Completo: Boolean = False);
+    function  VerificaCaminho(var Arquivo: String): Boolean;
+
+    procedure PrepararParaSimulacao; Virtual;
+
+    procedure AutoDescricao(Identacao: byte); virtual;
+
+    procedure ValidaDados(var TudoOk: Boolean;
+                              DialogoDeErros: TErros_DLG;
+                              Completo: Boolean = False); Virtual;
+
+    property AvisarQueVaiSeDestruir: Boolean;
+
+    property  TabNomes    : TStrings;
+    property  Nome        : String;
+    property  Descricao   : String;
+    property  Comentarios : TStrings;
+    property  Rect        : TRect;
+    property  Pos         : TPoint;
+    property  Figura      : TdrBaseShape;
+    property  Menu        : TPopupMenu;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprProjeto = Class(TprBase2)
+    constructor Create(UmaTabelaDeNomes: TStrings);
+    destructor  Destroy; override;
+
+    // Métodos da simulação.
+    // Estes métodos são as propriedades do objeto Simulador
+    procedure  IniciarSimulacao   (Sender: TObject); virtual;
+    procedure  FinalizarSimulacao (Sender: TObject); virtual;
+    procedure  Temporizador       (Sender: TObject; out EventID: Integer); virtual;
+    procedure  Simulacao          (Sender: TObject; const EventID: Integer); virtual;
+
+    procedure LerDoArquivo(Ini: TIF; const Secao: String); Overload; Override;
+    procedure LerDoArquivo(const Nome: String); Overload;
+    procedure SalvarEmArquivo(Arquivo: TIF); Overload; Override;
+    procedure SalvarEmArquivo(const Nome: String); Overload;
+
+    procedure PercorreSubBacias(ITSB: TProcPSB);
+    procedure PercorreDemandas(ITDM: TProcPDM);
+
+    procedure GerarArquivoPropagar(NomeArquivo: String = '');
+    procedure BalancoHidrico;
+    function  RealizaDiagnostico(Completo: Boolean = False): Boolean;
+    procedure AutoDescriacao;
+    procedure MostraMatrizDeContribuicao;
+    procedure MostraFalhasNoAtendimentoDasDemandas;
+    procedure MostrarIntervalos;
+
+    procedure AutoDescricao(Identacao: byte); override;
+
+    {Realiza somente a validação dos dados (Erros Fatais)
+     Regra: A variável TudoOk deverá ser inicializada em TRUE}
+    procedure ValidaDados(var TudoOk: Boolean;
+                              DialogoDeErros: TErros_DLG;
+                              Completo: Boolean = False); Override;
+
+    {O método a seguir tem por objetivo determinar um valor que sirva para avaliação da
+     performance do sistema.}
+    function CalculaFuncaoObjetivo: Real;
+
+    property IntervaloDeSimulacao    : TEnumIntSim;
+    property TotalAnual_IntSim       : Integer;
+    property TotalMensal_IntSim      : Integer;
+    property Total_IntSim            : Integer;
+    property Data                    : TRec_prData;
+    property NumAnosDeExecucao       : Integer;
+    property DeltaT                  : Integer;
+    property AnosDeExecucao          : TaRecIntervalos;
+    property ArqVazoes               : String;
+    property ArqDPS                  : String;
+    property ArqDSS                  : String;
+    property ArqDTS                  : String;
+    property ArqAR                   : String;
+    property ArqEG                   : String;
+    property DirSai                  : String;
+    property DirPes                  : String;
+    property PCs                     : TListaDePCs;
+    property TipoImpressao           : byte;
+    property NivelDeFalha            : Real;
+    property PropDOS                 : String;
+    property ValorFO                 : Real;
+    property Intervalos              : TListaDeIntervalos;
+
+    property  ClassesDeDemanda   : TListaDeClassesDemanda;
+    property  NomeArquivo        : String;
+    property  Modificado         : Boolean;
+    property  ArqFundo           : String;
+    property  FundoBmp           : TBitmap;
+    property  AreaDeProjeto      : TForm;
+    property  Simulador          : TSimulation;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprTrechoDagua = class(TprBase2)
+    PC_aMontante : TprPC;
+    PC_aJusante  : TprPC;
+
+    constructor Create(PC1, PC2: TprPC; UmaTabelaDeNomes: TStrings; Projeto: TForm);
+    destructor Destroy; override;
+
+    procedure SalvarEmArquivo(Arquivo: TIF); Override;
+    procedure LerDoArquivo(Ini: TIF; Const Secao: String); Override;
+    procedure ValidaDados(var TudoOk: Boolean;
+                              DialogoDeErros: TErros_DLG;
+                              Completo: Boolean = False); Override;
+
+    property VazaoMaxima: Real;
+    property VazaoMinima: Real;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprPC = Class(TprBase2)
+    constructor Create(Pos: TPoint; Form: TForm; UmaTabelaDeNomes: TStrings);
+    destructor  Destroy; override;
+
+    procedure SalvarEmArquivo(Arquivo: TIF); Override;
+
+    function  AdicionaObjeto(Obj: TprBase2): Integer; override;
+    function  Eh_umPC_aMontante(PC: TprBase2): Boolean;
+    procedure RemoveTrecho;
+    procedure LimpaObjetos;
+    procedure RemovePC_aMontante(PC: TprPC);
+    procedure AdicionaPC_aMontante(PC: TprPC);
+
+    procedure BalancoHidrico; virtual; abstract;
+    function  ObtemVazoesDeMontante: Real; virtual; abstract;
+    procedure PrepararParaSimulacao; override;
+    procedure MostraVariavel(const NomeVar: String); override;
+    procedure AutoDescricao(Identacao: byte); override;
+
+    property Hierarquia:       Integer;
+    property PCs_aMontante:    Integer;
+    property SubBacias:        Integer;
+    property Demandas:         Integer;
+    property PC_aJusante:      TprPC;
+    property TrechoDagua:      TprTrechoDagua;
+    property Visivel:          Boolean;
+
+    property PC_aMontante [index: Integer]: TprPC;
+    property SubBacia     [index: Integer]: TprSubBacia;
+    property Demanda      [index: Integer]: TprDemanda;
+
+    property AfluenciaSB     : TV;
+    property Defluencia      : TV;
+    property VazMontante     : TV;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprPCP = class(TprPC)
+    constructor Create(Pos: TPoint; Projeto: TprProjeto; UmaTabelaDeNomes: TStrings);
+    destructor  Destroy; override;
+
+    function MudarParaReservatorio(UmMenu: TPopupMenu): TprPCPR;
+
+    procedure AtualizaDemandasAtendidas;
+    procedure TotalizaDemandas;
+
+    function  ObtemVazoesDeMontante: Real; override;
+    function  ObtemDemanda(Prioridade: TEnumPriorDemanda): Real;
+
+    procedure PrepararParaSimulacao; override;
+
+    procedure SalvarEmArquivo(Arquivo: TIF); Override;
+    procedure LerDoArquivo(Ini: TIF; Const Secao: String); Override;
+    procedure ValidaDados(var TudoOk: Boolean;
+                              DialogoDeErros: TErros_DLG;
+                              Completo: Boolean = False); Override;
+
+    procedure GraficarTudo; Virtual;
+    procedure GraficarDemandasAtendidas (Tipo: TEnumTipoDeGrafico);
+    procedure GraficarDemandasPlanejadas(Tipo: TEnumTipoDeGrafico);
+    procedure GraficarDemandasTotais (Tipo: TEnumTipoDeGrafico);
+    procedure GraficarDisponibilidade_X_Demanda(Tipo: TEnumTipoDeGrafico);
+
+    function  ObtemFalhas: TListaDeFalhas;
+    procedure MostrarFalhas;
+    procedure MostraVariavel(const NomeVar: String); override;
+    procedure MostraMenu(x: Integer = -1; y: Integer = -1); override;
+
+    procedure AutoDescricao(Identacao: byte); override;
+
+    property CRC: String read FCRC write FCRC;
+
+    property DemPriAtendidas: TV read FDPA;
+    property DemSecAtendidas: TV read FDSA;
+    property DemTerAtendidas: TV read FDTA;
+
+    property DemPriTotal: TV read FDPT;
+    property DemSecTotal: TV read FDST;
+    property DemTerTotal: TV read FDTT;
+
+    property DemPriPlanejada: TV read FDPP;
+    property DemSecPlanejada: TV read FDSP;
+    property DemTerPlanejada: TV read FDTP;
+
+    property MostrarDemandas:  Boolean read FMDs write SetMDs;
+
+--------------------------//---------------------------------//-------------------------
+
+TprPCPR = class(TprPCP)
+    constructor Create(Pos: TPoint; Projeto: TprProjeto; UmaTabelaDeNomes: TStrings);
+    destructor  Destroy; override;
+
+{
+    procedure CalculaAreaDoReservatorio;   // Utiliza a curva Area-Volume
+    procedure CalculaQuedaHidraulica;      // Utiliza a curva Cota-Volume
+    procedure CalculaVolume;               // Atualiza FVol
+    procedure CalculaDefluencia;           // Atualiza FDO e FDP
+    procedure LerPrecipitacao;
+    procedure LerEvaporacaoUnitaria;
+}
+    procedure PrepararParaSimulacao; override;
+    function  MudarParaPC(UmMenu: TPopupMenu): TprPCP;
+
+    procedure GraficarVolumes(Tipo: TEnumTipoDeGrafico);
+    procedure GraficarEnergia(Tipo: TEnumTipoDeGrafico);
+    procedure GraficarTudo; Override;
+
+    procedure MostraVariavel(const NomeVar: String); override;
+
+    procedure AutoDescricao(Identacao: byte); override;
+
+    procedure SalvarEmArquivo(Arquivo: TIF); Override;
+    procedure LerDoArquivo(Ini: TIF; Const Secao: String); Override;
+    procedure ValidaDados(var TudoOk: Boolean;
+                              DialogoDeErros: TErros_DLG;
+                              Completo: Boolean = False); Override;
+
+    property ArqPrec            : String;
+    property ArqETP             : String;
+    property TipoETP            : Byte;
+    property VolumeMaximo       : Real;
+    property VolumeMinimo       : Real;
+    property VolumeInicial      : Real;
+    property PontosCV           : Word;
+    property PontosAV           : Word;
+    property DemandaPorEnergia  : Boolean;
+    property Status             : Boolean;
+    property Coef_Transformacao : Real;
+    property EnergiaFirme       : Real;
+
+    property CV[i: Word]: TRecCotaVolume;   // Cota Volume
+    property AV[i: Word]: TRecAreaVolume;   // Área Volume
+
+    property Energia : TV;
+    property Volume  : TV;
+
+    property EvaporacaoUnitaria   : TV;
+    property PrecipitacaoUnitaria : TV;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprSubBacia = Class(TprBase2)
+    constructor Create(Pos: TPoint; Form: TForm; UmaTabelaDeNomes: TStrings);
+    destructor Destroy; override;
+
+    function  ObtemVazaoAfluente(PC: TprPC): Real;
+
+    procedure PrepararParaSimulacao; override;
+
+    procedure SalvarEmArquivo(Arquivo: TIF); Override;
+    procedure LerDoArquivo(Ini: TIF; Const Secao: String); Override;
+    procedure ValidaDados(var TudoOk: Boolean;
+                              DialogoDeErros: TErros_DLG;
+                              Completo: Boolean = False); Override;
+
+    function  AdicionaObjeto(Obj: TprBase2): Integer; override;
+    procedure LiberaVazoes;
+    procedure LimpaObjetos;
+
+    procedure GraficarVazoes(Tipo: TEnumTipoDeGrafico);
+    procedure MostraVariavel(const NomeVar: String); override;
+
+    procedure AutoDescricao(Identacao: byte); override;
+
+    property Area                    : Real;
+    property Demandas                : Integer;
+    property Arq_VazoesAfluentes     : String;
+    property PCs                     : TListaDeObjetos;
+    property CCs                     : TListaDeReais;
+    property Vazoes                  : TV;
+
+    property Demanda[index: Integer] : TprDemanda;
+end;    
+
+//--------------------------//---------------------------------//-------------------------
+
+TprClasseDemanda = class(TprBase2)
+    BitmapMudou : Boolean;
+
+    constructor Create(Pos: TPoint; Form: TForm; UmaTabelaDeNomes: TStrings);
+    destructor Destroy; override;
+
+    procedure SalvarEmArquivo(Arquivo: TIF); Override;
+    procedure LerDoArquivo(Ini: TIF; Const Secao: String); Override;
+
+    procedure AutoDescricao(Identacao: byte); Override;
+
+    procedure ValidaDados(var TudoOk: Boolean;
+                              DialogoDeErros: TErros_DLG;
+                              Completo: Boolean = False); Override;
+
+    property Ligada                   : Boolean
+    property Prioridade               : TEnumPriorDemanda;
+    property Bitmap                   : TBitmap;
+    property Data                     : TRec_prData;
+    property EscalaDeDesenvolvimento  : Real;
+    property FatorDeConversao         : Real;
+    property FatorDeRetorno           : Real;
+    property NomeUnidadeConsumoDagua  : String;
+    property NomeUnidadeDeDemanda     : String;
+    property TabValoresUnitarios      : TaRecVU;
+    property TabUnidadesDeDemanda     : TaRecUD;
+    property TabFatoresImplantacao    : TaRecFI;
+    property UnidadeDeConsumo         : Real;
+    property UnidadeDeDemanda         : Real;
+    property FatorDeImplantacao       : Real;
+    property NivelDeFalhaCritica      : Real;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprDemanda = class(TprClasseDemanda)
+    constructor Create(Pos: TPoint; Form: TForm; UmaTabelaDeNomes: TStrings);
+    destructor Destroy; override;
+
+    procedure SalvarEmArquivo(Arquivo: TIF); Override;
+    procedure LerDoArquivo(Ini: TIF; Const Secao: String); Override;
+
+    procedure AutoDescricao(Identacao: byte); Override;
+
+    procedure ValidaDados(var TudoOk: Boolean;
+                              DialogoDeErros: TErros_DLG;
+                              Completo: Boolean = False); Override;
+
+    procedure Atribuir(Demanda: TprClasseDemanda; Criando: Boolean);
+    function  AdicionaObjeto(Obj: TprBase2): Integer; override;
+
+    property Classe      : String;
+    property Grupos      : TStrings;
+    property Tipo        : TTipoDemanda;
+    property Habilitada  : Boolean;
+    property ValorTemp   : Real;
+    property Visivel     : Boolean;
+end;
+
+//--------------------------//---------------------------------//-------------------------
+
+TprDialogo_AreaDeProjeto = class(TForm)
+    procedure MostraFundo;
+    procedure AtualizacaoVisualDaSimulacao;
+    procedure RemoverObjeto(Obj: TprBase2);
+    procedure AtualizaTela;
+    procedure Salvar;
+    procedure SalvarEmArquivo(Ini: TIF);
+    procedure LerDoArquivo(Ini: TIF);
+    procedure PC_TO_RES(PC: TprPCP);
+    procedure RES_TO_PC(RES: TprPCPR);
+
+    property  Perguntar_TemCerteza: Boolean;
+
+    property  MostrarFundo       : Boolean;
+    property  MostrarTrechos     : Boolean;
+    property  MostrarDemandas    : Boolean;
+
+    property  Bloqueado          : Boolean;
+    property  ObjetoSelecionado  : TprBase2;
+    property  TabelaDeNomes      : TStrings;
+    property  GO_NosAbertos      : TSetByte;
+    property  Projeto            : TprProjeto;
+
+    // Avisa que a área de projeto está em processo de leitura
+    property  Lendo : Boolean;

@@ -1,0 +1,186 @@
+var
+
+  // 1.É realizada uma leitura de planilha, num diretório especificado, onde estão os valores iniciais, mínimo e máximo dos
+  //   12 parametros a serem otimizados. Outra panilha é lida com o nome dos 20 PCs que compõe a discretização da bacia uutilizada
+  //   como exemplo;
+
+  // 2.Cria-se, e tranforma em variaveis globais:
+  //   a) 3 matrizes que conterão os indices de desempenho, de cada PC, no que diz respeito ao grau de atendimento para as
+  //   demandas de ordem primaria, secundaria e terciaria;
+  //   b) Um vetor contendo o nome de cada um dos PCs da bacia;
+  //   c) Um vetor para conter o valor calculado, em cada simulação iterativa, das oito funções objetivo passíveis de utilização
+  //      para o processo de otimização.
+
+  // 3.Testa-se qual é o otimizador corrente definido no projeto, e executa-se os comandos específicos para o mesmo;
+
+  // 4.Realiza-se a inicializacao de 12 parametros para otimizar os volumes-meta para o reservatorio General Sampaio;
+
+  // 5. Libera-se os objetos criados e não mais necessários para o proximo script.
+
+  // Objetos - parâmetros do Otimizador
+  VolMetaGenSam1,  VolMetaGenSam2,  VolMetaGenSam3,  VolMetaGenSam4   : object;
+
+  // Variáveis e vetores para conter os valores dos volumes meta
+  // mensais para o acude Gen Sampaio
+  VolMetaGenSampaio  : Object;
+
+  // Variável para conter  a planilha com o nome dos PCs
+  Planlista : Object;
+
+  // Variável para conter  a planilha com os valores dos volumes meta para o Gen Sampaio
+  VolumeMeta : Object;
+
+  // Variáveis para conter contadores e numero de PCs do projeto
+  j,  NumeroPcs : Integer;
+
+  // Matrizes para conter os índices de avaliação de performance do sistema
+  // para cada PC e para cada ordem de prioridade
+  ListadePCs     : Object; // global
+  IndiceDemPri   : Object; // global
+  IndiceDemTer   : Object; // global
+  IndiceDemSec   : Object; // global
+
+  // Vetor para conter os valores das funções objetivo
+  FuncObjet : Object; // global
+
+  // Diretorio dos arquivos
+  Folder: string;
+begin
+  Folder := ExtractFilePath(Projeto.NomeArquivo);
+
+  //Cria o objeto Planalfa para receber a planílha com os valores
+  //dos volumes meta mensais, da regra de volumes-meta
+  //para o reservatório General Sampaio
+  VolumeMeta := Createobject(TPlanilha);
+  //Ler no diretório especificado a planilha
+  if FileExists(Folder + 'VolumeMetaExemplo2.xls')
+     then
+        VolumeMeta.LoadFromFile(Folder + 'VolumeMetaExemplo2.xls')
+     else
+        ShowMessage(' Arquivo não encontrado');
+  //Transforma a linha especificada na planilha, no vetor de parâmetros
+  //de racionamento, específico do reservatório Gen Sampaio
+  VolMetaGenSampaio := VolumeMeta.RowToVec(2,2,17);
+
+  //Cria o objeto Planlista para receber a planilha com os nomes de
+  //cada PC e o numero de reservatórios estratégicos à montante dos mesmos
+  Planlista := Createobject(TPlanilha);
+  //Ler no diretório especificado a planilha
+  if FileExists(Folder + 'listaExPCs.xls')
+     then
+        Planlista.LoadFromFile(Folder + 'listaExPCs.xls')
+     else
+        ShowMessage(' Arquivo não encontrado');
+
+  //Cria um vetor do tipo TStringList para receber os nomes de cada PC
+  ListadePCs := Createobject(TStringList);
+
+  NumeroPcs := Projeto.NumPCs;           // Obtem o numero de PCs no projeto
+
+  // Ler no objeto Planlista o nome dos PCs e os incere no objeto ListadePCs
+  // o objeto ListadePCs é uma lista cujo índice da primeira posição é 0 (zero)
+  for j := 1 to NumeroPcs do
+    begin
+      ListadePCs.Insert(j-1,Planlista.GetEntry(1,j));
+    end;
+
+  // Criação da matriz para conter os índices de performance para cada PC, e para cada prioridade
+  IndiceDemPri := Createobject(TwsGeneral,8,NumeroPcs);   // Indices de performance p/ demanda primária
+  IndiceDemTer := Createobject(TwsGeneral,8,NumeroPcs);   // Indices de performance p/ demanda secundária
+  IndiceDemSec := Createobject(TwsGeneral,8,NumeroPcs);   // Indices de performance p/ demanda terciária
+
+  // Criação do vetor para conter as Funções Objetivo para a avaliação do sistema
+  FuncObjet := Createobject(TwsSFVec, 8);
+
+  // Define como variáveis globais: ...
+  // A lista de PC's da bacia
+  // A lista com o número de reservatórios estratégicos à montante de cada PC
+  // A matriz para conter os índices de performance para cada PC, para a prioridade primaria
+  // A matriz para conter os índices de performance para cada PC, para a prioridade secundaria
+  // A matriz para conter os índices de performance para cada PC, para a prioridade terciaria
+  GlobalObjects.Add('ListadePCs'     , ListadePCs);
+  GlobalObjects.Add('IndiceDemPri'   , IndiceDemPri);
+  GlobalObjects.Add('IndiceDemTer'   , IndiceDemTer);
+  GlobalObjects.Add('IndiceDemSec'   , IndiceDemSec);
+  GlobalObjects.Add('FuncObjet'      , FuncObjet);
+
+  Projeto.Otimizador.Parameters.Clear;
+
+  if Projeto.Otimizador.ClassName = 'TRosenbrock' then
+     begin
+     Projeto.Otimizador.SetDecStep(0.5);
+     Projeto.Otimizador.SetMaxSimulations(2000);
+     Projeto.Otimizador.SetMaxTimeSimulation(60*60*10000);
+     Projeto.Otimizador.SetTolerante(0.000001);
+     end
+  else
+     if Projeto.Otimizador.ClassName = 'TGeneticOptimizer' then
+        begin
+        Projeto.Otimizador.SetComplexCount(8);
+        Projeto.Otimizador.SetPopEvolutionCount(2000);
+        Projeto.Otimizador.SetPopFilename(Folder + 'pop.xml');
+        end
+     else
+        begin
+        Projeto.Otimizador.SetObjetivesCount(3);
+        Projeto.Otimizador.SetPopEvolutionCount(2000);
+        Projeto.Otimizador.SavePopulation(Folder + 'popMO.xml');
+        end;
+
+  Projeto.Otimizador.ShowOFViwer(0, 100, 600);
+
+  if Projeto.Otimizador.getObjetivesCount > 1 then
+     Projeto.Otimizador.ShowOFViwer(1, 300, 600);
+
+  if Projeto.Otimizador.getObjetivesCount > 2 then
+     Projeto.Otimizador.ShowOFViwer(2, 500, 600);
+
+  // Definicao dos Parametros ...
+     
+  VolMetaGenSam1 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaGenSam1.SetName('VolMetaGenSam1');
+  VolMetaGenSam1.SetValue(VolMetaGenSampaio.Get(1));
+  VolMetaGenSam1.SetStep(VolMetaGenSampaio.Get(13));
+  VolMetaGenSam1.SetMin(VolMetaGenSampaio.Get(14));
+  VolMetaGenSam1.SetMax(VolMetaGenSampaio.Get(15));
+  VolMetaGenSam1.SetTolerance(VolMetaGenSampaio.Get(16));
+//VolMetaGenSam1.Show(0, 250);
+
+  VolMetaGenSam2 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaGenSam2.SetName('VolMetaGenSam2');
+  VolMetaGenSam2.SetValue(VolMetaGenSampaio.Get(2));
+  VolMetaGenSam2.SetStep(VolMetaGenSampaio.Get(13));
+  VolMetaGenSam2.SetMin(VolMetaGenSampaio.Get(14));
+  VolMetaGenSam2.SetMax(VolMetaGenSampaio.Get(15));
+  VolMetaGenSam2.SetTolerance(VolMetaGenSampaio.Get(16));
+//VolMetaGenSam2.Show(0, 250);
+
+  VolMetaGenSam3 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaGenSam3.SetName('VolMetaGenSam3');
+  VolMetaGenSam3.SetValue(VolMetaGenSampaio.Get(3));
+  VolMetaGenSam3.SetStep(VolMetaGenSampaio.Get(13));
+  VolMetaGenSam3.SetMin(VolMetaGenSampaio.Get(14));
+  VolMetaGenSam3.SetMax(VolMetaGenSampaio.Get(15));
+  VolMetaGenSam3.SetTolerance(VolMetaGenSampaio.Get(16));
+//VolMetaGenSam3.Show(0, 250);
+
+  VolMetaGenSam4 := Projeto.Otimizador.Parameters.CreateParameter;
+  VolMetaGenSam4.SetName('VolMetaGenSam4');
+  VolMetaGenSam4.SetValue(VolMetaGenSampaio.Get(4));
+  VolMetaGenSam4.SetStep(VolMetaGenSampaio.Get(13));
+  VolMetaGenSam4.SetMin(VolMetaGenSampaio.Get(14));
+  VolMetaGenSam4.SetMax(VolMetaGenSampaio.Get(15));
+  VolMetaGenSam4.SetTolerance(VolMetaGenSampaio.Get(16));
+//VolMetaGenSam3.Show(0, 250);
+
+  if Projeto.Otimizador.ClassName = 'TGeneticOptimizer' then
+     if Question('Dejesa ler a ultima população ?') then
+        Projeto.Otimizador.LoadPopulation(Projeto.Otimizador.GetPopFilename);
+
+  Projeto.Otimizador.ShowParsManager(650, 0);
+
+  //Libera do espaço de memória os objetos criados
+  FreeObject(VolumeMeta);
+  FreeObject(Planlista);
+  FreeObject(VolMetaGenSampaio);
+end.

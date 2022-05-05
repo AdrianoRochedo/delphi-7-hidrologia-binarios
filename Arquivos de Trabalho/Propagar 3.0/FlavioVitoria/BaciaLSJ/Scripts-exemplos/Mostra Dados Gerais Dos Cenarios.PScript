@@ -1,0 +1,165 @@
+// Mostra uma tabela com os dados entrados pelo usuário para cada cenário
+program MostraDadoDosCenarios;
+
+// Sub-Rotinas
+
+   procedure WriteBold(p: Object; L, C: integer; Texto: string);
+   begin
+     p := TSpreadSheetBook(p);
+     p.ActiveSheet.WriteText(L, C, Texto);
+     p.ActiveSheet.BoldCell(L, C);
+   end;
+
+   procedure IniciarPlanilha(p: Object);
+   var L: integer;
+   begin
+     p := TSpreadSheetBook(p);
+     L := 2;
+
+     // Ajusta a largura da coluna 1
+     p.ActiveSheet.setColWidth(1, 150);
+
+     // Titulo da janela
+     p.setCaption( Projeto.Nome + ' - Dados dos Cenários');
+
+     // Cabecalho das linhas
+     WriteBold(p, L, 1, 'Nome'                ); L := L + 1;
+     WriteBold(p, L, 1, 'Area'                ); L := L + 1;
+     WriteBold(p, L, 1, 'Managements'         ); L := L + 1;
+     WriteBold(p, L, 1, 'MinSysEff'           ); L := L + 1;
+     WriteBold(p, L, 1, 'MaxSysEff'           ); L := L + 1;
+     WriteBold(p, L, 1, 'MinInstCost'         ); L := L + 1;
+     WriteBold(p, L, 1, 'MaxInstCost'         ); L := L + 1;
+     WriteBold(p, L, 1, 'MinMainCost'         ); L := L + 1;
+     WriteBold(p, L, 1, 'MaxMainCost'         ); L := L + 1;
+     WriteBold(p, L, 1, 'FirstYear'           ); L := L + 1;
+     WriteBold(p, L, 1, 'LastYear'            ); L := L + 1;
+     WriteBold(p, L, 1, 'Protein'             ); L := L + 1;
+     WriteBold(p, L, 1, 'Fat'                 ); L := L + 1;
+     WriteBold(p, L, 1, 'Calories'            ); L := L + 1;
+     WriteBold(p, L, 1, 'Calcium'             ); L := L + 1;
+     WriteBold(p, L, 1, 'OperationHoursPerDay'); L := L + 1;
+     WriteBold(p, L, 1, 'Prob_Level'          ); L := L + 1;
+     WriteBold(p, L, 1, 'IrrigatedArea_perDay'); L := L + 1;
+     WriteBold(p, L, 1, 'IrrigationFrequency' ); L := L + 1;
+     WriteBold(p, L, 1, 'BaseYield'           ); L := L + 1;
+     WriteBold(p, L, 1, 'CultivatedArea'      ); L := L + 1;
+     WriteBold(p, L, 1, 'NetIncome'           ); L := L + 1;
+     WriteBold(p, L, 1, 'FixedCost'           ); L := L + 1;
+     WriteBold(p, L, 1, 'VariableCost'        ); L := L + 1;
+     WriteBold(p, L, 1, 'Cost'                ); L := L + 1;
+     WriteBold(p, L, 1, 'TotalCost'           ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_FlowRate'        ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_PressureHead'    ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_Efficiency'      ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_PumpEffic'       ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_Life'            ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_IrrInstCost'     ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_IrrMainCost'     ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_IrrResVal'       ); L := L + 1;
+     WriteBold(p, L, 1, 'Sys_AnualIR'         ); L := L + 1;
+     WriteBold(p, L, 1, 'WaterPrice'          ); L := L + 1;
+     WriteBold(p, L, 1, 'EnergyPrice'         ); L := L + 1;
+     WriteBold(p, L, 1, 'Labor_Persons'       ); L := L + 1;
+     WriteBold(p, L, 1, 'Labor_CostHourly'    ); L := L + 1;
+   end;
+
+   procedure MostrarCenario(p: Object; CN: object; Col: integer);
+   var L: integer;
+   begin
+     p := TSpreadSheetBook(p);
+     CN := TprCenarioDeDemanda(CN);
+     L := 2;
+
+     // Nome do Cenario em negrito
+     p.ActiveSheet.writeCenterText(L, Col, CN.Nome); 
+     p.ActiveSheet.BoldCell(L, Col);
+     L := L + 1;
+
+     // Demais dados
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Area'                ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Managements'         ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('MinSysEff'           ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('MaxSysEff'           ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('MinInstCost'         ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('MaxInstCost'         ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('MinMainCost'         ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('MaxMainCost'         ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('FirstYear'           ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('LastYear'            ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Protein'             ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Fat'                 ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Calories'            ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Calcium'             ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('OperationHoursPerDay'), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Prob_Level'          ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('IrrigatedArea_perDay'), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('IrrigationFrequency' ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('BaseYield'           ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('CultivatedArea'      ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('NetIncome'           ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('FixedCost'           ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('VariableCost'        ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Cost'                ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('TotalCost'           ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_FlowRate'        ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_PressureHead'    ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_Efficiency'      ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_PumpEffic'       ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_Life'            ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_IrrInstCost'     ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_IrrMainCost'     ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_IrrResVal'       ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Sys_AnualIR'         ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('WaterPrice'          ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('EnergyPrice'         ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Labor_Persons'       ), 2); L := L + 1;
+     p.ActiveSheet.writeCenterFloat(L, Col, CN.ObterValorFloat('Labor_CostHourly'    ), 2); L := L + 1;
+   end;
+
+// Variaveis do Bloco Principal
+
+var iCen   : integer;
+    iPC    : integer;
+    iDem   : integer;
+    iCol   : integer;
+
+    PC : object;
+    DM : object;
+    p  : object;
+
+// Bloco principal
+
+begin
+  // Cria a planilha
+  p := CreateObject(TSpreadSheetBook);
+
+  // Inicia a janela
+  IniciarPlanilha(p);
+
+  // Inicia a geracao dos dados a partir da coluna 2
+  iCol := 2;
+
+  // percorre todos os PCs
+  for iPC := 0 to Projeto.NumPCs-1 do
+     begin
+     // Obtem o PC de indice iPC
+     PC := Projeto.PC(iPC);
+
+     // percorre todas as demandas de um PC
+     for iDem := 0 to PC.Demandas-1 do
+        begin
+        // Obtem a demanda de indice iDem
+        DM := PC.Demanda(iDem);
+
+        // Mostra as informacoes de um cenario se ele existir
+        if DM.Cenarios > 0 then
+           begin
+           MostrarCenario(p, DM.Cenario(0), iCol);
+           iCol := iCol + 1;
+           end;
+        end; // Demandas
+     end; // PCs
+
+  p.Show;
+end.

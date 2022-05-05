@@ -1,0 +1,37 @@
+var PCReserva : Object;
+    Demanda60 : Object;
+    Par1 : Object;
+    Par2 : Object;
+
+begin
+  Projeto.Rosenbrock.Parameters.Clear;
+  Projeto.Rosenbrock.SetIncStep(1);
+  Projeto.Rosenbrock.SetDecStep(1);
+  Projeto.Rosenbrock.SetMaxSimulations(100);
+  Projeto.Rosenbrock.SetMaxTimeSimulation(60*60*1000);
+  Projeto.Rosenbrock.SetTolerante(1);
+  Projeto.Rosenbrock.ShowFO(100,100);
+
+  {*** exemplo de criação de parâmetros ***}
+  PCReserva := Projeto.PCPeloNome('Queimado');
+  Demanda60 := Projeto.DemandaPeloNome('Demanda_60');
+
+  Par1 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Par1.SetName('AreaIrrigada');
+  Par1.SetLink(Demanda60, 'UnidadeDeDemanda', 1940, 0);
+  Par1.SetStep(10);
+  Par1.SetLowLimit(0);
+  Par1.SetHiLimit(9000);
+  Par1.SetValue(5000);
+//Par1.Show(0, 400);
+
+  Par2 := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Par2.SetName('DemandaEnergetica');
+  Par2.SetLink(PCReserva, 'DemEnergetica', 0, 0);
+  Par2.SetStep(500);
+  Par2.SetLowLimit(0);
+  Par2.SetHiLimit(6000000);
+  Par2.SetValue(2000000);
+//Par2.Show(200, 400);
+  Projeto.Rosenbrock.ShowManager(10, 300);
+end.

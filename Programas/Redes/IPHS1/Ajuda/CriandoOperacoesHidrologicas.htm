@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Criando Operações Hidrológicas</title>
+</head>
+
+<!-- BeginBlock Cabecalho -->
+<body bgcolor="#FFFFFF" text="#000000" background="Imagens/IPHS1_Fundo.jpg" link="#0066FF" vlink="#CC9933" alink="#00CC00">
+
+<table border="0" Width="100%">
+<tr>
+    <td>
+    <font size="3" color="#000099">
+    IPHS1 para Windows
+    </font>
+    </td>
+    
+    <td>
+    <a href="Index.htm">    
+    <img src="Imagens/LARRW.GIF" 
+         width="31" height="31" border="0" align="right"
+         alt="Índice Principal">
+    </a>
+    </td>
+</tr>
+</table>
+<br>
+<!-- EndBlock Cabecalho -->
+
+<b><font face="Times New Roman" size="6">
+Criando Operações Hidrológicas<br>
+</font></b>
+
+<P>O primeiro passo para iniciar a materializa&ccedil;&atilde;o de um Projeto &eacute; a 
+inser&ccedil;&atilde;o dos elementos que ir&atilde;o constituir as Opera&ccedil;&otilde;es 
+Hidrol&oacute;gicas que se deseja estudar. Essas opera&ccedil;&otilde;es podem ser isoladas 
+ou, ent&atilde;o, pertencerem a uma Rede Hidrogr&aacute;fica. Isso &eacute; feito 
+atrav&eacute;s do lan&ccedil;amento sobre a &Aacute;rea de Projeto dos elementos 
+f&iacute;sicos que constituem essa rede: Pontos de Controle, Trechos de &Aacute;gua, 
+Reservat&oacute;rios, Sub-bacias e Deriva&ccedil;&otilde;es.</P>
+
+<P>O M&oacute;dulo Rio, conforme ilustrado no Quadro 1, a seguir, correspondendo &agrave; propaga&ccedil;&atilde;o em canais e soma de hidrogramas, comp&otilde;e a maioria dos elementos representativos das Opera&ccedil;&otilde;es Hidrol&oacute;gicas. Seus elementos s&atilde;o os Pontos de Controle, os Reservat&oacute;rios e as Deriva&ccedil;&otilde;es. J&aacute; o M&oacute;dulo Bacia, consistindo na transforma&ccedil;&atilde;o precipita&ccedil;&atilde;o-vaz&atilde;o na superf&iacute;cie da bacia, est&aacute; representado pelo elemento Sub-bacia.</P>
+
+<LI><B>O Lan&ccedil;amento das Opera&ccedil;&otilde;es Hidrol&oacute;gicas sobre a &Aacute;rea de Projeto.</A></A></A></LI></OL></B><P>O conjunto de Opera&ccedil;&otilde;es Hidrol&oacute;gicas a serem estudadas, seja de forma isolada, seja na forma de uma Rede Hidrogr&aacute;fica &eacute; constitu&iacute;do por Pontos de Controle, Reservat&oacute;rios, Sub-bacias, Trechos de &Aacute;gua e Deriva&ccedil;&otilde;es.</P>
+<P>&Eacute; fundamental, entretanto, que o usu&aacute;rio saiba com clareza o que esses elementos representam em termos de Opera&ccedil;&otilde;es Hidrol&oacute;gicas. O Quadro 1 tem esse prop&oacute;sito. Recomenda-se uma leitura de Tucci et all. (1989) para o perfeito entendimento dos conceitos que envolvem cada Opera&ccedil;&atilde;o Hidrol&oacute;gica e dos modelos capazes de represent&aacute;-las.</P>
+
+<P><B>Fun&ccedil;&otilde;es dos elementos representativos das Opera&ccedil;&otilde;es Hidrol&oacute;gicas.</P></B>
+
+<P>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=2>
+	<TR>
+	<TD><center><B>Elemento</B></center></TD>
+	<TD><center><B>Opera&ccedil;&atilde;o Hidrol&oacute;gica Associada</B></center></TD>
+	</TR>
+	
+	<TR>
+	<TD>Ponto de Controle</TD>
+	<TD>Soma de Hidrogramas (M&oacute;dulo Rio).</TD>
+	</TR>
+	
+	<TR>
+	<TD>Reservat&oacute;rio</TD>
+	<TD>Propaga&ccedil;&atilde;o de Vaz&otilde;es em Reservat&oacute;rios (M&oacute;dulo Rio).</TD>
+	</TR>
+	
+	<TR>
+	<TD>Sub-bacia</TD>
+	<TD>Transforma&ccedil;&atilde;o Precipita&ccedil;&atilde;o-Vaz&atilde;o (M&oacute;dulo Bacia).</TD>
+	</TR>
+	
+	<TR>
+	<TD>Trecho de &Aacute;gua</TD>
+	<TD>Propaga&ccedil;&atilde;o de Vaz&otilde;es em Canais (M&oacute;dulo Rio).</TD>
+	</TR>
+	
+	<TR>
+	<TD>Deriva&ccedil;&atilde;o</TD>
+	<TD>Deriva&ccedil;&atilde;o de vaz&otilde;es atrav&eacute;s de uma canal (M&oacute;dulo Rio).</TD>
+	</TR>
+</TABLE>
+</P>
+
+<P>Para tornar poss&iacute;vel e f&aacute;cil o lan&ccedil;amento desses elementos o IPHS1 coloca &agrave; disposi&ccedil;&atilde;o do usu&aacute;rio a <U>Barra de Ferramentas Hidrogr&aacute;fica</U>, localizada &agrave; esquerda da Janela Principal, Figura 1, e descritas no Quadro 2.</P>
+<P>O procedimento a ser adotado &eacute; o seguinte:</P>
+<LI>Come&ccedil;ar pela <U>inser&ccedil;&atilde;o dos PCs e Reservat&oacute;rios</U>. Para tanto, o usu&aacute;rio dever&aacute; selecionar na Barra de Ferramentas Hidrogr&aacute;ficas um desses objetos – PC ou Reservat&oacute;rio - pressionando o bot&atilde;o direito do mouse com o ponteiro sobre o seu &iacute;cone; o objeto selecionado ficar&aacute; com seu &iacute;cone destacado. Depois &eacute; s&oacute; colocar o ponteiro do mouse em qualquer posi&ccedil;&atilde;o sobre a &Aacute;rea de Projeto e tornar a pressionar o bot&atilde;o direito do mouse. Essa a&ccedil;&atilde;o poder&aacute; ser continuada e a cada vez um PC ou Reservat&oacute;rio ser&aacute; inserido na &Aacute;rea de Projetos.</LI>
+<P>O procedimento acima permitir&aacute; que o usu&aacute;rio crie todos os Pontos de Controle e Reservat&oacute;rios que desejar. A inser&ccedil;&atilde;o poder&aacute; ser feita em qualquer ordem, entretanto, para facilitar a organiza&ccedil;&atilde;o do Projeto sugere-se que isso seja feito de montante para jusante.</P>
+<P>&Eacute; necess&aacute;rio que se diga que, mesmo para uma opera&ccedil;&atilde;o hidrol&oacute;gica simples de transforma&ccedil;&atilde;o precipita&ccedil;&atilde;o-vaz&atilde;o em uma Sub-bacia, torna-se necess&aacute;ria a exist&ecirc;ncia de pelo menos um Ponto de Controle que possa receber essa Sub-bacia. Nesse caso, o Ponto de Controle ter&aacute; apenas a finalidade de receber a Sub-bacia e a opera&ccedil;&atilde;o hidrol&oacute;gica que ele representa, ou seja, a soma de hidrogramas - na medida em que existe apenas um hidrograma: o da pr&oacute;pria Sub-bacia - ser&aacute; desconsiderada.</P>
+
+<P>A Figura abaixo ilustra os primeiros passos para a constru&ccedil;&atilde;o de uma rede. Primeiro foram colocados os PCs e o Reservat&oacute;rio numerados de (1) a  (3), nesta ordem. O passo seguinte foi a liga&ccedil;&atilde;o com Trechos de &Aacute;gua conforme descrito abaixo.</P>
+<B><P>Quadro 2- Legenda da Barra de Ferramentas Hidrogr&aacute;fica.</P></B>
+
+<P>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=2>
+	<TR>
+	<TD><B><center>&Iacute;cone</center></B></TD>
+	<TD><B><center>Descri&ccedil;&atilde;o</B></center></TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image19.gif"></center></TD>
+	<TD>Aciona o estado de sele&ccedil;&atilde;o de objetos da Rede Hidrogr&aacute;fica.</TD>	
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image20.gif"></center></TD>
+	<TD>Cria uma Sub-bacia ligada a um PC ou a um Trecho de &Aacute;gua.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image21.gif" WIDTH=20 HEIGHT=20></center></TD>
+	<TD>Cria um PC – Ponto de Controle.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image22.gif" WIDTH=20 HEIGHT=20></center></TD>
+	<TD>Cria um Reservat&oacute;rio.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Der.gif" WIDTH=20 HEIGHT=20></center></TD>
+	<TD>Cria uma Deriva&ccedil;&atilde;o ligada a um PC.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Trash.gif" WIDTH=16 HEIGHT=16></center></TD>
+	<TD>Remove o Objeto selecionado.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image24.gif" WIDTH=50 HEIGHT=20></center></TD>
+	<TD>Remove o Trecho de &Aacute;gua &agrave; jusante de um PC.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image25.gif" WIDTH=50 HEIGHT=20></center></TD>
+	<TD>Liga um PC a outro com fluxo na dire&ccedil;&atilde;o da seta.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image26.gif" WIDTH=50 HEIGHT=20></center></TD>
+	<TD>Liga uma Sub-bacia existente, ligada a um PC, a outro PC.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image27.gif" WIDTH=54 HEIGHT=40></center></TD>
+	<TD>Insere um PC entre dois outros PCs ligados por um Trecho de &Aacute;gua.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image28.gif" WIDTH=50 HEIGHT=20></center></TD>
+	<TD>Substitui um Reservat&oacute;rio existente por um PC.</TD>
+	</TR>
+	
+	<TR>
+	<TD><center><IMG SRC="Imagens/Image29.gif" WIDTH=50 HEIGHT=20></center></TD>
+	<TD>Substitui um PC existente por um Reservat&oacute;rio.</TD>
+	</TR>
+</TABLE>
+</P>
+
+<LI>Para a liga&ccedil;&atilde;o dos PCs/Reservat&oacute;rios com Trechos D’&aacute;gua dever&aacute; ser selecionado na Barra de Ferramentas Hidrogr&aacute;fica o &iacute;cone de &quot;liga&ccedil;&atilde;o de um PC a outro PC&quot; (Quadro 2). Isso feito o usu&aacute;rio selecionar&aacute; o primeiro o PC (ou Reservat&oacute;rio) de montante e depois o PC (ou Reservat&oacute;rio) de jusante do Trecho D’&aacute;gua que deseja inserir. Imediatamente o Trecho D’&aacute;gua ser&aacute; inserido. O usu&aacute;rio dever&aacute; observar a corre&ccedil;&atilde;o da dire&ccedil;&atilde;o de fluxo pela dire&ccedil;&atilde;o da seta contida no objeto Trecho D’&aacute;gua. </LI>
+<P>A a&ccedil;&atilde;o acima pode ser continuada at&eacute; que todos os Trecho D’&aacute;gua tenham sido inseridos. No caso da Figura abaixo foi inserido primeiro o Trecho D’&aacute;gua (1)-(2) e depois o Trecho D’&aacute;gua (3)-(2). O passo seguinte correspondeu &agrave; inser&ccedil;&atilde;o das Sub-bacias.</P>
+<LI>Para a inser&ccedil;&atilde;o de Sub-bacias ou de Deriva&ccedil;&otilde;es o usu&aacute;rio dever&aacute; fazer a sele&ccedil;&atilde;o do &iacute;cone Sub-bacia na Barra de Ferramentas Hidrogr&aacute;ficas e, ap&oacute;s, clicar em cada PC pressionando o bot&atilde;o direito do mouse com o ponteiro sobre o mesmo. Isso far&aacute; com que um &iacute;cone Sub-bacia ou da Deriva&ccedil;&atilde;o apare&ccedil;a junto ao PC, ligado a ele por uma linha pontilhada.</LI></OL>
+
+<font size="2">
+<center><IMG SRC="Janelas/ElementosRepresentativos.jpg"><br>
+<B><P>Lan&ccedil;amentos de Elementos representativos de Opera&ccedil;&otilde;es Hidrol&oacute;gicas na &Aacute;rea de Projeto.</P>
+</center>
+</font>
+
+<!-- BeginBlock Rodape -->
+<br>
+<table border="0" Width="100%">
+<tr>
+    <td>
+    <font size="3" color="#000099">
+    IPHS1 para Windows
+    </font>
+    </td>
+    
+    <td>
+    <a href="Index.htm">    
+    <img src="Imagens/LARRW.GIF" 
+         width="31" height="31" border="0" align="right"
+         alt="Índice Principal">
+    </a>
+    </td>
+</tr>
+</table>
+<!-- EndBlock Rodape -->
+
+</body>
+</html>

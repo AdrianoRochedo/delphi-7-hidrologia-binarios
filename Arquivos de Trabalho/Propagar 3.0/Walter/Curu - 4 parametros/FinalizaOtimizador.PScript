@@ -1,0 +1,299 @@
+var
+
+ // Este script tem as seguintes funçoes:
+
+ // 1.Criação, preenchimento e apresentação das planilhas que conterão os valores dos índices de desempenho
+ //   obtidos, para todos os PCs da bacia, relacionados ao atendimento das demandas primária, secundaria e terciaria.
+
+ // 2.Criação, preenchimento e apresentação da planilha que conterá os valores de todas as FO calculadas, salientando que, neste
+ //   caso se utiliza a FO8 para o processo de otimizaçao.
+
+ // 3.Criação, prenchimento e apresentaçao da planilha que conterá os valores finais dos parâmetros otimizados.
+ //   No caso de se utilizar o método de Rosenbrok é apresentado apenas um conjunto de parametros, o que, no caso dos outros
+ //   otimizadores corresponde a apenas um individuo.
+ //   No caso de se utilizar o otimizador por AG a planilha apresenta o valor dos parametros (gens) para cada um dos individuos
+ //   da populaçao final.
+
+ // 4.Finalmente são liberados todos as variáveis que foram tratadas, durante as simulações e avaliações das FO, como variáveis
+ //   globais
+
+ //Variáveis pré-declaradas:
+   // Saida          : Object;
+   // Projeto       : Object;
+
+   // Intervalos totais de simulação
+   IntTotal                   : Integer;
+
+   // Quantidade de PCs na Bacia
+   NumeroPCs                  : Integer;
+
+   // Contador de PCs
+   iPC                        : Integer;
+
+   // Contador de Parametros
+   iParametro                 : Integer;
+
+   // Contador de aptidoes (FO)
+   iFO                        :integer;
+
+   // Contador de individuos
+   iIndividuo                 : Integer;
+
+   // Numero de parametros
+   NumerodeParametros         : Integer;
+
+   // Numero de individuos
+   NumerodeIndviduos          : Integer;
+
+   // valor do Gen
+   Gen                        : Real;
+
+   // valor da aptidao
+   aptidao                    : Real;
+
+   // Matrizes para conter os índices de avaliação de performance do sistema
+   // para cada PC e para cada ordem de prioridade
+   IndiceDemPri               : Object;
+   IndiceDemTer               : Object;
+   IndiceDemSec               : Object;
+
+   // Vetor para conter os valores das funções objetivo
+   FuncObjet                  : Object;
+
+   // Objeto que vai conter os Pontos Característicos
+   PC                         : Object;
+
+   // Objeto que vai conter os Parametros
+   Parametro                  : Object;
+
+   //Objetos para conter as planilhas com os resultados da simulação
+
+   // Resultados para demanda primária
+   PlanDemPri                 : Object;
+   // Resultados para demanda secundária
+   PlanDemSec                 : Object;
+   // Resultados para demanda terciária
+   PlanDemTer                 : Object;
+   // Resultados das Funções Objetivo
+   PlanFO                     : Object;
+   // Valores dos parametros otimizados
+   ValorParametros            : Object;
+
+Begin
+   ShowMessage('Otimizacão Concluída');
+
+   // Obtenção do intervalo total de simulação, e do número de PCs,
+   // através de duas propriedades da classe projeto
+   IntTotal  := Projeto.Total_IntSim;
+   NumeroPCs := Projeto.NumPCs;
+   NumerodeParametros :=  Projeto.Otimizador.Parameters.Count;
+
+   // Obtenção dos objetos globais criados na rotina de avaliação da FO
+   IndiceDemPri := TwsGeneral(GlobalObjects.Get('IndiceDemPri'));
+   IndiceDemSec := TwsGeneral(GlobalObjects.Get('IndiceDemSec'));
+   IndiceDemTer := TwsGeneral(GlobalObjects.Get('IndiceDemTer'));
+   FuncObjet    := TwsSFVec(GlobalObjects.Get('FuncObjet'));
+
+   // Criação dos objetos para apresentação dos resultados
+   PlanDemPri       := CreateObject(TPlanilha); // Cria uma planilha
+   PlanDemSec       := CreateObject(TPlanilha); // Cria uma planilha
+   PlanDemTer       := CreateObject(TPlanilha); // Cria uma planilha
+   PlanFO           := CreateObject(TPlanilha); // Cria uma planilha
+   ValorParametros  := CreateObject(TPlanilha); // Cria uma planilha
+
+   // Preenchimento do cabeçalho da planilha para demanda primária
+   PlanDemPri.Write(1, 1, 'Resultado dos Índices Probabilísticos para a demanda primária');
+   PlanDemPri.Write(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanDemPri.Write(4, 1, 'PC ');
+   PlanDemPri.Write(4, 2, 'N.F. ');
+   PlanDemPri.Write(4, 3, 'Prob(Falha)');
+   PlanDemPri.Write(4, 4, 'Confiabilidade');
+   PlanDemPri.Write(4, 5, 'Elaticidade');
+   PlanDemPri.Write(4, 6, 'Vulnerabilidade');
+   PlanDemPri.Write(4, 7, 'Soma(Def)');
+   PlanDemPri.Write(4, 8, 'Soma SQR(Def)');
+   PlanDemPri.Write(4, 9, 'Falhas Criticas');
+
+   // Preenchimento do cabeçalho da planilha para demanda secundária
+   PlanDemSec.Write(1, 1, 'Resultado dos Índices Probabilísticos para a demanda secundária');
+   PlanDemSec.Write(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanDemSec.Write(4, 1, 'PC ');
+   PlanDemSec.Write(4, 2, 'N.F. ');
+   PlanDemSec.Write(4, 3, 'Prob(Falha)');
+   PlanDemSec.Write(4, 4, 'Confiabilidade');
+   PlanDemSec.Write(4, 5, 'Elaticidade');
+   PlanDemSec.Write(4, 6, 'Vulnerabilidade');
+   PlanDemSec.Write(4, 7, 'Soma(Def)');
+   PlanDemSec.Write(4, 8, 'Soma SQR(Def)');
+   PlanDemSec.Write(4, 9, 'Falhas Criticas');
+
+   // Preenchimento do cabeçalho da planilha para demanda terciária
+   PlanDemTer.Write(1, 1, 'Resultado dos Índices Probabilísticos para a demanda terciária');
+   PlanDemTer.Write(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanDemTer.Write(4, 1, 'PC ');
+   PlanDemTer.Write(4, 2, 'N.F. ');
+   PlanDemTer.Write(4, 3, 'Prob(Falha)');
+   PlanDemTer.Write(4, 4, 'Confiabilidade');
+   PlanDemTer.Write(4, 5, 'Elaticidade');
+   PlanDemTer.Write(4, 6, 'Vulnerabilidade');
+   PlanDemTer.Write(4, 7, 'Soma(Def)');
+   PlanDemTer.Write(4, 8, 'Soma SQR(Def)');
+   PlanDemTer.Write(4, 9, 'Falhas Criticas');
+
+   // Preenchimento do cabeçalho da planilha para os valores dos parametros
+   ValorParametros.Write(1, 1, 'Valores dos parametros otimizados');
+   ValorParametros.Write(2, 1, 'Funcao objetivo otimizada : FO3 -> Elasticidade (Ponderada) ');
+
+   // Testa se o otimizador utilizado eh o Rosenbrok
+   if Projeto.Otimizador.ClassName = 'TRosenbrock'
+
+      // O otimizador eh o Rozenbrok, que possui apenas um ponto com os seus Parametros
+      then
+         Begin
+            ValorParametros.Write(3,1,' Otimizador utilizado: Rozenbrok');
+            For iParametro := 1 to NumerodeParametros do
+               Begin
+                  Parametro := Projeto.Otimizador.Parameters.Parameter(iParametro-1);
+                  ValorParametros.Write(iParametro+3, 1, Parametro.GetName);
+                  ValorParametros.WriteFloatCenter(iParametro+3, 2, Parametro.GetValue);
+               End
+
+         End
+      else
+         // Testa se o otimizador utilizado eh o AG mono objetivo
+         if Projeto.Otimizador.ClassName = 'TGeneticOptimizer'
+            // O Otimizador eh o Algoritmo Genetico mono objetivo,
+            // que possui uma população de pontos, cada um com os seus parametros
+            then
+               Begin
+                  NumerodeIndviduos := Projeto.Otimizador.getPopulationCount;
+                  if (NumerodeIndviduos > 250) then NumerodeIndviduos := 250;
+                  ValorParametros.Write(3,1,' Otimizador utilizado: Algoritmo Genetico Mono-Objetivo');
+                  ValorParametros.Write(4,1,' Individuo');
+                  ValorParametros.Write(5,1,' Aptidão');
+                  For iParametro := 1 to NumerodeParametros do
+                     Begin
+                        Parametro := Projeto.Otimizador.Parameters.Parameter(iParametro-1);
+                        ValorParametros.Write(iParametro+5, 1,Parametro.GetName);
+                     End;
+                  For iIndividuo := 1 to NumerodeIndviduos do
+                     Begin
+                        ValorParametros.Write(4, iIndividuo + 1, intToStr(iIndividuo));
+                        Aptidao := Projeto.Otimizador.getAptness(iIndividuo-1 , 0);
+                        ValorParametros.WriteFloatCenter(5, iIndividuo + 1, Aptidao);
+                        For iParametro := 1 to NumerodeParametros do
+                            Begin
+                               Gen := Projeto.Otimizador.getGen(iIndividuo-1,iParametro-1);
+                               ValorParametros.WriteFloatCenter(iParametro+5, iIndividuo + 1, Gen);
+                            End;
+                     End;
+               End
+            else
+               // O Otimizador eh o Algoritmo Genetico multi objetivo,
+               // que possui uma população de pontos, cada um com os seus parametros e suas aptidoes
+               // A quantidades desses elementos foi definido na rotina de inicializacao
+               begin
+                  ValorParametros.Write(2, 1, 'Funcoes objetivo utilizadas : Falhas críticas, FO2, FO3 e FO4 ');
+                  NumerodeIndviduos := Projeto.Otimizador.getPopulationCount;
+                  if (NumerodeIndviduos > 250) then NumerodeIndviduos := 250;
+                  ValorParametros.Write(3,1,' Otimizador utilizado: Algoritmo Genetico Multi-Objetivo');
+                  ValorParametros.Write(4,1,' Individuo');
+                  for iFO := 1 to 4 do
+                      ValorParametros.Write(4+iFO,1,' Aptidão '+ intToStr(iFO));
+                  For iParametro := 1 to NumerodeParametros do
+                     Begin
+                        Parametro := Projeto.Otimizador.Parameters.Parameter(iParametro-1);
+                        ValorParametros.Write(iParametro+8, 1,Parametro.GetName);
+                     End;
+                  For iIndividuo := 1 to NumerodeIndviduos do
+                     Begin
+                        ValorParametros.Write(4, iIndividuo + 1, intToStr(iIndividuo));
+                        for iFO := 1 to 4 do
+                           begin
+                              Aptidao := Projeto.Otimizador.getAptness(iIndividuo-1 , iFO-1);
+                              ValorParametros.WriteFloatCenter(iFO+4, iIndividuo + 1, Aptidao)
+                           end;
+                        For iParametro := 1 to NumerodeParametros do
+                            Begin
+                               Gen := Projeto.Otimizador.getGen(iIndividuo-1,iParametro-1);
+                               ValorParametros.WriteFloatCenter(iParametro+8, iIndividuo + 1, Gen);
+                            End;
+                     End;
+               end;
+
+   for iPC := 1 to NumeroPCs do
+      Begin
+         PC := Projeto.PC(iPC-1); // O Objeto PC recebe o PC do laço (Ipc corrente - 1).
+
+         PlanDemPri.WriteCenter(4 + iPC, 1, PC.Nome);
+         PlanDemPri.WriteFloatCenter(4 + iPC, 2, IndiceDemPri.Get(1,iPC));
+         PlanDemPri.WriteFloatCenter(4 + iPC, 3, IndiceDemPri.Get(2,iPC));
+         PlanDemPri.WriteFloatCenter(4 + iPC, 4, IndiceDemPri.Get(3,iPC));
+         PlanDemPri.WriteFloatCenter(4 + iPC, 5, IndiceDemPri.Get(4,iPC));
+         PlanDemPri.WriteFloatCenter(4 + iPC, 6, IndiceDemPri.Get(5,iPC));
+         PlanDemPri.WriteFloatCenter(4 + iPC, 7, IndiceDemPri.Get(6,iPC));
+         PlanDemPri.WriteFloatCenter(4 + iPC, 8, IndiceDemPri.Get(7,iPC));
+         PlanDemPri.WriteFloatCenter(4 + iPC, 9, IndiceDemPri.Get(8,iPC));
+
+         PlanDemSec.WriteCenter(4 + iPC, 1, PC.Nome);
+         PlanDemSec.WriteFloatCenter(4 + iPC, 2, IndiceDemSec.Get(1,iPC));
+         PlanDemSec.WriteFloatCenter(4 + iPC, 3, IndiceDemSec.Get(2,iPC));
+         PlanDemSec.WriteFloatCenter(4 + iPC, 4, IndiceDemSec.Get(3,iPC));
+         PlanDemSec.WriteFloatCenter(4 + iPC, 5, IndiceDemSec.Get(4,iPC));
+         PlanDemSec.WriteFloatCenter(4 + iPC, 6, IndiceDemSec.Get(5,iPC));
+         PlanDemSec.WriteFloatCenter(4 + iPC, 7, IndiceDemSec.Get(6,iPC));
+         PlanDemSec.WriteFloatCenter(4 + iPC, 8, IndiceDemSec.Get(7,iPC));
+         PlanDemSec.WriteFloatCenter(4 + iPC, 9, IndiceDemSec.Get(8,iPC));
+
+         PlanDemTer.WriteCenter(4 + iPC, 1, PC.Nome);
+         PlanDemTer.WriteFloatCenter(4 + iPC, 2, IndiceDemTer.Get(1,iPC));
+         PlanDemTer.WriteFloatCenter(4 + iPC, 3, IndiceDemTer.Get(2,iPC));
+         PlanDemTer.WriteFloatCenter(4 + iPC, 4, IndiceDemTer.Get(3,iPC));
+         PlanDemTer.WriteFloatCenter(4 + iPC, 5, IndiceDemTer.Get(4,iPC));
+         PlanDemTer.WriteFloatCenter(4 + iPC, 6, IndiceDemTer.Get(5,iPC));
+         PlanDemTer.WriteFloatCenter(4 + iPC, 7, IndiceDemTer.Get(6,iPC));
+         PlanDemTer.WriteFloatCenter(4 + iPC, 8, IndiceDemTer.Get(7,iPC));
+         PlanDemTer.WriteFloatCenter(4 + iPC, 9, IndiceDemTer.Get(8,iPC));
+      End;
+
+   // Prenchimento da planilha com o resultado das funções objetivo
+   PlanFO.Write(1, 1, 'Resultado das funções-objetivo para o sistema de reservatórios');
+   PlanFO.Write(2, 1, 'Projeto ' + Projeto.Nome);
+   PlanFO.WriteCenter(4, 1, 'F.O.1');
+   PlanFO.WriteCenter(4, 2, 'F.O.2');
+   PlanFO.WriteCenter(4, 3, 'F.O.3');
+   PlanFO.WriteCenter(4, 4, 'F.O.4');
+   PlanFO.WriteCenter(4, 5, 'F.O.5');
+   PlanFO.WriteCenter(4, 6, 'F.O.6');
+   PlanFO.WriteCenter(4, 7, 'F.O.7');
+   PlanFO.WriteCenter(4, 8, 'F.O.8');
+   PlanFO.WriteFloatCenter(5, 1, FuncObjet.Get(1));
+   PlanFO.WriteFloatCenter(5, 2, FuncObjet.Get(2));
+   PlanFO.WriteFloatCenter(5, 3, FuncObjet.Get(3));
+   PlanFO.WriteFloatCenter(5, 4, FuncObjet.Get(4));
+   PlanFO.WriteFloatCenter(5, 5, FuncObjet.Get(5));
+   PlanFO.WriteFloatCenter(5, 6, FuncObjet.Get(6));
+   PlanFO.WriteFloatCenter(5, 7, FuncObjet.Get(7));
+   PlanFO.WriteFloatCenter(5, 8, FuncObjet.Get(8));
+
+   // Mostra os dados em forma de planilha e gráfico
+   PlanDemPri.Show;
+   PlanDemSec.Show;
+   PlanDemTer.Show;
+   PlanFO.Show;
+   ValorParametros.Show;
+
+   // libração dos objetos globais utilizados nessa rotina
+   GlobalObjects.RemoveAndFree('IndiceDemPri');
+   GlobalObjects.RemoveAndFree('IndiceDemTer');
+   GlobalObjects.RemoveAndFree('IndiceDemSec');
+   GlobalObjects.RemoveAndFree('FuncObjet');
+   GlobalObjects.RemoveAndFree('ListadePCs');
+
+      {Os objetos Planilha, grafico e Series (S1 ... S4) não deverão
+      ser destruídos,pois continuarãm a existirem após a execução de
+      script (mostrarão os dados) e serão destruídos automaticamente
+      ao serem fechados pelo usuário}
+End.                   
+
+

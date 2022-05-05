@@ -1,0 +1,35 @@
+var Par: Object;
+begin
+  Randomize;
+
+  // configurações iniciais
+  Projeto.Rosenbrock.SetMaxSimulations(4000);
+  Projeto.Rosenbrock.SetInitialStep(true);
+  Projeto.Rosenbrock.SetDecStep(0.25);
+  Projeto.Rosenbrock.SetTolerante(0.00001);
+
+  Projeto.Rosenbrock.Parameters.Clear;
+
+  // Parâmetros
+  Par := CreateObject(TrbParameter);
+  Par.SetHiLimit(100);
+  Par.SetLowLimit(0);
+  Par.SetName('Vol_Queimado');
+  Par.SetStep(0.1);
+  Par.SetTolerance(0.001);
+  Par.SetValue(50);
+  Par.Show(10, 40);
+  Projeto.Rosenbrock.Parameters.Add(Par);
+
+  Par := CreateObject(TrbParameter);
+  Par.SetHiLimit(80);
+  Par.SetLowLimit(20);
+  Par.SetName('Vol_Res_2');
+  Par.SetStep(0.2);
+  Par.SetTolerance(0.01);
+  Par.SetValue(32);
+  Par.Show(250, 40);
+  Projeto.Rosenbrock.Parameters.Add(Par);
+
+  Projeto.Rosenbrock.ShowFO;
+end.

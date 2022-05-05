@@ -1,0 +1,97 @@
+{
+  Este exemplo mostra a Produtividade da Água de Irrigação ( PR_IRR )
+  para cada Manejo de uma Lavoura.
+  O resultado eh mostrado em um grafico.
+}
+
+  // Cada Lavoura possuira um grafico onde as séries são os manejos e os pontos
+  // são valores calculados para cada ano
+  procedure Plotar(G: object; NomeObjeto: string);
+  var Lav: object;     // Objeto Lavoura
+      D: object;       // Objeto serie de dados (um para cada Lavoura)
+      NumMan: integer; // Numero de manejos da Lavoura
+      i: integer;      // Contador local
+      Par: string;     // Formara o parametro de requisicao a ser passado para a Lavoura
+
+      // Variavels temporarias
+      PR_IRR: real;    // (RculI - Rcul ) / LIC
+      LIC: real;
+      AnoIni: integer;
+      AnoFim: integer;
+      Ano: integer;
+  begin
+    // Estabelece o tipo do Parametro Grafico
+    G := TfoChart(G);
+
+    // Obtem a lavoura utilizando o nome passado por parametro
+    Lav := TprCenarioDeDemanda( Projeto.ObjetoPeloNome(NomeObjeto) );
+
+    // Verifica se o objeto existe
+    if ObjectIsValid(Lav) then
+       begin
+       // Obtem o intervalo anual de cultivo
+       AnoIni := Trunc(Lav.ObterValorFloat('FirstYear'));
+       AnoFim := Trunc(Lav.ObterValorFloat('LastYear'));
+
+       // Obtem o numero de manejos
+       NumMan := Trunc(Lav.ObterValorFloat('Managements'));
+
+       // Se existem manejos
+       if NumMan > 0 then
+          begin
+          // Criamos uma serie de dados onde a cor eh obtida automaticamente
+          D := G.Series.AddLineSerie(NomeObjeto, getColor('TeeColor'));
+
+          // Percore todos os manejos
+          for i := 0 to NumMan-1 do
+            for ano := AnoIni to AnoFim do
+              begin
+              // Este eh o comando mais importante de todos
+              // Aqui se define o que queremos da Lavoura
+              // Queremos criar comandos do tipo: Manejo.Ano.Indice
+              // Precisamos de 3 índices: RCulI, RCul, LIC
+
+              // Criamos aqui parte do parâmetro que é igual para os tres indices
+              Par := 'Man_' + toString(i) + '.' + toString(ano) + '.';
+
+              // Plotamos o valor da propriedade
+              D.AddXY(ano, Lav.ObterValorFloat(Par + 'IRWP'), '', 0);
+              end; // for ano
+
+          end; // if NumMan
+       end // if ObjectIsValid
+    else
+       ShowMessage('Objeto <' + NomeObjeto + '> não localizado');
+  end; // Plotar
+
+var Grafico : object;   // Objeto Grafico
+    Nomes   : object;   // Objeto que contera os nomes das Lavoura usado pelo Propagar
+    i       : integer;  // Contador generico
+
+// Bloco principal (inicio do programa)
+begin
+  // Cria o objeto que contera os nomes das Lavouras
+  Nomes := createObject(TStringList);
+
+  // Define os nomes das Lavouras que quero plotar
+  // Cada Lavoura possuira um grafico onde as séries são os manejos e os pontos
+  // são valores calculados de cada anos
+  Nomes.Add('Milho 1');
+  Nomes.Add('Milho 2');
+  Nomes.Add('Horticultura PERUZZO');
+  Nomes.Add('Feijão 1');
+
+  // Plota cada Lavoura selecionda
+  for i := 0 to Nomes.Count-1 do
+    begin
+    // Cria o Grafico para a lavoura i
+    Grafico := createObject(TfoChart);
+    Grafico.setCaption(Projeto.Nome);
+    Grafico.Chart.Title.Add('Produtividade da Água de Irrigação para ' + Nomes.Get(i));
+    Plotar( Grafico, Nomes.Get(i) );
+    Grafico.Show;
+    end;
+
+  // Libera todos os objetos temporarios
+  FreeObject(Nomes);
+end. 

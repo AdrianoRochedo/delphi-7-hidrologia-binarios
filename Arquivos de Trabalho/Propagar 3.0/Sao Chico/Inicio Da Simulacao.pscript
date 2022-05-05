@@ -1,0 +1,11 @@
+var folder: string;
+begin
+  // Obtem a pasta onde estao os arquivos
+  Folder := ExtractFilePath(Projeto.NomeArquivo);
+
+  // Le as variaveis
+  Projeto.Variaveis.Ler(Folder + 'Variaveis.txt');
+
+  // Aplica o mapeamento as variaveis
+  Projeto.AplicarVariaveisNosObjetos(Folder + 'Mapeamento.txt');
+end.

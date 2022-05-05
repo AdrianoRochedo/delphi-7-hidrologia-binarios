@@ -1,0 +1,7 @@
+           3 //tipo de solo {1,2,3} tipo 3 camada definida por cc e ce (%) e densidade aparente (g/cm3)
+           2 //numero de camdas {1...8}
+   0.00   0.30   25.00   12.00   1.20
+   0.30   0.50   26.00   11.00   1.40
+
+//Para cada camada define-se (em peso)
+//(profundidade inicial) (profundidade final) (Capacacidade campo) (Coeficente de emurchimento) (Desnsidade aparente)

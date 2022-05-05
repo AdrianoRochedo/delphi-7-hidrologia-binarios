@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Autor: Adriano Rochedo Conceicao -->
+
+<projects>
+  <project title="Bacia Jequiá">
+    <ImageRegionFile>Alagoas\Jequia\BaciaJequia.ImageRegion</ImageRegionFile>
+    <sceneries>
+      <scenery title="2000">
+        <filename>Alagoas\Jequia\2000.cenario</filename>
+      </scenery>
+    </sceneries>
+  </project>
+  <project title="Bacia Poxim">
+    <ImageRegionFile>Alagoas\Poxim\BaciaPoxim.ImageRegion</ImageRegionFile>
+    <sceneries>
+      <scenery title="2000">
+        <filename>Alagoas\Poxim\2000.cenario</filename>
+      </scenery>
+    </sceneries>
+  </project>
+  <project title="Bacia Niquim">
+    <ImageRegionFile>Alagoas\Niquim\BaciaNiquim.ImageRegion</ImageRegionFile>
+    <sceneries>
+      <scenery title="2015">
+        <filename>Alagoas\Niquim\2015.cenario</filename>
+      </scenery>
+    </sceneries>
+  </project>
+  <project title="Bacia das Lagoas">
+    <ImageRegionFile>Alagoas\Lagoas\BaciaDasLagoas.ImageRegion</ImageRegionFile>
+    <sceneries>
+      <scenery title="2000">
+        <filename>Alagoas\Lagoas\2000.cenario.cript</filename>
+      </scenery>
+      <scenery title="2010">
+        <filename>Alagoas\Lagoas\2010.cenario.cript</filename>
+      </scenery>
+    </sceneries>
+  </project>
+  <project title="Bacia Sao Miguel">
+    <ImageRegionFile>Alagoas\Sao Miguel\BaciaSaoMiguel.ImageRegion</ImageRegionFile>
+    <sceneries>
+      <scenery title="2015">
+        <filename>Alagoas\Sao Miguel\2015.cenario</filename>
+      </scenery>
+    </sceneries>
+  </project>
+</projects>

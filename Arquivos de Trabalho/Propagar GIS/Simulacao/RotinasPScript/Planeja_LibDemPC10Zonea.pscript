@@ -1,0 +1,139 @@
+program Planeja_LibDemPC10_Zoneamento_de_Reservatorio;
+
+var Saida    : Object; {Variável já inicializada pelo sistema}
+    Projeto  : Object; {Variável já inicializada pelo sistema}
+
+    // Criação das variáveis auxiliares
+    PC, PC_9, PC_10 : Object;  // Objetos (variáveis) que irão conter os PCs
+    dt              : Integer; // Intervalo de Tempo
+
+    Aflubacs        : Real;    // Afluências das sub-bacias 9 e 10
+    DemanPri        : Real;    // Demandas primárias dos PCs 9 e 10
+    DemanPriHm3     : Real;    // Demandas primárias dos PCs 9 e 10, em Hm3
+    DemanTer        : Real;    // Demandas terciárias dos PCs 9 e 10
+    DemanTerHm3     : Real;    // Demandas terciárias dos PCs 9 e 10, em Hm3
+    DemanResid      : Real;    // Demandas residuais dos PCs 9 e 10
+    DemanResidHm3   : Real;    // Demandas residuais dos PCs 9 e 10, em Hm3
+
+
+    PC_AfluHm3      : Real;    // Afluência total ao reservatório em Hm3
+    VolInicInterv   : Real;    // Volume no reservatório no início do dt
+    VolDisp         : Real;    // Volume disponível no reservatório no início do dt
+    CapUtil         : Real;    // Capacidade Util do Reservatório (VOLmax-VOLmin)
+
+    Disp            : Real;    // Disponibilidade hídrica no intervalo
+    L               : Real;    // Vazão de água a liberar do reservatório no dt
+    Vertimento      : Real;    // Vertimento no reservatório (excesso de água) no dt
+
+    ZonaAB          : Real;    // Volume referente ao limite entre as Zonas A e B
+    Vespera         : Real;    // Parâmetro referente ao volume de espera
+
+    Ret1_9, Ret2_9, Ret3_9     : Real; //  Retornos PC 9
+    d1_9, d2_9, d3_9, sb_9     : Real; //  Demandas e subbacia PC 9
+    d1_10, d2_10, d3_10, sb_10 : Real; //  Demandas e subbacia PC 10
+
+    VecDefluPlan    : Object;   // Vetor auxiliar
+    Int_Simul       : Integer;  // Número de intervalos de simulação
+
+begin
+  dt := Projeto.ObtemDeltaT; // Obtem o Delta-T atual e atribui à variável auxiliar dt
+  Int_Simul := Projeto.Total_IntSim; // Obtem o número de intervalos de simulação
+  
+// Criação da variável global VecDefluPlan
+  if dt = 1 {and (GlobalObjects.Exists('LiberaOpera')} then
+     begin
+      VecDefluPlan := CreateObject(TwsDFVec, Int_Simul); // Cria objeto vetor aux.
+      GlobalObjects.Add('VecDefluPlan', VecDefluPlan);   // Adiciona vetor à lista global
+
+      // Inicialização e entrada dos valores de ZonaAB e Vespera
+      ZonaAB  := 300;  // Atribui um valor ao parâmetro ZonaAB (Vol. em Hm3)
+      Vespera := 10;  // Atribui um valor ao parâmetro Vespera (Vol. em Hm3)
+      {Deve-se testar se ZonaAB é maior que Vol.morto e menor que CapUtil-Vespera,
+       e se Vespera é menor que CapUtil-Vmorto}
+
+     end
+  else
+     VecDefluPlan := TwsDFVec(GlobalObjects.Get('VecDefluPlan')); // Recupera var. globais
+
+  {Atribui-se os PCs às variáveis objetos criadas - isso permite que se possa acessar
+   quaisquer atributos (dados) do PC}
+  PC_10      := Projeto.PCPeloNome('PC_10');        // Atribui o PC_10 à var. PC_10
+  PC_9       := Projeto.PCPeloNome('PC_9');         // Atribui o PC_9 à var. PC_9
+  PC         := Projeto.PCPeloNome('Queimado');     // Atribui o Res. Queimado à var. PC
+  CapUtil    := PC.VolumeMaximo-PC.VolumeMinimo; // Calcula a capacidade útil do res.
+  PC_AfluHm3 := PC.m3_Hm3_Intervalo(PC.ObtemVazaoAfluenteSBs);
+
+  If dt = 1 then  VolInicInterv  := PC.VolumeInicial
+            else  VolInicInterv  := PC.ObtemVolume(dt-1);
+
+  VolDisp    := VolInicInterv - PC.VolumeMinimo; // Calcula o vol. disp. atual do res. Queimado
+  Disp       := VolDisp + PC_AfluHm3; // Calcula a disponibilidade hídrica no res. no Dt
+
+  // Inicialização de variáveis auxiliares dos retornos
+  Ret1_9 := PC_9.FatorDeRetorno(1); // Fator de Retorno da Demanda Primária do PC9
+  Ret2_9 := PC_9.FatorDeRetorno(2); // Fator de Retorno da Demanda Secundária do PC9
+  Ret3_9 := PC_9.FatorDeRetorno(3); // Fator de Retorno da Demanda Terciária do PC9
+    
+  // Inicialização de variáveis auxiliares das Demandas Totais existentes em cada PC
+  d1_9 := PC_9.ObtemValorDemanda(dt, 1, 'T'); // Valor da Demanda Primária (1) Total (T) no intervalo (dt) no PC9
+  d2_9 := PC_9.ObtemValorDemanda(dt, 2, 'T'); // Valor da Demanda Secundária (1) Total (T) no intervalo (dt) no PC9
+  d3_9 := PC_9.ObtemValorDemanda(dt, 3, 'T'); // Valor da Demanda Terciária (1) Total (T) no intervalo (dt)no PC9
+  sb_9 := PC_9.ObtemVazaoAfluenteSBs;  // Valor da Vazão Afluente das Sub-bacias no intervalo "dt" - isto está implicitono PC9
+    
+  d1_10 := PC_10.ObtemValorDemanda(dt, 1, 'T'); // Valor da Demanda Primária (1) Total (T) no intervalo (dt) no PC10
+  d2_10 := PC_10.ObtemValorDemanda(dt, 2, 'T'); // Valor da Demanda Secundária (1) Total (T) no intervalo (dt) no PC10     
+  d3_10 := PC_10.ObtemValorDemanda(dt, 3, 'T'); // Valor da Demanda Terciária (1) Total (T) no intervalo (dt) no PC10     
+  sb_10 := PC_10.ObtemVazaoAfluenteSBs; // Valor da Vazão Afluente das Sub-bacias no intervalo "dt" - isto está implicitono PC10
+
+  {Cálculo das afluências das sub-bacias 9 e 10}
+  Aflubacs := sb_9 + sb_10;
+
+  {Cálculo das demandas primárias e sec. nos PCs 9 e 10}
+  DemanPri := (1- Ret1_9)* d1_9 + (1- Ret2_9)* d2_9 + (1- Ret3_9)* d3_9 + d1_10 + d2_10;
+  DemanPriHm3 := PC.m3_Hm3_Intervalo(DemanPri);
+
+  {Cálculo das demandas terciárias das sub-bacias 9 e 10}
+  DemanTer := d3_10;
+  DemanTerHm3 := PC.m3_Hm3_Intervalo(DemanTer);
+
+  {Cálculo das demandas residuais das sub-bacias 9 e 10 - Não atendidas pelas afluências}
+  DemanResid := DemanPri + DemanTer - Aflubacs;
+  DemanResidHm3 := PC.m3_Hm3_Intervalo(DemanResid);
+
+  {Quando a água geranda nas próprias sub-bacias atenderem as demandas o valor
+   de DemResid será negativo. Então faz-se L = 0}
+  if (Aflubacs - DemanPri - DemanTer) >= 0 then L := 0
+  else    // Se afluências das sub-bacias não atendem às demandas, aplica-se o Zoneamento
+    if Disp <= 0 then L := 0   // Se o vol. estiver abaixo do mínimo, defluência = zero
+    else
+      if Disp <= ZonaAB then L := DemanPri - Aflubacs
+      else
+        if Disp <= (CapUtil - Vespera) then L := DemanResid
+        else
+          Begin
+          Vertimento := Disp - (CapUtil - Vespera);
+          if Vertimento < DemanResidHm3 then L := DemanResid
+          else L := PC.Hm3_m3_Intervalo(Vertimento);
+          end;
+
+  {O valor a ser liberado é atribuído à propriedade (variável) DefluvioPlanejado
+   no intervalo dt, ou seja, DeltaT atual}
+  PC.AtribuiDefluvioPlanejado(dt, L);
+  VecDefluPlan.Set(dt, L);
+
+  // Escrita do Arquivo LOG
+     Saida.WriteLN('-----------------------');
+     Saida.WriteLN('Planeja');
+     Saida.WriteLN('Intervalo         : ' + ValToStr(dt));
+     Saida.WriteLN('Vol.Inic. Interv. : ' + ValToStr(VolInicInterv));
+     Saida.WriteLN('Vol. Disp.        : ' + ValToStr(VolDisp));
+     Saida.WriteLN('Vol. Max.         : ' + ValToStr(PC.VolumeMaximo));
+     Saida.WriteLN('Vol. Min.         : ' + ValToStr(PC.VolumeMinimo));
+     Saida.WriteLN('Vz. Aflu.         : ' + ValToStr(PC.ObtemVazaoAfluenteSBs));
+     Saida.WriteLN('Disp              : ' + ValToStr(Disp));
+     Saida.WriteLN('DemanResidHm3    : ' + ValToStr(DemanResidHm3));
+     Saida.WriteLN('CapUtil           : ' + ValToStr(CapUtil));
+     Saida.WriteLN('Vertimento        : ' + ValToStr(Vertimento));
+     Saida.WriteLN('L                 : ' + ValToStr(L));
+     
+end.

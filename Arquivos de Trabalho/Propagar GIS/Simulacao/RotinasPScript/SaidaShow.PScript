@@ -1,0 +1,19 @@
+Program SaidaShow_PC10;
+
+var
+  VecDefluPlan    : Object;
+  Planilha        : Object;
+  Int_Simul       : Integer;
+Begin
+
+  If GlobalObjects.Exists('VecDefluPlan') then
+     VecDefluPlan := TwsDFVec(GlobalObjects.Get('VecDefluPlan'));
+
+  Planilha := CreateObject(TPlanilha);
+  Planilha.Write(1, 1, 'Deflu.Planej.');
+  Planilha.WriteVecInCol(VecDefluPlan, 1, 2);
+  Planilha.Show;
+
+  Saida.show;
+  GlobalObjects.RemoveAndFree('VecDefluPlan');
+End.

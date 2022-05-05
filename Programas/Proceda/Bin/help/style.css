@@ -1,0 +1,26 @@
+      A
+      { color           : #003399;
+        font-family     : 'Technic, arial, helvetica';
+        font-size       : 12pt; 
+        text-decoration : none; }
+
+      A:hover 
+      { text-decoration : underline; }
+
+      .name 
+      { color       : '#000000';
+        font-family : 'Technic, arial, helvetica';
+        font-size   : 12pt;
+        margin-left : 14 px; }
+
+      .function
+      { color       : '#FFFFFF';
+        font-family : 'Technic, arial, helvetica';
+        font-size   : 12pt;
+        margin-left : 7px;} 
+
+      .title
+      { color       : '#CCCCFF';
+        font-family : '"Bauhaus Md Bt", arial, helvetica';
+        font-size   : 18pt;} 
+ 

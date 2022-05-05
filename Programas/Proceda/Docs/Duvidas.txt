@@ -1,0 +1,29 @@
+Como posso calcular os coef. de correlação entre séries de duração parcial se elas 
+podem possuir quantidades diferentes de elementos ?
+
+Ex: Serie A - 60 elementos
+    Serie B - 45 elementos 
+    Serie C - 55 elementos
+
+----------------------------------------------------------------------------------
+
+Esta pergunta pode ser generalizada. 
+
+Para eu poder realizar ações coletivas (ações que levam em conta mais de uma série 
+ao mesmo tempo), por exemplo, o cálculo do coef. de correlação entre duas ou mais 
+séries. Estas séries precisam possuir o mesmo número de elementos ? 
+
+----------------------------------------------------------------------------------
+
+O que mais pode ser considerado como ação coletiva ?
+
+----------------------------------------------------------------------------------
+
+Nas séries de Duração Parcial, somente posso realizar uma Análise de Frequência
+para as séries diárias, para as mensais não. 
+Esta afirmação está correta ?
+
+Lembre-se que estas séries NÃO SÃO séries Preenchidas, isto é, que sofreram preenchimento
+de falhas.
+
+-----------------------------------------------------------------------------------

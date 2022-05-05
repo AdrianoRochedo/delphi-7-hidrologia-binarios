@@ -1,0 +1,219 @@
+var
+    // variáveis auxiliares para conter as strings que formaram as variáveis:
+    vazio:                                                   string;
+    // Sinal para a inequação
+    Sinal:                                                   string;
+    // Variavel para conter a equação em formato de string
+    Equacao:                                                 string;
+    // Variável para conter a string com o numero do ano
+    sAno :                                                   string;
+    // Variáveis para conter a strings com os numeros dos intervalos com 3 digitos
+    sIntAtual, sIntPost :                                    string;
+    // Variável para conter a string com o nome de cada demanda
+    NomeDemanda:                                             string;
+    // Variavel para conter texto:
+    Texto:                                                   string;
+    // Variaveis auxiliares para conter o ano inicial de analise e os intervalos de analise
+    AnoInicial, OticaPub, OticaPri, Oticadeanalise :         integer;
+    // variáveis temporárias usadas como indices
+    iPC,iInt,iDem,iAno,indice,iAlt,iPCMontante,
+    iInv,iInviabilizado:                                     integer;
+    // Variavel para fazer um teste com intervalo de analise menor
+    Oticateste, NumIntOticateste:                            integer;
+    // Variavel para conter o numero de PCs:
+    ano, mes:                                                integer;
+    // Variavel para conter o nome de cada demanda:
+    NumeroPCs:                                               integer;
+    // Variavel para conter o numero de intervalos de simulação do projeto
+    NumIntSim:                                               integer;
+    // Variavel para conter o intervalo inicial de otimização
+    IntInicial:                                              integer;
+    // Variaveis para conter o numero de intervalos de otimização para Otica Privada e Publica:
+    NumIntOticaPri, NumIntOticaPub, NumIntOticadeanalise:    integer;
+    // variavel para conter a quantidade de anos para calculo do fator de atualização
+    NumeroAnos:                                              integer;
+    //Variavel que define o numero de demandas de cada PC
+    Numerodedemandas:                                        integer;
+    //Variavel para conter o numero que identifica o PC:
+    NumPC:                                                   integer;
+    //Variavel para conter a quantidade de alternaticas excludentes de armazenamento para cda reservatorio :
+    NumeroAltReserv:                                         integer;
+    //Variavel para conter o numero que identifica o PC:
+    NumeroPCsMOntante:                                       integer;
+    //Variavel para conter a quantidade de restrições devido a inviabilidade por alagamento:
+    NumeroInvAlagam:                                         integer;
+    //Variavel para conter a quantidade de alternativas que provocam inviabilidade por alagamento de cada PC:
+    NumeroAltInviab:                                         integer;
+    //Variavel para conter a quantidade de barramentos inviabilizados por alagamento, de cada barramento inviablizador:
+    NumeroBarInviabilizados:                                 integer;
+    // Variavel para acumular o valor de RHS:
+    RHS:                                                     real;
+    // Variavel para conter as vazoes incrementais de cada PC:
+    VazaoIncremental:                                        real;
+    // Variaveis para conter o fator de desconto adotado, fator de atualização calculado e o fator de recuperação de capital:
+    FatorDesc, FatorAtual, FatorRecuperacao:                 real;
+    // variaveis para conter o coeficiente de cada variável na FO:
+    CoefVIpc1,CoefVIpc2:                                     real;
+    // variavel para conter o valor percentual de custo de OeM em relaçao ao de Instalação:
+    CoefOeM :                                                real;
+    // variaveis para conter os coeficientes da reta area versus volume de cada reservatorio:
+    Coefalfa, Coefbeta:                                      real;
+    // variaveis para conter os valores das constantes a e b para cada reservatorio:
+    Coefa, Coefb:                                            real;
+    // variaveis para conter os coeficientes da reta area versus volume de cada reservatorio:
+    TxEvaporacao, Txpluviometria:                            real;
+    // Variavel para conter o valor de implantação de cada alternativa dos reservatorios:
+    ValorImplantVIpc1, ValorImplantVIpc2:                    Real;
+    // Variavel para conter o valor do volume maximo de cada reservatorio:
+    VolumeMaximo:                                            real;
+    // Variavel para conter o valor do volume morto de cada reservatorio:
+    VolumeMorto:                                            real;
+    // Variavel para conter o valor da vazao garantida no último PC da rede:
+    VazaoGarantidaM3:                                        real;
+    // Variavel que vai conter o objeto PC:
+    PC:                                                      Object;
+    // Variavel que vai conter o objeto PC a montante:
+    PCaMontante:                                             Object;
+    // Variaveis que vao conter as Planilhas com os valores dos investimentos e benefícios
+    // relativos a cada sub-projeto de irrigação existente, ou planejado (aspersao ou inundacao)
+    PlanilhaReserv:                                          Object;
+    FolhaPlanilha:                                           Object;
+    // variavel que vai conter a string com o caminho do diretorio
+    Folder:                                                  string;
+begin
+
+  //Define qual é o caminho a ser utilizado como diretorio corrente
+  Folder:=  'F:\Projetos\Arquivos de Trabalho\Propagar 3.0\Sao Chico II\';
+
+  //Cria os objetos para receberem as planílhas com os valores de Custos e Beneficios para os reservatorios
+  PlanilhaReserv := Createobject(TSpreadSheetBook);
+
+  //Ler no diretório especificado a planilha caso ela exista
+  if FileExists(Folder+'Teste.xls')
+     then
+        PlanilhaReserv.LoadFromFile(Folder+'Teste.xls')
+     else
+        ShowMessage(' Arquivo não encontrado');
+
+  //Ativa a folha da planilha que contem os custos de implantação dos resrvatorios
+  PlanilhaReserv.setActiveSheetIndex(0);
+  //Recebe essa folha:
+  FolhaPlanilha :=  PlanilhaReserv.ActiveSheet;
+
+
+  // Inicialização das constantes que conterão os valores de alguns dados gerais para montagem do modelo
+
+  // Ler na folha da planilha ativa o ano inicial do período de analise:
+  AnoInicial:=FolhaPlanilha.GetInt(35,2);
+
+  // Ler na folha da planilha ativa a quantidade de anos do período de analise:
+  Oticadeanalise := FolhaPlanilha.GetInt(35,3);
+
+  // Determinação dos periodos dos intervalos de otimizaçao:
+  NumIntOticadeanalise:=12*Oticadeanalise;
+
+  //Fator de desconto a ser utilizado no projeto:
+  //FatorDesc:= FolhaPlanilha.GetFloat(35,4);
+    ShowMessage(FolhaPlanilha.GetText(19,10));
+    FatorDesc:= FolhaPlanilha.GetFloat(19,10);   // <------------
+
+  //Fração do custo de implantação adotado como custo de OeM:
+  CoefOeM:= FolhaPlanilha.GetFloat(35,5);
+
+  //Vazao garantida adotada na presente simulação em m3/s (metros cubicos por segundo em cada intervalo de tempo)
+  VazaoGarantidaM3:= FolhaPlanilha.GetFloat(35,6);
+
+  //Numero de restrições devido a possibilidade de alagamento entre reservatorios
+  NumeroInvAlagam := FolhaPlanilha.GetInt(35,8);
+
+  // Obtem o total de intervalo de simulação
+  NumIntSim := Projeto.Total_IntSim;
+
+  // Vai descobrir qual é o intervalo inicial de otimização
+  for iInt := 1 to NumIntSim do
+      begin
+        Projeto.IntervaloComoData( iInt, mes, ano); // Obtem o mês e o ano do delta T atual
+        if (ano = AnoInicial) and (mes = 1)
+           then IntInicial := iInt
+      end;
+
+  // Recebe do projeto o numero de PC existentes
+  NumeroPCs := Projeto.NumPCs;
+
+  Projeto.Equacoes_Escrever('!Modelo de PL para Escolha de reservatorios Semi Binário');
+  Projeto.Equacoes_Escrever('!Apenas as variaveis VIpc1 são Binárias');
+  Projeto.Equacoes_Escrever('!Alternativa 1');
+  Projeto.Equacoes_Escrever('!Somatorios de custos anuais para recuperaçao de capital');
+  Projeto.Equacoes_Escrever('!Cada reservatorio com número de volumes incrementais diferentes');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!Dados lidos na folha 0 (zero) da planilha Teste.xls');
+  Projeto.Equacoes_Escrever('!Note que nessa folha foram lidos todas as decimais dos números');
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('!Ano inicial do modelo:'+IntToStr(AnoInicial));
+  Projeto.Equacoes_Escrever('!Otica de analise adotada:'+IntToStr(Oticadeanalise));
+  Projeto.Equacoes_Escrever('!Num de intervalos mensais:'+IntToStr(NumIntOticadeanalise));
+  Projeto.Equacoes_Escrever('!Fator de desconto adotado:'+FloatToStr(FatorDesc,10));
+  Projeto.Equacoes_Escrever('!Fraçao do custo de O&M adotado:'+FloatToStr(CoefOeM,5));
+  Projeto.Equacoes_Escrever('!Vazão garantida adotada (m3/s):'+FloatToStr(VazaoGarantidaM3,5));
+  Projeto.Equacoes_Escrever('!Quant de restrições de inviabilidade por alagamento:'+IntToStr(NumeroInvAlagam));
+  Projeto.Equacoes_Escrever('');
+  Projeto.Equacoes_Escrever('');
+
+
+  //Ativa a folha da planilha que contem os custos de implantação dos reservatorios
+  PlanilhaReserv.setActiveSheetIndex(4);
+  //Recebe essa folha:
+  FolhaPlanilha :=  PlanilhaReserv.ActiveSheet;
+
+  Projeto.Equacoes_Escrever('!Dados lidos na folha 4 (quatro) da planilha Teste.xls');
+  Projeto.Equacoes_Escrever('!Note que nessa folha so foram lidos dois dígitos decimais');
+  Projeto.Equacoes_Escrever('');
+
+  // Geração da equação que define a Função objetivo
+  // Varre todos os PCs do projeto
+  for iPC := 1 to NumeroPCs do
+      begin
+         // Recebe o objeto PC da lista contida em Projeto (inicia com 0)
+         PC:= Projeto.PC(iPC-1);
+         //Converte em numero inteiro a string com o numero do PC
+         NumPC:= trunc(StrToFloat(PC.Nome));
+         // Testa se PC eh resrvatorio e diferente do PC
+         if ((PC.Eh_Reservatorio)and(PC.Nome<>'13')) then
+             begin
+               //Teste para saber se o metodo esta lendo todas as decimais na planilha
+               Projeto.Equacoes_Escrever('Dados do PC'+PC.nome);
+               Projeto.Equacoes_Escrever('Volume Morto = '+FloatToStr(FolhaPlanilha.GetFloat(NumPC,1),5));
+               Projeto.Equacoes_Escrever('Valor Implant Volume Morto = '+FloatToStr(FolhaPlanilha.GetFloat(NumPC,2),5));
+               Projeto.Equacoes_Escrever('Valor Implant Volume Incremental = '+FloatToStr(FolhaPlanilha.GetFloat(NumPC,3),5));
+               Projeto.Equacoes_Escrever('Volume Incremental Max = '+FloatToStr(FolhaPlanilha.GetFloat(NumPC,4),5));
+               Projeto.Equacoes_Escrever('');
+             end
+      end; 
+
+  //Ativa a folha da planilha que contem os coeficientes angular e linear da reta de ajuste da area x volume
+  PlanilhaReserv.setActiveSheetIndex(1);
+  //Recebe essa folha:
+  FolhaPlanilha :=  PlanilhaReserv.ActiveSheet;
+
+  // Geração do bloco "Balanço Hidrico segundo a Minuta do Projeto"
+  Projeto.Equacoes_Escrever('!Dados lidos na folha 1 (um) da planilha Teste.xls');
+  Projeto.Equacoes_Escrever('!Note que nessa folha so foram lidos dois dígitos decimais');
+  Projeto.Equacoes_Escrever('');
+  //Varredura dos intervalos de tempo considerados para otimização
+        for iPC := 1 to NumeroPCs do
+             begin
+                 // Recebe o objeto PC da lista contida no Projeto (inicia com 0)
+                 PC:= Projeto.PC(iPC-1);
+                 if PC.Eh_Reservatorio
+                    then
+                        begin
+                            //Converte em numero inteiro a string com o numero do PC
+                            NumPC:= trunc(StrToFloat(PC.Nome));
+                            //Teste para saber se o metodo esta lendo todas as decimais na planilha
+                            Projeto.Equacoes_Escrever('Dados da curva area x volume para o PC'+PC.Nome);
+                            Projeto.Equacoes_Escrever('Coefalfa = '+FloatToStr(FolhaPlanilha.GetFloat(NumPC,1),5));
+                            Projeto.Equacoes_Escrever('Coefbeta = '+FloatToStr(FolhaPlanilha.GetFloat(NumPC,2),5));
+                            Projeto.Equacoes_Escrever('');
+                        end
+             end;
+end.

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+
+<font face="Arial" size="+2">
+Usando a classe TPascalScript
+</font>
+<br><br>
+
+<font face="Arial" size="+1">
+Etapas
+</font>
+<br><br>
+
+<table>
+<tr>
+	<td width=30></td>
+	<td>
+	1) Crie uma Inst&acirc;ncia da Classe <i>TPascalScript</i><br>
+    2) Adicione as bibliotecas * [OPCIONAL]<br>
+	3) 
+            Configure as propriedades &quot;Errors&quot;, &quot;GerCODE&quot;, etc [OPCIONAL]<br> 
+	4) Associe o Script a propriedade &quot;Text&quot;<br>
+    5) Chame os m&eacute;todos Compile/Execute<br>
+    6) Destrua a inst&acirc;ncia<br>
+	         
+	        
+	  
+	</td>
+</tr>
+</table>
+<br>
+
+<font face="Arial" size="+1">
+Exemplo
+</font>
+<br><br>
+
+<pre>
+<b>var</b> 
+  P: TPascalScript;
+
+<b>procedure</b> TdlgMain.FormCreate(Sender: TObject);
+<b>begin</b>
+  P := TPascalScript.Create;
+  P.Errors := Info.Items;
+
+  <i>// Eventos da M&aacute;quina Virtual</i>
+  P.VirtualMachine.OnPC_Change     := Running;
+  P.VirtualMachine.OnBeforeExecute := BeforeRun;
+  P.VirtualMachine.OnAfterExecute  := AfterRun;
+
+  <i>// Biblioteca para uso da Classe TStrings</i>
+  P.Include(Lib_StringList.API);
+
+  <i>// Biblioteca Matem&aacute;tica Matricial</i>
+  P.Include(Lib_wsMatrix.API)
+<b>end</b>;
+
+<b>procedure</b> TdlgMain.FormDestroy(Sender: TObject);
+<b>begin</b>
+  P.Free;
+<b>end</b>;
+
+<b>procedure</b> TdlgMain.btnCompileClick(Sender: TObject);
+<b>var</b> i: Longword;
+<b>begin</b>
+  P.Text := Memo_Script.Lines;
+  P.GerCODE := True;
+
+  i := GetTickCount;
+  P.Compile;
+  i := GetTickCount - i;
+
+  <b>if</b> P.Errors.Count = 0 <b>then</b>
+     Info.Items.Add('Compilado com Sucesso em ' + FloatToStr(i/1000) + ' segundos !')
+  <b>else</b>
+     Info.Items.Assign(P.Errors);
+<b>end</b>;
+
+<b>procedure</b> TdlgMain.btnRunClick(Sender: TObject);
+<b>var</b> i: Longword;
+<b>begin</b>
+  <b>if not</b> P.Compiled <b>then</b> btnCompileClick(nil);
+  <b>if</b> P.Compiled <b>then</b>
+     <b>begin</b>
+     i := GetTickCount;
+     P.Execute;
+     i := GetTickCount - i;
+     Info.Items.Add('Executado com Sucesso em ' + FloatToStr(i/1000) + ' segundos !');
+     <b>end</b>;
+<b>end</b>;
+</pre>
+
+</body>
+</html>

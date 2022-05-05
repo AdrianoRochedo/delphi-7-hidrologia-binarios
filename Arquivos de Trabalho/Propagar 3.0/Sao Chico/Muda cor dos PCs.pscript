@@ -1,0 +1,8 @@
+var PC: object;
+    Cor: integer;
+begin
+  Cor := GetColor('red');
+  PC := TprPCP ( Projeto.ObjetoPeloNome('38') );
+  PC.MudarCor ( Cor );
+end.
+ 

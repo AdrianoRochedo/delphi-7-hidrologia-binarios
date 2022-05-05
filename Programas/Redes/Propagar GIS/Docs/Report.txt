@@ -1,0 +1,26 @@
+   AVP32 Scan  06/08/2000  00:33:28
+
+
+Search process complete.
+
+Scanned
+
+Sector Objects :	         0
+Files :	         1
+Folders :	         0
+Archives :	         0
+Packed :	         0
+
+Found
+
+Known viruses :	         0
+Virus bodies :	         0
+Disinfected :	         0
+Deleted :	         0
+Warnings :	         0
+Suspicious :	         0
+Corrupted :	         0
+I/O Errors :	         0
+
+Scan speed (Kb/sec) :	         1
+Scan time :	     00:00

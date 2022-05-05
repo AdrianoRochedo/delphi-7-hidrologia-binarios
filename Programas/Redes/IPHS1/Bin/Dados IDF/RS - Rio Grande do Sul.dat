@@ -1,0 +1,19 @@
+
+
+[Estacao Porto Alegre - IPH]
+Nome=Porto Alegre - IPH
+Comentario=
+Latitude=   º   '   "
+Longitude=   º   '   "
+Equacoes=1
+Equacao1=Padrão
+Parametros1=509.859  0.196  10  0.72
+
+[Estacao Santa Vitoria]
+Nome=Santa Vitoria
+Comentario=
+Latitude=   º   '   "
+Longitude=   º   '   "
+Equacoes=1
+Equacao1=Padrão
+Parametros1=1036.5  0.28  22.8  0.77

@@ -1,0 +1,48 @@
+var Par, o: Object;
+begin
+  Randomize;
+
+  Projeto.Rosenbrock.Parameters.Clear;
+  Projeto.Rosenbrock.SetDecStep(0.1);
+  Projeto.Rosenbrock.SetMaxSimulations(20);
+  Projeto.Rosenbrock.SetMaxTimeSimulation(60000);
+  //Projeto.Rosenbrock.ShowFO(10, 10);
+
+  { ******** exemplo de criação de parâmetros *********}
+
+
+  // Cria um parâmetro independente
+  Par := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Par.SetName('x');
+  Par.SetValue(10);
+  Par.SetStep(0.1);
+  Par.SetLowLimit(0);
+  Par.SetHiLimit(20);
+
+  Par := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Par.SetName('y');
+  Par.SetValue(10);
+  Par.SetStep(0.1);
+  Par.SetLowLimit(0);
+  Par.SetHiLimit(20);
+
+  o := Projeto.PCPeloNome('Queimado');
+
+  Par := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Par.SetName('VM_Queimado');
+  Par.SetLink(o, 'VolumeMaximo', 0, 0);
+  Par.SetStep(10);
+  Par.SetLowLimit(100);
+  Par.SetHiLimit(1000);
+
+  o := Projeto.PCPeloNome('Paracatu');
+
+  Par := Projeto.Rosenbrock.Parameters.CreateParameter;
+  Par.SetName('VM_Paracatu');
+  Par.SetLink(o, 'VolumeMaximo', 0, 0);
+  Par.SetStep(10);
+  Par.SetLowLimit(100);
+  Par.SetHiLimit(6000);
+
+  Projeto.Rosenbrock.ShowManager(10, 400);
+end.

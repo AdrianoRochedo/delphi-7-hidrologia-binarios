@@ -1,0 +1,181 @@
+HISTORICO DAS VERSOES
+
+  1.04 (25/08/2004)
+
+       - Analise de Correlacao entre Series e Conjunto de Dados
+       - Estatisticas descritivas das series
+       - Analise de Frequencias
+
+  1.05 (28/08/2004)
+
+       - Conneccao com um Banco de Dados Access
+
+  1.06 (30/08/2004)
+
+       - Bug fix na conversao de postos de um BD para o Proceda
+
+  1.07 (31/08/2004)
+
+       - Importacao dos postos climaticos
+       - Preenchimento de series (ainda nao foi testado)
+       - Melhorias na forma de selecao dos objetos da arvore (shift key + control key)
+
+  1.08 (01/09/2004)
+
+       - Visualizacao de series preenchidas em planilha
+       - Ajuste de distribuicoes para toda a serie e para um mes especifico
+       - Ajustes no Gantt
+
+  1.09 (03/09/2004)
+
+       - Ajustes nos modos de selecao da arvore de objetos
+       - Bug corrigido na criacao de janelas filhas
+       - Criacao do Menu 'Janelas/Fechar Todas'
+       - Importacao simultanea de postos de Bancos de Dados diferentes
+       - Remocao de series
+       - Valores negativos como resultado no preenchimento nao sao considerados
+       - Os graficos de linhas de postos e series agora mostram a data no eixo x
+       - As planilhas de postos individuais agora mostram a data como cabecalho dos dados
+       - Implementado as distribuicoes: LogNormal II, LogNormal III, Log-Pearson Tipo III e Gumbel II
+
+  1.10 (06/09/2004)
+
+       - Bug do nome do arquivo que aparecia cortado resolvido, mas atencao, devido a limitacoes
+         do componente 'TStatusBar', somente 127 caracteres para cada painel sao mostrados
+       - Calculo das sub-series mensais 'medias mensais' e 'medias anuais'
+       - Todos os graficos agora permitem mostrar a linha de media e a linha de tendencia
+       - Grafico de Histograma individual para 'Medias Mensais' de 'Series Mensais'
+
+  1.11 (08/09/2004)
+
+       - Conversao de series mensais para conjunto de dados Proceda
+       - Ajustes em analise de conjunto de dados mensais
+       - Retirada de items redundantes do Menu Principal
+       - Nova ferramenta para selecao visual de periodos
+       - Adaptacao das janelas 'Curva de Permanencia' e 'Dupla-Massa' a nova ferramenta de
+         selecao visual de periodos
+
+  1.12 (10/09/2004)
+
+       - Posicionamento vertical de janelas filhas.
+       - Graficos 'Gantt', 'Curva de Permanencia' e 'Dupla-Massa' certificados para conjuntos mensais
+       - Melhorias no grafico 'Gantt'
+       - Nova ferramenta para analise de periodos 'Menu Analise/Analise de Periodos'
+
+  1.13 (13/09/2004)
+
+       - Melhorias no grafico Chuva-Vazao
+       - Melhorias no metodo 'TwsProbCont.QQPlot()' de 'wsProbabilidade'
+       - Plotagem de todos os ajustes de distribuicoes em um mesmo grafico alem dos individuais
+       - Bug na clonagem de series
+
+  1.14 (16/09/2004)
+
+       - Calculo da media de series mensais
+
+  1.15 (17/09/2004)
+
+       - Bug das cores no grafico Chuva X Vazao
+
+  1.16 (21/09/2004)
+
+       - Bug corrigido na geracao de novos postos atraves de calculo
+       - Remocao de postos
+       - Melhorias no grafico Chuva-Vazao
+
+  1.17 (22/09/2004)
+
+       - Preenchimento de Falhas em series anuais
+
+  1.18 (24/09/2004)
+
+       - Serie de Minimos Anuais
+       - Exportacao da matriz dos periodos dos postos
+
+  1.19 (26/09/2004)
+
+       - Melhorias na ferrammenta de analise de periodos
+
+  1.20 (27/09/2004)
+
+       - Bug corrigido na geracao de postos mensais
+       - Bug corrigido na edicao das propriedades dos postos
+       - Correlacao de postos
+       - Estatisticas Descritivas de postos
+       - Serie admensionalizada dos dados dos postos
+
+  1.21 (28/09/2004)
+
+       - Pode-se agora selecionar o mes inicial do ano hidrologico em series anuais
+       - Comentarios em Series
+       - Importacao da matriz de coeficientes na geracao de arquivos para o Modhac e Propagar
+
+  1.22 (30/09/2004)
+
+       - Importacao da matriz de coeficientes atraves da matriz de combinacoes (padroes)
+       - Insercao de postos com intervalos maiores que o atual
+
+  1.23 (02/10/2004)
+
+       - Melhorias na importacao da matriz de coeficientes atraves da matriz de combinacoes (padroes)
+
+  1.24 (04/10/2004)
+
+       - Uniao de postos (Acesso atraves das acoes coletivas dos postos)
+       - Atualizacao do componente TWebBrowser
+       - Melhorias no calculo dos coeficientes de thiessen
+
+  1.25 (08/11/2004)
+
+       - Melhorias internas na Planilha
+       - Melhorias internas nas opcoes gerais dos graficos
+
+  1.26 (15/11/2004)
+
+       - Postos Mensais agora podem ser mostrados em uma planilha Mes a Mes
+
+  1.27 (17/11/2004)
+
+       - Recompilacao com a diretiva 'Range Check' desligada     
+
+  1.28 (26/11/2004)
+
+       - Selecao de periodo na geracao do arquivo PLU
+
+  1.29 (28/11/2004)
+
+       - Imagem do grafico Chuva X Vazao eh copiada com fundo branco para a Clipboard
+
+  1.30 (06/12/2004)
+
+       - Erro corrigido na analise das distribuicoes.
+
+  1.31 (10/12/2004)
+
+       - Calculo da serie Logaritmo Natural.
+
+  1.32 (11/12/2004)
+
+       - Ajustes no calculo da serie de Medias Moveis (Minimos Anuais)
+
+  1.33 (26/12/2004)
+
+       - Novo Grafico: - Series - Diferenca da Media Acumulada
+       - Capacidade de executar Scripts em PascalScript
+
+  1.34 (10/01/2005)
+
+       - Revisao na analise de periodos quando trabalhando com dados mensais
+       - Revisao na geracao de arq. PLU quando trabalhando com dados mensais
+
+  1.35 (11/01/2005)
+
+       - Opcao de escolha do separador a ser utilizado na geracao de arquivos PLU
+
+  1.36 (26/01/2005)
+
+       - Nova Serie: Valores do Posto
+
+  1.37 (08/02/2005)
+
+       - Configuracoes globais de graficos

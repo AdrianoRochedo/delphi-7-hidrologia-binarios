@@ -1,0 +1,5 @@
+begin
+  // Libera Toda a memória alocada em execuções anteriores
+  // de scripts, mesmo ocorrendo erros.
+  GlobalObjects.Clear;
+end.

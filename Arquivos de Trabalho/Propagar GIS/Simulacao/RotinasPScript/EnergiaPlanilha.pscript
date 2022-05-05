@@ -1,0 +1,79 @@
+Program Energia_Planilha;
+
+// Variáveis pré-declaradas
+   // Saida   : TwsOutPut
+   // Projeto : TprProjeto_Rosen
+
+var
+  
+  IntTotal : Integer;
+  i        : Integer;
+  Queimado : Object;
+  Paracatu : Object;
+
+  Planilha  : Object;
+  
+//  Grafico  : Object;
+//  S1       : Object;
+//  S2       : Object;
+ 
+  VetorEnergiaQueimado  : Object;
+  VetorEnergiaParacatu  : Object;
+  VetorTempo            : Object;
+  
+
+Begin
+  // Inialização do intervalo total
+  IntTotal := Projeto.Total_IntSim;
+
+  // Inicialização dos reservatórios;
+  Queimado := Projeto.PCPeloNome('Queimado');
+  Paracatu := Projeto.PCPeloNome('Paracatu');
+
+  // Criação e inicialização dos vetores 
+  VetorTempo           := CreateObject(TwsSIVec, IntTotal);
+  VetorEnergiaQueimado := CreateObject(TwsDFVec, IntTotal);
+  VetorEnergiaParacatu := CreateObject(TwsDFVec, IntTotal);
+
+  //  Preechimento dos vetores
+  for i := 1 to IntTotal do
+    begin
+    VetorTempo.Set(i, i);
+    VetorEnergiaQueimado.Set(i, Queimado.ObtemEnergia(i));
+    VetorEnergiaParacatu.Set(i, Paracatu.ObtemEnergia(i));
+    end;
+
+  // Apresentação da Energia Gerada (em Planilha)
+  Planilha := CreateObject(TPlanilha);
+  Planilha.Write(1, 1, 'Valores da Energia Gerada nos Reservatórios');
+  Planilha.Write(2, 1, 'Projeto ' + Projeto.Nome);
+  Planilha.Write(4, 1, 'Dt');
+  Planilha.Write(4, 2, 'Queimado');
+  Planilha.Write(4, 3, 'Paracatu');
+  Planilha.WriteVecInCol(VetorTempo, 1, 5);
+  Planilha.WriteVecInCol(VetorEnergiaQueimado, 2, 5);
+  Planilha.WriteVecInCol(VetorEnergiaParacatu, 3, 5);
+
+
+{
+  Grafico := CreateObject('TgrGrafico');
+  S1 := Grafico.Series.AddBarSerie('I.C.',   getColor('red'),    0, 1);
+  S2 := Grafico.Series.AddBarSerie('I.R.',   getColor('green'),  0, 1);
+
+  Cor := getColor('TeeColor');
+}
+
+  // Apresentação dos resultados
+  
+  
+  // Mostra os dados em forma de planilha e gráfico
+  Planilha.Show;
+  //Saida.Show;
+
+ {
+  ATENÇÃO:
+     Os objetos Planilha, Grafico e Series (S1..S4) não deverão ser destruídos
+     pois continuarão a existirem após a execução de script (mostrarão os dados) e
+     serão destruídos automaticamente ao serem fechados pelo usuário.
+  }
+end.

@@ -1,0 +1,134 @@
+Program GeralVolumeMetasMedio;
+
+{Var. pré-declaradas: Saida : TwsOutPut e
+               Projeto : TprProjeto_Rosen}
+var
+  IntTotal  : Integer;
+  i         : Integer;
+  ii        : Integer;
+  NovoValor : Real;
+  PCR       : Object;
+  PCReserv  : String;
+
+  Plan     : Object;
+  Planilha : Object;
+  Grafico  : Object;
+  SerieVolMetMax : Object;
+  SerieVolMetMin : Object;
+  SerieVolumesMedios : Object;
+  CorMetaMax : Integer;
+  CorMetaMin : Integer;
+  CorVolume  : Integer;
+
+  vMeses         : Object;
+  vDeltaT        : Object;
+  vDefluPlan     : Object;
+  vDefluOper     : Object;
+  vDefluReal     : Object;
+  vVolMetMax     : Object;
+  vVolMetMin     : Object;
+  vVolumes       : Object;
+  vVolumesMedios : Object;
+
+Begin
+  // Inialização do intervalo total
+  IntTotal := Projeto.Total_IntSim;
+
+  // Criação e inicialização dos vetores
+  vMeses  := CreateObject(TwsSIVec, 12);
+  vDeltaT := CreateObject(TwsDFVec, IntTotal);
+  vDefluPlan := CreateObject(TwsDFVec, IntTotal);
+  vDefluOper := CreateObject(TwsDFVec, IntTotal);
+  vDefluReal := CreateObject(TwsDFVec, IntTotal);
+  vVolMetMax := CreateObject(TwsDFVec, 12);
+  vVolMetMin := CreateObject(TwsDFVec, 12);
+  vVolumes   := CreateObject(TwsDFVec, IntTotal);
+  vVolumesMedios := CreateObject(TwsDFVec, 12);
+
+  // Preechimento do vetor Tempo (meses)
+  for i := 1 to 12 do
+      vMeses.Set(i, i);
+
+  // Entrada de dados do usuário, via arq.EXCELL (Nomes do PCR e Vols. Metas)
+  Plan := CreateObject(TPlanilha);
+  Plan.LoadFromFile('D:\Tese\Simulacao\EntradaXLS\VolumeMetas.xls');
+  PCReserv := Plan.GetEntry(1,1); // Ret. string da L1 e C1 da Plan.
+  vVolMetMax := Plan.RowToVec(3,1,12); // Cria um vetor com 12 parâmetros Vol. Max.
+  vVolMetMin := Plan.RowToVec(4,1,12); // Cria um vetor com 12 parâmetros Vol. Min.
+  FreeObject(Plan);
+
+  // Inicialização do nome do reservatório;
+  PCR := Projeto.PCPeloNome(PCReserv);
+
+  // Converte os valores dos vetores dos vol. metas em valores absolutos
+  for i := 1 to 12 do
+     begin
+     vVolMetMax.Set(i, vVolMetMax.Get(i) * PCR.VolumeMaximo / 100);
+     vVolMetMin.Set(i, vVolMetMin.Get(i) * PCR.VolumeMaximo / 100);
+     end;
+
+  // Preechimento do vetor de Volumes reais
+  for i := 1 to IntTotal do
+     begin
+     vVolumes.Set(i, PCR.ObtemVolume(i));
+     vDeltaT.Set(i, i);
+     vDefluPlan.Set(i, PCR.ObtemDefluvioPlanejado(i));
+     vDefluOper.Set(i, PCR.ObtemDefluvioOperado(i));
+     vDefluReal.Set(i, PCR.ObtemDefluencia(i));
+     end;
+
+  // Preechimento do vetor de Volumes Médios
+  for i := 1 to 12 do
+    for ii := 0 to (Projeto.NumAnosDeExecucao - 1) do
+       begin
+       NovoValor := vVolumes.Get(12*ii +i) / Projeto.NumAnosDeExecucao;
+       NovoValor := vVolumesMedios.Get(i) + NovoValor;
+       vVolumesMedios.Set(i, NovoValor);
+       end;
+
+  // Apresentação dados dos vetores em Planilha
+  Planilha := CreateObject(TPlanilha);
+  Planilha.Write(1, 1, 'DeltaT');
+  Planilha.Write(1, 2, 'Volume');
+  Planilha.Write(1, 3, 'Def.Plan');
+  Planilha.Write(1, 4, 'Def.Oper');
+  Planilha.Write(1, 5, 'Def.Real');
+  Planilha.WriteVecInCol(vDeltaT, 1, 2);
+  Planilha.WriteVecInCol(vVolumes, 2, 2);
+  Planilha.WriteVecInCol(vDefluPlan, 3, 2);
+  Planilha.WriteVecInCol(vDefluOper, 4, 2);
+  Planilha.WriteVecInCol(vDefluReal, 5, 2);
+
+  // Monta o gráfico
+  CorMetaMin := getColor('green');
+  CorVolume  := getColor('blue');
+  CorMetaMax := getColor('red');
+  Grafico := CreateObject(TgrGrafico);
+  Grafico.Chart.SetView3D(True);
+  Grafico.Chart.Title.Add('Volumes no Reservatório');
+  SerieVolMetMin     := Grafico.Series.AddBarSerie('Mínimo', CorMetaMin, 0,1);
+  SerieVolumesMedios := Grafico.Series.AddBarSerie('Médios', CorVolume, 0,1);
+  SerieVolMetMax     := Grafico.Series.AddBarSerie('Máximo', CorMetaMax, 0,1);
+  for i := 1 to 12 do
+    begin
+    SerieVolMetMin.AddXY(vMeses.Get(i), vVolMetMin.Get(i), '', CorMetaMin);
+    SerieVolumesMedios.AddXY(vMeses.Get(i), vVolumesMedios.Get(i), '', CorVolume);
+    SerieVolMetMax.AddXY(vMeses.Get(i), vVolMetMax.Get(i), '', CorMetaMax);
+    end;
+
+// Mostra os dados em forma de planilha e gráfico
+  Planilha.Show;
+  Grafico.Show;
+
+// Liberação de objetos sem uso
+  FreeObject(vMeses);
+  FreeObject(vDeltaT);
+  FreeObject(vVolMetMax);
+  FreeObject(vVolMetMin);
+  FreeObject(vVolumesMedios);
+  FreeObject(vVolumes);
+  FreeObject(vDefluReal);
+ {ATENÇÃO: Os objetos Planilha, Grafico e Series (S1..S4) não deverão ser destruídos
+ pois continuarão a existirem após a execução de script (mostrarão os dados) e
+ serão destruídos automaticamente ao serem fechados pelo usuário.}
+end.

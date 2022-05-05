@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Tecnologia</title>
+</head>
+
+<body>
+
+<font face="Arial" size="+2">
+Tecnologia
+</font>
+<br><br>
+
+TPascalScript foi rigorosamente projetado nos moldes da Orienta&ccedil;&atilde;o 
+a Objetos (OOP) e escrito em Borland Delphi 5.<br>
+<br>
+Para a compila&ccedil;&atilde;o foi escolhido o m&eacute;todo Descendente 
+Recursivo Preditivo.<br>
+<br>
+
+<font face="Arial" size="+1">
+Etapas do processo de compila&ccedil;&atilde;o
+</font>
+<br><br>
+
+A primeira etapa &eacute; a An&aacute;lise L&eacute;xica que tem o objetivo 
+de quebrar o texto do c&oacute;digo em peda&ccedil;os chamados de "Tokens".<br>
+<br>
+Neste projeto o respons&aacute;vel por realizar a An&aacute;lise L&eacute;xica &eacute; 
+a Classe TPascalScanner que encapsula um Aut&ocirc;mato Finito.<br>
+<br>
+Ap&oacute;s esta etapa os tokens s&atilde;o acessados pelo compilador da classe 
+TPascalScript para que seja realizado a An&aacute;lise sem&acirc;ntica e ao 
+mesmo tempo a gera&ccedil;&atilde;o de c&oacute;digo.<br>
+<br>
+Se tudo correr bem, isto &eacute;, o script n&atilde;o contiver erros, o mecanismo 
+da classe TPascalScript estar&aacute; apto a executar o c&oacute;digo 
+gerado. Este c&oacute;digo fica armazenado em uma inst&acirc;ncia da classe 
+TByteCode que &eacute; acessada pela M&aacute;quina Virtual, aqui representado pela 
+classe TVirtualMachine que tem como atributo principal interpretar o c&oacute;digo 
+gerado.
+<br><br>
+
+<font face="Arial" size="+1">
+Processo de Execu&ccedil;&atilde;o
+</font>
+<br><br>
+Com o p-code gerado e acessado pela M&aacute;quina Virtual basta interpret&aacute;-lo e 
+transformar os p-codes em comandos v&aacute;lidos para o sistema operacional em uso.<br>
+<br>
+O mecanismo mais complicado do processo de execu&ccedil;&atilde;o 
+&eacute; a liga&ccedil;&atilde;o do p-code com as rotinas criadas pelo 
+usu&aacute;rio. Neste mecanismo optei por passar os par&acirc;metros das 
+rotinas atrav&eacute;s de uma pilha a qual pode ser acessada nos m&eacute;todos de
+acesso as rotinas do usu&aacute;rio. <br>
+<br>
+Ex: o usu&aacute;rio acessaria o segundo par&acirc;metro 
+de uma fun&ccedil;&atilde;o atrav&eacute;s dos poss&iacute;veis m&eacute;todos da 
+classe TexeStack, por exemplo Stack.AsString(2) e devolveria o resultado da fun&ccedil;&atilde;o 
+atrav&eacute;s dos m&eacute;todos PushXXX(Valor) onde XXX &eacute; o tipo do 
+dado. Ex: Stack.PushFloat(3.3) ou Stack.PushString('Sucesso').
+
+</body>
+</html>

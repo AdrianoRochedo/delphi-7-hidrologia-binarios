@@ -1,0 +1,7 @@
+           1//tipo de solo {1,2,3} tipo 2 camada definida CU mm/m
+           2//numero de camdas {1...8}
+   0.00   0.50   180.00 
+   0.50   0.60   200.00
+
+// para cada camada define-se 
+//(profundidade inicial) (profundidade final) (Capacidade utilizavel) 

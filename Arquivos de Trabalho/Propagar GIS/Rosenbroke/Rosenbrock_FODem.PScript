@@ -1,0 +1,10 @@
+var Par1 : object;
+    Par2 : object;
+    Queimado : object;
+
+begin
+  Par1 := Projeto.Rosenbrock.Parameters.ParamByName('AreaIrrigada');
+  Par2 := Projeto.Rosenbrock.Parameters.ParamByName('DemandaEnergetica');
+  Queimado := Projeto.PCPeloNome('Queimado');
+  FO := -((15 * 120 * Par1.GetValue) + (2 * Par2.GetValue) - 1);
+end.

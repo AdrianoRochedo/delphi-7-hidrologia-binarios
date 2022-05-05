@@ -1,0 +1,1413 @@
+0001
+Help for program LP.EXE                                     Markus Weidenauer
+                                                                   20.08.2002
+
+                          LL      PPPPPPP
+                          LL      PPPPPPPP
+                          LL      PP    PP
+                          LL      PP    PP
+                          LL      PP    PP
+                          LL      PPPPPPP
+                          LL      PP
+                          LL      PP
+                          LL      PP
+                          LLLLLLL PP
+                          LLLLLLL PP
+
+I present an optimiser which can solve LP, Integer and Mixed-Integer
+problems. Maximisation and minimisation is possible.
+
+ABOUT1100
+Input formats0003
+Output formats0004 Fileselect100
+Limits0020         Menu30
+Internals0900      Complete List of help items50
+File used and created1200
+
+-----------------------------------------------------------------------------
+0003
+
+Input formats
+Two different input formats are supported:
+
+1. row-wise     formulation13
+2. Columns-wise MPSX-Format14
+4. Command-File18
+Main1
+
+-----------------------------------------------------------------------------
+0004
+
+Output files:
+
+This program creates 5 different outputs:
+Matrix in MPSX-Format14
+Matrix row-wise format13
+Basis17
+1. Solution of the continuous solution *.LOS41
+2. Integer-solution *.INT42
+Main1
+
+-----------------------------------------------------------------------------
+0013
+Row-wise Format
+1. File name *.LP
+   A # at the begin  of a line means comment: The rest of the line will
+   be ignored.
+   The length of a row is limited by 250 chars.
+   The end of a row is defined by a semicolon ';'
+   Row-wise formulation of the problem
+   1. row contains Objective-Function905 and the direction of the
+   Optimisation:
+      MAX:  A+3*b;   !OBJF    #
+   2. ROW: Constraint
+      MAX_A:   A<5;
+      MIN_SUM: a+b>3;
+      DEMAND:  b=5;
+   :ENDE
+   Then possibly BOUNDS, RANGES Syntax as MPSX Format
+   ENDATA
+
+   As Variablename is the convention the programming languages:
+   1. Letter is from ['A'..'Z','a'..'z','_'], the following characters are any of
+   ['A'..'Z','a'..'z','_','0'..'9']
+   The length of a name is limited to 25 chars.
+
+Example15
+Main1
+
+-----------------------------------------------------------------------------
+0014
+2. MPSX Format
+
+NAME          ---------
+ROWS
+ N  ---------
+ G  ---------
+ L  ---------
+ E  ---------
+COLUMNS
+    ----------//////////------------   ----------///////////
+RHS
+    ----------//////////------------   ----------///////////
+BOUNDS
+ -- ----------//////////------------   if up, lo, fx, ui, li, mi, sc
+ -- ----------//////////               ----------   if s1 or s2
+RANGES
+    ----------//////////------------   ----------///////////
+ENDATA
+
+   There is the additional condition that variable names should not contain
+   spaces. There is no condition for the ordering of the columns is the column
+   section. They may be in mixed order. The standard MPSX formats doesn't
+   allow the following notation:
+   COLUMNS
+       A           R1            5
+       B           R1            5
+       A           R2            3
+       B           R2            -1
+
+   The following MPSX codes are supplied:
+   ROWS,  COLUMNS
+   RHS,   BOUNDS903
+   RANGES909 SETS910
+
+   In the COLUMNS or RHS Section are allowed as many entries which fit into
+   one line (255 chars)
+   COLUMNS
+    X R1 5 R2 10 R4 10 R6 10 OBJF 10 ...
+
+   In the BOUNDS903 section the following codes are allowed:
+   FIX   (FX)   -->   Var =Value
+   LOWER (LO)   -->   Var>=Value
+   UPPER (UP)   -->   Var<=Value
+   FREE  (FR)   --> -1E20<=value<1E20
+
+   When Integer Programming is wanted there are some other bound types:
+
+   Description          BOUND         Explanation
+   --------------------------------------------------------------
+   Binary                 BV          0 or 1
+   INTEGER                UI          Integer with an upper bound
+   Semi continuous        SC          0 or >=1
+   Special ordered Set    S1          SOS-1910
+   Special ordered Set    S2          SOS-2910
+
+   The bounds for a variable are not limited.
+   For example a variable may have a lower bound of -5 and an upper bound of
+   -1, or two different signs. But the lower bound must be below the upper
+   bound.
+Example16
+Main1
+
+-----------------------------------------------------------------------------
+0015
+Example of a matrix in LP-Format (Extension *.LP)
+
+REFEX.LP
+
+MAX: +150*CFMA-88.52*DIST+70*FOMA-0.45*HVU+105*IDMA-0.2*SPLT-0.96*VISB;
+CREP: +CFMA-NACF-TOCF-VNCF=0;
+FDSU: +FDFO+FDID-0.5*HVU<0;
+FREP: -FDFO+FOMA-LRFO-SGFO-SRFO-VGFO-VRFO=0;
+GOSU: -0.298*DIST+SGFO+SGID<0;
+IREP: -FDID+IDMA-SGID-VGID=0;
+LRSU: -0.525*DIST+HVU+LRFO<0;
+NAGA: +8.5*NACF-31.5*TOCF+11.5*VNCF<0;
+NASU: +NACF-0.8*SPLT<0;
+VRSU: -0.8*VISB+VRFO<0;
+OHSU: -0.177*DIST+SPLT<0;
+SRSU: -0.5*HVU+SRFO+VISB<0;
+SUGA: +1.8*FDID-0.3*SGID+2*VGID<0;
+TOSU: -0.2*SPLT+TOCF<0;
+VGSU: +VGFO+VGID-0.14*VISB<0;
+VIGA: -1.9*FDFO+6.6*LRFO-20.6*SGFO+15.1*SRFO-18.7*VGFO+12.6*VRFO<0;
+VNSU: -0.06*VISB+VNCF<0;
+:ENDE
+BOUNDS
+ UP BOUND     CFMA          35.00000
+ UI BOUND     DIST         200.00000
+ UI BOUND     FDFO         200.00000
+ UI BOUND     FOMA         115.00000
+ UI BOUND     HVU          200.00000
+ UP BOUND     IDMA          46.00000
+ UI BOUND     SGFO         200.00000
+ UI BOUND     VGID         200.00000
+ UI BOUND     VISB         200.00000
+ UI BOUND     VRFO         200.00000
+ENDATA
+Main1
+
+-----------------------------------------------------------------------------
+0016
+Example of a matrix in MPSX-Format (Extension *.MAT)
+
+NAME          REFEX
+ROWS
+ N  OBJF
+ E  CREP
+ L  CRNU
+ L  FDSU
+ L  FOXR
+ E  FREP
+ L  GOSU
+ L  IDXR
+ E  IREP
+ L  LRSU
+ L  NAGA
+ L  NASU
+ L  VRSU
+ L  OHSU
+ L  SRSU
+ L  SUGA
+ L  TOSU
+ L  VGSU
+ L  VIGA
+ L  VNSU
+ L  CFXR
+COLUMNS
+    CFMA      OBJF         150.00000   CREP           1.00000
+    CFMA      CFXR           1.00000
+    DIST      OBJF         -88.52000   OHSU          -0.17700
+    DIST      GOSU          -0.29800   LRSU          -0.52500
+    DIST      CRNU           1.00000
+    FDFO      FREP          -1.00000   FDSU           1.00000
+    FDFO      VIGA          -1.90000
+    FDID      IREP          -1.00000   FDSU           1.00000
+    FDID      SUGA           1.80000
+    FOMA      OBJF          70.00000   FREP           1.00000
+    FOMA      FOXR           1.00000
+    HVU       OBJF          -0.45000   FDSU          -0.50000
+    HVU       SRSU          -0.50000   LRSU           1.00000
+    IDMA      OBJF         105.00000   IREP           1.00000
+    IDMA      IDXR           1.00000
+    LRFO      FREP          -1.00000   LRSU           1.00000
+    LRFO      VIGA           6.60000
+    NACF      CREP          -1.00000   NASU           1.00000
+    NACF      NAGA           8.50000
+    SGFO      FREP          -1.00000   GOSU           1.00000
+    SGFO      VIGA         -20.60000
+    SGID      IREP          -1.00000   GOSU           1.00000
+    SGID      SUGA          -0.30000
+    SPLT      OBJF          -0.20000   OHSU           1.00000
+    SPLT      TOSU          -0.20000   NASU          -0.80000
+    SRFO      FREP          -1.00000   SRSU           1.00000
+    SRFO      VIGA          15.10000
+    TOCF      CREP          -1.00000   TOSU           1.00000
+    TOCF      NAGA         -31.50000
+    VGFO      FREP          -1.00000   VGSU           1.00000
+    VGFO      VIGA         -18.70000
+    VGID      IREP          -1.00000   VGSU           1.00000
+    VGID      SUGA           2.00000
+    VISB      OBJF          -0.96000   VNSU          -0.06000
+    VISB      VGSU          -0.14000   VRSU          -0.80000
+    VISB      SRSU           1.00000
+    VNCF      CREP          -1.00000   VNSU           1.00000
+    VNCF      NAGA          11.50000
+    VRFO      FREP          -1.00000   VRSU           1.00000
+    VRFO      VIGA          12.60000
+RHS
+    RHS       CFXR          35.00000   IDXR          46.00000
+    RHS       CRNU         200.00000   FOXR         115.00000
+BOUNDS
+ UI BOUND     DIST         200.00000
+ UI BOUND     FDFO         200.00000
+ UI BOUND     FOMA         200.00000
+ UI BOUND     HVU          200.00000
+ UI BOUND     SGFO         200.00000
+ UI BOUND     VGID         200.00000
+ UI BOUND     VISB         200.00000
+ UI BOUND     VRFO         200.00000
+ENDATA
+Main1
+
+-----------------------------------------------------------------------------
+0017
+
+In the 1. line is the name of the matrix to which that basis belongs.
+The last is ENDATA
+In the other lines the 1. char is a space then follows:
+X with a list of basisvectors
+U with a list of nonbasisvectors at upper bound
+  Vectors not mentioned are OBJF (always last Basis vector)
+                        NON-basic at lower bound
+
+Example of a basis file  (Extension *.BSS)
+(.MAT
+ X DESUPMP X DESUPLP X HOT-OIX X GTNATGAS X GTHEL
+ X GTBUTAN X T1B1 X F-5401B1 X STROMB2 X K7B1
+ X K6B1 X K5B1 X K51 X K61 X K4B1
+ X K4-PR-U X K71 X K3B1 X K31 X F-5401GREFU
+ X F-5401-HP X FEEDPREP X DESUPHP X STROMB1 X COND
+ X K3LREFU X T1-PR X T4_MP-U X T11 X WSBIN
+ X SP-WA X GTS X K4LREFU X GT1 X K5GREFU
+ X T34 X I-DE-P X T3B2 X K7LREFU X K7GREFU
+ X T4_HP-U X WS-PR-U X I-HE-P X T31 X ABSP-MP
+ X WSGREFU X K3GREFU X T2_COS X T3-PR X T4_PR-U
+ X K6LREFU X T2_LP X K6GREFU X HEAT-E X T3B3
+ X T2B X T33 X GT-STROM X K5LREFU X GTB1
+ X K4GREFU X PR-B X HICO X WASSER X PVE-WASSER
+ X PLREFU1 X PGREFU1 X MW1 X WS-MIN X WS-MA
+ X T4 X T34 X T2-MIN X HICOCAP X T12
+ X F-54011 X K71 X K61 X K51 X K41
+ X K31 X STROM1_BI X MW-TOT X GTB2
+ U F-5401B2
+ U CONDB U PNATGAS1 U SSTROM2 U T1B2 U T1_PR-U U B_HEL U T2_HP U B_DESPWA
+ U B_COND U B_BUTAN U T3B4 U T4B U 2
+ENDATA
+
+Main1
+
+-----------------------------------------------------------------------------
+0018
+COMMAND-FILE
+
+With a Command-File you can steer the optimise from a command line
+or you can call the unit go_lp from another program of your own.
+This command file may contain many commands which allow nearly any option
+from the menu system to be called from a batch.
+
+Allowed commands:
+Define Problem
+  OBJF   NAME            : Objective function NAME
+  RHS    NAME            : Right Hand Side    NAME
+  BOUND  NAME            : Bounds             NAME
+  RANGE  NAME            : Range              NAME
+
+Load
+  LOADMATRIXFORMATTED    : Matrix *   .MAT in MPSX14 Format is read after a fileselect
+  LOADMATRIX             : Matrix *   .MAT in MPSX14 Format is read after a fileselect
+  LOADMATRIX NAME        : Matrix NAME.MAT in MPSX Format is read
+  LOADLP                 : Matrix *   .LP in LP Format is read after a fileselect
+  LOADLP NAME            : Matrix NAME.LP  in LP Format is read
+  LOADBASIS              : BASIS  *   .BSS Basis is read after a fileselect
+  LOADBASIS NAME         : BASIS  NAME.BSS in Basis is read
+
+Do anything
+  MAXIMISE               : Start the optimisation direction max.
+  MINIMISE               : Start the optimisation direction min
+  GLOBAL                 : Start search for global Integerextremum
+  INVERT                 : Force an inversion
+
+Parameters
+  MAXITER                : Maximum number of iterations
+  MAXTIME                : Maximum time for computation (s)
+  SUCH                   : Search-Depth for Integer search
+  DJ-MIN                 : DJ-Limit
+  CUTOFF VALUE           : Limits possible integer solution to
+                           Continuous solution - Value
+                           If value is not given then lo and up-limit of
+                           the potential solutions are set to 1e30 and -1e30.
+  LIMIT VALUE            : Limits possible integer solution to Value
+                           If value is not given then lo and up-limit of
+                           the potential solutions are set to 1e30 and -1e30.
+Save
+  SAVELP                 : Save matrix in LP-format
+  SAVEMAT                : Save Matrix in MPSX-format
+  SAVEXPRESS             : Save Matrix in XPRESS-format
+  SAVESOLUTION           : Save Solution to File NAME.LOS
+  SAVEINTEGER            : Save Integersolution as NAME.INT
+
+OTHER
+  EXIT                   : Leave command and go back to calling routine
+  QUIT                   : Leave the optimiser and finish program
+  TIGHT                  : Try to sqeeze unnecessary stuff out of the matrix
+                           Explanation Compression1300
+  UNTIGHT                : deactivate the tight option
+  LOG                    : Start logging
+  UNLOG                  : Stop logging
+  NEW                    : Remove matrix from memory
+  Example file 43
+
+Main1
+
+-----------------------------------------------------------------------------
+0020
+LIMITS
+As variablename is the convention the programming languages:
+1. Letter is from ['A'..'Z','a'..'z','_'], the following characters are any of
+['A'..'Z','a'..'z','_','0'..'9']
+The length of a name is limited to 25 chars.
+
+Maximal matrix size:
+
+DOS Version:
+depending on available Memory about 500 rows * 1500 Col
+
+DOS-DPMI
+nrow+ncol < 16382 (2^14-1)
+nrow      < 6000 ROWS (incl. OBJF).
+
+These limits are only the limits of the used Compiler35 (64K per array).
+For a column I use a pointer (4 Bytes).
+Internally rows and columns are treated identically. That is the reason for
+the 1. limit (nrow+ncol)
+The second limit arises from the compact storage of vectors:
+For a single matrix entry I need 10 bytes:
+    2 byte to define the row
+    8 bytes to store the coefficient
+
+The OS/2 version, compiled with Virtual Pascal, has none of these limits.
+It should solve problems of any size.
+
+Main1
+
+-----------------------------------------------------------------------------
+0028
+SHOW INFEASIBILITIES
+
+This display should be read row-wise:
+In the left column you see the name of the infeasible vector,
+to the right the kind of vector (row or column)
+LO-BOUND, UP-BOUND, actual value and OBJF entry
+
+EDITOR1000
+Main1
+
+-----------------------------------------------------------------------------
+0029
+ITERATION
+An iteration is completely determined by two items:
+The vector entering the basis and the vector leaving the basis.
+Normally with a "good" basisexchange an improvement of the objective
+function is linked with the exception that this is only valid if you
+are already feasible. As long as you are still infeasible the OBJF may
+get worse. But during this operation the sum of infeasibilities should
+decrease. Also the number of infeasibilities should get smaller.
+After reaching feasibility the OBJF should improve with every iteration,
+but it may happen that the OBJF remains equal due to cycling or degeneracy.
+
+Keyboard command allowed during optimisation:
+ESC:
+  1. LP:  Stops Iteration
+          The Iteration can be continued without regret.
+  2. MIP: Ask for Interruption
+          The search tree will be cut and all information about searched
+          nodes is lost. The best found solution is kept in memory.
+d,D Toggle the parameter 'ITERLOG' between 0, 1 and 10000
+-   The parameter npricing is divided by 2 npricing=max(1,npricing DIV 2)
++   The parameter npricing is multiplied by 2 npricing=min(32000,npricing * 2)
+e,E Pop up the edit parameter window906
+m,M During integer search show the next 100 waiting nodes with its objective
+    function. This graph is displayed for at most 10 s or until the next
+    keyboard hit.
+n,N During integer search show the next 16000 waiting nodes with its
+    objective function. This graph is displayed for at most 10 s or until
+    the next keyboard hit.
+o,O During integer search show the all waiting nodes with its
+    objective function. This graph is displayed for at most 10 s or until
+    the next keyboard hit.
+s,S During Integer search all waiting nodes are saved in a file for later
+    restart of optimization without regret.
+t,T Toggle the Epsilon Perturbation400
+w,W IF in integer mode then reduce the maximal number of in memory stored
+    nodes by 100
+x,X In integer mode then increase the maximal number of in memory stored
+    nodes by 100
+Main1
+
+-----------------------------------------------------------------------------
+0030
+MENU
+After programstart you see a menu which reacts on cursorkeys,
+highlighted character of mouseclick (IF procedure nager is compiled with
+the corresponding compilerswitch)
+
+OBJECTIVE
+ MAXIMISE             set direction to maximisation
+ MINIMISE             set direction to minimisation
+ SELECT OBJF          select the OBJF905 from the set of N-ROWS
+ CRASH                build a crash basis from all vectors
+ PROBLEM              define OBJF905 RHS908
+                      BOUND903 RANGE909
+ NEW                  remove problem from memory
+LOAD
+ LP                   read lp-problem in row-wise formulation13
+ MPSX                 read lp-problem in MPSX-format14
+ MPSX FORMATTED       read lp-problem in formatted-MPSX-format,
+                      variables may contain spaces but names are
+                      then restricted to 8 chars
+ BASIS                read a basis902
+ TREE                 read integer search tree of a previous saved run
+                      The required files are created during integer-search
+                      and stored with the 's'29 command from the keyboard.
+SAVE
+ BASIS                save basis to disk
+ SOLUTION             save continuos solution41 to disk
+ INTEGER-SOLUTION     save integer solution42 to disk
+ LP                   save problem in row-wise13 format
+ MPSX                 save problem in MPSX-format14
+ XPRESS               save problem in XPRESS-Format
+GO
+INTEGER OPTIMISATION  start optimisation with above defined direction
+OTHER
+ INVERT               force an inversion300 (only for test purpose)
+ TOGGLE EPSILON       introduce eps-perturbation400 or remove it
+
+ AUSGABE              write matrix with rows, columns and status of optimisation (only for small models)
+ FAHNE                write a flag of the matrix and show, where are entries
+ DUMP MATRIX          write the matrix to a graphic screen and put a pixel at the screen, where you a non zero entry
+ STATUS               write the status of the optimisation, feasible or not, OBJF
+ MISCHEN              mix the columns (for test purpose only)
+ BASIS OUT OF SLACKS AND ARTIFICIALS create a basis without structural vectors
+EDIT
+ VECTOR               you can enter a vector and get a screen with description
+                      and you can browse through the matrix
+ PARAMETER            edit some parameters906
+ INFEASIBLE VECTORS   show all infeasible vectors28 with the bounds and the actual value
+ DEMYSTIFIED SOLUTION produce an output in which all entries are listed with its
+                      actual values
+COMMAND FILE          process a command file
+RESOLUTION
+ STANDARD 25 LINES
+ EGA-VGA  50 LINES
+RESET PROBLEM
+HELP                  this screen
+EXIT
+
+
+Main1
+
+-----------------------------------------------------------------------------
+0035
+COMPILER
+
+The DOS            -Version of this Program was compiled with BORLAND PASCAL Version 7.0.
+The OS/2           -Version of this Program was compiled with Virtual PASCAL Version 1.1.
+The WINDOWS 95 (NT)-Version of this Program was compiled with BORLAND DELPHI Version 2.
+
+Main1
+
+-----------------------------------------------------------------------------
+0041
+Example of a continuous solution (Extension *.LOS)
+
+OPTIMAL SOLUTION
+Weidenauer Optimiser Ver. 2.0          09.02.1995
+
+Section 1 - ROWS
+
+...ROW..    AT  ...ACTIVITY...  SLACK ACTIVITY  ..LOWER LIMIT.  ..UPPER LIMIT.  .DUAL ACTIVITY
+
+OBJF        BS       279.55067      -279.55067            NONE            NONE         1.00000
+CFXR        BS        29.36403         5.63597                        35.00000
+CRNU        BS       176.26714        23.73286                       200.00000
+FOXR        BS        96.29165        18.70835                       115.00000
+NASU        BS        -1.83525         1.83525                         0.00000
+VNSU        BS        -2.77621         2.77621                         0.00000
+OBJF        $$      -279.55067            NONE            NONE
+IDXR        UL        46.00000         0.00000            NONE        46.00000        -6.07719
+VRSU        UL                                            NONE                       -49.67337
+VGSU        UL                                            NONE                      -100.16730
+GOSU        UL                                            NONE                      -103.23243
+IREP        EQ         0.00000         0.00000         0.00000         0.00000  10000000.00000
+VIGA        UL                                            NONE                        -1.61322
+FREP        EQ         0.00000         0.00000         0.00000         0.00000  10000000.00000
+TOSU        UL                                            NONE                      -705.88235
+OHSU        UL                                            NONE                      -140.97647
+SRSU        UL                                            NONE                       -52.80212
+NAGA        UL                                            NONE                       -17.64706
+CREP        EQ         0.00000         0.00000         0.00000         0.00000  10000000.00000
+LRSU        UL                                            NONE                       -62.48362
+SUGA        UL                                            NONE                       -14.36538
+FDSU        UL                                            NONE                       -73.06513
+
+Section 2 - COLUMNS
+
+.COLUMNS    AT  ...ACTIVITY...  ..INPUT COST..  ..LOWER LIMIT.  ..UPPER LIMIT.  .REDUCED COST.
+
+CFMA        BS        29.36403       150.00000                            NONE
+FDFO        BS        39.69870                                       200.00000
+FOMA        BS        96.29165        70.00000                       200.00000
+SGID        BS        39.42857                                            NONE
+IDMA        BS        46.00000       105.00000                            NONE
+HVU         BS        92.54025        -0.45000                       200.00000
+DIST        BS       176.26714       -88.52000                       200.00000
+NACF        BS        23.12417                                            NONE
+SGFO        BS        13.09904                                       200.00000
+SPLT        BS        31.19928        -0.20000                            NONE
+VISB        BS        46.27012        -0.96000                       200.00000
+FDID        BS         6.57143                                            NONE
+TOCF        BS         6.23986                                            NONE
+VGFO        BS         6.47782                                            NONE
+VRFO        BS        37.01610                                       200.00000
+VNCF        LL                                                            NONE       -52.94118
+SRFO        LL                                                            NONE        -7.16181
+LRFO        LL                                                            NONE        -3.13090
+VGID        LL                                                       200.00000       -29.97525
+Main1
+
+-----------------------------------------------------------------------------
+0042
+Example of an Integer-SOLUTION (Extension *.INT)
+
+INTEGER SOLUTION
+
+CFMA                        28.81977          0.00000
+CFXR                         6.18024          0.00000
+CREP                         0.00000        150.00000
+CRNU                        27.00000          0.00000
+DIST                       173.00000        -32.27716
+FDFO                        39.00000       -105.00000
+FDID                         6.00000          0.00000
+FDSU                         0.00000        105.00000
+FOMA                        95.00000          0.00000
+FOXR                        20.00000          0.00000
+FREP                         0.00000          0.00000
+GOSU                         0.00000        105.00000
+HVU                         90.00000          0.00000
+IDMA                        44.55400          0.00000
+IDXR                         1.44600          0.00000
+IREP                         0.00000        105.00000
+LRFO                         0.75889          0.00000
+LRSU                         0.06611          0.00000
+NACF                        22.69556          0.00000
+NAGA                         0.00000         17.64706
+NASU                         1.80124          0.00000
+OBJF                      -247.35051          0.00000
+OHSU                         0.00000        140.97647
+SGFO                        13.00000          0.00000
+SGID                        38.55400          0.00000
+SPLT                        30.62100          0.00000
+SRFO                         0.00000          0.00000
+SRSU                         0.00000          0.00000
+SUGA                         0.76620          0.00000
+TOCF                         6.12420          0.00000
+TOSU                         0.00000        705.88232
+VGFO                         6.24111          0.00000
+VGID                         0.00000       -105.00000
+VGSU                         0.05889          0.00000
+VIGA                         0.00000          0.00000
+VISB                        45.00000          0.00000
+VNCF                         0.00000         52.94118
+VNSU                         2.70000          0.00000
+VRFO                        36.00000          0.00000
+VRSU                         0.00000          0.00000
+
+Explanation   1. Column Vector
+              2. Column Value of the best Solution found
+              3. Column Dj of the best solution found
+              4. If Vector is an integer Variable then follows the Charcter I
+Main1
+
+-----------------------------------------------------------------------------
+0043
+Example of a Command file (Extension *.CMD)
+
+LOADMATRIX REFEX
+LOADBASIS REFEX
+MAXTIME 600
+MAXITER 30000
+DJ-MIN -1E-3
+MAXIMISE
+SAVEBASIS
+GLOBAL
+SAVEINTEGER
+QUIT
+
+Main1
+
+-----------------------------------------------------------------------------
+0100
+FILE-SELECT
+
+This program part is used for selecting files. A selection is passed to the
+routine  and it comes back with a filename including the complete path.
+(e.g. C:\MAT\INTEGER\BELL3A.MAT)
+
+In the left upper corner you see the actual filespec (e.g. *.MAT).
+Beginning in line 3 you see a listing of all files that match this
+selection and all subdirs and maybe .. (if not in the root dir).
+This list is normally sorted alphabetically if not specified
+elsewhere (see below).
+If there are more files than fit on the screen you see arrows at the right
+corner which indicate in which direction the additional files are hidden.
+In the right upper corner you see some information about the current file
+(highlighted yellow).
+
+You select a file simply by moving with the cursorkeys or the first
+character of the file you want to select. From a list of files starting with
+the same character the first one is highlighted.
+You confirm your selection with ENTER. Then the subroutine is finished.
+
+Allowed command:
+
+^A, ^B, ^C, ^D change drive
+ALT-X leave program completely: No information is saved.
+ALT-S prompt for other ordering
+  S  Size
+  D  Date
+  N  Name
+  E  EXTENSION files with the same extensions are ordered alphabetically.
+ESC leave fileselect with out selecting a file
+\   Set actual directory to new default directory.
+If you want to change the mask move upward with the cursorkeys and change it
+by hand. That works also with drives.
+
+Main1
+
+-----------------------------------------------------------------------------
+0200
+Integer-Search
+
+If a problem contains integer variables there are 3 possibilities:
+
+1. Continuous problem is inedible: No integer search required.
+2. Continuous problem is unbounded: Integer search necessary
+3. Continuous problem is optimal  : Integer search necessary
+
+The procedure during integer search is as follows:
+
+START
+-----
+take toe continuous solution and test for integer feasibility of the
+specified variables.
+  Yes: Solution found. Store OBJF as new cut-off-value. Store values and DJ
+       of all variables.
+  NO : Select an integer variable which violates the integer condition
+       and start a branch and bound process:
+
+       Example: The variable A has in the continuous solution the value 2.5
+                Create two new problems with the following new BOUNDS903
+                A<=2 and A>=3
+                Solve the two problems and go to START
+
+
+CUT-OFF
+   If during integer search a node is infeasible this node can be excluded
+   from further search process as the addition of a new constraint can
+   never make an infeasible problem feasible.
+
+   Additionally the search process can be stopped at a node whose OBJF is
+   worse that the up to now best found solution.
+   Example for integer-search for a maximisation problem:
+     Continuos solution OBJF 100
+     lower limit initialised to -1e30 (means that every integersolution is
+     better than this value)
+     IF you find a solution with for example OBJF=60 then from that point in
+     time you can cut all nodes with a OBJF worse than 60. Furthermore
+     you can drop all waiting nodes with a worse OBJF.
+
+Variable-Select-Problem
+   If you have in your continuous problem more than one variable which
+   violates the integer condition you can choose the one or the other for
+   the branch and bound process.
+   You should select the variable which gives by branching the maximum
+   deterioration in OBJF.
+   But how can you know which variable gives that maximum ?
+
+     Exactly that is crucial for high efficiency in integer search.
+     --------------------------------------------------------------
+     A solution for this problem are pseudo-costs.
+     From branching that variable in an earlier stage you know the
+     difference in OBJF you achieved by branching in this variable.
+     Then you divide that difference by the distance to integer value.
+     This quotient is a measure for the importance of that variable in
+     the search process.
+     Example:
+       OBJF of father 100, value of variable A 4.2
+         OBJF of son A<4 was 90 pseudocost down=(100-90)/(4.2-4)=50
+         OBJF of son A>5 was 95 pseudocost up  =(100-95)/(5-4.2)= 6.25
+
+         For a more detailed view I refer to the literature:
+
+         Investigation of some branch and bound strategies for the solution
+         of mixed integer linear programs
+           G. Mitra
+             Math. Progr. 4, (1973), 155-170
+
+         Experiments in mixed-integer linear programming
+           M. Benichou, J. M. Gauthier, P. Girodet, G. Hentges, G. Ribiere
+           and O. Vincent
+             Math. Progr. 1, (1971), 76-94
+
+Bound select problem:
+   From my experience I propose to select the branch with the better
+   OBJF first.
+Main1
+
+-----------------------------------------------------------------------------
+0300
+Inversion-Routine of the optimiser
+
+The inversion of the basis is sometimes necessary because:
+1. Accumulation of round-off errors
+2. The Basis0902 tends to fill in:
+   That means the following:
+   The matrix is internally stored in a compact format: Only the elements<>0 are
+   stored.
+   During the inversion the rows (of the complete matrix) and columns
+   (of the basis) are reordered that mainly a L-Matrix is achieved.
+
+   ( X                          )
+   ( X X                        )
+   ( X X X A A A A              )
+   ( X X X X A A A              )
+   ( X X X X X A A              )
+   ( X X X X X X A              )
+   ( X X X X X X X              )
+   ( X X X X X X X X            )
+   ( X X X X X X X X X          )
+   ( X X X X X X X X X 1        )
+   ( X X X X X X X X X    1     )
+   ( X X X X X X X X X      1   )
+   ( X X X X X X X X X        1 )
+         a       b     c
+
+   It is always possible to achieve such a structure. But unfortunately it is
+   in the most cases not possible to avoid completely the entries above
+   the main diagonal (A) .
+
+   (H. M. Markowitz, Management Science 3, No. 3, 255-269 (1957).)
+
+   From this representation of the inverse one can write immediately the
+   inverse:
+   1. Step:
+     From column 1 to a-1 create straight Etha-Vectors301
+   2. Step:
+     From b down to a apply the following procedure:
+       Calculate the column (ftran) with all etha vectors created in the second
+       step: then create from this updated column an etha-vector.
+       when you are at position 'a' the matrix is now completely L-structured.
+       Then start at column 'a' and end at column 'b' with the following
+       strategy:
+       Update the column with all etha-vectors created in step 2.
+       create an etha vector from this vector.
+   3. Step
+     From column b+1 to c-1 create etha-vectors like in step 1
+   4. Step:
+     from column c to end of basis the vectors have only a single entry.
+     If this entry <>1 then create a pivot element from it otherwise
+     skip this vector.
+
+   Additionally one can try to rearrange the square piece of the matrix (A)
+   This square is characterised that every row and every column has inside
+   of this square at least 2 entries. But sometimes it is possible to split
+   the large square in 2 ore more small squares (Partitioning)
+     Literature: E. Hellermann, D. Rarick, Math. Progr. 1, 195-216 (1971)
+
+
+   XX           This small 6*6 matrix has 2 so called Bumps: the small corners
+   XX           which are above the diagonal. By using this kind of sorting
+   XXX          you get much lower Fill ins than in the unsorted case
+   XXXX
+   XXXXXX
+   XXXXXX
+
+   During the iteration you add etha-vectors to the so called 'etha-file'
+   (Because this etha-vectors were filed in earlier computers)
+   which need memory space. Additionally, if you update columns with this
+   grown etha-file the vectors tend to fill in also. This increases memory
+   requirements for the storage of the etha-vectors but much worse it also
+   increases the effort necessary through the column updating.
+
+   At a certain point in time is better to spend some time with inversion
+   and then have a faster column updating and pricing than not to invert
+   and have larger time for updating.
+   As a rule of thumb the optimiser should spend about 1/3 of its time with
+   inversion.
+   From my experience this rule gives fastest optimisation.
+
+Main1
+
+-----------------------------------------------------------------------------
+0301
+ETHA-Vector
+
+You call an etha vector a square matrix with the following structure:
+
+this kind of matrices are created through the LR-decomposition of square
+matrices (Basis) or through column exchange during pivoting.
+
+       ( 1            -x/p             )  p=Pivot-Element
+       (     1        -x/p             )  x=entry of the column in the Matrix
+       (         1    -x/p             )
+   eta=(            1 -x/p             )
+       (               1/p             )  Pivot-row
+       (              -x/p  1          )
+       (              -x/p      1      )
+       (              -x/p          1  )
+
+As the matrix contains outside one column and the main diagonal only
+blanks and the one columns may have blanks as well it makes also sense, to
+store the etha-vector in a compact format.
+
+You needn't so store the matrix: It is only necessary to store the nonzero
+entries of the pivot column and to store the pivot row.
+Additionally it is not necessary to perform the 'expensive' division.
+It is faster to perform the division only once during the pricing and the
+column updating procedure.
+
+  Literature: J. J. H. Forrest and J. A. Tomlin, Math. Prog. 2, 263-278 (1972)
+
+Main1
+
+-----------------------------------------------------------------------------
+0400
+Epsilon Perturbation
+
+The most matrices consist of RHS with most zero entries. That leads to many
+iterations, which don't improve the objective function. With that
+perturbation a vector is added to the RHS column to remove this behaviour.
+Unfortunately the number of infeasibilities at the beginning of the iteration
+is in the most cases equal to the number of rows of the problem. Hence you
+must perform at least nrow iterations to get a feasible basis. On top of that
+you have to continue optimising. But the perturbation gives an increase in
+numerical stability. After finishing the iteration the perturbation has to
+be removed which leads to some additional iterations.
+
+Main1
+
+-----------------------------------------------------------------------------
+0900
+
+INTERNAL
+Compact Storage901
+Inversion300
+Parameter906
+INFEASIBILITIES907
+COMPILER35
+
+-----------------------------------------------------------------------------
+0901
+Compact Storage
+
+The matrix is internally stored in a compact format:
+  Only the row number (2 byte) and the number is stored (8 Bytes)
+  10 bytes total for a single matrix entry
+
+As LP-matrices are often very sparse you have two advantages of this storage:
+1. less memory for the matrix
+2. Gain in speed, because you have only to compute with numbers <>0
+
+Main1
+
+-----------------------------------------------------------------------------
+0902
+Basis
+
+For a n*n matrix you call a basis a set of n linear independent vectors
+For LP you add the status of non basis variables
+                             (whether on upper or lower bound)
+
+The basis contains all information about the current status of the iteration.
+That's the reason for the use of a starting basis from a previous
+optimisation to speed up the optimisation
+
+A basis is called a feasible basis, if all variables are within its bounds.
+
+A basis is called an optimal basis if it is a feasible basis and there are
+no more columns with a negative DJ904 .
+
+Main1
+
+-----------------------------------------------------------------------------
+0903
+BOUND
+
+If a problem contains restriction with a single column, one can store this
+restriction outside the matrix and save a row and a slack or artificial
+(increase in performance)
+
+Example:
+
+A<3                 --> upper Bound 3               UP
+A>2                 --> lower Bound 2               LO
+A=2.5               --> fixed Bound 2.5             FX
+A>-1e30 & A<1e30    --> free  Bound                 FR
+0 or 1              --> Binary                      BV
+INTEGER             --> Integer with an upper bound UI
+0 or >=1            --> Semi continuous             SC
+Special ordered Set -->                             S1 SOS-1910
+Special ordered Set -->                             S2 SOS-2910
+
+   The bounds for a variable are not limited.
+   For example a variable may have a lower bound of -5 and an upper bound of
+   -1, or two different signs. But the lower bound must be below the upper
+   bound.
+
+If you have free variables in the matrix you can encounter the following
+problem:
+If such a variable is in the non-basis part of the matrix it has to be on its
+bounds. But a bound of -1e30 causes severe numerical problems with round-off
+errors. Therefore the lower bound is set to 0 and I try to move this
+column into the basis by pivoting. If it is once in the basis the bounds
+are set to -1e30 and 1e30 and they can't leave the basis anymore.
+
+During the crash procedure I try to move all free columns into the basis.
+
+Main1
+
+-----------------------------------------------------------------------------
+0904
+DJ
+
+The DJ is a number, which gives the improvement of the OBJF, if the value
+of a non basis variable is moved by one away from its bound (into the basis)
+
+Main1
+
+-----------------------------------------------------------------------------
+0905
+OBJECTIVE-FUNCTION
+
+OBJECTIVE-FUNCTION is the name of a row in the basis which contains the
+entry for the price coefficients.
+It is a row without a limit and therefore type 'N'
+In a LP-problem at least one N-ROW is required.
+
+Main1
+
+-----------------------------------------------------------------------------
+0906
+PARAMETER
+EDITOR1000
+Parameter      Typical value    Explanation
+
+ITERLOG                       : Number of Iterations, which are written on
+                                top of each other until a line feed is
+                                printed.
+                                A value of 0 gives a line only after an
+                                inversion. During Integer search no output
+                                after an inversion.
+LOGFILE          Y            : During the iteration process the progress
+                                is logged in the file LP.LOG
+PRICING          16000        : maximal Number of negative DJ's904 for
+                                the partial pricing procedure.
+SUCH-TIEFE      6             : When performing branch and bound one can either
+                                follow each node until infeasible of cutoff or
+                                one can stop the search after a certain
+                                number of nodes. IF you follow each node to
+                                its end, it is possible that you perform a
+                                lot of calculations and produce waiting nodes
+                                which will be cutoff anyway during optimization.
+                                You can overcome this problem by stopping the
+                                search after maybe 6 nodes and then continue with
+                                the waiting node with the best objf. It depends
+                                on the model, where to set this parameter.
+RELATIV         0.98          : IF a vector is a potential candidate for
+                                entering the basis, the DJ of this vector
+                                must have at least the value of
+                                relative*average DJ of the last 10 iterations
+                                The higher this parameter is the less
+                                iterations are necessary
+                                (normally, but is some cases it can be useful
+                                to reduce this parameter to, say, 16)
+                                By playing with this parameter there is a rule
+                                of thumb:
+                                The higher the parameter the less number of
+                                Iterations and the more effort for pricing.
+BASIS_INTERVALL 0             : Every n iterations the current basis is saved.
+                                0 means: No basis save at all
+DJ_MIN          -1E-6         : All DJ's greater than DJ_MIN are treated as 0
+MAXITER         2E9           : Maximal number of iterations. If this number
+                                is passed the optimiser stops with the message
+                                too many iterations
+MAX-TIME        1E9           : Maximal time in seconds
+LO_LIMIT        -1E30         : During integer search this is the lower limit
+                                within a integer solutions is searched.
+UP_LIMIT        1E30          : During integer search this is the upper limit
+                                within a integer solutions is searched.
+TIGHT           N             : IF the option is chosen, I try to tight the
+                                Integerproblem before starting the branch and
+                                bound process. This "can" save time but has
+                                to be considered with care. This calculation
+                                can on models with dense matrices last for
+                                a long time and may need more time then the
+                                potential saving.
+                                IF the matrix is changed during this process,
+                                I write a file *.CMP which contains a listing
+                                of the changes
+ASSESS-PSE      Y             : If during integer search you can branch on
+                                a vector for which no pseudo-cost exists, the
+                                program tries to estimate this pseudo-cost.
+RESTART         Y             : During integer search all vectors get a
+                                pseudo cost. IF for a specific vector no
+                                such cost was known from previous search
+                                it gets in the screen output in column
+                                pseudo a plus character '+'. If the number of
+                                such vectors increases a certain threshold
+                                the integer search is restarted with the new
+                                pseudo costs. This action may reduce the
+                                solution time for hard problems
+                                significantly.
+PSE             Y             : Use pseudocosts in branch and bound
+STRAT-1           0           : During Integer search for each waiting node
+                                which is subject to branch and bound a counter
+                                is increased until 100 and reset to 0.
+                                If this counter is below strat-1 then the
+                                node with a maximum number of fixed variables
+                                is chosen.
+
+Main1
+
+-----------------------------------------------------------------------------
+
+0907
+INFEASIBILITIES
+
+A model is call 'INFEASIBLE' if it contains restrictions which contradict
+each other e.g.
+
+a>5
+a<4
+
+It is clear that for all values of 'a' at least one of these constraints
+is violated.
+
+During the optimisation process it may happen, that some variables have a
+value outside its bounds903 .
+The program sees that and tries to move the value between the bounds.
+I use the following strategy to reach that:
+
+
+1. value is above the upper bound
+   ---> value
+                  ³
+   ---> UP BOUND  ³
+                  ³  The value has to get lower.
+                  ³  this is achieved by assigning a very high negative
+                  v  number as OBJF coefficient. during the optimisation
+   ---> LO BOUND     is checked whether the value is now in the allowed range.
+                     If the check is OK, the original value of the
+                     OBJF is restored and an infeasibility is removed.
+
+2. value is below lower bound
+   --->  UP BOUND
+
+                   ^ If a upper bound exists, the procedure is similar to
+   --->  LO BOUND  ³ above mentioned case only with other sign of the OBJF
+                   ³ entry. However, if the upper bound is at its maximum
+                   ³ possible value of 1E30, you have a problem.
+                   ³ The procedure must be revised as follows:
+                   ³ You assign a upper bound of the lower bound. The variable
+                   ³ is now forced to reach the upper bound. If the variable has
+                   ³ this value, the variable is set to lower bound, and the
+   --->  VALUE     ³ upper bound is removed. Also the OBJF-entry is restored.
+
+Main1
+
+-----------------------------------------------------------------------------
+0908
+RHS  (Right Hand Side)
+
+This is the name for the columns of the matrix, in which the value of the
+constraints are stored.
+
+Example : X+3*Y<6   The RHS of this row is 6.
+
+Main1
+
+-----------------------------------------------------------------------------
+0909
+RANGE
+
+A range is a possibility to enter two rows with equal coefficients but
+different RHS908 as one row. This saves matrixsize.
+
+Example : X+3*Y<6   The RHS if this constraint is 6.
+          X+3*Y>2   The RHS if this constraint is 2.
+
+These two rows may be formulated as:
+
+           X+3*Y>2   &   Range=4
+or         X+3*Y<6   &   Range=4
+
+This kind or formulation creates inside the optimiser a slackvariable with
+an upper bound.
+
+Main1
+
+-----------------------------------------------------------------------------
+0910
+SOS Special ordered Sets Type 1 or 2
+
+A special ordered set-1 means the following:
+  A number of binary variables, of which exactly one is equal 1 and all
+  others are zero.
+  Typical application is in scheduling, when only one plant out of two is
+  running or in planning if you start a project in week one or week two
+  but not in both weeks.
+
+A special ordered set-2 means the following:
+  A set of variables with a sum of one. at least one and at most two
+  variables have a value of nonzero.
+  If two variables are nonzero then they have to be neighbours of each other.
+
+  Typical application is the modelling of non-linear operating lines
+  (piecewise linear)
+
+Main1
+
+-----------------------------------------------------------------------------
+0911
+PROBLEM
+
+In this screen some properties of the read matrix are specified:
+OBJF means the name of the N-type row, which shall be used for optimising
+     If not specified the optimiser takes the first N-row it sees through
+     reading.
+
+BOUND defines the name of the bound for the desired problem.
+      If not specified the optimiser takes the first bounds-set it sees
+      through reading.
+
+
+Same for RHS and RANGE
+
+see also MPSX-Format14
+
+EDITOR1000
+Main1
+
+-----------------------------------------------------------------------------
+0912
+Edit Vector
+
+In this window you see information about a certain column or row.
+Depending on kind of vector you see the following information:
+Column: Basis or nonbasis
+        Feasible or infeasible
+        OBJF-Entry
+        LO-bound
+        UP-bound
+        Value
+        Rowname with entry: All rows, in which that particular column has
+                            an entry with its coefficient
+ROW   : Basis or nonbasis
+        Feasible or infeasible
+        Cost
+        LO-bound
+        UP-bound
+        RHS
+        Range
+        Type of row L G E or N
+        Value
+        Columnname with entry: All columns, in which that particular row has
+                               an entry with its coefficient
+Commands:
+F1  This screen
+F2  If you are browsing through a column, and you are in the rows of
+    the screen, where the rownames with its entries are listed then by
+    pressing the F2-Key you are switching to the corresponding screen for the
+    row.
+    If you are browsing through a row, and you are in the rows of
+    the screen, where the columnnames with its entries are listed then by
+    pressing the F2-Key you are switching to the corresponding screen for the
+    column.
+
+    This way con browse easily through the matrix and view all coefficients.
+
+EDITOR1000
+Main1
+
+-----------------------------------------------------------------------------
+1000
+EDITOR
+
+The editor allowes the creation and change of texts.
+
+In the upper right corner you can see the actual row and column.
+A 'INS' means insert, an 'OVW' means overwrite.
+If lines are protexted against change, they are highlighted.
+Arrows at the border shows that the text is
+
+Wenn Zeilen gegen Žndern geschtzt sind, so sind sie hervorgehoben.
+Pfeile am rechten und unteren Rand zeigen an, ob der Text jeweils ber die
+R„nder hinausragt.
+
+Erlaubte Tasten:
+  Cursor   : Move around in the text
+  ^Right   : Jump in the actual line to the next nonblank entry on the right
+  ^Left    : Junp in the actual line to the next nonblank entry to the left
+  Page up f: 10 rows up
+  Page down: 10 rows down
+  Home     : Beginning of line
+  End      : End of line
+  ^Home    : upper left corner of the text
+  ^End     : right corner of last line
+  ESC      : Leave editor without save
+  RETURN   : Leave editor and save
+  ^J       : If this command is allowed join the line with the line below
+  ^T       : If this command is allowed split the line at the cursor position
+  ^S       : Search for a string from the actual cursor position downwards
+  INS      : Toggle insert and overwrite mode
+  F10      : Print text
+  F1       : Help, if available in the program
+
+Main1
+
+-----------------------------------------------------------------------------
+1100
+ABOUT
+
+This program was written by
+
+Markus Weidenauer
+An der Grauen Burg 7
+53332 Bornheim
+Germany
+
+Tel.: +49 2227 904780
+
+email: weidenauer@netcologne.de
+http://www.netcologne.de/~nc-weidenma/index.htm
+
+If you use this program, send me a mail and tell me your experience.
+I am very interested in receiving comments on performance and stability
+of the optimiser. If you encounter problems with set-up or solving examples
+don't hesitate to contact me.
+
+Main1
+
+-----------------------------------------------------------------------------
+1200
+Files used and created
+
+This LP-Solver uses the following files:
+
+LP.EXE(DOS DPMI) OR LP_SOLV.EXE(Delphi)  Executable
+LP.PAR        Parameters906 used for configuration
+LP.WHL        The file you are currently reading
+LP.MEN        Menu30 Definition
+
+IF you are using a matrix name then the program creates some other files.
+The extensions and their meaning are as follows:
+
+MAT     Matrix in columnwise MPSX-Format0014
+LP      Matrix in            Row-wise format13
+BSS     Basis  in my format  Basis file example17
+
+CMP     Compression file1300
+LOS     Solution file41
+INT     Integer solution file42
+INF     IF the matrix is infeasible then this file contains all
+        infeasible vectors
+
+If you save a integer-search-tree, 4 files are created:
+INF     Information about current status
+BOU     Bounds used (Binary file)
+FIL     Information about the nodes (active or already solved) bounds used
+        basis for the node ... (Binary file)
+WAI     List of all nodes sorted after objf (Binary file)
+
+Main1
+
+-----------------------------------------------------------------------------
+1300
+Compression
+IF parameter TIGHT is set on yes after reading of the matrix a
+file is created which contains a listing of the actions performed
+during compression.
+  Remove Entries with coefficient of zero
+  Replace a row with only one element by a bound on this vector
+  Remove all entries of Vectors with a fixed bound from the matrix and
+    modify RHS accordingly
+  Set Bound on Integervariables to integer value:
+    UP 3.5  --> 3
+    LO 2.5  --> 3
+  Calculate bounds on variables from rows and rhs entries.
+
+  This is done until no more modifications are possible.
+
+Example of compression file:
+
+IN COLUMN x_____16   Entry at row GL44       was 0
+REPLACE ROW BK10       By a UP Bound on Column VBA        0.7
+REPLACE ROW R1____25   By a LO Bound on Column x_____25   38
+REPLACE UP Bound on Column VBI from 7.9 by 7
+COLUMN VBH has a fixed bound of 0
+PA LO BOUND changed from 0 to 7
+PW UP BOUND changed from 1E21 to 7.59398E18
+COLUMN VBIH has a fixed bound of 0
+
+Main1
+
+-----------------------------------------------------------------------------
+0050
+List of all help Items
+
+Main Window1
+Input formats3
+Output formats4
+Row-wise format13
+MPSX-format14
+Row-wise example15
+MPSX example16
+Basis file example17
+Command file18
+Limits20
+Show Infeasibilities28
+Iteration29
+Menu30
+Compiler35
+Example for Solution file41
+Example for Integer solution file42
+Example for a command file43
+This window50
+File select100
+Integer search200
+Inversion300
+Etha vectors301
+Epsilon Perturbation400
+Internals900
+Compact Storage901
+Basis902
+Bound903
+DJ904
+Objective function905
+Parameters906
+Infeasibilities907
+Right hand side RHS908
+Range909
+Special ordered sets SOS910
+Problem911
+Edit Vector912
+Editor1000
+ABOUT1100
+Files used and created1200
+Compression1300
+
+Main1
+
+-----------------------------------------------------------------------------

@@ -1,0 +1,69 @@
+Program DebugGeral_PlanejaOpera_PC10;
+
+// Variáveis pré-declaradas
+   // Saida   : TwsOutPut
+   // Projeto : TprProjeto_Rosen
+
+var
+  
+  IntTotal : Integer;
+  i        : Integer;
+//  PC       : Object;
+
+  Planilha : Object;
+//  Grafico  : Object;
+//  S1       : Object;
+//  S2       : Object;
+ 
+  LiberaPlaneja : Object;
+  LiberaOpera   : Object;
+  VetorTempo    : Object;
+
+ 
+Begin
+  // Criação e inicialização do vetor tempo
+  VetorTempo := CreateObject(TwsSIVec, 660);
+  for i := 1 to 660 do
+    VetorTempo.Set(i, i);
+ 
+  // Recuperação dos Vetores
+  If GlobalObjects.Exists('LiberaPlaneja') then
+     LiberaPlaneja := TwsDFVec(GlobalObjects.Get('LiberaPlaneja'));
+
+  If GlobalObjects.Exists('LiberaOpera') then
+     LiberaOpera  := TwsDFVec(GlobalObjects.Get('LiberaOpera'));
+
+  // Objetos para apresentação dos resultados
+  Planilha := CreateObject(TPlanilha);  Planilha.Write(1, 1, 'Resultado das Defluências Planejada e Operada');
+  Planilha.Write(2, 1, 'Projeto ' + Projeto.Nome);
+  Planilha.Write(4, 1, 'Dt');
+  Planilha.Write(4, 2, 'Deflu.Planej.');
+  Planilha.Write(4, 3, 'Deflu.Operada');
+
+{
+  Grafico := CreateObject('TgrGrafico');
+  S1 := Grafico.Series.AddBarSerie('I.C.',   getColor('red'),    0, 1);
+  S2 := Grafico.Series.AddBarSerie('I.R.',   getColor('green'),  0, 1);
+
+  Cor := getColor('TeeColor');
+}
+
+  // Apresentação dos resultados
+  Planilha.WriteVecInCol(VetorTempo, 1, 5);
+  Planilha.WriteVecInCol(LiberaPlaneja, 2, 5);
+  Planilha.WriteVecInCol(LiberaOpera, 3, 5);
+
+  // Mostra os dados em forma de planilha e gráfico
+  Planilha.Show;
+  //Saida.Show;
+
+  GlobalObjects.RemoveAndFree('LiberaPlaneja');
+  GlobalObjects.RemoveAndFree('LiberaOpera');
+
+ {
+  ATENÇÃO:
+     Os objetos Planilha, Grafico e Series (S1..S4) não deverão ser destruídos
+     pois continuarão a existirem após a execução de script (mostrarão os dados) e
+     serão destruídos automaticamente ao serem fechados pelo usuário.
+  }    
+end.

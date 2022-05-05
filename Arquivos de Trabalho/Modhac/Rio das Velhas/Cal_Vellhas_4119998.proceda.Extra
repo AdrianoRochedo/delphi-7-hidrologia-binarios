@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Arquivo gerado pela rotina TDSInfo.SaveToFile -->
+<!-- Autor: Adriano Rochedo Conceicao -->
+
+<proceda version="1.1">
+  <stations>
+    <station name="_41199998_NC_2">
+      <type></type>
+      <unit></unit>
+      <description>
+        <string>Posto obtido de SerieFlu_Bacia_41_DasVelhas.Vazoes.41199998</string>
+      </description>
+      <extra>
+      </extra>
+      <series>
+      </series>
+    </station>
+  </stations>
+</proceda>

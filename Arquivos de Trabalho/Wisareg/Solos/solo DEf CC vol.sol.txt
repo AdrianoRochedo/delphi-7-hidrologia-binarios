@@ -1,0 +1,8 @@
+           2 //tipo de solo {1,2,3} tipo 2 camada definida por cc e ce (%)
+           3 //numero de camdas {1...8}
+   0.00   0.30   12.00   2.70 
+   0.30   0.50   11.00   2.70
+   0.45   0.90   8.00   2.70
+
+//Para cada camada define-se
+//(profundidade inicial) (profundidade final) (Capacacidade campo) (Coeficente de emurchimento)

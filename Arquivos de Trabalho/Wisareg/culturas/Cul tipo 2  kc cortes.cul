@@ -1,0 +1,19 @@
+    2    2   A   F
+10/04
+10/11
+  70.00  70.00
+   1.00   1.00
+   1.40
+           3 \\tipo de kc
+           6 \\numero de cortes {1...6}
+10/05 \\data do 1º corte
+10/06 \\data do 2º corte
+10/07 \\data do 3º corte
+10/08 \\data do 4º corte
+10/09 \\data do 5º corte
+10/10 \\data do 6º corte
+   0.10   0.20   0.30   0.60 
+
+No kc tipo 3 indica-se na vertical cada data de corte 
+e na horiontal 
+\\(kc data inicial) (kc data final) (kc depois corte) (kc antes corte)

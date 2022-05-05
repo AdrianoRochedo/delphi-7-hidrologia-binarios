@@ -1,0 +1,449 @@
+UNIDADE pr_Classes ---------------------------------------------------------------------
+
+   TListaDeObjetos
+   TListaDePCs
+   TListaDeClassesDemanda
+   TprFalha
+   TListaDeFalhas
+   TListaDeIntervalos
+
+   TAdvObject
+      TprBase
+         TprBase2
+            TprProjeto
+            TprSubBacia
+            TprTrechoDagua
+            TprClasseDemanda
+               TprDemanda
+            TprPC
+               TprPCP
+                  TprPCPR
+
+UNIDADE DLG_DrawWIN --------------------------------------------------------------------
+
+   TprDialogo_AreaDeProjeto
+
+INTERFACES PRIVADAS --------------------------------------------------------------------
+
+TListaDeObjetos = Class
+    FList           : TList
+    FLiberarObjetos : Boolean
+
+    function  getObjeto(index: Integer): TprBase2;
+    procedure setObjeto(index: Integer; const Value: TprBase2);
+    function  getNumObjetos: Integer;
+
+--------------------------//---------------------------------//-------------------------
+
+TListaDePCs = Class
+    FList : TListaDeObjetos;
+
+    function GetPC(Index: Integer): TprPC;
+    function GetNumPCs: Integer;
+    procedure SetPC(index: Integer; const Value: TprPC);
+
+--------------------------//---------------------------------//-------------------------
+
+TListaDeClassesDemanda = class
+    FTN       : TStrings;
+    FList     : TStrings;
+    FEM       : TEventoDeMudanca;
+    FProjeto  : TForm;
+
+    function getClasse(indice: Integer): TprClasseDemanda;
+    function GetClasses: Integer;
+    function getBitmap(indice: Integer): TBitmap;
+    procedure RemoverObjeto(indice: Integer);
+
+--------------------------//---------------------------------//-------------------------
+
+TprFalha = class
+    FAno        : Integer;
+    FIntervalos : TListaDeInteiros;
+    FIntCrit    : TListaDeBoleanos;
+    FDemsRef    : TListaDeReais;
+    FDemsAten   : TListaDeReais;
+
+    function GetSAno: String;
+    function GetFalhaCritica: Boolean;
+
+--------------------------//---------------------------------//-------------------------
+
+TListaDeFalhas = class
+    FFalhasPri: TStrings;
+    FFalhasSec: TStrings;
+    FFalhasTer: TStrings;
+    FProjeto  : TprProjeto;
+
+    function  PegaFalhas(Tipo: TEnumPriorDemanda): TStrings;
+    function  getFalhaPri(i: Integer): TprFalha;
+    function  getFalhaSec(i: Integer): TprFalha;
+    function  getFalhaTer(i: Integer): TprFalha;
+    function  getNumFalhasPri: Integer;
+    function  getNumFalhasSec: Integer;
+    function  getNumFalhasTer: Integer;
+
+--------------------------//---------------------------------//-------------------------
+
+TListaDeIntervalos = Class
+    FIntIni  : TListaDeInteiros;
+    FIntFim  : TListaDeInteiros;
+    FHab     : TListaDeInteiros;
+    FNomes   : TStrings;
+    FProjeto : TprProjeto;
+
+    function getNumInts: Integer;
+    function GetsDataFim(i: Integer): String;
+    function GetsDataIni(i: Integer): String;
+    function GetNome(i: Integer): String;
+    function GetHabilitado(i: Integer): Boolean;
+
+--------------------------//---------------------------------//-------------------------
+
+TAdvObject = class
+
+--------------------------//---------------------------------//-------------------------
+
+TprBase = class(TAdvObject)
+    FVisitado   : Boolean;
+    FModificado : Boolean;
+    FProjeto    : TprProjeto;
+    FBloqueado  : Boolean;
+
+    function ReceiveMessage(Const MSG: TadvMessage): Boolean; override;
+    procedure SetModificado(const Value: Boolean);
+
+--------------------------//---------------------------------//-------------------------
+
+TprBase2 = class(TprBase)
+    Shape        : TdrBaseShape;
+    Dialogo      : TprDialogo_Base;
+    FNome        : String;
+    FDescricao   : String;
+    FComentarios : TStrings;
+    TN           : TStrings;
+    FMenu        : TPopupMenu;
+
+    FAvisarQueVaiSeDestruir: Boolean;
+
+    function  GetRect: TRect;
+    function  GetPos: TPoint;
+    procedure SetPos(Const Value: TPoint);
+    procedure SetNome(const Value: String);
+    procedure DuploClick(Sender: TObject);
+    procedure CriarFigura(Form: TForm);
+    function  Section: String;
+    function  CriaImagem: TdrBaseShape; Virtual; Abstract;
+
+    procedure PegaDadosDoDialogo(d: TprDialogo_Base); Virtual;
+    procedure PoeDadosNoDialogo(d: TprDialogo_Base); Virtual;
+    function  CriaDialogo: TprDialogo_Base; Virtual;
+    procedure ColocaDadosNaPlanilha(Planilha: TForm); Virtual; Abstract;
+
+    procedure AtualizaHint;
+
+    function  ObtemNome: String;
+    Function  ObtemPrefixo: String; Virtual;
+    function  ReceiveMessage(const MSG: TadvMessage): Boolean; Override;
+
+    procedure PrepararMenu; Virtual;
+
+--------------------------//---------------------------------//-------------------------
+
+TprProjeto = Class(TprBase2)
+    FIni            : TIF;
+    FArqFundo       : String;
+    FFundoBmp       : TBitmap;
+    FDirSaida       : String;    // temporário para cada simulação (DOS)
+    FClasDem        : TListaDeClassesDemanda;
+    FModificado     : Boolean;
+    FNomeArquivo    : String;
+    FTI             : byte;
+    FPCs            : TListaDePCs;
+    FAnos           : TaRecIntervalos;
+    FIntSim         : TEnumIntSim;
+    FNF             : Real;    // Nível de Falha
+    FArqVazoes      : String;  // Vazões afluentes de cada PC
+    FArqDPS         : String;  // Demanda Primária Suprida
+    FArqDSS         : String;  // Demanda secundária Suprida
+    FArqDTS         : String;  // Demanda Terciária Suprida
+    FArqAR          : String;  // Armazenamentos nos reservatórios
+    FArqEG          : String;  // Energia Gerada em cada PC
+    FDirSai         : String;
+    FDirPes         : String;
+    FDeltaT         : Integer;
+    FInts           : TListaDeIntervalos;
+    FPropDOS        : String;
+    FValorFO        : Real;
+    FAreaDeProjeto  : TForm;
+    FSubBacias      : TList;
+    FSimulador      : TSimulation;
+
+    function  ObtemSubBacias: TList;
+    procedure PegaDadosDoDialogo(d: TprDialogo_Base); Override;
+    procedure PoeDadosNoDialogo(d: TprDialogo_Base); Override;
+    function  CriaDialogo: TprDialogo_Base; Override;
+    function  getTAIS: Integer;
+    function  getTIS: Integer;
+    function  getData: TRec_prData;
+    function  getTMIS: Integer;
+    function  getNumAnos: Integer;
+    procedure EscreveAnosNoEditor(Const Ident: String = '');
+    procedure SetFundo(Value: String);
+
+    // Mecanismo de Simulação
+    procedure  SimulacaoTerminou(Sender: TObject);
+    procedure  DisparaSimulacao; Virtual;
+    procedure  ExecutaSimulacao;
+
+    // Métodos Interativos
+    procedure Planeja;
+
+    // Mecanismo de ligação com o Propagar DOS
+    function  GerarArquivoDeVazoes: String;
+    function  GerarArquivoDeDemandasDifusas: String;
+    function  GerarArquivoDeDemanda(Tipo: TEnumPriorDemanda): String;
+    function  GerarArquivoDosReservatorios(const Tipo: String): String;
+    procedure LeArquivosDoPropagarDOS;
+
+    function  LerPC(Ini: TIF; const NomeDoPC: String): TprPCP;
+    procedure Ler_Objetos(Ini: TIF; const NomeDoPC: String);
+
+--------------------------//---------------------------------//-------------------------
+
+TprTrechoDagua = class(TprBase2)
+    FVazaoMinima : Real;
+    FVazaoMaxima : Real;
+
+    procedure SetVazaoMaxima(const Value: Real);
+    procedure SetVazaoMinima(const Value: Real);
+    Function  ObtemPrefixo: String; Override;
+    procedure PegaDadosDoDialogo(d: TprDialogo_Base); Override;
+    procedure PoeDadosNoDialogo(d: TprDialogo_Base); Override;
+    function  CriaDialogo: TprDialogo_Base; Override;
+    function  ReceiveMessage(const MSG: TadvMessage): Boolean; Override;
+
+--------------------------//---------------------------------//-------------------------
+
+TprPC = Class(TprBase2)
+    FPCs_aMontante  : TListaDeObjetos;
+    FSubBacias      : TListaDeObjetos;
+    FDemandas       : TListaDeObjetos;
+    FTD             : TprTrechoDagua;
+    FVisivel        : Boolean;
+    FHierarquia     : Integer;
+    FAfluenciaSB    : TV;      // Afluencia no intervalo t
+    FDefluencia     : TV;      // Defluencia no intervalo t
+    FVzMon          : TV;      // Vazão total de Montante no intervalo t
+
+    function  GetPC_aMontante(Index: Integer): TprPC;
+    function  GetPCs_aMontante: Integer;
+    function  ReceiveMessage(Const MSG: TadvMessage): Boolean; override;
+    function  GetNumSubBacias: Integer;
+    function  GetPC_aJusante: TprPC;
+    function  GetSubBacia(index: Integer): TprSubBacia;
+    function  CriaImagem: TdrBaseShape; override;
+
+    procedure SetVisivel(Value: Boolean);
+    procedure SetPC_aJusante(const Value: TprPC);
+    function  GetDemanda(index: Integer): TprDemanda;
+    function  GetNumDemandas: Integer;
+    procedure ColocaDadosNaPlanilha(Planilha: TForm); Override;
+
+--------------------------//---------------------------------//-------------------------
+
+TprPCP = class(TprPC)
+    FCRC: String; // código de retorno de contribuição
+
+    // F = Field    D = Demanda     P,S,T = Primaria..Terciaria
+    // T = Totais   A = Atendidas   P = Planejadas
+    FDPT: TV;
+    FDST: TV;
+    FDTT: TV;
+
+    FDPA: TV;
+    FDSA: TV;
+    FDTA: TV;
+
+    FDPP: TV;
+    FDSP: TV;
+    FDTP: TV;
+
+    FNCFP: Real; // Nível Crítico de Falha Primária
+    FNCFS: Real; // Nível Crítico de Falha Secundária
+    FNCFT: Real; // Nível Crítico de Falha Terciária
+
+    FMDs : Boolean;
+
+    procedure AnularCampos;
+    procedure CopiarPara(PC: TprPCP);
+    function  CriaDialogo: TprDialogo_Base; Override;
+    Function  ObtemPrefixo: String; Override;
+    procedure PegaDadosDoDialogo(d: TprDialogo_Base); Override;
+    procedure PoeDadosNoDialogo(d: TprDialogo_Base); Override;
+    procedure GraficarDemandas(const Titulo, TipoDem: String; TipoGraf: TEnumTipoDeGrafico);
+    procedure ObtemNiveisCriticosDeFalhas;
+    procedure ColocaDadosNaPlanilha(Planilha: TForm); Override;
+    procedure SetMDs(const Value: Boolean);
+    procedure PrepararMenu; override;
+    procedure Menu_DemandasClick(Sender: TObject);
+    function  Hm3_m3_Intervalo(const Valor: Real): Real;
+    function  m3_Hm3_Intervalo(const Valor: Real): Real;
+
+    procedure BalancoHidrico; override;
+    procedure Raciona(const AguaTotal, DPP, DSP, DTP: Real; out DPA, DSA, DTA: Real); virtual;
+
+--------------------------//---------------------------------//-------------------------
+
+TprPCPR = class(TprPCP)
+    FArqPrec : String;
+    FArqETP  : String;
+    FTipoETP : Byte;
+    FVolMax  : Real;
+    FVolMin  : Real;
+    FVolIni  : Real;
+    FCV      : Array of TRecCotaVolume;  // Cota Volume
+    FAV      : Array of TRecAreaVolume;  // Área Volume
+    FDPE     : Boolean; // Se gera ou não energia
+    FStatus  : Boolean;
+    FCT      : Real;
+    FEF      : Real;
+    FVolume  : TV; // Volumes em cada intervalo
+    FEG      : TV; // Energia Gerada no intervalo t
+    FEU      : TV; // Evaporação Unitária
+    FPU      : TV; // Precipitação Unitária
+
+    Function  ObtemPrefixo: String; Override;
+    function  CriaImagem: TdrBaseShape; override;
+    procedure PegaDadosDoDialogo(d: TprDialogo_Base); Override;
+    procedure PoeDadosNoDialogo(d: TprDialogo_Base); Override;
+    function  CriaDialogo: TprDialogo_Base; Override;
+    function  GetAV(index: Word): TRecAreaVolume;
+    function  GetCV(index: Word): TRecCotaVolume;
+    function  GetPAV: Word;
+    function  GetPCV: Word;
+    function  GetEU: TV;
+    function  GetPU: TV;
+    procedure SetPAV(const Value: Word);
+    procedure SetPVC(const Value: Word);
+    procedure ColocaDadosNaPlanilha(Planilha: TForm); Override;
+
+    function  CalculaAreaDoReservatorio(const Volume: Real): Real;
+    function  CalculaEnergia: Real;
+    function  ObtemVolFinalIntervaloAnterior: Real;
+    function  ObtemVolInicioIntervalo: Real;
+
+    procedure BalancoHidrico; override;
+    procedure Raciona(const AguaTotal, DPP, DSP, DTP: Real; out DPA, DSA, DTA: Real); override;
+    procedure Opera(var VolumeAtual, DPP, DSP, DTP: Real; out DPO, DSO, DTO, Def_OP: Real);
+
+--------------------------//---------------------------------//-------------------------
+
+TprSubBacia = Class(TprBase2)
+    FPCs       : TListaDeObjetos;
+    FDemandas  : TListaDeObjetos;
+    FCCs       : TListaDeReais;
+    FArea      : Real;
+    FArqVA     : String;
+    FVazoes    : TV;
+
+    Function  ObtemPrefixo: String; Override;
+    function  getNDD: Integer;
+    procedure PegaDadosDoDialogo(d: TprDialogo_Base); Override;
+    procedure PoeDadosNoDialogo(d: TprDialogo_Base); Override;
+    function  CriaDialogo: TprDialogo_Base; Override;
+    function  CriaImagem: TdrBaseShape;  Override;
+    function  GetDD(index: Integer): TprDemanda;
+    function  GetVazoes: TV;
+    function  ReceiveMessage(const MSG: TadvMessage): Boolean; Override;
+    procedure ColocaDadosNaPlanilha(Planilha: TForm); Override;
+
+--------------------------//---------------------------------//-------------------------
+
+TprClasseDemanda = class(TprBase2)
+    FLigada       : Boolean;
+    FED           : Real;
+    FFC           : Real;
+    FNUCD         : String;
+    FNUD          : String;
+    FPrioridade   : TEnumPriorDemanda;
+    FUD           : TaRecUD;
+    FVU           : TaRecVU;
+    FFI           : TaRecFI;
+    FData         : TprData;
+    FFR           : Real;
+    FNFC          : Real;
+
+    FSalvarLerBitmap : Boolean;
+
+    procedure PegaDadosDoDialogo(d: TprDialogo_Base); Override;
+    procedure PoeDadosNoDialogo(d: TprDialogo_Base); Override;
+    function  CriaImagem: TdrBaseShape;  Override;
+    function  CriaDialogo: TprDialogo_Base; Override;
+    function  ObtemPrefixo: String; Override;
+    function  GetBitmap: TBitmap;
+    procedure SetBitmap(B: TBitmap);
+    procedure BitmapChange(Sender: TObject);
+    function  GetUC: Real;
+    function  GetUD: Real;
+    function  GetBitmapName: String; Virtual;
+    function  GetFI: Real;
+
+--------------------------//---------------------------------//-------------------------
+
+TprDemanda = class(TprClasseDemanda)
+    FClasse          : String;
+    FGrupos          : TStrings;
+    FTipo            : TTipoDemanda;
+    FSincronizaDados : Boolean;
+    FSincTVU         : Boolean;
+    FSincTUD         : Boolean;
+    FSincTFI         : Boolean;
+    FHabilitada      : Boolean;
+    FTemp            : Real;
+
+    Function  ObtemPrefixo: String; Override;
+    procedure PegaDadosDoDialogo(d: TprDialogo_Base); Override;
+    procedure PoeDadosNoDialogo(d: TprDialogo_Base); Override;
+    function  CriaDialogo: TprDialogo_Base; Override;
+    function  ReceiveMessage(Const MSG: TadvMessage): Boolean; override;
+    function  GetBitmapName: String; override;
+    function getVisivel: Boolean;
+    procedure SetVisivel(const Value: Boolean);
+
+--------------------------//---------------------------------//-------------------------
+
+TprDialogo_AreaDeProjeto = class(TForm)
+    FProjeto             : TprProjeto;
+    gOldPos              : TPoint;
+    gDesloc              : TPoint;
+    DesenhandoRio        : Boolean;
+    Arrastando           : Boolean;
+    Fpc1                 : TprPC;
+    FSB                  : TprSubBacia;
+    FIni                 : TIF;      // Usado no armazenamento/recuperação de informações
+    FObjSel              : TprBase2;
+    FTN                  : TStrings;
+    FGO_NA               : TSetByte;
+    SaveCaption          : TCaption;
+    FPerguntar_TemCerteza: Boolean;
+    FFechando            : Boolean;
+    FBloqueado           : Boolean;
+    FMT                  : Boolean;
+    FMF                  : Boolean;
+    FMD                  : Boolean;   // Mostra ou não as demandas dos PCs
+    FLendo               : Boolean;
+    sem_AtualizarTela    : Boolean;   // Semáforo de atualização de tela
+
+    {$IFDEF DEBUG}
+    i_AtualizaTela       : Integer;
+    {$ENDIF}
+
+    function  CriaSubBacia(Pos: TPoint; Projeto: TprProjeto; PC: TObject): TprSubBacia;
+    function  CriaDemanda(Pos: TPoint; Projeto: TprProjeto; Obj: TprBase2): TprDemanda;
+    function  ObtemObjetoAssociado(Sender: TObject): TprBase2;
+    procedure DesenhaSelecao(Selecionar: Boolean);
+    procedure SetObjSel(const Value: TprBase2);
+    procedure SelecionaObjeto(sender: TObject; Selecionar: Boolean = TRUE);
+    procedure SetMD(const Value: Boolean);
+

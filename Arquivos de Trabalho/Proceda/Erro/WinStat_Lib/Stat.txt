@@ -1,0 +1,34 @@
+Indices para as estatisticas
+1.  N         Numero de observacoes
+2.  NMiss     Numero de valores invalidos
+3.  Min       Menor valor
+4.  Max       Maior valor
+5.  Range     Amplitude total
+6.  Sum       Total dos valores
+7.  Mean      Media aritmetica
+8.  USS       Soma de quadrados nao corrigida
+9.  CSS       Soma de quadrados corrigida
+10. Var       Variancia
+11. Std       Desvio padrao
+12. StdErr    Erro padrao da media
+13. CV        Coeficiente de variacao
+14. Skewness  Coeficiente de assimetria
+15. Kurtosis  Coeficiente de curtose
+
+Parametros:
+  DataSet: Conjunto de dados
+  Col: Indices das colunas de DataSet das variaveis a serem consideradas
+    Por exemplo, se se deseja a media e a variancia da primeira coluna, o maximo
+    e o minimo da terceira entao Col=[1, 1, 3, 3]
+  Stats: Quais estatisticas serao calculadas
+    Para o exemplo anterior fica Stats=
+
+Stat: array[1..8] of float;
+...
+Stat[1] := 0; Stat[2] := MaxFloatValue; Stat[3] := -MaxFloatValue;
+Stat[4] := 0; Stat[5] := 0; Stat[6] := 0; Stat[7] := 0; Stat[8] := 0;
+Para cada observacao
+
+fim para;
+Cria um vetor para armazenar as estatisticas desejadas (mesmo tamanho de Col)
+Armazena as estatisticas desejadas

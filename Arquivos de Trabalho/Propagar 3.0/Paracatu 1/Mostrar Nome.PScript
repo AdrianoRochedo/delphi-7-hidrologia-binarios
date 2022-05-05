@@ -1,0 +1,4 @@
+begin
+  ShowMessage(Obj.Nome);
+  ShowMessage(Projeto.Nome);
+end.
